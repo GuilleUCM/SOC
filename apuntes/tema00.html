@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Guillermo Jiménez Díaz (gjimenez@ucm.es)">
+  <meta name="author" content="Alberto Díaz (albertodiaz@fdi.ucm.es)">
+  <title>Análisis de Redes Sociales</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header>
+<h1 class="title">Análisis de Redes Sociales</h1>
+<h2 class="author">Guillermo Jiménez Díaz (gjimenez@ucm.es)</h2>
+<h2 class="author">Alberto Díaz (albertodiaz@fdi.ucm.es)</h2>
+<h3 class="date">1 de octubre de 2014</h3>
+</header>
+<h1 id="prefacio" class="unnumbered">Prefacio</h1>
+<p>Estos son los apuntes de la asignatura Análisis de Redes Sociales, impartida en la Facultad de Informática de la Universidad Complutense de Madrid por los profesores Guillermo Jiménez Díaz y Alberto Díaz, del Departamento de Ingeniería del Software e Inteligencia Artificial.</p>
+<p>Este material ha sido desarrollado a partir de distintas fuertes, destacando como referencia principal el libro <em>Network Science</em> de Laszlo Barabasi y el material de la asignatura <em>Social Network Analysis</em> impartido por Lada Adamic a través de Coursera.</p>
+<h1 id="tema-0-presentación-de-la-asignatura" class="unnumbered">Tema 0: Presentación de la asignatura</h1>
+<h2 id="motivación">Motivación</h2>
+<p>¿Para qué sirve el Análisis de Redes sociales?</p>
+<ul>
+<li>Para entender la estructura y el comportamiento de un sistema complejo.</li>
+<li>Para la extracción de información y predicción.</li>
+<li>Para la detección de vulnerabilidades y posibles fallos en cascada debido a las interconexiones entre nodos (por ejemplo, en una red eléctrica por sobrecarga de una central o en internet, debido a un ataque por denegación de servicio en un router)</li>
+<li>Para hacer mapas de una red</li>
+<li>Para entender cómo la estructura de la red afecta a la robustez de la misma.</li>
+<li>Para conocer los procesos dinámicos que aparecen en ella.</li>
+</ul>
+<p>Generalmente un sistema complejo puede representarse mediante una red que codifica las interacciones entre los componentes del sistema:</p>
+<ul>
+<li>El cerebro humano es una red de neuronas</li>
+<li>La sociedad es una red de conexiones familiares, profesionales y de amistad entre individuos.</li>
+<li>Un sistema de comunicación es un conjunto de dispositivos de comunicación que interaccionan a través de Internet o de enlaces wireless.</li>
+<li>La red eléctrica se compone de generadores y líneas de transmisión entre ellos.</li>
+<li>El comercio y la economía se puede representar como una red de intercambio de bienes y servicios entre personas, empresas y países.</li>
+<li>Internet es una red de páginas enlazadas entre sí.</li>
+</ul>
+<h3 id="el-análisis-de-redes-sociales-y-la-teoría-de-grafos">El Análisis de Redes Sociales y la Teoría de Grafos</h3>
+<p>Como veremos más adelante, el Análisis de Redes Sociales (ARS) hace uso de la teoría de grafos matemática, aunque tiene ciertas diferencias:</p>
+<ul>
+<li>El ARS es más empírico que la teoría de grafos.</li>
+<li>El ARS se centra en los datos y en la utilidad de los mismos.</li>
+<li>Usa, al igual que la teoría de grafos, conceptos y modelos matemáticos para describir las propiedades de la red.</li>
+<li>Trabaja con grandes cantidades de información por lo que genera grafos enormes.</li>
+</ul>
+<h3 id="aplicaciones-del-análisis-de-redes-sociales">Aplicaciones del Análisis de Redes Sociales</h3>
+<ul>
+<li>Predicción de epidemias</li>
+<li>Lucha contra el terrorismo</li>
+<li>Economía: recomendaciones y anuncios</li>
+<li>Salud: Medicina y genómica, investigación sobre el cerebro humano y redes neuronales.</li>
+<li>Gestión: estructura de organizaciones, identificación de líderes de opinión, grupos óptimos…</li>
+</ul>
+<h2 id="objetivo-general-del-curso" class="unnumbered">Objetivo general del curso</h2>
+<blockquote>
+<p>TODOTODO</p>
+</blockquote>
+<h2 id="contenidos-del-curso">Contenidos del curso</h2>
+<h3 id="qué-vamos-a-estudiar">¿Qué vamos a estudiar?</h3>
+<p>TODO TODO</p>
+<h2 id="evaluación-de-la-asignatura">Evaluación de la asignatura</h2>
+<p>La evaluación final del curso se compone de tres partes:</p>
+<h3 id="prácticas-70">Prácticas (70%)</h3>
+<p>Las prácticas son <strong>obligatorias</strong> y es necesario que estén <strong>aprobadas</strong> para que sean tenidas en cuenta en la nota final:</p>
+<ul>
+<li>Entregadas en plazo</li>
+<li>Satisfaciendo los requisitos del enunciado</li>
+<li>Obteniendo una nota entre 5 y 10</li>
+</ul>
+<p>TODO: Cuántas y grupos</p>
+<p>Las prácticas no entregadas o suspensas se tendrán que volver a entregar en septiembre.</p>
+<h3 id="proyecto-o-examen-final-30">Proyecto o examen final (30%)</h3>
+<p>TODO</p>
+<!-- En diciembre se comenzará con un **proyecto final** que consistirá en el diseño de un sistema interactivo de acuerdo a las metodologías y técnicas explicadas en clase. El tema final del proyecto deberá ser aprobado previamente por el profesor. El trabajo será presentado en defensa pública a finales de enero. En caso de superar la defensa los miembros del grupo quedarán exentos de realizar el examen final. Al igual que con las prácticas, es necesario **aprobar** el proyecto para que su nota sea tenida en cuenta en la nota final.
+
+En caso de no presentar el proyecto o no superar la defensa habrá un **examen final** sobre los contenidos teórico-prácticos de la asignatura. Este examen podrá realizarse tanto en la convocatoria de febrero como septiembre. Será necesario **aprobar** el examen para que su nota sea tenida en cuenta en la nota final. -->
+
+<h2 id="bibliografía">Bibliografía</h2>
+<h3 id="principal">Principal</h3>
+<ul>
+<li><a href="http://barabasilab.neu.edu/networksciencebook/">Network Science</a>. Laszlo Barabasi.</li>
+<li><a href="http://www.cs.cornell.edu/home/kleinber/networks-book/">Networks, Crowds and Markets</a>. David Easley and Jon Kleinberg, Cambridge University Press. 2010.</li>
+<li>Social and Economic Networks. Matthew O. Jackson. Princeton University Press. 2008.</li>
+</ul>
+<h3 id="complementaria">Complementaria</h3>
+<ul>
+<li>The Structure and Dynamics of Networks. Mark Newman, Albert-László Barabási, and Duncan J. Watts. 2006.</li>
+<li><a href="http://barabasilab.com/LinkedBook/index.html">Linked: The New Science of Networks</a>. Albert-Laszlo Barabasi, Jennifer Frangos.</li>
+</ul>
+</body>
+</html>

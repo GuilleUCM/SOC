@@ -1,0 +1,78 @@
+/*
+	Fuente en general
+ */
+div.level3 *{
+	font-size: 22pt;
+}
+
+.nota {
+	visibility:hidden;
+}
+
+/*
+	Imágenes centradas
+ */
+.figure {
+	text-align: center;
+}
+
+.figure img {
+	max-height: 500px;
+    max-width: 700px;
+}
+
+/* Antiguo Guille
+.figure img {
+	height: 500px;
+    width: auto;
+}
+*/
+/*
+	Primera traspa
+ */
+div.titlepage h1 {
+	font-size: 200%;
+	text-align: center;
+	padding: 30% 0 10% 0;
+	margin: 0 0 0 0;
+	background-color: #5CADFF;
+	color: #ffffff;
+}
+
+/*
+	Título de cada traspa individual
+ */
+div.level3 h1{
+	background-color: #5CADFF;
+	padding: 0.5em 5%;
+	color: #ffffff;
+	margin: 0 0 1em 0
+}
+
+/*
+	Título entre traspas
+ */
+div.titleslide h1 {
+	font-size: 200%;
+	text-align: center;
+	padding: 30% 0 10% 0;
+	margin: 0 0 0 0;
+	background-color: #5CADFF;
+	color: #ffffff;
+}
+
+ul {
+    margin: 1em 4em;
+}
+/*
+	Para los bloques de citas
+ */
+blockquote {
+    background-color: #EEEEEE;
+    border: medium solid #DDDDDD;
+    border-radius: 10px;
+    font-style: italic;
+    padding: 0.2em 0;
+    text-align: center;
+    margin: 1.5em 3em;
+}

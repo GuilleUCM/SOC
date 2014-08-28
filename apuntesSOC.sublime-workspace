@@ -1,0 +1,788 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"pa",
+				"padding-bottom"
+			],
+			[
+				"arr",
+				"array"
+			],
+			[
+				"pad",
+				"padding"
+			],
+			[
+				"te",
+				"text-align"
+			],
+			[
+				"fon",
+				"font-size"
+			],
+			[
+				"co",
+				"color"
+			],
+			[
+				"ba",
+				"background-color"
+			],
+			[
+				"si",
+				"font-size"
+			],
+			[
+				"padd",
+				"padding-top"
+			],
+			[
+				"paddin",
+				"padding-left"
+			],
+			[
+				"i",
+				"iframe	Tag"
+			],
+			[
+				"com",
+				"compare"
+			],
+			[
+				"va",
+				"value"
+			],
+			[
+				"play",
+				"player"
+			],
+			[
+				"pla",
+				"playerTurn"
+			],
+			[
+				"new",
+				"newItem"
+			],
+			[
+				"g",
+				"guess"
+			],
+			[
+				"a",
+				"add"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "apuntesSOC.sublime-project",
+			"settings":
+			{
+				"buffer_size": 74,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "Packages/Pandown/Pandown Markdown.sublime-build",
+	"command_palette":
+	{
+		"height": 392.0,
+		"selected_items":
+		[
+			[
+				"gis",
+				"Gist: Open Gist"
+			],
+			[
+				"case",
+				"Convert Case: Title Case"
+			],
+			[
+				"com",
+				"Toggle Comment"
+			],
+			[
+				"ht",
+				"Build: Pandown: HTML 5"
+			],
+			[
+				"pdf",
+				"Build: Pandown: LaTeX - PDF"
+			],
+			[
+				"pac",
+				"Package Control: List Packages"
+			],
+			[
+				"html",
+				"Build: Pandown: HTML 5"
+			],
+			[
+				"htm",
+				"Build: Pandown: HTML 5"
+			],
+			[
+				"",
+				"Build: Pandown: HTML 5"
+			],
+			[
+				"sy ht",
+				"Set Syntax: HTML"
+			],
+			[
+				"htl",
+				"Build: Pandown: HTML5 with Literate Haskell"
+			],
+			[
+				"sy md",
+				"Set Syntax: Markdown"
+			],
+			[
+				"hmtl",
+				"Set Syntax: HTML (Tcl)"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"h",
+				"Build: Pandown: HTML 5"
+			],
+			[
+				"HTML",
+				"Build: Pandown: HTML 5"
+			],
+			[
+				"html	",
+				"Build: Pandown: HTML 5"
+			],
+			[
+				"pan",
+				"Pandown: Project Settings"
+			],
+			[
+				"LOWER",
+				"Convert Case: Lower Case"
+			],
+			[
+				"la",
+				"Build: Pandown: LaTeX - PDF"
+			],
+			[
+				"hl",
+				"Build: Pandown: HTML5 with Literate Haskell"
+			],
+			[
+				"sy",
+				"Set Syntax: Markdown"
+			],
+			[
+				"txt",
+				"Set Syntax: Plain Text"
+			],
+			[
+				"tex",
+				"Set Syntax: TeX"
+			],
+			[
+				"pak",
+				"Package Control: Remove Package"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"pht",
+				"Build: Pandown: HTML 5"
+			],
+			[
+				"psd",
+				"Preferences: Settings - Default"
+			],
+			[
+				"late",
+				"Build: Pandown: LaTeX"
+			],
+			[
+				"sl",
+				"Build: Pandown: Slidy HTML/JS Slideshow"
+			],
+			[
+				"SL",
+				"Build: Pandown: Slidy HTML/JS Slideshow"
+			],
+			[
+				"sli",
+				"Build: Pandown: Slidy HTML/JS Slideshow"
+			],
+			[
+				"pd",
+				"Pandoc: Render Markdown to temp PDF and View"
+			],
+			[
+				"new",
+				"File: New File Relative to Current View"
+			],
+			[
+				"bea",
+				"Build: Pandown: LaTeX Beamer Slideshow"
+			],
+			[
+				"dz",
+				"Build: Pandown: DZSlides HTML5/JS Slideshow"
+			],
+			[
+				"co",
+				"Toggle Comment"
+			],
+			[
+				"mdl",
+				"Snippet: Markdown_link_(mdl)"
+			],
+			[
+				"pack",
+				"Package Control: List Packages"
+			],
+			[
+				"file",
+				"File: New File Relative to Current View"
+			],
+			[
+				"list",
+				"Package Control: List Packages"
+			],
+			[
+				"prev",
+				"Pandoc: Render Markdown to temp HTML and View"
+			],
+			[
+				"mar",
+				"Set Syntax: Markdown"
+			],
+			[
+				"pref ma",
+				"Preferences: MarkdownEditing Settings – Default"
+			],
+			[
+				"sy ma",
+				"Set Syntax: Markdown"
+			],
+			[
+				"wo",
+				"Build: Pandown: Word Document"
+			],
+			[
+				"wor",
+				"Build: Pandown: Word Document"
+			],
+			[
+				"del",
+				"File: Delete"
+			],
+			[
+				"rena",
+				"File: Rename"
+			],
+			[
+				"be",
+				"Build: Pandown: LaTeX Beamer Slideshow - PDF"
+			],
+			[
+				"pando",
+				"Build: Pandown: LaTeX"
+			],
+			[
+				"html5",
+				"Build: Pandown: HTML5 with Literate Haskell"
+			],
+			[
+				"bui",
+				"Build: Pandown: HTML 5"
+			],
+			[
+				"con",
+				"Package Control: Upgrade Package"
+			],
+			[
+				"sy ",
+				"Set Syntax: Markdown"
+			],
+			[
+				"SLI",
+				"Build: Pandown: Slidy HTML/JS Slideshow"
+			],
+			[
+				"s5",
+				"Build: Pandown: S5 HTML/JS Slideshow"
+			],
+			[
+				"slide",
+				"Build: Pandown: Slideous HTML/JS Slideshow"
+			],
+			[
+				"beame",
+				"Set Syntax: LaTeX Beamer"
+			],
+			[
+				"pan sli",
+				"Build: Pandown: Slidy HTML/JS Slideshow"
+			],
+			[
+				"pand sli",
+				"Build: Pandown: Slidy HTML/JS Slideshow"
+			],
+			[
+				"spli",
+				"Snippet: Lorem ipsum"
+			],
+			[
+				"con list",
+				"Package Control: List Packages"
+			],
+			[
+				"contr",
+				"Package Control: List Packages"
+			],
+			[
+				"ind",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"inde",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"indent",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"i",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"rein",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"xml",
+				"Set Syntax: XML"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"in",
+				"Package Control: Install Package"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"INS",
+				"Package Control: Install Package"
+			],
+			[
+				"ins ",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 494.0
+	},
+	"console":
+	{
+		"height": 0.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/guille/Library/Application Support/Sublime Text 2/Packages/User/Gist.sublime-settings",
+		"/Users/guille/svn/docencia/HTML5/material/apuntes/tema6/lec68.md",
+		"/Users/guille/svn/docencia/HTML5/material/apuntes/tema8/lec81.md",
+		"/Users/guille/svn/docencia/HTML5/material/apuntes/estilo-cfi.css",
+		"/Users/guille/svn/docencia/HTML5/material/apuntes/tema1/lec11.md",
+		"/Users/guille/svn/docencia/HTML5/material/apuntes/tema1/lec11.html",
+		"/Users/guille/svn/docencia/HTML5/material/apuntes/pandoc-config.json",
+		"/Users/guille/svn/docencia/HTML5/material/apuntes/tema8/lec84.md",
+		"/Users/guille/svn/docencia/HTML5/material/apuntes/tema8/lec83.md",
+		"/Users/guille/Sites/registrar.php",
+		"/Users/guille/Sites/registro.html",
+		"/Users/guille/Sites/myform.js",
+		"/Users/guille/Sites/registrados.php",
+		"/Users/guille/svn/docencia/HTML5/material/apuntes/tema6/lec61.md",
+		"/Users/guille/svn/docencia/HTML5/material/apuntes/tema6/lec62.md",
+		"/Users/guille/svn/docencia/HTML5/material/apuntes/tema6/lec63.md",
+		"/Users/guille/svn/docencia/HTML5/material/apuntes/tema6/lec64.md",
+		"/Users/guille/svn/docencia/HTML5/material/apuntes/tema6/lec65.md",
+		"/Users/guille/svn/docencia/HTML5/material/apuntes/tema6/lec66.md",
+		"/Users/guille/svn/docencia/HTML5/material/apuntes/tema6/lec67.md",
+		"/Users/guille/svn/docencia/HTML5/material/apuntes/tema8/lec82.md",
+		"/Users/guille/svn/docencia/HTML5/material/apuntes/tema7/lec72.md",
+		"/Users/guille/svn/docencia/HTML5/material/apuntes/tema7/lec71.md",
+		"/Users/guille/svn/docencia/HTML5/material/apuntes/tema8/claseNode.md",
+		"/Users/guille/Sites/myforms.js",
+		"/Users/guille/svn/docencia/HTML5/material/apuntes/tema4/lec46.md",
+		"/Users/guille/svn/docencia/HTML5/material/apuntes/tema4/lec45.md",
+		"/Users/guille/svn/docencia/HTML5/material/apuntes/tema4/lec41.md",
+		"/Users/guille/svn/docencia/HTML5/material/apuntes/tema4/lec44.md",
+		"/Users/guille/svn/docencia/HTML5/material/apuntes/tema4/lec43.md",
+		"/Users/guille/svn/docencia/DVI/apuntes/01javascript.md",
+		"/Users/guille/svn/docencia/HTML5/material/apuntes/cfi.js",
+		"/Users/guille/svn/docencia/HTML5/material/apuntes/tema4/lec44.html",
+		"/Users/guille/svn/docencia/HTML5/material/apuntes/tema4/lec43.html",
+		"/Users/guille/Library/Application Support/Sublime Text 2/Packages/User/markdownsnippet/js.sublime-snippet",
+		"/Users/guille/svn/docencia/HTML5/material/apuntes/tema3/img/reset.css",
+		"/Users/guille/svn/docencia/HTML5/material/apuntes/tema3/lec34.md",
+		"/Users/guille/svn/docencia/HTML5/material/apuntes/tema3/lec33.md",
+		"/Users/guille/svn/docencia/HTML5/material/apuntes/tema3/lec32.md",
+		"/Users/guille/svn/docencia/HTML5/material/apuntes/tema3/lec31.md",
+		"/Users/guille/svn/docencia/HTML5/material/apuntes/tema2/lec24.md",
+		"/Users/guille/svn/docencia/HTML5/material/apuntes/plantilla-cfi.html",
+		"/Users/guille/svn/docencia/HTML5/material/apuntes/tema3/lec35.md",
+		"/Users/guille/Library/Application Support/Sublime Text 2/Packages/LiveReload/LiveReload.sublime-settings",
+		"/Users/guille/Library/Application Support/Sublime Text 2/Packages/User/LiveReload.sublime-settings",
+		"/Users/guille/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
+		"/Users/guille/Library/Application Support/Sublime Text 2/Packages/User/markdownsnippet/css.sublime-snippet",
+		"/Users/guille/svn/docencia/HTML5/material/apuntes/tema2/lec21.md",
+		"/Users/guille/svn/docencia/HTML5/material/apuntes/tema1/lec12.md",
+		"/Users/guille/svn/docencia/HTML5/material/apuntes/tema2/lec26.html",
+		"/Users/guille/svn/docencia/HTML5/material/apuntes/tema2/lec22.md",
+		"/Users/guille/svn/docencia/HTML5/material/apuntes/tema2/lec26.md",
+		"/Users/guille/svn/docencia/HTML5/material/apuntes/tema2/lec23.md",
+		"/Users/guille/svn/docencia/HTML5/material/apuntes/tema2/lec25.md",
+		"/Users/guille/svn/docencia/HTML5/material/apuntes/tema2/lec22.html",
+		"/Users/guille/Library/Application Support/Sublime Text 2/Packages/User/markdownsnippet/html.sublime-snippet",
+		"/Users/guille/svn/docencia/Latex/material/apuntes/pandoc-config.json",
+		"/Users/guille/svn/docencia/HTML5/material/apuntes/tema1/pandoc-config.json",
+		"/Users/guille/svn/docencia/Latex/material/apuntes/tema7/ejercicio/textoBase.tex",
+		"/Users/guille/svn/docencia/Latex/material/apuntes/tema7/lec74.md",
+		"/Users/guille/svn/docencia/Latex/material/apuntes/tema7/ejercicio/ejercicioT7.md",
+		"/Users/guille/svn/docencia/Latex/material/apuntes/tema7/lec71.md",
+		"/Users/guille/svn/docencia/Latex/material/apuntes/tema6/lec63.md",
+		"/Users/guille/svn/docencia/Latex/material/apuntes/tema6/lec62sol.md",
+		"/Users/guille/svn/docencia/Latex/material/apuntes/tema6/lec64.md",
+		"/Users/guille/svn/docencia/Latex/material/apuntes/tema6/ejercicio/textoBase.txt",
+		"/Users/guille/svn/docencia/Latex/material/apuntes/tema6/lec62.md",
+		"/Users/guille/svn/docencia/Latex/material/apuntes/tema6/lec61.md",
+		"/Users/guille/svn/docencia/Latex/material/apuntes/tema4/lec44.md",
+		"/Users/guille/svn/docencia/Latex/material/apuntes/tema5/lec53.md",
+		"/Users/guille/svn/docencia/Latex/material/apuntes/tema5/lec54.md",
+		"/Users/guille/svn/docencia/Latex/material/apuntes/tema5/ejercicio/textoBaseEjercicio5.tex",
+		"/Users/guille/svn/docencia/Latex/material/apuntes/tema3/lec34.md",
+		"/Users/guille/svn/docencia/Latex/material/apuntes/tema9/lec94.md",
+		"/Users/guille/svn/docencia/Latex/material/apuntes/tema2/lec22.md",
+		"/Users/guille/svn/docencia/Latex/material/apuntes/tema3/lec33.md",
+		"/Users/guille/svn/docencia/Latex/material/apuntes/tema2/lec21.md",
+		"/Users/guille/svn/docencia/Latex/material/apuntes/tema2/lec24.md",
+		"/Users/guille/svn/docencia/Latex/material/apuntes/tema2/lec23.md",
+		"/Users/guille/svn/docencia/Latex/material/apuntes/tema4/lec41.md",
+		"/Users/guille/svn/docencia/Latex/material/apuntes/tema4/lec43.md",
+		"/Users/guille/svn/docencia/Latex/material/apuntes/tema4/lec44.html",
+		"/Users/guille/svn/docencia/Latex/material/apuntes/tema2/lec25.md",
+		"/Users/guille/svn/docencia/Latex/material/apuntes/tema1/lec16.md",
+		"/Users/guille/Dropbox/HCI/Material Docente/apuntes/tema05.md",
+		"/Users/guille/svn/docencia/Latex/material/apuntes/tema7/ejercicio/ejTema7.tex",
+		"/Users/guille/svn/docencia/Latex/material/apuntes/tema8/lec82.md",
+		"/Users/guille/svn/docencia/Latex/material/apuntes/tema8/lec81.md",
+		"/Users/guille/svn/docencia/Latex/material/apuntes/tema8/lec83.md",
+		"/Users/guille/svn/docencia/Latex/material/apuntes/tema7/lec73.md",
+		"/Users/guille/svn/docencia/Latex/material/apuntes/tema7/lec72.md",
+		"/Users/guille/svn/docencia/Latex/material/apuntes/tema6/lec6.md",
+		"/Users/guille/svn/docencia/Latex/material/apuntes/tema5/ejercicio/ejercicioTema5.tex",
+		"/Users/guille/svn/docencia/Latex/material/apuntes/tema7/lec73.html",
+		"/Users/guille/svn/docencia/Latex/material/apuntes/tema8/ejercicio/ejercicioT8.md",
+		"/Users/guille/svn/docencia/Latex/publi/index.html",
+		"/Users/guille/svn/docencia/Latex/material/apuntes/tema7/lec71.html",
+		"/Users/guille/svn/docencia/Latex/material/apuntes/contenidos.md",
+		"/Users/guille/svn/docencia/Latex/material/apuntes/tema5/lec51.md",
+		"/Users/guille/svn/docencia/Latex/material/apuntes/tema5/img/longtable.pdf",
+		"/Users/guille/svn/docencia/Latex/material/apuntes/tema3/lec31.md",
+		"/Users/guille/svn/docencia/Latex/material/apuntes/tema4/lec42.md",
+		"/Users/guille/svn/docencia/Latex/material/apuntes/tema5/lec5.md",
+		"/Users/guille/svn/docencia/DVI/labs/enunciados/practica1/practica0.md",
+		"/Users/guille/svn/docencia/Latex/material/apuntes/tema5/lec52.md",
+		"/Users/guille/svn/docencia/Latex/material/apuntes/tema6/img/tablaLarga.txt",
+		"/Users/guille/svn/docencia/Latex/material/apuntes/tema3/lec32.md",
+		"/Users/guille/svn/docencia/Latex/material/apuntes/tema3/ejercicio/200px-Isabella_of_Castile_by_Manuel_Oms_Canet_Madrid.jpg",
+		"/Users/guille/Dropbox/HCI/Material Docente/preguntasexamen.md",
+		"/Users/guille/svn/docencia/Latex/material/apuntes/tema1/lec16.html",
+		"/Users/guille/svn/docencia/Latex/material/apuntes/tema3/ejercicio/ejercicioTema3.tex",
+		"/Users/guille/CursosRecibidos/Coursera/RecSys/software/lenskit-2.0.4/bin/lenskit-eval",
+		"/Users/guille/svn/docencia/Latex/material/apuntes/tema1/lec15.md",
+		"/Users/guille/svn/docencia/Latex/material/apuntes/tema2/lec22.html",
+		"/Volumes/My Passport/guilleMacViejo/Facultad/Docencia/Master/c1213/IA/Practicas/Steering_Solution_Project/Assets/Scripts/AnimationManager.cs",
+		"/Users/guille/svn/docencia/Latex/material/apuntes/cfi.js",
+		"/Users/guille/svn/docencia/Latex/material/apuntes/tema6/lec62.html",
+		"/Users/guille/svn/docencia/Latex/material/apuntes/tema1/pandoc-config.json",
+		"/Users/guille/svn/docencia/Latex/material/apuntes/tema2/lec23.html",
+		"/Users/guille/svn/docencia/Latex/material/apuntes/tema4/lec42.html",
+		"/Users/guille/svn/docencia/Latex/material/apuntes/tema4/lec43.html",
+		"/Users/guille/svn/docencia/Latex/material/apuntes/tema2/lec24.html",
+		"/Users/guille/svn/docencia/Latex/material/apuntes/tema2/lec25.html",
+		"/Users/guille/svn/docencia/Latex/material/apuntes/tema4/lec41.html",
+		"/Users/guille/svn/docencia/Latex/material/apuntes/tema9/lec94.html",
+		"/Users/guille/svn/docencia/Latex/material/apuntes/tema2/lec21.html",
+		"/Users/guille/Library/Application Support/Sublime Text 2/Packages/User/markdownsnippet/latexPaquete.sublime-snippet",
+		"/Users/guille/svn/docencia/Latex/material/apuntes/tema4/lec4.md"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+			"/Users/guille/svn/docencia/Latex/material/apuntes/tema4",
+			"/Users/guille/svn/docencia/Latex/material/apuntes/tema3",
+			"/Users/guille/svn/docencia/Latex/material/apuntes/tema2",
+			"/Users/guille/svn/docencia/Latex/material/apuntes/tema1",
+			"/Users/guille/svn/docencia/Latex/material/apuntes"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"Qucumatz2",
+			"img class=\"",
+			"url",
+			"carousel",
+			"myModal",
+			"aqui",
+			"ratón",
+			"objeto",
+			"concatena",
+			"array",
+			"suma",
+			";\n",
+			"6",
+			"crock",
+			" |",
+			";",
+			"&",
+			"<",
+			"generalmente",
+			"hipertexto",
+			"}\n",
+			"cursos",
+			"Bibsonomy",
+			"png",
+			"JabRef",
+			"Zotero",
+			"Mendeley",
+			"*.\n",
+			"Optional fields:",
+			"Required fields",
+			"6",
+			"lec6",
+			"BibDesk",
+			"page",
+			"bottom",
+			"top",
+			"Excel2Latex",
+			"</li>\n    <li>",
+			"~~~{.ejercicio}",
+			"paquete",
+			"geometry",
+			"relativas",
+			"enumerate",
+			"\n",
+			"enumerate",
+			"cuadros",
+			"indentación",
+			"marca",
+			"negrita",
+			"un",
+			"TeXLive",
+			"Demonios",
+			"necesitan",
+			"clusters",
+			"Wayra",
+			"visuales",
+			"    -",
+			"Recruiting",
+			".\n",
+			"tipos",
+			"collages",
+			".\n",
+			"Modelado",
+			"Reflexivo",
+			"DropboxFDI/",
+			"DropboxFDI",
+			"DropboxFDI/",
+			"uso",
+			"estudio",
+			"    [\n        {\"keys\": [\"alt+shift+n\"] \"command\": \"advanced_new_file\", \"args\": {\"rename\": true}}\n    ]",
+			"Figura",
+			"hombre",
+			"hombre-máquina",
+			"gif",
+			"affordance",
+			"?\n",
+			"buen diseño",
+			"*",
+			"path",
+			"slidy",
+			"data",
+			"template",
+			"include",
+			"slide",
+			"Desarrollo",
+			"desarrollo",
+			"Desarrollo",
+			"diseño",
+			"file",
+			"\n",
+			" \n",
+			"1",
+			"-",
+			"\n-",
+			"-",
+			".\n",
+			"quotes",
+			"quote",
+			"pandoc",
+			"Pandoc",
+			"pandoc",
+			"\n		",
+			"		\n",
+			"quto",
+			"from",
+			"^<score",
+			"reviewer",
+			"score",
+			"text",
+			"\n"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			" \n",
+			"1"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "apuntesSOC.sublime-project",
+					"settings":
+					{
+						"buffer_size": 74,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 34.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 124.0
+	},
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 241.0,
+	"status_bar_visible": true
+}
