@@ -192,6 +192,8 @@ Un **componente** es un conjunto de nodos del grafo en el que todos sus nodos es
 > 4. Repetimos 3 hasta que la cola esté vacía. Todos los nodos ya procesados forman un componente. Si hemos procesado $N$ nodos entonces el grafo es conexo.
 > 5. Si quedan nodos entonces repetimos 1 etiquetándolo con $M+1$.
 
+En un grafo dirigido podemos hablar de **componentes fuertemente conectados**: componentes en los que cada nodo del componente puede alcanzarse desde cualquier otro nodo del componente siguiendo los enlaces dirigido. Sin embargo, un **componente débilmente conectado** es aquél que cumple lo anterior pero siguiendo los enlaces en cualquier dirección (como si los enlaces fuesen no dirigidos).
+
 Un **componente gigante** es aquel componente que ocupa una fracción significativa del grafo.
 
 ### Coeficiente de agrupamiento
