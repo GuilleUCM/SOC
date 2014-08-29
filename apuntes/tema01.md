@@ -128,4 +128,22 @@ Es posible generar _proyecciones_ de un grafo bipartito, es decir, simplificar e
 
 Las proyecciones pueden crearse utilizando pesos, indicando el número de nodos comunes a los que están conectados. Además, existen grafos tripartitos y multipartitos, en general.
 
+## Caminos
 
+Un **camino** (_path_) es una ruta que une dos nodos a través de los enlaces de un grafo. La longitud de un camino es el número de enlaces que componen el camino.
+
+El **camino más corto** o camino _geodésico_ es el camino con menor número de enlaces que hay entre dos nodos. El camino más corto nunca tiene bucles y se le conoce como distancia entre dos nodos $i$ y $j$ ($d_{ij}$).
+
+En un grafo no dirigido se cumple que $d_{ij} = d_{ji}$. Sin embargo, esto no tiene por qué cumplirse para un grafo dirigido. De hecho, que exista un camino entre los nodos $i$ y $j$ en un grafo dirigido _no garantiza_ la existencia de un camino entre $j$ e $i$.
+
+Usando la matriz de adyacencia podemos calcular el número de caminos de una determinada longitud $d$ entre $i$ y $j$ ($N_{ij}^{(d)}$):
+
+* Si $A_{ij}=1$ entonces $N_{ij}=1$ y, por tanto, $d_{ij}=1$. Es decir, solo hay un camino de longitud 1 entre $i$ y $j$.
+* Si $A_{ik} \cdot A_{kj} = 1$ entonces $N_{ij}^{(2)}=[ A^2]_{ij}$. Es decir, el elemento $ij$ de la matriz $A^2$ contiene el número de caminos de distancia 2 entre $i$ y $j$.
+* En general, si $A_{ik} \cdot \ldots \cdot A_{mj} = 1$ entonces $N_{ij}^{(d)}=[ A^d]_{ij}$.
+
+De esta manera, la distancia mínima $d_{ij}$ entre dos nodos es el $d$ más pequeño para el que $N_{ij}^(d)>0$.
+
+Este método de cálculo de la distancia más corta es bastante ineficiente para redes reales en la que los grafos son grandes. En este caso, lo que se suele emplear es un algoritmo de **búsqueda en anchura** (_Breadth-first Search_ o BFS)[^1].
+
+[^1]: En redes con pesos positivos se usará en su lugar el algoritmo de Dijkstra.
