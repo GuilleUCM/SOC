@@ -27,8 +27,15 @@
 <h1 id="tema-1-teoría-de-grafos" class="unnumbered">Tema 1: Teoría de Grafos</h1>
 <p>En este tema haremos un repaso de los principales conceptos de teoría de grafos necesarios para introducirnos en el análisis de las redes sociales.</p>
 <h2 id="introducción">Introducción</h2>
-<p>TODO: Puentes de Könnigsberg</p>
-<p>Euler construyó un grafo para representar y resolver el problema. Esta se puede considerar como la primera representación conocida de un grafo como medio para resolver un problema. De este hecho se pueden sacar dos conclusiones:</p>
+<p>Podemos decir que los inicios de la teoría de grafos se remontan a 1736, en el momento en el que Euler resolvió el problema de los <a href="http://es.wikipedia.org/wiki/Problema_de_los_puentes_de_K%C3%B6nigsberg">puentes de Könnigsberg</a>:</p>
+<blockquote>
+<p>Dado el mapa de Königsberg, con el río Pregolya dividiendo el plano en cuatro regiones distintas que están unidas a través de los siete puentes, ¿es posible dar un paseo comenzando desde cualquiera de estas regiones, pasando por todos los puentes, recorriendo sólo una vez cada uno, y regresando al mismo punto de partida?</p>
+</blockquote>
+<p>Aunque el problema se puede resolver por fuerza bruta, Euler construyó un grafo para representar y resolver el problema.</p>
+<figure>
+<img src="../images/tema01/konnigsberg.jpg" alt="Representación del problema de los puentes de Könnigsberg" /><figcaption>Representación del problema de los puentes de Könnigsberg</figcaption>
+</figure>
+<p>Esta se puede considerar como la primera representación conocida de un grafo como medio para resolver un problema. De este hecho se pueden sacar dos conclusiones:</p>
 <ul>
 <li>Algunos problemas son más simples de resolver si se representan mediante un grafo.</li>
 <li>Los grafos presentan ciertas propiedades que limitan su comportamiento.</li>
@@ -44,7 +51,13 @@
 <li><em>Dirigidos</em>: Tienen una dirección. Si todos los enlaces de un grafo son dirigidos entonces este grafo se conoce como <em>grafo dirigido o digrafo</em>. Por ejemplo, un enlace de una página web se representaría como un grafo dirigido.</li>
 <li><em>No dirigidos</em>: Representan relaciones bidireccionales. Si todos los enlaces de un grafo son no dirigidos entonces se le llama <em>grafo no dirigido</em>. Pro ejemplo, la relación de estar casados entre dos personas es un enlace no dirigido.</li>
 </ul>
-<p>Un sistema se puede representar de diferentes formas dependiendo del conjunto de nodos usados y, sobre todo, de los enlaces que se definan. Un mismo conjunto de nodos puede definir distintos conjuntos de redes.</p>
+<p>Una arista o enlace puede tener atributos:</p>
+<ul>
+<li>Un peso, el cual puede representar información como la frecuencia de llamadas entre dos individuos. El peso puede tener un valor negativo, por ejemplo si lo usamos para representar la confianza-desconfianza entre dos individuos.</li>
+<li>Un tipo, el cual puede representar el tipo de relación entre dos individuos (familiares, amigos, …)</li>
+<li>Otras propiedades que dependen del resto de la estructura del grafo, como el grado de intermediación (<em>betweeness</em>).</li>
+</ul>
+<p>Un sistema se puede representar de diferentes formas dependiendo del conjunto de nodos usados y, sobre todo, de los enlaces que se definan. Un mismo conjunto de nodos puede definir distintos grafos.</p>
 <h2 id="propiedades-básicas-de-los-grafos">Propiedades básicas de los grafos</h2>
 <p>El número de nodos o vértices de un grafo (<span class="math">\(N\)</span>) representa el tamaño de la red mientras que el número de aristas o enlaces (<span class="math">\(L\)</span>) representa en número de interacciones entre los nodos.</p>
 <p>El número máximo o total de enlaces (<span class="math">\(L_{max}\)</span>) es el número de enlaces supuesto que todos los nodos están conectados con todos y se calcula como:</p>
@@ -59,301 +72,117 @@
 <p><span class="math">\[L = \sum_{i=1}^{N}k_i^{in} = \sum_{i=1}^{N}k_i^{out}\]</span></p>
 <p>Y el grado medio (<span class="math">\(\langle k \rangle\)</span>) será el siguiente:</p>
 <p><span class="math">\[ \langle k^{in} \rangle = \frac{1}{N} \sum_{i=1}^{N}k_i^{in} = \langle k^{out} \rangle = \frac{1}{N} \sum_{i=1}^{N}k_i^{out} = \frac{L}{N}\]</span></p>
-<figure>
-<img src="../images/tema01/hci.jpg" alt="Visión general del HCI" /><figcaption>Visión general del HCI</figcaption>
-</figure>
-<p>Como se puede ver en la imagen, la interacción persona-ordenador tiene múltiples intereses y actividades:</p>
+<p>Para un grafo de tamaño conocido <span class="math">\(N\)</span> podemos calcular la <strong>distribución de los grados del grafo</strong>, es decir, cuál es el porcentaje de nodos que tienen un determinado grado en dicho grafo. Esta distribución se puede representar mediante un histograma, donde en el eje X representamos los distintos grados presentes en el grafo (<span class="math">\(k\)</span>), mientras que en el eje Y representamos la proporción de nodos con grado k (<span class="math">\(p_k\)</span>):</p>
+<p><span class="math">\[ p_k = \frac{N_k}{N} \]</span></p>
+<p>donde <span class="math">\(N_k\)</span> representa el número de nodos de grado <span class="math">\(k\)</span> presentes en el grafo. <span class="math">\(p_k\)</span> representa la probabilidad de que el grado de un nodo seleccionado aleatoriamente sea <span class="math">\(k\)</span> y se cumple que:</p>
+<p><span class="math">\[ \sum_{k=1}^{\infty} p_k = 1 \]</span></p>
+<p>Como veremos más adelante, la distribución de los grados será una propiedad importante que nos servirá para derivar otras propiedades de la red. Por ejemplo, a partir de <span class="math">\(p_k\)</span> podemos calcular el grado medio del grafo:</p>
+<p><span class="math">\[ \langle k \rangle = \sum_{k=1}^{\infty} k \cdot p_k \]</span></p>
+<h2 id="representación-de-un-grafo">Representación de un grafo</h2>
+<p>Existen distintas formas de representar un grafo. Las más comunes son las siguientes:</p>
+<p>TODO: ejemplos de mismo grafo con distintas representaciones</p>
 <ul>
-<li>Por un lado (parte superior de la figura), se centra en el estudio del usuario, de su contexto, de las tareas que realiza y de las necesidades que tiene.</li>
-<li>Por otro lado estudia la manera en la que se puede producir la interacción entre el usuario y la máquina. Define y estudia modelos y teorías relacionadas con la interacción. Por un lado se centra en conocer cuál es el proceso mental de los usuarios (Bloque <em>Human</em> en la figura), cómo procesa la información y cuáles son su objetivos para poder proporcionarle experiencias de uso positivas. Así mismo, el HCI se centra (Bloque <em>Computer</em> en la figura ) en las técnicas ya probadas y que se conoce que han sido efectivas que sirven para implementar interfaces y que nos conducen a <em>buenos diseños</em>.</li>
-<li>Por último, el HCI estudia metodologías y procesos de desarrollo software (parte inferior de la figura) centrados en conocer al usuario, el desarrollo de prototipos y una constante evaluación empírica por parte del usuario del sistema. Por este motivo, el HCI también se centra en técnicas que sirvan para evaluar y comparar interfaces desde el punto de vista de su uso con usuarios.</li>
+<li><strong>Listas de enlaces</strong>. Consiste en reopresentar un grafo como una lista de <span class="math">\(L\)</span> pares <span class="math">\((i, j)\)</span> que representan los enlaces de la red:</li>
 </ul>
-<h2 id="historia-sobre-la-interacción-persona-ordenador">Historia sobre la Interacción Persona-Ordenador</h2>
-<p>Desgraciadamente, el interés por la interacción Persona-Ordenador nace a consecuencia de los errores que se producían al interactuar con ciertos dispositivos. Más concretamente, este interés crece durante la Segunda Guerra Mundial en el contexto del diseño de aparatos militares que han de ser operados por humanos (principalmente pantallas y controles de aviones y otra maquinaria bélica).</p>
-<p>Tras la Segunda Guerra mundial, estas son las figuras e hitos más destacados en el dominio de la interacción Persona-Ordenador.</p>
-<h3 id="vannevar-bush">Vannevar Bush</h3>
-<figure>
-<img src="../images/tema01/bush.jpg" alt="Vannevar Bush" /><figcaption>Vannevar Bush</figcaption>
-</figure>
-<p>Aunque también es conocido por ser el jefe de la comunidad de científicos responsables de la bomba atómica, la aportación más interesante de Vannevar Bush es su artículo <a href="http://biblioweb.sindominio.net/pensamiento/vbush-es.html">“As we may think” (1945)</a>, en el que Bush insta a los científicos que tanto trabajaron en ayudar a sus respectivas facciones durante la guerra, a investigar y desarrollar nuevos dispositivos que puedan ayudar al resto de las personas en los futuros tiempos de paz. En este artículo aparecen ideas tan novedosas para la época como las calculadoras personales, minicámaras y “cámaras digitales” que llevaríamos siempre encima (¿no llevamos todos un móvil con cámara actualmente?), la interfaz por voz (dictar el contenido de un documento a una máquina), los sistemas de información y bases de datos, el hipertexto, la interfaz cerebro-computador, etc… Un ejemplo de estas profecías:</p>
 <blockquote>
-<p>… el personal administrativo de una empresa puede colocar en el interior de una máquina de selección varios miles de tarjetas perforadas que contienen los datos de los empleados, establecer un código según una convención acordada y, tras un breve periodo de tiempo, recibir una lista de todos los empleados que, por ejemplo, viven en Trenton y hablan español.</p>
+<p><span class="math">\(G = \{ (i_1, i_2), (i_1, i_n), \ldots , (i_m, i_n)\}\)</span></p>
 </blockquote>
-<p>Otra de las príncipales aportaciones de Bush en ese artículo es el <a href="http://es.wikipedia.org/wiki/Memex">escritorio Memex</a>. Aunque nunca fue construído Memex es la idea de un escritorio en el que el usuario almacena todos sus libros y documentos, en forma de microfilm, y que posee una interfaz (palancas y botones) con la que el usuario puede recuperar fácilmente los documentos almacenados. Hay unas pantallas en las que el usuario puede ver el material recuperado y una superficie transparente sobre la que el usuario puede colocar nuevos documentos para ser fotografiados y almacenados en el escritorio. Así mismo puede anotar a mano los documentos que lee. El acceso a los documentos almacenados podría ser mediante índices o por mnemotécnicos (asociativo). Por último, Memex permitiría enlazar dos elementos distintos, dos documentos: el hipertexto.</p>
-<figure>
-<img src="../images/tema01/memex.jpg" alt="Escritorio Memex (extraído de computerhistory.org)" /><figcaption>Escritorio Memex (extraído de <code>computerhistory.org</code>)</figcaption>
-</figure>
-<h3 id="eniac">ENIAC</h3>
-<p>Fue construído por Eckert y Mauchly en el año 1946. Ocupaba 167m<sup>2</sup> se usaba principalmente para el cálculo de trayectorias balísticas.</p>
-<p>La interfaz de usuario del ENIAC consistía en operar manualmente con unos 6000 interruptores (lo que hacía una modificación pudiese tardar semanas en realizarse).</p>
-<figure>
-<img src="../images/tema01/eniac.jpg" alt="ENIAC (Electronic Numerical Integrator And Computer)" /><figcaption>ENIAC (Electronic Numerical Integrator And Computer)</figcaption>
-</figure>
-<h3 id="compiladores">Compiladores</h3>
-<p>Grace Murray Hopper desarrolló en 1952 el primer compilador: el <strong>A0</strong>. Desde el punto de vista de interacción con el computador, la aparición de los lenguajes de alto nivel y de los compiladores suponen una revolución ya que hacen de <em>interfaz</em> sobre los recursos de los que el computador dispone. Como programadores, podemos dar órdenes de alto nivel al computador sin necesitar conocer los detalles específicos de la máquina en la que se va a ejecutar.</p>
+<ul>
+<li><strong>Listas de adyacencia</strong>. Es una forma reducida de la anterior. Para cada nodo escribimos una lista con cada uno de sus nodos adyacentes:</li>
+</ul>
 <blockquote>
-<p>Nota anecdótica: Trabajó durante varios años en el Mark II y algunos le atribuyen la invención del término <em>bug</em> para hablar de un error de programación.</p>
+<p><span class="math">\(1 \;\{2,\ldots n\}\)</span></p>
+<p><span class="math">\(2 \;\{1,\ldots\}\)</span></p>
+<p><span class="math">\(\vdots\)</span></p>
+<p><span class="math">\(n \;\{1, \ldots m\}\)</span></p>
 </blockquote>
-<figure>
-<img src="../images/tema01/bug.jpg" alt="Primer Bug" /><figcaption>Primer <em>Bug</em></figcaption>
-</figure>
-<h3 id="ivan-sutherland">Ivan Sutherland</h3>
-<p>En sus inicios, el trabajo con los ordenadores consistía en el <strong>procesamiento por lotes</strong>.</p>
-<p>Durante su doctorado (¡<a href="http://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-574.pdf">en Filosofía</a>!) en el MIT (1963) desarrolló <a href="http://youtu.be/USyoT_Ha_bA?t=3m52s">Sketchpad</a>, la primera interfaz gráfica de usuario (<em>graphical user interface</em> o <em>GUI</em>). La gran novedad es que la comunicación con el computador se realiza mediante manipulación directa: hay una pantalla en la que se muestra lo que dibujamos y hay un “lápiz óptico” con el que realizamos dibujos sobre la pantalla. La entrada o <em>input</em> se realiza directamente sobre la salida o <em>output</em>, lo que hace que la interacción sea realmente interactiva. Desdibuja la frontera entre <em>entrada</em> y <em>salida</em> por primera vez.</p>
-<h3 id="douglas-engelbart">Douglas Engelbart</h3>
-<p>Es el inventor del ratón (falleció el 2 de julio de 2013). La <a href="http://youtu.be/61oMy7Tr-bM?t=8m18s">presentación pública</a> del mismo fue en el año 1968. Es el primer dispositivo “apuntador” (<em>device pointer</em>). Se componía de dos ruedas con potenciómetros que indicaban cuánto nos habíamos movido con respecto a la última posición registrada.</p>
-<figure>
-<img src="../images/tema01/raton.jpg" alt="El primer ratón" /><figcaption>El primer ratón</figcaption>
-</figure>
-<p>En esta conferencia no solo presenta el ratón sino un complejo sistema de información hipertextual multimedia llamado <a href="http://en.wikipedia.org/wiki/NLS_%28computer_system%29">NLS</a> (oN-Line System):</p>
 <ul>
-<li>Primer dispositivo apuntador externo.</li>
-<li>Hypertexto / hypermedia</li>
-<li>Procesadores de texto</li>
-<li>Videoconferencia y compartición de pantalla.</li>
-<li>Enlazado dinámico de archivos</li>
-<li>Control de versiones (!)</li>
-<li>Editor colaborativo en tiempo real (!!!)</li>
+<li><strong>Matriz de adyacencia</strong>. Es una matriz de tamaño <span class="math">\(N\)</span>x<span class="math">\(N\)</span> de 0s y 1s. Si el elemento <span class="math">\(A_{ij}=1\)</span> entonces implica que hay un enlace que va de <span class="math">\(j\)</span> hacia <span class="math">\(i\)</span>. Si el elemento <span class="math">\(A_{ij}=0\)</span> entonces no existe tal enlace. En un grafo no dirigido se cumple que elemento <span class="math">\(A_{ij}=A_{ji}\)</span> por lo que la matriz es simétrica. Si las aristas tienen un peso entonces <span class="math">\(A_{ij} = w_{ij}\)</span>.</li>
 </ul>
-<h3 id="alan-kay">Alan Kay</h3>
-<p>Alan Kay comenzó trabajando con Ivan Sutherland en el MIT. Tal vez inspirado por la charla de Engelbart a la que asistió, Alan Kay comienza a trabajar en Dynabook, el primer prototipo de computador personal (1968), muy similar a las tabletas que usamos en la actualidad. Era un prototipo que pretendía ser un ordenador para niños. El software asociado a este computador era SmallTalk.</p>
-<figure>
-<img src="../images/tema01/dynabook.jpg" alt="Dynabook de Alan Kay (extraído de computerhistory.org)" /><figcaption>Dynabook de Alan Kay (extraído de <code>computerhistory.org</code>)</figcaption>
-</figure>
-<p>Más adelante comienza a trabajar en el PARC (Palo Alto Research Center) de Xerox y, tras diez años de trabajo en 1973, sacan a la luz el primer GUI tal y como los conocemos ahora: <a href="http://www.youtube.com/watch?v=Cn4vC80Pv6Q">Xerox Star Office Information System</a>. Este sistema operativo tiene un entorno de ventanas muy similar a los que estamos acostumbrados a ver en la actualidad e introdujo los principales elementos de los interfaces WIMP:</p>
+<p>Las matrices de adyacencia nos ayudan a calcular fácilmente el grado de cada uno de los nodos:</p>
 <ul>
-<li><p><strong>W</strong>indows</p>
-<p>Cada aplicación o documento aparece y se ejecuta de manera independiente en una ventana.</p></li>
-<li><p><strong>I</strong>cons</p>
-<p>Los iconos son representaciones de acciones y recursos del computador.</p></li>
-<li><p><strong>M</strong>enus</p>
-<p>Son una manera alternativa al teclado de indicar las acciones que queremos ejecutar en el computador.</p></li>
-<li><p><strong>P</strong>ointer</p>
-<p>El puntero es una representación en pantalla del dispositivo que el usuario utiliza para seleccionar documentos y realizar acciones.</p></li>
+<li>En un grafo no dirigido <span class="math">\(k_i = \sum_{j=1}^{N}A_{ij} = \sum_{i=1}^{N}A_{ij}\)</span>. Es decir, si sumamos todos los valores de la fila o la columna <span class="math">\(i\)</span> obtenemos el grado de dicho nodo. En esta matriz se cumple también que el número de elementos que no son 0 es <span class="math">\(2L\)</span>.</li>
+<li>En un grafo dirigido <span class="math">\(k_i^{in} = \sum_{j=1}^{N}A_{ij}\)</span> y <span class="math">\(k_i^{out} = \sum_{i=1}^{N}A_{ij}\)</span>. Es decir, el grado de entrada es la suma de la fila <span class="math">\(i\)</span>, mientras que el grado de salida es la suma de los elementos de la columna <span class="math">\(i\)</span>.</li>
 </ul>
-<figure>
-<img src="../images/tema01/xeroxstar.jpg" alt="Interfaz de usuario Xerox Star" /><figcaption>Interfaz de usuario Xerox Star</figcaption>
-</figure>
+<p>Como las redes reales en general son dispersas la matriz de adyacencia sería también dispersa por lo que para procesar una red real en un computador es recomendable usar una de las dos representaciones primeras en lugar de utilizar una matriz de adyacencia.</p>
+<h2 id="grafos-bipartitos">Grafos bipartitos</h2>
+<p>Un grafo bipartito es aquel en el que sus nodos se pueden dividir en dos conjuntos disjuntos de nodos <span class="math">\(U\)</span> y <span class="math">\(V\)</span>, de modo que los enlaces solo conectan nodos del conjunto <span class="math">\(U\)</span> con nodos del conjunto <span class="math">\(V\)</span>.</p>
 <blockquote>
-<p><a href="http://youtu.be/KhjVidOFqBo">Nota anecdótica</a>: En el año 1979 un tal Steve Jobs fue invitado a visitar las instalaciones del PARC de Xerox y quedó impresionado con la GUI que allí vio (“en diez minutos supe que todos los computadores funcionarían de ese modo”). Asistió con su equipo de desarrollo a varias demos y unos años más tarde copió y mejoró esta interfaz, creando Lisa (aunque el éxito les llegó un poco después con el Apple II, el primer Macintosh).</p>
+<p>Ejemplo: Un grafo de actores (<span class="math">\(U\)</span>) y películas (<span class="math">\(V\)</span>) donde un enlace representa que un determinado actor ha participado en una determinada película.</p>
 </blockquote>
+<p>Es posible generar <em>proyecciones</em> de un grafo bipartito, es decir, simplificar el conjunto de nodos <span class="math">\(U + V\)</span> a uno de ellos:</p>
+<ul>
+<li>Si nos quedamos solo con los nodos de <span class="math">\(U\)</span> entonces dos nodos de <span class="math">\(U\)</span> están conectados si ambos estaban conectados al mismo nodo de <span class="math">\(V\)</span>.</li>
+<li>Si nos quedamos solo con los nodos de <span class="math">\(V\)</span> entonces dos nodos de <span class="math">\(V\)</span> están conectados si ambos estaban conectados al mismo nodo de <span class="math">\(U\)</span>.</li>
+</ul>
 <blockquote>
-<p>Nota anecdótica: Años después, Apple acusaría a Microsoft de copiar su sistema de ventanas, Microsoft hablaría de su vecino rico Xerox…</p>
+<p>Siguiendo con el ejemplo, la proyección teniendo en cuenta los actores sería un grafo en el que dos actores están conectados si han participado en la misma película. Por otro lado, la proyección teniendo en cuenta las películas es un grafo en el que dos películas están conectadas si tienen al menos un actor en común.</p>
 </blockquote>
-<h3 id="don-norman">Don Norman</h3>
-<p>Estuvo trabajando en Apple como Vicepresidente del Grupo de Tecnologías Avanzadas, es cofundador del <a href="http://www.nngroup.com/">Nielsen Norman Group</a> y actualmente es profesor emérito en la Universidad de California.</p>
-<figure>
-<img src="../images/tema01/norman.jpg" alt="Don Norman" /><figcaption>Don Norman</figcaption>
-</figure>
-<p>Es el autor de uno de los libros más influyentes en el campo del diseño y la usabilidad: <a href="http://zv4fy5pr5l.search.serialssolutions.com/?ctx_ver=Z39.88-2004&amp;ctx_enc=info%3Aofi%2Fenc%3AUTF-8&amp;rfr_id=info:sid/summon.serialssolutions.com&amp;rft_val_fmt=info:ofi/fmt:kev:mtx:book&amp;rft.genre=book&amp;rft.title=The+Design+of+Everyday+Things&amp;rft.au=Norman%2C+Don&amp;rft.date=2002-09-19&amp;rft.pub=Basic+Books&amp;rft.isbn=0465067107&amp;rft.externalDBID=n%2Fa&amp;rft.externalDocID=904427&amp;paramdict=es-es">The Design of Everyday Things</a>. En él se acuña términos como la <strong>experiencia de usuario</strong> (del que hablaremos más adelante) o <strong>diseño centrado en el usuario</strong>, en el que habla sobre una forma de diseñar centrada en las necesidades del usuario, dejando de lado otros elementos secundarios. Algunas de las pautas que da (y de las que hablaremos más adelante) son:</p>
+<p>Las proyecciones pueden crearse utilizando pesos, indicando el número de nodos comunes a los que están conectados. Además, existen grafos tripartitos y multipartitos, en general.</p>
+<h2 id="caminos">Caminos</h2>
+<p>Un <strong>camino</strong> (<em>path</em>) es una ruta que une dos nodos a través de los enlaces de un grafo. La longitud de un camino es el número de enlaces que componen el camino.</p>
+<p>El <strong>camino más corto</strong> o camino <em>geodésico</em> es el camino con menor número de enlaces que hay entre dos nodos. El camino más corto nunca tiene bucles y se le conoce como distancia entre dos nodos <span class="math">\(i\)</span> y <span class="math">\(j\)</span> (<span class="math">\(d_{ij}\)</span>).</p>
+<p>En un grafo no dirigido se cumple que <span class="math">\(d_{ij} = d_{ji}\)</span>. Sin embargo, esto no tiene por qué cumplirse para un grafo dirigido. De hecho, que exista un camino entre los nodos <span class="math">\(i\)</span> y <span class="math">\(j\)</span> en un grafo dirigido <em>no garantiza</em> la existencia de un camino entre <span class="math">\(j\)</span> e <span class="math">\(i\)</span>.</p>
+<p>Usando la matriz de adyacencia podemos calcular el número de caminos de una determinada longitud <span class="math">\(d\)</span> entre <span class="math">\(i\)</span> y <span class="math">\(j\)</span> (<span class="math">\(N_{ij}^{(d)}\)</span>):</p>
 <ul>
-<li>Simplificar la estructura de las tareas.</li>
-<li>Hacer las cosas visibles.</li>
-<li>Hacer “mapeos” comprensibles</li>
-<li>Utilizar el poder de las restricciones</li>
-<li>Diseñar aprendiendo de los errores</li>
-<li>…</li>
+<li>Si <span class="math">\(A_{ij}=1\)</span> entonces <span class="math">\(N_{ij}=1\)</span> y, por tanto, <span class="math">\(d_{ij}=1\)</span>. Es decir, solo hay un camino de longitud 1 entre <span class="math">\(i\)</span> y <span class="math">\(j\)</span>.</li>
+<li>Si <span class="math">\(A_{ik} \cdot A_{kj} = 1\)</span> entonces <span class="math">\(N_{ij}^{(2)}=[ A^2]_{ij}\)</span>. Es decir, el elemento <span class="math">\(ij\)</span> de la matriz <span class="math">\(A^2\)</span> contiene el número de caminos de distancia 2 entre <span class="math">\(i\)</span> y <span class="math">\(j\)</span>.</li>
+<li>En general, si <span class="math">\(A_{ik} \cdot \ldots \cdot A_{mj} = 1\)</span> entonces <span class="math">\(N_{ij}^{(d)}=[A^d]_{ij}\)</span>.</li>
 </ul>
-<h3 id="ben-shneiderman">Ben Shneiderman</h3>
-<p>En 1982 acuña el concepto de interfaces de <a href="http://en.wikipedia.org/wiki/Direct_manipulation_interface"><em>manipulación directa</em></a>: Aquellas interfaces que representan constantemente los objetos que son manipulados por el usuario y en los que dichas manipulaciones suelen corresponderse con acciones que se realizarían en el mundo físico real. Shneiderman postula que este tipo de manipulación hace aprender a usar el sistema sea mucho más fácil para el usuario.</p>
-<figure>
-<img src="../images/tema01/shneiderman.jpg" alt="Ben Shneiderman" /><figcaption>Ben Shneiderman</figcaption>
-</figure>
-<p>La manipulación directa se basa en los siguientes principios:</p>
-<ul>
-<li>Existe una representación visual contínua y permanente de los objetos de datos del sistema.</li>
-<li>El usuario interactúa con la representación visual usando acciones físicas (click, arrastrar, mover, usar anclas para redimensionar…) o pulsando botones asociados a acciones (pulsar un botón para poner texto en negrita).</li>
-<li>El efecto de las acciones es rápido, incremental, reversible y se muestra en todo momento el estado de los objetos y un continuo feedback de lo que ocurre. Esto permite que el usuario cometa menos errores y que pueda realizar las tareas más rápidamente ya que el usuario ve el estado en el que va a quedar el sistema antes de completar la acción que está realizando.</li>
-</ul>
-<p>Ejemplos de este tipo de interacción:</p>
-<ul>
-<li>En un editor gráfico, a medida que arrastramos la esquina de una figura ésta se va estirando para cambiar de tamaño.</li>
-<li>En un sistema operativo de ventanas, generalmente vemos en todo momento el estado de una ventana a medida que la vamos arrastrando por el escritorio.</li>
-<li>En una aplicación de modelado 3D, las rotaciones se realizan generalmente arrastrando circunferencias que se dibujan de manera ortogonal al eje sobre el que queremos girar.</li>
-</ul>
-<figure>
-<img src="../images/tema01/scale_dm.jpg" alt="Escalar una imagen por manipulación directa" /><figcaption>Escalar una imagen por manipulación directa</figcaption>
-</figure>
-<figure>
-<img src="../images/tema01/rotation_dm.jpg" alt="Rotar un objeto por manipulación directa" /><figcaption>Rotar un objeto por manipulación directa</figcaption>
-</figure>
+<p>De esta manera, la distancia mínima <span class="math">\(d_{ij}\)</span> entre dos nodos es el <span class="math">\(d\)</span> más pequeño para el que <span class="math">\(N_{ij}^{(d)}&gt;0\)</span>.</p>
+<p>Este método de cálculo de la distancia más corta es bastante ineficiente para redes reales en la que los grafos son grandes. En este caso, lo que se suele emplear es un algoritmo de <strong>búsqueda en anchura</strong> (<em>Breadth-first Search</em> o BFS)<sup><a href="#fn1" class="footnoteRef" id="fnref1">1</a></sup>. Para calcular la distancia <span class="math">\(d_{ij}\)</span> entre los nodos <span class="math">\(i\)</span> y <span class="math">\(j\)</span> hacemos lo siguiente:</p>
 <blockquote>
-<p>Nota anecdótica: Ben Shneiderman también se ha destacado en el campo de la visualización de la información, entre otras cosas por la visualización basada en <em>tree-maps</em>.</p>
+<ol type="1">
+<li>Comenzamos en el nodo <span class="math">\(i\)</span>.</li>
+<li>Metemos en una cola todos los nodos adyacentes a <span class="math">\(i\)</span> y los etiquetamos con <span class="math">\(d=1\)</span></li>
+<li><p>Sacamos el primer nodo de la cola.</p>
+<ol type="1">
+<li>Si es <span class="math">\(j\)</span> entonces <span class="math">\(d_{ij} = d\)</span> (la etiqueta que tiene el nodo <span class="math">\(j\)</span>)</li>
+<li>En otro caso, metemos en la cola todos los nodos adyacentes al que hemos sacado y los etiquetamos con <span class="math">\(d+1\)</span></li>
+</ol></li>
+<li><p>Repetimos 3 hasta encontrar <span class="math">\(j\)</span> o hasta que la cola esté vacía. Si se produce este caso, entonces <span class="math">\(d_{ij}= \infty\)</span>.</p></li>
+</ol>
 </blockquote>
-<h3 id="jakob-nielsen">Jakob Nielsen</h3>
-<p>Una de las personas más respetadas en el ámbito de la usabilidad y cofundador, junto con Don Norman, del <a href="http://www.nngroup.com/">Nielsen Norman Group</a>. Ha trabajado para Sun e IBM, entre otras. Es uno de los mayores expertos en usabilidad, sobre todo en páginas web, y ha definido lo que se conoce como evaluación heurística de interfaces, una de las técnicas que estudiaremos y que nos ayudan a evaluar la usabilidad de los sistemas interactivos.</p>
-<figure>
-<img src="../images/tema01/nielsen.jpg" alt="Jakob Nielsen" /><figcaption>Jakob Nielsen</figcaption>
-</figure>
-<h3 id="alan-cooper">Alan Cooper</h3>
-<p>Aunque es arquitecto, <a href="http://en.wikipedia.org/wiki/Alan_Cooper">Alan Cooper</a> ha sido conocido como un gran diseñador de software y programador. Es el padre del Visual Basic y, en el campo que nos interesa, fue muy crítico con el diseño de software. Echaba en falta que durante el diseño no nos preguntáramos <em>cómo va a interactuar el usuario con el software</em>.</p>
-<p>Tras trabajar en Microsoft fundó su propia consultoría de software donde comenzó con el diseño de software más dirigido al usuario y donde comenzó a establecer metodologías de diseño como el <strong>diseño dirigido por objetivos</strong> y el uso de <strong>personas</strong> como herramientas de diseño. Fue también de los primeros en acuñar el concepto <strong>diseño de interacciones</strong> (<em>interaction design</em>).</p>
-<figure>
-<img src="../images/tema01/alanCooper.jpg" alt="Alan Cooper" /><figcaption>Alan Cooper</figcaption>
-</figure>
-<h3 id="era-post-wimp">Era Post-WIMP</h3>
-<p>Con la llegada de las PDAs y los smartphones aparecieron ciertas restricciones (restricciones de espacio, dispositivos de entrada…) que obligaron a hacer evolucionar a las técnicas de interacción. Por ejemplo, las pantallas táctiles son interfaces de <em>manipulación directa</em> pero no pueden seguir el modelo descrito anteriomente ya que no hay ventanas, ni punteros…</p>
-<p>Un ejemplo de nueva técnica de interacción que fue revolucionaria en su momento fue la rueda del iPod. La rueda disponía de vaios botones para realizar diversas acciones sobre los archivos y, además, nos permitía navegar por las listas de archivos haciéndola girar.</p>
-<figure>
-<img src="../images/tema01/ipod.jpg" alt="El iPod y su rueda de navegación" /><figcaption>El iPod y su rueda de navegación</figcaption>
-</figure>
-<p>Posteriormente podemos hablar de todas las técnicas de interacción que nacieron con las pantallas táctiles, en las que el usuario es capaz de manipular los objetos tocando la pantalla y realizando gestos con uno o varios dedos (como las rotaciones o acercar/alejar los dedos o <em>pinching</em>).</p>
-<p>Aunque se hablará de algunas de estas técnicas de interacción en el último capítulo podemos destacar, entre otras, las siguientes:</p>
+<h3 id="diámetro-de-un-grafo">Diámetro de un grafo</h3>
+<p>El diámetro (<span class="math">\(d_{max}\)</span>) de un grafo es el camino más corto maximal, es decir, la distancia más larga a recorrer entre un par de nodos.</p>
+<p><span class="math">\[d_{max} = \operatorname*{max}_{i,j} d_{ij}\]</span></p>
+<h3 id="longitud-media-de-los-caminos">Longitud media de los caminos</h3>
+<p>La longitud media (<span class="math">\(\langle d \rangle\)</span>) es la distancia media entre todos los pares de nodos de una red.</p>
 <ul>
-<li>Sistemas de realidad virtual</li>
-<li>Interfaces gestuales (Ej. Kinect)</li>
-<li>Interfaces por voz (Ej. Siri)</li>
-<li>Interfaces cerebro-computador…</li>
-<li>10-foot interfaces (interfaces de usuario para utilizar en pantallas de televisión)</li>
+<li><p>Para un grafo dirigido</p>
+<p><span class="math">\[ \langle d \rangle = \frac{1}{N(N-1)} \sum_{i, j \neq i} d_{i,j} = \frac{1}{2 \cdot L_{max}} \sum_{i, j \neq i}d_{i,j} \]</span></p></li>
+<li><p>Para un grafo no dirigido</p>
+<p><span class="math">\[ \langle d \rangle = \frac{2}{N(N-1)} \sum_{i \geq j} d_{i,j} = \frac{1}{L_{max}} \sum_{i \geq j}d_{i,j} \]</span></p></li>
 </ul>
-<h2 id="usabilidad">Usabilidad</h2>
-<p><a href="http://www.userfocus.co.uk/resources/iso9241/part11.html">Según el estándar ISO 9241 (parte 11: Orientaciones sobre Usabilidad)</a>, este término se puede definir como:</p>
+<h2 id="conectividad">Conectividad</h2>
+<p>Dos nodos están conectados en un grafo si hay un camino que los une. Un grafo se considera <strong>conexo</strong> si todo par de nodos de la red están conectados.</p>
+<p>Un <strong>puente</strong> (<em>bridge</em>) es un enlace que hace que un grafo deje de ser conexo.</p>
+<h3 id="componentes">Componentes</h3>
+<p>Un <strong>componente</strong> es un conjunto de nodos del grafo en el que todos sus nodos están conectados y al que no se pueden añadir más nodos que cumplen esa propiedad. Para conocer cuáles son los componentes de un grafo podemos volver a utilizar el algoritmo BFS:</p>
 <blockquote>
-<p>la cualidad por la que un producto puede ser usado por un <em>usuario específico</em> para conseguir unos <em>objetivos específicos</em> con eficiencia, efectividad y satisfacción en un <em>contexto de uso específico</em>.</p>
+<ol type="1">
+<li>Seleccionamos un nodo al azar <span class="math">\(i\)</span> y lo etiquetamos con <span class="math">\(M\)</span>.</li>
+<li>Metemos en una cola todos los nodos adyacentes a <span class="math">\(i\)</span> y los etiquetamos con <span class="math">\(M\)</span></li>
+<li><p>Sacamos el primer nodo de la cola y metemos en la cola todos los nodos adyacentes al que hemos sacado.</p></li>
+<li>Repetimos 3 hasta que la cola esté vacía. Todos los nodos ya procesados forman un componente. Si hemos procesado <span class="math">\(N\)</span> nodos entonces el grafo es conexo.</li>
+<li><p>Si quedan nodos entonces repetimos 1 etiquetándolo con <span class="math">\(M+1\)</span>.</p></li>
+</ol>
 </blockquote>
-<p>Como se puede ver, no es un término que pueda ser usado de manera general para un producto sino que ha de ser entendido dentro de una serie de condiciones: tipo de usuario, objetivos del usuario y contexto del usuario.</p>
-<p>Los tres atributos que miden la usabilidad de acuerdo al estándar ISO 9241 son:</p>
-<ul>
-<li><strong>Efectividad</strong>: Es la precisión y el grado de completitud con la que el usuario es capaz de satisfacer sus objetivos.</li>
-<li><strong>Eficiencia</strong>: Los recursos y el tiempo empleados en relación con el grado de precisión y completitud con el que se han satisfecho los objetivos.</li>
-<li><strong>Satisfacción</strong>: Actitud positiva hacia el uso del producto, ausencia de frustración o incomodidad al usarlo.</li>
-</ul>
-<p>La usabilidad no existe de manera aislada ni implica la aceptación general de un sistema. Hay otros muchos atributos importantes dentro de un sistema y que, en ciertos momentos, pueden ser más importantes que la usabilidad (por ejemplo, un astronauta valora que su sistema de navegación sea fiable más que que sea usable). Jakob Nielsen contextualiza la usabilidad y la engloba dentro de un marco mayor que mide la aceptación de un sistema:</p>
-<figure>
-<img src="../images/tema01/usability.jpg" alt="La usabilidad dentro de su contexto (Jakob Nielsen)" /><figcaption>La usabilidad dentro de su contexto (Jakob Nielsen)</figcaption>
-</figure>
-<p>Nielsen define hasta <a href="http://www.nngroup.com/articles/usability-101-introduction-to-usability/">5 atributos para la usabilidad</a>:</p>
-<ul>
-<li>Facilidad de aprendizaje (<em>learnability</em>): Cómo de fácil es para un usuario novato realizar una tarea en el sistema.</li>
-<li>Eficiencia (<em>Efficiency</em>): Cómo de rápido puede realizar una tarea un usuario experto.</li>
-<li>Memorabilidad (<em>Memorability</em>): Cómo de fácil es recordar cómo se usa un sistema tras haber pasado un tiempo sin usarlo.</li>
-<li>Errores (<em>Errors</em>): Cuántos errores comete el usuario, cómo de graves son y cómo de fácil es recuperarse de ellos.</li>
-<li>Satisfacción (<em>Satisfaction</em>): Cómo de agradable es usar el sistema desde el punto de vista del usuario.</li>
-</ul>
-<p>Aunque Nielsen lo deja fuera, varios autores incluyen la efectividad <em>effectiveness</em> como otro de los atributos básicos de usabilidad. Este atributo se define de manera similar al estándar ISO: cómo de bueno es sistema haciendo lo que se supone para lo que está diseñado.</p>
-<p>En posteriores temas desarrollaremos más estos atributos, los transformaremos en heurísticas y definiremos metodologías de evaluación de la usabilidad de un sistema.</p>
-<p>La usabilidad está relacionada con los <em>buenos diseños</em> por lo que, tal y como hablamos en el tema anterior, no tener en cuenta los conceptos de usabilidad a la hora de diseñar un sistema tiene consecuencias: tiempo, dinero (sobre todo el de la empresa que vende el sistema) e, incluso, vidas.</p>
-<p>La usabilidad afecta a cómo un usuario percibe un sistema: un sistema <em>usable</em> “vende”; un sistema <em>no usable</em> hace que el usario lo deseche. Pero hay que tener en cuenta que es un criterio subjetivo y que depende del tipo de usuario al que va dirigido. Distintos usuarios valorarán más unos atributos que otros:</p>
-<ul>
-<li>Los usuarios novatos valoran la facilidad de aprendizaje.</li>
-<li>Los usuarios esporádicos valoran la memorabilidad.</li>
-<li>Los usuarios expertos valoran la eficiencia.</li>
-</ul>
-<h2 id="experiencia-de-usuario">Experiencia de usuario</h2>
-<p>User Experience (UX) es el conjunto de todas las interacciones que un usuario tiene con un producto. Pretende ir un paso más allá de la usabilidad: no solo se centra en los aspectos objetivos del sistema (su funcionalidad) sino también con todos los demás aspectos relacionados con los sentimientos que genera la interacción con el sistema. El término fue acuñado por Don Norman cuando era el Vicepresidente del Grupo de Tecnologías Avanzadas de Apple ya que consideraba que el término <em>usabilidad</em> no cubría ciertos aspectos relacionados con las emociones que el usuario podía experimentar al interactuar con un producto.</p>
-<p>El diseño centrado en la experiencia del usuario va más allá de la usabilidad y tiene en cuenta otros elementos:</p>
-<ul>
-<li>El lenguaje de los contenidos</li>
-<li>El diseño gráfico (colores, símbolos, iconos, texturas…)</li>
-<li>El sonido</li>
-<li>El movimiento (animaciones, ritmo, cambios…)</li>
-<li>El diseño de la información (tipografía, estructura de la información, relación y comprensión por parte del usuario)</li>
-<li>El diseño de la interfaz (elementos gráficos para la manipulación de los datos)</li>
-<li>El diseño de las interacciones (comportamiento y comprensión por parte del usuario)</li>
-</ul>
-<figure>
-<img src="../images/tema01/uxelements.jpg" alt="Elementos de la experiencia de usuario (Extraído de UX Design)" /><figcaption>Elementos de la experiencia de usuario (Extraído de <a href="http://uxdesign.com/ux-defined">UX Design</a>)</figcaption>
-</figure>
-<p>La experiencia de usuario habla de hacer que el usuario se sienta agusto con el sistema, que le divierta y que la experiencia de interactuar con él sea excitante. El <em>fluir</em> (o <a href="http://en.wikipedia.org/wiki/Flow_%28psychology%29">flow</a>) es un concepto de psicología que se está volviendo popular dentro del HCI. Es un estado mental muy intenso en el que el usuario se encuentra completamente concentrado en la tarea en la que está realizando y disfrutando. Algunos diseños pretenden inducir al usuario en esta experiencia de fluir.</p>
-<p>En ocasiones, la experiencia de usuario no va de la mano de la usabilidad sino que son opuestas e incluso pueden ser incompatibles. Por ejemplo, la mayoría jugadores <em>hardcore</em> de videojuegos disfrutan más con la experiencia de un mando de PlayStation o XBox (que no son fáciles de usar) que con las acciones intuitivas que se pueden realizar con el mando de la Wii o con una Kinect.</p>
-<p>La experiencia de usuario puede ir más allá de la interfaz de usuario. Es la relación entre el usuario y el producto completo, la marca. Un ejemplo sería un iPhone: su interfaz, en general, es un ejemplo de usabilidad y buen diseño. Pero la experiencia de usuario va más allá: hay personas que hacen cola cada vez que sale una nueva versión del producto, que suben vídeos a Youtube <a href="http://www.youtube.com/watch?v=IpFcFypzZlY">mostrando cuando desempaquetan su iPhone</a>, las Apple Store tienen una estética muy particular, las <em>keynotes</em> de Apple (sobre todo las del difunto Steve Jobs) son muy comentadas…</p>
-<figure>
-<img src="../images/tema01/iPhone.jpg" alt="iPhone y UX. Extraído de las transparencias de User Interface Design and Implementation del MIT Open Couseware." /><figcaption>iPhone y UX. Extraído de las transparencias de <a href="http://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-831-user-interface-design-and-implementation-spring-2011">“User Interface Design and Implementation” del MIT Open Couseware</a>.</figcaption>
-</figure>
-<h2 id="ingeniería-de-usabilidad">Ingeniería de usabilidad</h2>
-<p>Hasta hace unos años, muchos productos digitales (software) presentaban bastantes deficiencias de uso. Por ejemplo, si abrías un documento de Word, trabajabas sobre él, lo guardabas y posteriormente lo imprimías, al intentar cerrar el documento Word te volvía a preguntar si lo querías guardar (¿qué cambios ha realizado el proceso de imprimir para que me pida volver a guardar?).</p>
-<p>El problema real estaba relacionado principalmente con tres razones:</p>
-<ul>
-<li><p>Ignorancia sobre el usuario.</p>
-<p>Se conocía cuál era el segmento de usuario a los que el producto iba dirigido pero se ignoraba cómo iba a usar el producto o por qué el usuario iba a preferir nuestro producto al de la competencia.</p></li>
-<li><p>Conflicto de intereses entre cubrir las necesidades del usuario y las prioridades de desarrollo.</p>
-<p>Generalmente el programador y el diseñador de una aplicación eran la misma persona. Un programador puede ser muy bueno haciendo que un código sea eficiente pero es muy probable que no sea la persona más adecuada para tener en cuanta las necesidades del usuario o los temas de negocio relacionados con el producto.</p></li>
-<li><p>Falta de un proceso para comprender las necesidades del usuario.</p>
-<p>Los procesos de desarrollo software (que estudiamos en <em>Ingeniería del Software</em>) son procesos ingenieriles que se centran en la viabilidad y la calidad de la tecnología desarrollada pero en la que dejan de lado el conocimiento del usuario. Describen <strong>qué</strong> tareas se han de realizar (casos de uso) y desarrollan procesos para completarlas. Pero no solían tener en cuenta <strong>cómo</strong> se realizan las tareas ni <strong>quién</strong> las realiza ni existían procesos para convertir estas preguntas en conceptos de diseño.</p></li>
-</ul>
-<p>La ingeniería de la usabilidad (o <em>usability engineering</em>) es la disciplina que trata de responder a cómo crear software <em>usable</em> (de acuerdo a los criterios de usabilidad que hemos hablado en otro momento). Define un proceso que nos permite comprender a los usuarios y a diseñar sistemas interactivos teniendo en cuenta este conocimiento.</p>
-<p>La ingeniería de usabilidad define un proceso de diseño <strong>iterativo</strong> y <strong>centrado en el usuario</strong>. Un esquema del mismo sería el siguiente:</p>
-<figure>
-<img src="../images/tema01/ueng-lifecycle.jpg" alt="Ciclo de proceso en ingeniería de usabilidad" /><figcaption>Ciclo de proceso en ingeniería de usabilidad</figcaption>
-</figure>
-<h3 id="conocer-al-usuario">Conocer al usuario</h3>
-<p>La primera fase a desarrollar consiste en <strong>conocer al usuario</strong>. Es importante comprender al usuario y los requisitos de la tarea que realiza.</p>
-<p>El diseño centrado en el usuario parte de las siguientes tres preguntas:</p>
-<ul>
-<li>Quién va a usar el sistema interactivo</li>
-<li>Con qué objetivo va a ser usado</li>
-<li>Cuándo y en qué contexto se va a usar</li>
-</ul>
-<p>Conocer al usuario implica identificar los siguientes elementos:</p>
-<ul>
-<li>En qué somos buenos/malos los humanos (que serán los usuarios de nuestro sistema)</li>
-<li>Cómo podemos ayudarles a hacer una tarea <em>en la forma en la que actualmente la realizan</em></li>
-<li>Qué puede producirles experiencias de calidad</li>
-</ul>
-<p>Algunas de las tareas que se realizan en esta fase son:</p>
-<ul>
-<li>Emplear distintas técnicas para conocer al usuario (como la observación o las entrevistas).</li>
-<li>Definir distintas clases de usuarios y esbozar un perfil de cada uno de ellos.</li>
-<li>Identificar los objetivos del usuario.</li>
-<li>Analizar el contexto en el que el usuario trabajará con el sistema así como el software con el que actualmente trabaja, cómo lo usa y para qué se usa.</li>
-<li>Definir escenarios de usuario.</li>
-</ul>
-<h3 id="diseño-iterativo">Diseño iterativo</h3>
-<p>Este es uno de los procesos más importantes de la ingeniería de la usabilidad y consiste en iterar sobre tres fases: <em>diseño, implementación y evaluación</em>.</p>
-<ul>
-<li>Inicialmente diseñamos la interfaz con la que el usuario interactúa con el sistema.</li>
-<li>Posteriormente realizamos una implementación / prototipo de nuestra interfaz.</li>
-<li>A continuación evaluamos (generalmente <strong>con usuarios</strong>) nuestra interfaz.</li>
-<li>Los resultados de la evaluación serán utilizados para rediseñar una nueva interfaz y volver a iterar en el proceso.</li>
-</ul>
-<p>Como construir un prototipo completamente operativo en cada iteración es algo muy costoso se suele seguir un modelo en espiral. la dimensión radial de la espiral se corresponde con el coste de cada paso de iteración, es decir, está relacionado con la fidelidad y precisión de los prototipos desarrollados con el resultado final. Como se puede ver, comenzaremos con prototipos baratos y desechables, como prototipos en papel o mockups, y a medida que realicemos más iteraciones, los prototipos serán más fieles al resultado final, como prototipos funcionales o implementados en la tecnología final en la que van a ser usados.</p>
-<p>Las evaluaciones se realizan en cada iteración y sobre cada uno de los diseños. Las evaluaciones pueden ser distintas en cada iteración, teniendo en cuenta distintos aspectos de la interfaz. Generalmente estas evaluaciones serán <strong>con usuarios</strong> (experimentos formales, test A/B, experimentos de “pensar en alto”…) aunque también podemos realizar evaluaciones que usen métodos heurísticos (analizar y juzgar le interfaz, en lugar de experimentar con ella).</p>
-<h3 id="estudios-de-seguimiento">Estudios de seguimiento</h3>
-<p>Son los estudios que se realizan una vez lanzado el producto y que nos ayudan a poder mejorar futuras versiones del producto.</p>
-<ul>
-<li>Cuestionarios</li>
-<li>Estudios de márketing</li>
-<li>Reportes de errores (<em>Bug reports</em>)</li>
-<li>Ficheros de logging</li>
-<li>…</li>
-</ul>
-<h2 id="diseño-guiado-por-objetivos-visión-general">Diseño guiado por objetivos: Visión general</h2>
-<p>El <a href="http://www.uie.com/articles/goal_directed_design/">Diseño Guiado por Objetivos</a> (DGO o <em>Goal-Directed Desing</em>) es un modelo o aproximación que permite implementar la ingeniería de usabilidad. Existen otros modelos, como el <a href="http://drdeb.vineyard.net/djmacasestudy.pdf">UE Lifecycle</a> de Deborah Mayhew o el Modelo de IBM de proceso de diseño centrado en usuario (User-Centred Design-Process Model of IBM). Nos centraremos en la primera ya que es una de las más modernas y utilizadas en la actualidad.</p>
-<p>El DGO es una metodología propuesta por Alan Cooper a partir de su experiencia en el diseño centrado en el usuario. El DGO se basa en diseñar software a partir del conocimiento de los objetivos que un usuario persigue al utilizar un sistema. A diferencia de otras metodologías, se centra en los <strong>objetivos</strong> y no en las <strong>tareas</strong>.</p>
-<ul>
-<li>El objetivo de un sistema es el propósito por el que lo usamos.</li>
-<li>Las tareas son las distintas formas en las que conseguimos objetivos.</li>
-</ul>
-<p>Las tareas <strong>no</strong> son objetivos. Las tareas son un medio para alcanzar un fin y los objetivos son el fin en sí mismo. Las primeras suelen cambiar con la tecnología. Un ejemplo. El <em>objetivo</em> de venir a la facultad a clase se alcanzaba:</p>
-<ul>
-<li>Realizando la tarea de venir a caballo hace unos siglos.</li>
-<li>Realizando la tarea de tomar el transporte público en la actualidad.</li>
-<li>Realizando la tarea de usar el teletransportador en el futuro.</li>
-</ul>
-<p>Como veremos en posteriores lecciones hay distintos tipos de objetivos de usuario:</p>
-<ul>
-<li>De experiencia : Expresan qué quiere sentir el usuario con un producto.</li>
-<li>Finales: Expresan cuál es la motivación que conduce a un usuario a realizar una tarea con un producto.</li>
-<li>Vitales: Expresan aspiraciones del usuario, sus deseos y motivaciones. Son objetivos que van más allá del producto y que pretenden explicar la relación a largo plazo entre el usuario y el producto.</li>
-</ul>
-<p>Uno de los elementos principales del DGO son las <strong>personas</strong>, entendidas como usuarios arquetípicos, es decir, una representación de un grupo de usuarios de nuestro sistema. Es un modelo de comportamiento de un usuario imaginario, no real, de un usuario pero que tiene unas características muy concretas. Los atributos de la <em>persona</em> se extraen de los datos de entrevistas y la observación de usuarios reales. A pesar de ser un modelo de diseño se suelen representar como individuos.</p>
-<p>Una <a href="http://www.interaction-design.org/encyclopedia/personas.html#heading_An_example_persona_html_pages_12414"><em>persona</em></a> se caracteriza por sus objetivos y los patrones de comportamiento que siguen al usar un producto.</p>
-<figure>
-<img src="../images/tema01/persona.jpg" alt="Ejemplo de persona (Fuente http://tzek-design.com/)" /><figcaption>Ejemplo de persona (Fuente <a href="http://tzek-design.com/">http://tzek-design.com/</a>)</figcaption>
-</figure>
-<p>Una vez definidas las <em>personas</em> el DGO propone usarlas para definir <strong>escenarios</strong>. Los escenarios son las narraciones que explican cómo una <em>persona</em> interactúa con el sistema para alcanzar un objetivo. Los escenarios, junto con las personas, sirven para validar los diseños intermedios a medida que avanza el diseño del sistema.</p>
-<p>Las <em>personas</em> y los escenarios sirven para definir los <strong>requisitos</strong> de diseño, es decir, las necesidades de la persona en un escenario, qué información y qué capacidades requiere nuestra interfaz para que una <em>persona</em> alcance un objetivo. En Cooper se ha definido un proceso que detalla unos pasos concretos para definir los requisitos y que estudiaremos en próximos temas.</p>
-<p>Una vez definidos los requisitos se pasa a la fase conocida como el <strong>Framework de diseño</strong>. Son una serie de directrices que, unidas a los requisitos y escenarios definidos en las fases anteriores, sirven para definir un boceto de los diseños de interfaces.</p>
-<p>El framework de diseño se divide en:</p>
-<ul>
-<li>El framework de interacción: Define el flujo, el comportamiento y la organización de la información en el producto. Generalmente usa prototipos en papel para esbozar el diseño de la interacción.</li>
-<li>El framework visual: Define el lenguaje visual del sistema. Está basado en estudios del lenguaje visual.</li>
-<li>El framework de diseño industrial. Definen el diseño físico del sistema. Está relacionado con el hardware sobre el que se va a ejecutar el sistema y las restricciones que éste impone (un móvil, un dispositivo médico, de un avión…)</li>
-</ul>
-<p>Una vez que se ha conseguido un framework de diseño siguiendo estas pautas se pasa a la fase de <strong>refinamiento</strong>, que consiste en crear una interfaz concreta a partir de los bocetos desarrollados en la fase anterior utilizando una serie de patrones y principios de diseño conocidos. Se utilizan los mismos procesos descritos en la fase anterior pero esta vez yendo a un nivel de detalle mucho más concreto.</p>
-<p>Estas dos últimas fases se pueden iterar varias veces y suelen sufrir <strong>validaciones</strong> con usuarios. Aunque los diseños realizados son constantemente validados usando las <em>personas</em> y escenarios definidos inicialmente, los test de usabilidad sirven para que usuarios reales interactúen y validen el sistema. Como ya se verá más adelante, hay distintos tipos de validaciones, como las sesiones de feedback de usuarios y los test de usabilidad.</p>
-<h3 id="nota-final" class="unnumbered">Nota final</h3>
-<p>Este tema corresponde a los apuntes de la asignatura Desarrollo de Sistemas Interactivos, impartida en la Facultad de Informática de la Universidad Complutense de Madrid por los profesores Guillermo Jiménez Díaz y Pablo Moreno Ger, del Departamento de Ingeniería del Software e Inteligencia Artificial.</p>
-<p>Este material ha sido desarrollado a partir de distintas fuertes, destacando como referencia principal las notas de la asignatura <em>Human Computer Interaction</em> del Prof. Keith Andrews de la Universidad Tecnológica de Graz, el material de la asignatura <em>Human Computer Interaction</em> impartido por Scott Klemmer a través de Coursera y los libro <em>About Face 3: The Essentials of Interaction Design</em> de Alan Cooper y <em>Interaction Design. Beyond Human Computer Interaction</em> de Rogers, Sharp y Preece.</p>
+<p>En un grafo dirigido podemos hablar de <strong>componentes fuertemente conectados</strong>: componentes en los que cada nodo del componente puede alcanzarse desde cualquier otro nodo del componente siguiendo los enlaces dirigido. Sin embargo, un <strong>componente débilmente conectado</strong> es aquél que cumple lo anterior pero siguiendo los enlaces en cualquier dirección (como si los enlaces fuesen no dirigidos).</p>
+<p>Un <strong>componente gigante</strong> es aquel componente que ocupa una fracción significativa del grafo.</p>
+<h3 id="coeficiente-de-agrupamiento">Coeficiente de agrupamiento</h3>
+<p>El <strong>coeficiente de agrupamiento local</strong> (<em>clustering coefficient</em> o <span class="math">\(C_i\)</span>) es una medida del grado con el que los vecinos de un nodo <span class="math">\(i\)</span> están enlazados entre sí. Se calcula de la siguiente forma:</p>
+<p><span class="math">\[ C_i = \frac{2 \cdot L_i}{k_i (k_{i-1})} \;\;\; C_i \in [0,1]\]</span></p>
+<p>donde <span class="math">\(k_i\)</span> representa el grado del nodo <span class="math">\(i\)</span> y <span class="math">\(L_i\)</span> es el número de enlaces entre los <span class="math">\(k_i\)</span> vecinos entre sí. Como se puede ver, representa la probabilidad con la que dos vecinos de un nodo <span class="math">\(i\)</span> se unen el uno con el otro. Es una medida de la densidad local de la red. Si <span class="math">\(C_i = 0\)</span> entonces ninguno de los vecinos de <span class="math">\(i\)</span> tienen relación entre ellos. Sin embargo, si <span class="math">\(C_i=1\)</span> entonces todos los nodos están unidos con todos (es un grafo completo).</p>
+<p>El <strong>grado medio de agrupamiento</strong> (<span class="math">\(\langle C \rangle\)</span>) es la probabilidad con la que 2 vecinos de un nodo seleccionado aleatoriamente se unen el uno con el otro:</p>
+<p><span class="math">\[ \langle C \rangle = \frac{1}{N} \sum_{i=1}^{N}C_i\]</span></p>
+<p>El <strong>coeficiente de agrupamiento global</strong> (<span class="math">\(C\)</span>) es el número de triángulos cerrados que hay en un grafo. Se calcula teniendo en cuenta los triángulos y los tripletes conectados –3 nodos conectados por 2 (triplete abierto) o 3 (triplete cerrado o triángulo) enlaces no dirigidos.</p>
+<p><span class="math">\[ C = \frac{3 \cdot \# \, Triángulos}{\# \, Tripletes\; Conectados}\]</span></p>
+<section class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>La complejidad del algoritmo es <span class="math">\(O(N+L)\)</span>. En redes con pesos positivos se usará en su lugar el algoritmo de Dijkstra.<a href="#fnref1">↩</a></p></li>
+</ol>
+</section>
 </body>
 </html>

@@ -17,9 +17,15 @@ En este tema haremos un repaso de los principales conceptos de teoría de grafos
 
 ## Introducción
 
-TODO: Puentes de Könnigsberg
+Podemos decir que los inicios de la teoría de grafos se remontan a 1736, en el momento en el que Euler resolvió el problema de los [puentes de Könnigsberg](http://es.wikipedia.org/wiki/Problema_de_los_puentes_de_K%C3%B6nigsberg):
 
-Euler construyó un grafo para representar y resolver el problema. Esta se puede considerar como la primera representación conocida de un grafo como medio para resolver un problema. De este hecho se pueden sacar dos conclusiones:
+> Dado el mapa de Königsberg, con el río Pregolya dividiendo el plano en cuatro regiones distintas que están unidas a través de los siete puentes, ¿es posible dar un paseo comenzando desde cualquiera de estas regiones, pasando por todos los puentes, recorriendo sólo una vez cada uno, y regresando al mismo punto de partida?
+ 
+Aunque el problema se puede resolver por fuerza bruta, Euler construyó un grafo para representar y resolver el problema.
+
+![Representación del problema de los puentes de Könnigsberg](../images/tema01/konnigsberg.jpg)
+
+Esta se puede considerar como la primera representación conocida de un grafo como medio para resolver un problema. De este hecho se pueden sacar dos conclusiones:
 
 * Algunos problemas son más simples de resolver si se representan mediante un grafo.
 * Los grafos presentan ciertas propiedades que limitan su comportamiento.
