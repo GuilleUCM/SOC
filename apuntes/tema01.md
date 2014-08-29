@@ -36,7 +36,13 @@ Los enlaces pueden ser de dos tipos:
 * *Dirigidos*: Tienen una dirección. Si todos los enlaces de un grafo son dirigidos entonces este grafo se conoce como _grafo dirigido o digrafo_. Por ejemplo, un enlace de una página web se representaría como un grafo dirigido.
 * *No dirigidos*: Representan relaciones bidireccionales. Si todos los enlaces de un grafo son no dirigidos entonces se le llama _grafo no dirigido_. Pro ejemplo, la relación de estar casados entre dos personas es un enlace no dirigido.
 
-Un sistema se puede representar de diferentes formas dependiendo del conjunto de nodos usados y, sobre todo, de los enlaces que se definan. Un mismo conjunto de nodos puede definir distintos conjuntos de redes.
+Una arista o enlace puede tener atributos:
+
+* Un peso, el cual puede representar información como la frecuencia de llamadas entre dos individuos. El peso puede tener un valor negativo, por ejemplo si lo usamos para representar la confianza-desconfianza entre dos individuos.
+* Un tipo, el cual puede representar el tipo de relación entre dos individuos (familiares, amigos, ...)
+* Otras propiedades que dependen del resto de la estructura del grafo, como el grado de intermediación (_betweeness_).
+
+Un sistema se puede representar de diferentes formas dependiendo del conjunto de nodos usados y, sobre todo, de los enlaces que se definan. Un mismo conjunto de nodos puede definir distintos grafos.
 
 ## Propiedades básicas de los grafos
 
@@ -98,4 +104,28 @@ TODO: ejemplos de mismo grafo con distintas representaciones
 > 
 > $n \;\{1, \ldots m\}$
 
-* **Matriz de adyacencia**.
+* **Matriz de adyacencia**. Es una matriz de tamaño $N$x$N$ de 0s y 1s. Si el elemento $A_{ij}=1$ entonces implica que hay un enlace que va de $j$ hacia $i$. Si el elemento $A_{ij}=0$ entonces no existe tal enlace. En un grafo no dirigido se cumple que elemento $A_{ij}=A_{ji}$ por lo que la matriz es simétrica. Si las aristas tienen un peso entonces $A_{ij} = w_{ij}$.
+
+Las matrices de adyacencia nos ayudan a calcular fácilmente el grado de cada uno de los nodos:
+
+* En un grafo no dirigido $k_i = \sum_{j=1}^{N}A_{ij} = \sum_{i=1}^{N}A_{ij}$. Es decir, si sumamos todos los valores de la fila o la columna $i$ obtenemos el grado de dicho nodo. En esta matriz se cumple también que el número de elementos que no son 0 es $2L$.
+* En un grafo dirigido $k_i^{in} = \sum_{j=1}^{N}A_{ij}$ y $k_i^{out} = \sum_{i=1}^{N}A_{ij}$. Es decir, el grado de entrada es la suma de la fila $i$, mientras que el grado de salida es la suma de los elementos de la columna $i$.
+
+Como las redes reales en general son dispersas la matriz de adyacencia sería también dispersa por lo que para procesar una red real en un computador es recomendable usar una de las dos representaciones primeras en lugar de utilizar una matriz de adyacencia.
+
+## Grafos bipartitos
+
+Un grafo bipartito es aquel en el que sus nodos se pueden dividir en dos conjuntos disjuntos de nodos $U$ y $V$, de modo que los enlaces solo conectan nodos del conjunto $U$ con nodos del conjunto $V$.
+
+> Ejemplo: Un grafo de actores ($U$) y películas ($V$) donde un enlace representa que un determinado actor ha participado en una determinada película.
+
+Es posible generar _proyecciones_ de un grafo bipartito, es decir, simplificar el conjunto de nodos $U + V$ a uno de ellos:
+
+* Si nos quedamos solo con los nodos de $U$ entonces dos nodos de $U$ están conectados si ambos estaban conectados al mismo nodo de $V$.
+* Si nos quedamos solo con los nodos de $V$ entonces dos nodos de $V$ están conectados si ambos estaban conectados al mismo nodo de $U$.
+
+> Siguiendo con el ejemplo, la proyección teniendo en cuenta los actores sería un grafo en el que dos actores están conectados si han participado en la misma película. Por otro lado, la proyección teniendo en cuenta las películas es un grafo en el que dos películas están conectadas si tienen al menos un actor en común.
+
+Las proyecciones pueden crearse utilizando pesos, indicando el número de nodos comunes a los que están conectados. Además, existen grafos tripartitos y multipartitos, en general.
+
+
