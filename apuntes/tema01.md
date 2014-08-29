@@ -140,10 +140,38 @@ Usando la matriz de adyacencia podemos calcular el número de caminos de una det
 
 * Si $A_{ij}=1$ entonces $N_{ij}=1$ y, por tanto, $d_{ij}=1$. Es decir, solo hay un camino de longitud 1 entre $i$ y $j$.
 * Si $A_{ik} \cdot A_{kj} = 1$ entonces $N_{ij}^{(2)}=[ A^2]_{ij}$. Es decir, el elemento $ij$ de la matriz $A^2$ contiene el número de caminos de distancia 2 entre $i$ y $j$.
-* En general, si $A_{ik} \cdot \ldots \cdot A_{mj} = 1$ entonces $N_{ij}^{(d)}=[ A^d]_{ij}$.
+* En general, si $A_{ik} \cdot \ldots \cdot A_{mj} = 1$ entonces $N_{ij}^{(d)}=[A^d]_{ij}$.
 
-De esta manera, la distancia mínima $d_{ij}$ entre dos nodos es el $d$ más pequeño para el que $N_{ij}^(d)>0$.
+De esta manera, la distancia mínima $d_{ij}$ entre dos nodos es el $d$ más pequeño para el que $N_{ij}^{(d)}>0$.
 
-Este método de cálculo de la distancia más corta es bastante ineficiente para redes reales en la que los grafos son grandes. En este caso, lo que se suele emplear es un algoritmo de **búsqueda en anchura** (_Breadth-first Search_ o BFS)[^1].
+Este método de cálculo de la distancia más corta es bastante ineficiente para redes reales en la que los grafos son grandes. En este caso, lo que se suele emplear es un algoritmo de **búsqueda en anchura** (_Breadth-first Search_ o BFS)[^1]. Para calcular la distancia $d_{ij}$ entre los nodos $i$ y $j$ hacemos lo siguiente: 
 
-[^1]: En redes con pesos positivos se usará en su lugar el algoritmo de Dijkstra.
+[^1]: La complejidad del algoritmo es $O(N+L)$. En redes con pesos positivos se usará en su lugar el algoritmo de Dijkstra.
+
+> 1. Comenzamos en el nodo $i$.
+> 2. Metemos en una cola todos los nodos adyacentes a $i$ y los etiquetamos con $d=1$
+> 3. Sacamos el primer nodo de la cola.
+>    
+>     1. Si es $j$ entonces $d_{ij} = d$ (la etiqueta que tiene el nodo $j$)
+>     2. En otro caso, metemos en la cola todos los nodos adyacentes al que hemos sacado y los etiquetamos con $d+1$
+>     
+> 4. Repetimos 3 hasta encontrar $j$ o hasta que la cola esté vacía. Si se produce este caso, entonces $d_{ij}= \infty$.
+
+### Diámetro de un grafo
+
+El diámetro ($d_{max}$) de un grafo es el camino más corto maximal, es decir, la distancia más larga a recorrer entre un par de nodos. 
+
+$$d_{max} = \operatorname*{max}_{i,j} d_{ij}$$
+
+### Longitud media de los caminos
+
+La longitud media ($\langle d \rangle$) es la distancia media entre todos los pares de nodos de una red.
+
+* Para un grafo dirigido
+
+    $$ \langle d \rangle = \frac{1}{N(N-1)} \sum_{i, j \neq i} d_{i,j} = \frac{1}{2 \cdot L_{max}} \sum_{i, j \neq i}d_{i,j} $$
+
+* Para un grafo no dirigido
+
+    $$ \langle d \rangle = \frac{2}{N(N-1)} \sum_{i \geq j} d_{i,j} = \frac{1}{L_{max}} \sum_{i \geq j}d_{i,j} $$
+
