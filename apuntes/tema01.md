@@ -175,3 +175,37 @@ La longitud media ($\langle d \rangle$) es la distancia media entre todos los pa
 
     $$ \langle d \rangle = \frac{2}{N(N-1)} \sum_{i \geq j} d_{i,j} = \frac{1}{L_{max}} \sum_{i \geq j}d_{i,j} $$
 
+## Conectividad
+
+Dos nodos están conectados en un grafo si hay un camino que los une. Un grafo se considera **conexo** si todo par de nodos de la red están conectados.
+
+Un **puente** (_bridge_) es un enlace que hace que un grafo deje de ser conexo.
+
+### Componentes
+
+Un **componente** es un conjunto de nodos del grafo en el que todos sus nodos están conectados y al que no se pueden añadir más nodos que cumplen esa propiedad. Para conocer cuáles son los componentes de un grafo podemos volver a utilizar el algoritmo BFS:
+
+> 1. Seleccionamos un nodo al azar $i$ y lo etiquetamos con $M$.
+> 2. Metemos en una cola todos los nodos adyacentes a $i$ y los etiquetamos con $M$
+> 3. Sacamos el primer nodo de la cola y metemos en la cola todos los nodos adyacentes al que hemos sacado.
+>     
+> 4. Repetimos 3 hasta que la cola esté vacía. Todos los nodos ya procesados forman un componente. Si hemos procesado $N$ nodos entonces el grafo es conexo.
+> 5. Si quedan nodos entonces repetimos 1 etiquetándolo con $M+1$.
+
+Un **componente gigante** es aquel componente que ocupa una fracción significativa del grafo.
+
+### Coeficiente de agrupamiento
+
+El **coeficiente de agrupamiento local** (_clustering coefficient_ o $C_i$) es una medida del grado con el que los vecinos de un nodo $i$ están enlazados entre sí. Se calcula de la siguiente forma:
+
+$$ C_i = \frac{2 \cdot L_i}{k_i (k_{i-1})} \;\;\; C_i \in [0,1]$$ 
+
+donde $k_i$ representa el grado del nodo $i$ y $L_i$ es el número de enlaces entre los $k_i$ vecinos entre sí. Como se puede ver, representa la probabilidad con la que dos vecinos de un nodo $i$ se unen el uno con el otro. Es una medida de la densidad local de la red. Si $C_i = 0$ entonces ninguno de los vecinos de $i$ tienen relación entre ellos. Sin embargo, si $C_i=1$ entonces todos los nodos están unidos con todos (es un grafo completo).
+
+El **grado medio de agrupamiento** ($\langle C \rangle$) es la probabilidad con la que 2 vecinos de un nodo seleccionado aleatoriamente se unen el uno con el otro:
+
+$$ \langle C \rangle = \frac{1}{N} \sum_{i=1}^{N}C_i$$
+
+El **coeficiente de agrupamiento global** ($C$) es el número de triángulos cerrados que hay en un grafo. Se calcula teniendo en cuenta los triángulos y los tripletes conectados --3 nodos conectados por 2 (triplete abierto) o 3 (triplete cerrado o triángulo) enlaces no dirigidos.
+
+$$ C = \frac{3 \cdot \# \, Triángulos}{\# \, Tripletes\; Conectados}$$
