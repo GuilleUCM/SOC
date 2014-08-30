@@ -125,6 +125,8 @@ Un grafo bipartito es aquel en el que sus nodos se pueden dividir en dos conjunt
 
 > Ejemplo: Un grafo de actores ($U$) y películas ($V$) donde un enlace representa que un determinado actor ha participado en una determinada película.
 
+![[TransferDeadlineDay](https://interactive.twitter.com/player_transfer/): Un grafo bipartito entre jugadores de fútbol y el lugar desde el que más se ha hablado de ellos](../images/tema01/bipartito.png)
+
 Es posible generar _proyecciones_ de un grafo bipartito, es decir, simplificar el conjunto de nodos $U + V$ a uno de ellos:
 
 * Si nos quedamos solo con los nodos de $U$ entonces dos nodos de $U$ están conectados si ambos estaban conectados al mismo nodo de $V$.
