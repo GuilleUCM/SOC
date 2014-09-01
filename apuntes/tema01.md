@@ -1,6 +1,6 @@
 % Análisis de Redes Sociales
 % Guillermo Jiménez Díaz (gjimenez@ucm.es); Alberto Díaz (albertodiaz@fdi.ucm.es)
-% 1 de octubre de 2014
+% 2 de octubre de 2014
 
 
 # Prefacio {-}
