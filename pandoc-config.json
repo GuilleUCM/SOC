@@ -341,7 +341,7 @@
 			// creates subheads. Normally set based on context of document.
 			// See: http://johnmacfarlane.net/pandoc/README.html#structuring-the-slide-show
 			// Set to a number or "false" to disable.
-			"slide-level": false,
+			"slide-level": 2,
 
 			// Enclose sections in <div> or <section> tags, attach "id" attributes based on
 			// the section name.

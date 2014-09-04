@@ -45,7 +45,7 @@ Como veremos más adelante, el Análisis de Redes Sociales (ARS) hace uso de la 
 
 * Predicción de epidemias
 * Lucha contra el terrorismo
-* Economía: recomendaciones y anuncios
+* Economía: recomendaciones y anuncios. Detección de influenciadores, personas con una importante conexión con otras personas, como foco para la propagación de campañas.
 * Salud: Medicina y genómica, investigación sobre el cerebro humano y redes neuronales.
 * Gestión: estructura de organizaciones, identificación de líderes de opinión, grupos óptimos...
 
