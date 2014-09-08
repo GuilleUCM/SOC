@@ -33,7 +33,79 @@ Guillermo Jiménez Díaz (gjimenez@ucm.es)<br/>Alberto Díaz (albertodiaz@fdi.uc
 <li>Seleccionar un par de nodos y generar un número aleatorio entre 0 y 1. Si es mayor que <span class="math">\(p\)</span> entonces añadimos un enlace entre ellos. En otro caso, los dejamos desconectados.</li>
 <li>Repetir el paso 2 para los <span class="math">\(\frac{N(N-1)}{2}\)</span> pares de nodos de la red.</li>
 </ol>
-<p>El modelo de red aleatoria también se conoce como el modelo de Erdös-Renyi</p>
+<p>El modelo de red aleatoria también se conoce como el modelo de Erdös-Renyi en honor de los dos matemáticos húngaros que las estudiaron inicialmente y que proporcionaron gran cantidad de información sobre las propiedades contenidas en este tipo de redes.</p>
+<div class="figure">
+<img src="../images/tema02/erdosRenyi.png" alt="Pal Erdös y Alfred Renyi, matemáticos hungaros principales investigadores del modelo de red aleatoria." /><p class="caption">Pal Erdös y Alfred Renyi, matemáticos hungaros principales investigadores del modelo de red aleatoria.</p>
+</div>
+<p>El modelo de red aleatoria también puede caracterizarse como <span class="math">\(G(N, L)\)</span>, donde <span class="math">\(L\)</span> es el número de enlaces de la red. En este caso, la red se forma seleccionando aleatoriamente 2 nodos y, si no existe un enlace entre ellos, se añade. Este proceso se repite hasta conseguir un total de <span class="math">\(L\)</span> enlaces. Esta forma de caracterizar la red se usa menos.</p>
+</div><div id="número-de-enlaces" class="slide section level2">
+<h1>Número de enlaces</h1>
+<p>Las redes aleatorias <span class="math">\(G(N, p)\)</span> tienen un número variable de enlaces (<span class="math">\(L\)</span>). Sin embargo, usando probabilidades básicas podemos calcular la probabilidad de que la red tenga exactamente <span class="math">\(L\)</span> enlaces.</p>
+<p>Para aproximar este cálculo se utiliza la <em>distribución binomial</em> que describe el número de éxitos (<span class="math">\(x\)</span>) que se pueden conseguir en la realización de <span class="math">\(n\)</span> experimentos independientes donde la probabilidad de acierto es <span class="math">\(p\)</span> y la de fracaso, <span class="math">\(1-p\)</span>.</p>
+<p><span class="math">\[ B(n, x, p) \to p_x = \binom{n}{x}p^x(1-p)^{n-x}\]</span></p>
+<p>De esta función de distribución nos interesan las siguientes métricas:</p>
+<ul>
+<li>Media de la distribución: <span class="math">\(\langle x \rangle = \sum_{x=1}^{N}x \cdot p_x = n \cdot p\)</span></li>
+<li>Varianza de la distribución: <span class="math">\(\sigma _x ^2= p \cdot (1-p) \cdot n\)</span></li>
+<li>Desviación estándar de la distribución: <span class="math">\(\sigma _x = [p \cdot (1-p) \cdot n]^{\frac{1}{2}}\)</span></li>
+</ul>
+<p>De acuerdo a esto podemos representar la probabilidad de una red de tener exactamente <span class="math">\(L\)</span> enlaces como:</p>
+<p><span class="math">\[ p_L = B(L_{max}, L, p) \to p_L = \binom{L_{max}}{L} p^L(1-p)^{L_{max}-L} \]</span></p>
+<p>De acuerdo a esto podemos calcular el número medio de enlaces esperados en <span class="math">\(G(N,p)\)</span> como:</p>
+<p><span class="math">\[ \langle L \rangle = p \cdot L_{max} = p \cdot \binom{N}{2} = p \cdot \frac{N(N-1)}{2}\]</span></p>
+<p>Por tanto, el grado medio de esta red<sup><a href="#fn1" class="footnoteRef" id="fnref1">1</a></sup> es:</p>
+<p><span class="math">\[ \langle k \rangle = \frac{2 \langle L \rangle }{N}  = p \cdot (N-1)\]</span></p>
+<p>De acuerdo a esto, una de las primeras características que podemos extraer de las redes aleatorias es que cuanto mayor sea <span class="math">\(p\)</span> mayor es el grado medio y, por tanto, más densa se vuelve la red.</p>
+</div><div id="distribución-del-grado-de-los-nodos" class="slide section level2">
+<h1>Distribución del grado de los nodos</h1>
+<p>Al igual que antes, podemos representar esta distribución como una binomial.</p>
+<p><span class="math">\[ p_k = B(N-1, k, p) \to p_k = \binom{N-1}{k} p^k(1-p)^{N-1-k}\]</span></p>
+<ul>
+<li>El grado medio será: <span class="math">\(\langle k \rangle = (N-1) \cdot p\)</span></li>
+<li>La varianza de <span class="math">\(k\)</span> será: <span class="math">\(\sigma _k ^2 = p \cdot (1-p) \cdot (N-1)\)</span></li>
+<li>La desviación estándar de <span class="math">\(k\)</span> será: <span class="math">\(\sigma _k = [p \cdot (1-p) \cdot (N-1)]^{\frac{1}{2}}\)</span></li>
+</ul>
+<p>Sin embargo, sabemos que la mayoría de las redes reales son dispersas, lo que implica que <span class="math">\(\langle k \rangle \ll N\)</span>. En este caso, la distribución de grados de los nodos se aproxima mejor usando una <em>distribución de Poisson</em>:</p>
+<p><span class="math">\[ P(x, \lambda) \to p_x = e^{-\lambda} \cdot \frac{\lambda ^x}{x!}\]</span></p>
+<p>En esta distribución sabemos que:</p>
+<ul>
+<li>Media de la distribución: <span class="math">\(\langle x \rangle = \lambda\)</span></li>
+<li>Varianza de la distribución: <span class="math">\(\sigma _x ^2= \lambda \)</span></li>
+<li>Desviación estándar: <span class="math">\(\sigma _x = \lambda ^{\frac{1}{2}} \)</span></li>
+</ul>
+<p>Podemos ver visualmente las diferencias entre la distribución binomial y la Poisson:</p>
+<div class="figure">
+<img src="../images/tema02/binomPoisson.png" alt="Representación gráfica de la distribución binomial y de la distribución de Poisson" /><p class="caption">Representación gráfica de la distribución binomial y de la distribución de Poisson</p>
+</div>
+<p>Vemos que ambas distribuciones tienen propiedades comunes:</p>
+<ul>
+<li>Tienen un pico en <span class="math">\(\langle x \rangle\)</span> de modo que si modificamos <span class="math">\(p\)</span> entonces el pico se desplaza hacia la derecha.</li>
+<li>Cuanto más densa es la distribución entonces más ancha es la distribución.</li>
+</ul>
+<p>Si estamos seguros de que tenemos una red en la que <span class="math">\(N\gg k\)</span> y aproximamos su distribución de grados mediante una Poisson entonces se cumple que:</p>
+<p><span class="math">\[p_k = P(k, \langle k \rangle) \to p_k = e^{-\langle k \rangle}\cdot \frac{\langle k \rangle ^k}{k!}\]</span></p>
+<p>De modo que:</p>
+<ul>
+<li>Varianza de <span class="math">\(k\)</span>: <span class="math">\(\sigma _x ^2= \langle k \rangle \)</span></li>
+<li>Desviación estándar de <span class="math">\(k\)</span>: <span class="math">\(\sigma _x = \langle k \rangle ^{\frac{1}{2}}\)</span></li>
+</ul>
+<p>De acuerdo a esto podemos sacar las siguientes propiedades de las redes aleatorias dispersas:</p>
+<ul>
+<li>La distribución de grados no depende de <span class="math">\(N\)</span> por lo que dos redes con igual <span class="math">\(\langle k \rangle\)</span> y distinto tamaño <span class="math">\(N\)</span> tienen funciones de distribución de grado indistinguibles.</li>
+<li>La mayoría de los nodos tienen un grado entorno a la media (<span class="math">\(\langle k \rangle\)</span>) y los nodos de mayor grado tienen solo unos pocos más que la media.</li>
+<li>Las redes aleatorias no tienen <strong>concentradores o hubs</strong>: nodos con conectividad o grado muy alto ya que la probabilidad de tener nodos con grado muy alto es extremadamente baja.</li>
+</ul>
+<p>Por ejemplo, en una red con <span class="math">\(\langle k \rangle = 1000\)</span> se puede calcular que <span class="math">\(\sigma _x = 31,62\)</span> por lo que los nodos tienen entre 970 y 1030 enlaces. También podemos realizar aproximaciones<sup><a href="#fn2" class="footnoteRef" id="fnref2">2</a></sup> para calcular el grado máximo y mínimo, que quedaría en <span class="math">\(k_{max}=1185\)</span> y <span class="math">\(k_{min}=816\)</span>.</p>
+<p>Más adelante veremos que este modelo de red aleatoria no se ajusta correctamente al compararlo con algunas redes reales por lo que será necesario modificarlo.</p>
+</div><div id="evolución-de-una-red-aleatoria" class="slide section level2">
+<h1>Evolución de una red aleatoria</h1>
+</div>
+<div class="footnotes slide">
+<hr />
+<ol>
+<li id="fn1"><p>Si la red se representa como <span class="math">\(G(L,p)\)</span> entonces ya sabemos el número exacto de enlaces por lo que <span class="math">\(\langle k \rangle = \frac{2L}{N}\)</span>.<a href="#fnref1">↩</a></p></li>
+<li id="fn2"><p>Los cálculos para aproximar el máximo y el mínimo se pueden consultar en el libro “Network Science”, cap 3, pp 72.<a href="#fnref2">↩</a></p></li>
+</ol>
 </div>
 </body>
 </html>
