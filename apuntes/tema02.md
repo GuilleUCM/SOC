@@ -114,3 +114,21 @@ Por ejemplo, en una red con $\langle k \rangle = 1000$ se puede calcular que $\s
 Más adelante veremos que este modelo de red aleatoria no se ajusta correctamente al compararlo con algunas redes reales por lo que será necesario modificarlo.
 
 ## Evolución de una red aleatoria
+
+La creación de una red aleatoria parte de un conjunto de nodos aislados que se van uniendo aleatoriamente. Si simulamos el algoritmo de creación podemos ver cómo varía el grado medio de la red y cómo aparece un componente gigante cuyo tamaño va variando a medida que se modifica dicho grado medio. En la siguiente figura podemos ver la evolución del tamaño del componente gigante con respecto al grado medio de la red ($\langle k \rangle$). En lugar de observar solo el número de nodos del componente ($N_G$) vamos a tener en cuenta el porcentaje del mismo con respecto al número total de nodos de la red ($\frac{N_G}{N}$).
+
+![Evolución del tamaño del componente gigante con respecto al grado medio de la red $\langle k \rangle$](../images/tema02/evolucion.png)
+
+Se puede ver que partimos de nodos aislados y que a partir de $\langle k \rangle = 1$ el valor de $\frac{N_G}{N}$ comienza a crecer rápidamente, lo que implica que comienza la aparición de un componente gigante.
+
+Con respecto a la probabilidad $p$ podemos sacar las siguientes conclusiones:
+
+* Si $p=0$ entonces $\langle k \rangle = 0$, $N_G = 1$ y $\frac{N_G}{N} \sim 0$.
+* Si $p=1$ entonces $\langle k \rangle = N-1$, $N_G = N$ y $\frac{N_G}{N} = 1$.
+* Cuantos más nodos tenga la red $N$, menor $p$ es necesario para crear un componente gigante.
+
+Observando la evolución de la red podemos diferenciar 4 etapas con sus características propias:
+
+* **Etapa subcrítica**
+
+    Se produce cuando $0 < \langle k \rangle < 1 \to p < \frac{1}{N}$. Durante esta etapa se crean pares de enlaces. Según incrementa el grado medio algunos de estos pares crean pequeños grupos, tan pequeños que $\frac{N_G}{N} \sim 0$. En general, la mayoría de los grupos pequeños tienen un tamaño parecido (no hay un componente gigante definido). El tamaño del componente más grande es $N_G \sim ln N$.
