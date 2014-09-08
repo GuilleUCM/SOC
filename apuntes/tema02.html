@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Guillermo Jiménez Díaz (gjimenez@ucm.es)" />
+  <meta name="author" content="Alberto Díaz (albertodiaz@fdi.ucm.es)" />
+  <title>Análisis de Redes Sociales</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+    href="http://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" />
+  <script src="../pandownTemplates/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">MathJax.Hub.Queue(["Typeset",MathJax.Hub]);</script>
+  <script src="http://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js"
+    charset="utf-8" type="text/javascript"></script>
+</head>
+<body>
+<div class="slide titlepage">
+  <h1 class="title">Análisis de Redes Sociales</h1>
+  <p class="author">
+Guillermo Jiménez Díaz (gjimenez@ucm.es)<br/>Alberto Díaz (albertodiaz@fdi.ucm.es)
+  </p>
+  <p class="date">2 de octubre de 2014</p>
+</div>
+<div id="prefacio" class="titleslide slide section level1 unnumbered"><h1>Prefacio</h1></div>
+<div id="tema-2-modelos-de-redes-el-modelo-de-red-aleatoria" class="titleslide slide section level1 unnumbered"><h1>Tema 2: Modelos de redes: El modelo de red aleatoria</h1></div><div id="modelo-de-red-aleatoria-algoritmo-de-construcción" class="slide section level2">
+<h1>Modelo de Red Aleatoria: algoritmo de construcción</h1>
+<p>Una red aleatoria es una red en la que cada uno de los enlaces entre dos nodos se ha creado siguiendo un proceso completamente aleatorio. De manera más matemática podemos decir que una red aleatoria es una red que tiene <span class="math">\(N\)</span> nodos donde cada nodo puede estar conectado con otro con una probabilidad <span class="math">\(p\)</span>. Se representa como <span class="math">\(G(N,p)\)</span> y se construye siguiendo el siguiente algoritmo:</p>
+<ol class="incremental" style="list-style-type: decimal">
+<li>Crear N nodos aislados</li>
+<li>Seleccionar un par de nodos y generar un número aleatorio entre 0 y 1. Si es mayor que <span class="math">\(p\)</span> entonces añadimos un enlace entre ellos. En otro caso, los dejamos desconectados.</li>
+<li>Repetir el paso 2 para los <span class="math">\(\frac{N(N-1)}{2}\)</span> pares de nodos de la red.</li>
+</ol>
+<p>El modelo de red aleatoria también se conoce como el modelo de Erdös-Renyi</p>
+</div>
+</body>
+</html>
