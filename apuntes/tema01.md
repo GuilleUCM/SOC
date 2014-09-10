@@ -54,11 +54,15 @@ Un sistema se puede representar de diferentes formas dependiendo del conjunto de
 
 El número de nodos o vértices de un grafo ($N$) representa el tamaño de la red mientras que el número de aristas o enlaces ($L$) representa en número de interacciones entre los nodos.
 
-El número máximo o total de enlaces ($L_{max}$) es el número de enlaces supuesto que todos los nodos están conectados con todos y se calcula como:
+El número máximo o total de enlaces ($L_{max}$) es el número de enlaces supuesto que todos los nodos están conectados con todos. En un grafo no dirigido se calcula como:
 
 $$L_{max} = \binom{N}{2} = \frac{N(N-1)}{2}$$
 
-En la mayoría de las redes reales se cumple que $L \ll L_{max}$ por lo que se suele decir que estas redes son *dispersas* (_sparse_).
+Mientras que en un grafo dirigido el número máximo de aristas es simplemente:
+
+$$L_{max} = N \cdot (N-1)$$
+
+La densidad del grafo describe cómo de conectado está el grafo. Se calcula como la proporción de aristas que hay en el grafo con respecto al número de posibles aristas ($\frac{L}{L_{max}}$). En la mayoría de las redes reales se cumple que $L \ll L_{max}$ por lo que se suele decir que estas redes son *dispersas* (_sparse_).
 
 Otra propiedad básica pero bastante importante de los grafos (y que usaremos a menudo a lo largo de la asignatura) es el grado de un nodo $i$ ($k_i$), que es el número de enlaces que tiene $i$ con otros nodos.
 
