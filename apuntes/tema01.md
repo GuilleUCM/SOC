@@ -189,6 +189,8 @@ Dos nodos están conectados en un grafo si hay un camino que los une. Un grafo s
 
 Un **puente** (_bridge_) es un enlace que hace que un grafo deje de ser conexo.
 
+Un **concentrador** (_hub_) es un nodo que tiene un grado mucho mayor que el resto de nodos de la red. Veremos que estos nodos son de especial importancia en el análisis de redes sociales.
+
 ### Componentes
 
 Un **componente** es un conjunto de nodos del grafo en el que todos sus nodos están conectados y al que no se pueden añadir más nodos que cumplen esa propiedad. Para conocer cuáles son los componentes de un grafo podemos volver a utilizar el algoritmo BFS:
