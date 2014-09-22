@@ -132,3 +132,28 @@ Observando la evolución de la red podemos diferenciar 4 etapas con sus caracter
 * **Etapa subcrítica**
 
     Se produce cuando $0 < \langle k \rangle < 1 \to p < \frac{1}{N}$. Durante esta etapa se crean pares de enlaces. Según incrementa el grado medio algunos de estos pares crean pequeños grupos, tan pequeños que $\frac{N_G}{N} \sim 0$. En general, la mayoría de los grupos pequeños tienen un tamaño parecido (no hay un componente gigante definido). El tamaño del componente más grande es $N_G \sim ln N$.
+
+* **Punto crítico**
+
+    Se produce cuando $\langle k \rangle = 1 \to p= \frac{1}{N}$. En este momento existe un gran número de componentes de pequeño tamaño cuya distribución sigue una función de ley potencial o _power-law_, las cuales se caracterizan por tener una larga cola. En este caso, el tamaño del componente más grande es $N_G \sim N^{\frac{2}{3}}$.
+
+* **Etapa supercrítica**
+
+    Se produce cuando $\langle k \rangle > 1 \to p > \frac{1}{N}$. Cerca de este punto aparece el componente gigante, cuyo tamaño es  $\frac{N_G}{N} \sim \langle k \rangle -1 \to N_G \sim (p-p_c)\cdot N$, donde $p_c = \frac{1}{N}$. En este momento se puede considerar realmente que el componente gigante tiene una proporción significativa de los nodos de la red. Siguen existiendo componentes aislados que conviven con el componente gigante.
+
+* **Etapa conectada**
+
+    Se produce cuando $\langle k \rangle \ge ln N \to p \ge \frac{ln N}{N}$. Cuando $p$ es lo suficientemente grande el componente gigante absorbe todos los nodos y componentes de la red, lo que implica que $N_G \sim N$. En este momento toda la red es conexa.
+
+Como resultados importantes podemos destacar que:
+
+* Si $\langle k \rangle > 1$ entonces la red puede comenzar a considerarse como tal (existe un componente gigante)
+* Si $\langle k \rangle \sim ln N$ entonces todos los componentes son absorbidos, creando una red global conectada.
+
+### Redes reales frente a redes aleatorias
+
+Si suponemos que las redes reales siguen el modelo de red aleatoria entonces se cumplirán las propiedades vistas anteriormente. Vamos a observar los datos de una serie de redes reales tomadas del libro de Barabasi (cap. 3, pág 60):
+
+![Datos sobre algunas redes reales](../images/tema02/datosRedes.png)
+
+De acuerdo a estos datos todas estas redes cumplen que $\langle k \rangle > 1$ por lo que tienen un componente gigante. Sin embargo se aprecia que en la mayoría de ellas (salvo en la red de actores) no se cumple que $\langle k \rangle \sim ln N$ por lo que deberíamos suponer que se encuentran en la fase supercrítica y que, por tanto, existen nodos y componentes aislados. Si las redes reales se modelan de acuerdo al modelo de Erdös-Renyi entonces deberían existir nodos desconectados del componente gigante. Como ejemplo, en el caso de la red Internet, esto supondría que existen subredes que no están conectados a la red global. Si esto fuese así, ¿cómo los alcanzaríamos?. Estamos ante la evidencia de que tal vez este modelo no es del todo válido para algunas redes reales.

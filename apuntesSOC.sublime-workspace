@@ -80,10 +80,42 @@
 	"buffers":
 	[
 		{
-			"file": "apuntesSOC.sublime-project",
+			"file": "pandoc-config.json",
 			"settings":
 			{
-				"buffer_size": 74,
+				"buffer_size": 15822,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "apuntes/tema00.md",
+			"settings":
+			{
+				"buffer_size": 5079,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "apuntes/tema01.md",
+			"settings":
+			{
+				"buffer_size": 15592,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "apuntes/tema02.md",
+			"settings":
+			{
+				"buffer_size": 9396,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "practicas/practica01.md",
+			"settings":
+			{
+				"buffer_size": 1356,
 				"line_ending": "Unix"
 			}
 		}
@@ -95,6 +127,38 @@
 		"selected_items":
 		[
 			[
+				"sl",
+				"Build: Pandown: Slidy HTML/JS Slideshow"
+			],
+			[
+				"pdf",
+				"Build: Pandown: LaTeX - PDF"
+			],
+			[
+				"htm",
+				"Build: Pandown: HTML 5"
+			],
+			[
+				"PDF",
+				"Build: Pandown: LaTeX - PDF"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"html",
+				"Build: Pandown: HTML 5"
+			],
+			[
+				"com",
+				"Toggle Comment"
+			],
+			[
 				"gis",
 				"Gist: Open Gist"
 			],
@@ -103,28 +167,12 @@
 				"Convert Case: Title Case"
 			],
 			[
-				"com",
-				"Toggle Comment"
-			],
-			[
 				"ht",
 				"Build: Pandown: HTML 5"
 			],
 			[
-				"pdf",
-				"Build: Pandown: LaTeX - PDF"
-			],
-			[
 				"pac",
 				"Package Control: List Packages"
-			],
-			[
-				"html",
-				"Build: Pandown: HTML 5"
-			],
-			[
-				"htm",
-				"Build: Pandown: HTML 5"
 			],
 			[
 				"",
@@ -145,10 +193,6 @@
 			[
 				"hmtl",
 				"Set Syntax: HTML (Tcl)"
-			],
-			[
-				"inst",
-				"Package Control: Install Package"
 			],
 			[
 				"h",
@@ -209,10 +253,6 @@
 			[
 				"late",
 				"Build: Pandown: LaTeX"
-			],
-			[
-				"sl",
-				"Build: Pandown: Slidy HTML/JS Slideshow"
 			],
 			[
 				"SL",
@@ -375,10 +415,6 @@
 				"Set Syntax: XML"
 			],
 			[
-				"insta",
-				"Package Control: Install Package"
-			],
-			[
 				"in",
 				"Package Control: Install Package"
 			],
@@ -395,7 +431,7 @@
 				"Package Control: Install Package"
 			]
 		],
-		"width": 494.0
+		"width": 575.0
 	},
 	"console":
 	{
@@ -412,6 +448,20 @@
 	},
 	"file_history":
 	[
+		"/Users/guille/Sites/DVI/CuartaPiramide/cuartapiramide.js",
+		"/Users/guille/git/docencia/SOC/readmePandown.md",
+		"/Users/guille/Facultad/Documentación/sexenios/2013/justifPublicaciones.md",
+		"/Users/guille/git/docencia/SOC/apuntes/tema02.pdf",
+		"/Users/guille/Facultad/Docencia/FDI/TP/c1314/practicas/practica5/validador/src/frame/PanelMemory.java",
+		"/Users/guille/Facultad/Docencia/FormacionContinua/c1314/cSharp/alumnos",
+		"/Users/guille/git/docencia/SOC/apuntes/tema01.md",
+		"/Users/guille/Facultad/Docencia/FDI/TP/c1314/practicas/yoli/examenSeptiembre/enunciado/alumnos.csv",
+		"/Users/guille/Facultad/Docencia/FDI/TP/c1314/practicas/practica5/validador/src/Observers/MemoryObserver.java",
+		"/Users/guille/Facultad/Docencia/FDI/TP/c1314/practicas/practica5/validador/src/frame/PanelStack.java",
+		"/Users/guille/Sites/webJuegos/games/DeepJungle/game.js",
+		"/Users/guille/git/docencia/SOC/apuntes/tema01.pdf",
+		"/Users/guille/Library/Application Support/Sublime Text 2/Packages/User/soc/distMedia.sublime-snippet",
+		"/Users/guille/git/docencia/SOC/apuntesSOC.sublime-project",
 		"/Users/guille/Library/Application Support/Sublime Text 2/Packages/User/Gist.sublime-settings",
 		"/Users/guille/svn/docencia/HTML5/material/apuntes/tema6/lec68.md",
 		"/Users/guille/svn/docencia/HTML5/material/apuntes/tema8/lec81.md",
@@ -525,21 +575,7 @@
 		"/Users/guille/svn/docencia/Latex/material/apuntes/tema3/ejercicio/ejercicioTema3.tex",
 		"/Users/guille/CursosRecibidos/Coursera/RecSys/software/lenskit-2.0.4/bin/lenskit-eval",
 		"/Users/guille/svn/docencia/Latex/material/apuntes/tema1/lec15.md",
-		"/Users/guille/svn/docencia/Latex/material/apuntes/tema2/lec22.html",
-		"/Volumes/My Passport/guilleMacViejo/Facultad/Docencia/Master/c1213/IA/Practicas/Steering_Solution_Project/Assets/Scripts/AnimationManager.cs",
-		"/Users/guille/svn/docencia/Latex/material/apuntes/cfi.js",
-		"/Users/guille/svn/docencia/Latex/material/apuntes/tema6/lec62.html",
-		"/Users/guille/svn/docencia/Latex/material/apuntes/tema1/pandoc-config.json",
-		"/Users/guille/svn/docencia/Latex/material/apuntes/tema2/lec23.html",
-		"/Users/guille/svn/docencia/Latex/material/apuntes/tema4/lec42.html",
-		"/Users/guille/svn/docencia/Latex/material/apuntes/tema4/lec43.html",
-		"/Users/guille/svn/docencia/Latex/material/apuntes/tema2/lec24.html",
-		"/Users/guille/svn/docencia/Latex/material/apuntes/tema2/lec25.html",
-		"/Users/guille/svn/docencia/Latex/material/apuntes/tema4/lec41.html",
-		"/Users/guille/svn/docencia/Latex/material/apuntes/tema9/lec94.html",
-		"/Users/guille/svn/docencia/Latex/material/apuntes/tema2/lec21.html",
-		"/Users/guille/Library/Application Support/Sublime Text 2/Packages/User/markdownsnippet/latexPaquete.sublime-snippet",
-		"/Users/guille/svn/docencia/Latex/material/apuntes/tema4/lec4.md"
+		"/Users/guille/svn/docencia/Latex/material/apuntes/tema2/lec22.html"
 	],
 	"find":
 	{
@@ -562,6 +598,11 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"hub",
+			"png",
+			";",
+			"Conectados",
+			"%",
 			"Qucumatz2",
 			"img class=\"",
 			"url",
@@ -679,6 +720,7 @@
 		"regex": false,
 		"replace_history":
 		[
+			",",
 			" \n",
 			"1"
 		],
@@ -691,28 +733,551 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 4,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "apuntesSOC.sublime-project",
+					"file": "pandoc-config.json",
 					"settings":
 					{
-						"buffer_size": 74,
+						"buffer_size": 15822,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
+								11717,
+								11717
+							]
+						],
+						"settings":
+						{
+							"codeintel": true,
+							"codeintel_config":
+							{
+								"JavaScript":
+								{
+									"codeintel_max_recursive_dir_depth": 2.0,
+									"codeintel_scan_files_in_project": false,
+									"javascriptExtraPaths":
+									[
+									]
+								},
+								"PHP":
+								{
+									"codeintel_max_recursive_dir_depth": 5.0,
+									"codeintel_scan_files_in_project": false,
+									"phpExtraPaths":
+									[
+									]
+								},
+								"Python":
+								{
+									"env":
+									{
+									}
+								}
+							},
+							"codeintel_enabled_languages":
+							[
+								"JavaScript",
+								"Mason",
+								"XBL",
+								"XUL",
+								"RHTML",
+								"SCSS",
+								"Python",
+								"HTML",
+								"Ruby",
+								"Python3",
+								"XML",
+								"Sass",
+								"XSLT",
+								"Django",
+								"HTML5",
+								"Perl",
+								"CSS",
+								"Twig",
+								"Less",
+								"Smarty",
+								"Node.js",
+								"Tcl",
+								"TemplateToolkit",
+								"PHP"
+							],
+							"codeintel_live": true,
+							"codeintel_live_enabled_languages":
+							[
+								"JavaScript",
+								"Mason",
+								"XBL",
+								"XUL",
+								"RHTML",
+								"SCSS",
+								"Python",
+								"HTML",
+								"Ruby",
+								"Python3",
+								"XML",
+								"Sass",
+								"XSLT",
+								"Django",
+								"HTML5",
+								"Perl",
+								"CSS",
+								"Twig",
+								"Less",
+								"Smarty",
+								"Node.js",
+								"Tcl",
+								"TemplateToolkit",
+								"PHP"
+							],
+							"codeintel_max_recursive_dir_depth": 10.0,
+							"codeintel_scan_exclude_dir":
+							{
+								"JavaScript":
+								[
+									"/build/",
+									"/min/"
+								]
+							},
+							"codeintel_scan_files_in_project": true,
+							"codeintel_selected_catalogs":
+							[
+								"PyWin32",
+								"jQuery",
+								"Rails"
+							],
+							"codeintel_snippets": true,
+							"codeintel_syntax_map":
+							{
+								"Python Django": "Python"
+							},
+							"codeintel_tooltips": "popup",
+							"sublime_auto_complete": true,
+							"syntax": "Packages/JavaScript/JSON.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 3869.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "apuntes/tema00.md",
+					"settings":
+					{
+						"buffer_size": 5079,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								133,
 								0
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JSON.tmLanguage"
+							"codeintel": true,
+							"codeintel_config":
+							{
+								"JavaScript":
+								{
+									"codeintel_max_recursive_dir_depth": 2.0,
+									"codeintel_scan_files_in_project": false,
+									"javascriptExtraPaths":
+									[
+									]
+								},
+								"PHP":
+								{
+									"codeintel_max_recursive_dir_depth": 5.0,
+									"codeintel_scan_files_in_project": false,
+									"phpExtraPaths":
+									[
+									]
+								},
+								"Python":
+								{
+									"env":
+									{
+									}
+								}
+							},
+							"codeintel_enabled_languages":
+							[
+								"JavaScript",
+								"Mason",
+								"XBL",
+								"XUL",
+								"RHTML",
+								"SCSS",
+								"Python",
+								"HTML",
+								"Ruby",
+								"Python3",
+								"XML",
+								"Sass",
+								"XSLT",
+								"Django",
+								"HTML5",
+								"Perl",
+								"CSS",
+								"Twig",
+								"Less",
+								"Smarty",
+								"Node.js",
+								"Tcl",
+								"TemplateToolkit",
+								"PHP"
+							],
+							"codeintel_live": true,
+							"codeintel_live_enabled_languages":
+							[
+								"JavaScript",
+								"Mason",
+								"XBL",
+								"XUL",
+								"RHTML",
+								"SCSS",
+								"Python",
+								"HTML",
+								"Ruby",
+								"Python3",
+								"XML",
+								"Sass",
+								"XSLT",
+								"Django",
+								"HTML5",
+								"Perl",
+								"CSS",
+								"Twig",
+								"Less",
+								"Smarty",
+								"Node.js",
+								"Tcl",
+								"TemplateToolkit",
+								"PHP"
+							],
+							"codeintel_max_recursive_dir_depth": 10.0,
+							"codeintel_scan_exclude_dir":
+							{
+								"JavaScript":
+								[
+									"/build/",
+									"/min/"
+								]
+							},
+							"codeintel_scan_files_in_project": true,
+							"codeintel_selected_catalogs":
+							[
+								"PyWin32",
+								"jQuery",
+								"Rails"
+							],
+							"codeintel_snippets": true,
+							"codeintel_syntax_map":
+							{
+								"Python Django": "Python"
+							},
+							"codeintel_tooltips": "popup",
+							"sublime_auto_complete": true,
+							"syntax": "Packages/Markdown/Markdown.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "apuntes/tema01.md",
+					"settings":
+					{
+						"buffer_size": 15592,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4092,
+								4092
+							]
+						],
+						"settings":
+						{
+							"codeintel": true,
+							"codeintel_config":
+							{
+								"JavaScript":
+								{
+									"codeintel_max_recursive_dir_depth": 2.0,
+									"codeintel_scan_files_in_project": false,
+									"javascriptExtraPaths":
+									[
+									]
+								},
+								"PHP":
+								{
+									"codeintel_max_recursive_dir_depth": 5.0,
+									"codeintel_scan_files_in_project": false,
+									"phpExtraPaths":
+									[
+									]
+								},
+								"Python":
+								{
+									"env":
+									{
+									}
+								}
+							},
+							"codeintel_enabled_languages":
+							[
+								"JavaScript",
+								"Mason",
+								"XBL",
+								"XUL",
+								"RHTML",
+								"SCSS",
+								"Python",
+								"HTML",
+								"Ruby",
+								"Python3",
+								"XML",
+								"Sass",
+								"XSLT",
+								"Django",
+								"HTML5",
+								"Perl",
+								"CSS",
+								"Twig",
+								"Less",
+								"Smarty",
+								"Node.js",
+								"Tcl",
+								"TemplateToolkit",
+								"PHP"
+							],
+							"codeintel_live": true,
+							"codeintel_live_enabled_languages":
+							[
+								"JavaScript",
+								"Mason",
+								"XBL",
+								"XUL",
+								"RHTML",
+								"SCSS",
+								"Python",
+								"HTML",
+								"Ruby",
+								"Python3",
+								"XML",
+								"Sass",
+								"XSLT",
+								"Django",
+								"HTML5",
+								"Perl",
+								"CSS",
+								"Twig",
+								"Less",
+								"Smarty",
+								"Node.js",
+								"Tcl",
+								"TemplateToolkit",
+								"PHP"
+							],
+							"codeintel_max_recursive_dir_depth": 10.0,
+							"codeintel_scan_exclude_dir":
+							{
+								"JavaScript":
+								[
+									"/build/",
+									"/min/"
+								]
+							},
+							"codeintel_scan_files_in_project": true,
+							"codeintel_selected_catalogs":
+							[
+								"PyWin32",
+								"jQuery",
+								"Rails"
+							],
+							"codeintel_snippets": true,
+							"codeintel_syntax_map":
+							{
+								"Python Django": "Python"
+							},
+							"codeintel_tooltips": "popup",
+							"spell_check": true,
+							"sublime_auto_complete": true,
+							"syntax": "Packages/Markdown/Markdown.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 1981.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "apuntes/tema02.md",
+					"settings":
+					{
+						"buffer_size": 9396,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								8989,
+								8989
+							]
+						],
+						"settings":
+						{
+							"codeintel": true,
+							"codeintel_config":
+							{
+								"JavaScript":
+								{
+									"codeintel_max_recursive_dir_depth": 2.0,
+									"codeintel_scan_files_in_project": false,
+									"javascriptExtraPaths":
+									[
+									]
+								},
+								"PHP":
+								{
+									"codeintel_max_recursive_dir_depth": 5.0,
+									"codeintel_scan_files_in_project": false,
+									"phpExtraPaths":
+									[
+									]
+								},
+								"Python":
+								{
+									"env":
+									{
+									}
+								}
+							},
+							"codeintel_enabled_languages":
+							[
+								"JavaScript",
+								"Mason",
+								"XBL",
+								"XUL",
+								"RHTML",
+								"SCSS",
+								"Python",
+								"HTML",
+								"Ruby",
+								"Python3",
+								"XML",
+								"Sass",
+								"XSLT",
+								"Django",
+								"HTML5",
+								"Perl",
+								"CSS",
+								"Twig",
+								"Less",
+								"Smarty",
+								"Node.js",
+								"Tcl",
+								"TemplateToolkit",
+								"PHP"
+							],
+							"codeintel_live": true,
+							"codeintel_live_enabled_languages":
+							[
+								"JavaScript",
+								"Mason",
+								"XBL",
+								"XUL",
+								"RHTML",
+								"SCSS",
+								"Python",
+								"HTML",
+								"Ruby",
+								"Python3",
+								"XML",
+								"Sass",
+								"XSLT",
+								"Django",
+								"HTML5",
+								"Perl",
+								"CSS",
+								"Twig",
+								"Less",
+								"Smarty",
+								"Node.js",
+								"Tcl",
+								"TemplateToolkit",
+								"PHP"
+							],
+							"codeintel_max_recursive_dir_depth": 10.0,
+							"codeintel_scan_exclude_dir":
+							{
+								"JavaScript":
+								[
+									"/build/",
+									"/min/"
+								]
+							},
+							"codeintel_scan_files_in_project": true,
+							"codeintel_selected_catalogs":
+							[
+								"PyWin32",
+								"jQuery",
+								"Rails"
+							],
+							"codeintel_snippets": true,
+							"codeintel_syntax_map":
+							{
+								"Python Django": "Python"
+							},
+							"codeintel_tooltips": "popup",
+							"spell_check": true,
+							"sublime_auto_complete": true,
+							"syntax": "Packages/Markdown/Markdown.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 4145.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "practicas/practica01.md",
+					"settings":
+					{
+						"buffer_size": 1356,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								128,
+								128
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Markdown/Markdown.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,

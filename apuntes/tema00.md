@@ -40,7 +40,7 @@ Como veremos más adelante, el Análisis de Redes Sociales (ARS) hace uso de la 
 * El ARS se centra en los datos y en la utilidad de los mismos.
 * Usa, al igual que la teoría de grafos, conceptos y modelos matemáticos para describir las propiedades de la red.
 * Trabaja con grandes cantidades de información por lo que genera grafos enormes.
-
+ 
 ### Aplicaciones del Análisis de Redes Sociales
 
 * Predicción de epidemias
