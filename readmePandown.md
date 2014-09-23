@@ -4,6 +4,8 @@
 
 # Instrucciones para instalar Pandown {#inst}
 
+Esto es un cambio.
+
 Estas intrucciones son un resumen de [la documentación de Github][Pandown]. Primero es necesario instalar [PanDoc] y luego se puede instalar PanDown desde Sublime Text 2 usando el _Package Control_.
 
 Para simiplificar el trabajo con MarkDown está bien instalar el paquete `Markdown Editing` y `MultiMarkdown` a través del _Package Control_
