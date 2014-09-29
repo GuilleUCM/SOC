@@ -13,6 +13,14 @@ Este material ha sido desarrollado a partir de distintas fuertes, destacando com
 
 ## Motivación
 
+Ejemplos
+
+* Las redes y la captura de Sadam Husseim
+* Predicción de la epidemia de la gripe aviar (H1N1) en 2009
+* El apagón de la costa noroeste de EEUU el 14/08/2003
+
+DESARROLAR MAS LOS EJEMPLOS? si, con las fotos
+
 ¿Para qué sirve el Análisis de Redes sociales?
 
 * Para entender la estructura y el comportamiento de un sistema complejo.
@@ -22,7 +30,15 @@ Este material ha sido desarrollado a partir de distintas fuertes, destacando com
 * Para entender cómo la estructura de la red afecta a la robustez de la misma.
 * Para conocer los procesos dinámicos que aparecen en ella.
 
-Generalmente un sistema complejo puede representarse mediante una red que codifica las interacciones entre los componentes del sistema:
+## Sistemas complejos {-}
+
+Generalmente un sistema complejo puede representarse mediante una red que codifica las interacciones entre los componentes del sistema.
+
+Detrás de cada sistema complejo estudiado siempre hay un diagrama de conexiones, una red, que define las interacciones entre sus componentes.
+No seremos capaces de entender los sistemas complejos a menos que podamos mapear y comprender las redes que los soportan.
+A pesar de las diferencias aparentes en componentes e interacciones, las redes que regulan los distintos sistemas complejos existentes en nuestro mundo son similares, siguen unas leyes comunes y presentan mecanismos reproducibles.
+
+Ejemplos de sistemas complejos representables como redes {-}
 
 * El cerebro humano es una red de neuronas
 * La sociedad es una red de conexiones familiares, profesionales y de amistad entre individuos.
@@ -30,6 +46,29 @@ Generalmente un sistema complejo puede representarse mediante una red que codifi
 * La red eléctrica se compone de generadores y líneas de transmisión entre ellos.
 * El comercio y la economía se puede representar como una red de intercambio de bienes y servicios entre personas, empresas y países.
 * Internet es una red de páginas enlazadas entre sí.
+
+## La emergencia de las redes y los sistemas complejos
+
+Disponibilidad de Datos:
+* Red de Actores de Cine, 1998
+* La World Wide Web, 1999
+* Red Neuronal del gusano C.Elegans, 1990
+* Redes de Citas de Artículos Científicos, 1998
+* Genoma Humano, 2001
+* Red de Interacciones entre Proteínas, 2001
+
+Universalidad: La arquitectura de las distintas redes que están apareciendo en varios dominios de la ciencia, naturaleza y tecnología es más similar de lo que
+podría esperarse en principio.
+
+Necesidad (urgente) de entender la complejidad: Cada vez está más aceptado el hecho de que, a pesar de su dificultad, no podemos permitirnos no entender el
+comportamiento de los sistemas complejos. Varios de los avances más significativos para entender la complejidad obtenidos en la última década provienen de la Teoría de Redes.
+
+## Características de la ciencia de las redes y los sistemas complejos
+
+* Interdisciplinaria
+* Empírica, basada en datos
+* Cuantitativa y Matemática
+* Computacional
 
 
 ### El Análisis de Redes Sociales y la Teoría de Grafos
@@ -49,19 +88,29 @@ Como veremos más adelante, el Análisis de Redes Sociales (ARS) hace uso de la 
 * Salud: Medicina y genómica, investigación sobre el cerebro humano y redes neuronales.
 * Gestión: estructura de organizaciones, identificación de líderes de opinión, grupos óptimos...
 
+
 ## Objetivo general del curso {-}
 
-> TODOTODO
+En esta asignatura se pretenden enseñar las principales características de las redes, los métodos que se utilizan para identificarlas a partir de datos reales, la detección de grupos y comunidades, así como de individuos influyentes, y los modelos relacionados con el flujo de información a través de una red social.
 
 ## Contenidos del curso
 
-### ¿Qué vamos a estudiar?
+1. Introducción.
+2. Propiedades básicas de las redes
+3. Estudio de la estructura de las redes sociales.
+    1. Modelos de redes 
+    2. Centralidad
+    3. Detección y estructura de comunidades
+4. Dinámica en las redes sociales.
+    1. Procesos de contagio, difusión y formación de opiniones.
 
-TODO TODO
+Las clases teóricas se impartirán en el aula 12 los viernes y las clases prácticas en el laboratorio 11 los miércoles. En algunas sesiones prácticas se impartirán seminarios para facilitar la realización de las prácticas.
+
+Las prácticas se realizarán en grupos de 3 o 4 alumnos.
 
 ## Evaluación de la asignatura
 
-La evaluación final del curso se compone de tres partes:
+La evaluación final del curso se compone de dos partes:
 
 ### Prácticas (70%)
 
@@ -71,13 +120,15 @@ Las prácticas son **obligatorias** y es necesario que estén **aprobadas** para
 * Satisfaciendo los requisitos del enunciado
 * Obteniendo una nota entre 5 y 10
 
-TODO: Cuántas y grupos
+Serán probalemente 3 o 4 prácticas que se irán ajustando a los conceptos teóricos que se vayan contando en clase.
 
 Las prácticas no entregadas o suspensas se tendrán que volver a entregar en septiembre.
 
-### Proyecto o examen final (30%)
+### Proyecto (30%)
 
-TODO
+El proyeco final consistirá en el análisis de un conjunto de datos real elegido por el alumno. Se realizará con los mismos grupos que las prácticas y será presentado en defensa pública.
+
+El proyecto es obligatorio y debe cumplir los mismos requisitos que las prácticas para poder aprobar la asignatura: entregado en plazo, cumpliendo requisitos enunciado y obteniendo una nota mayor o igual que 5.
 
 <!-- En diciembre se comenzará con un **proyecto final** que consistirá en el diseño de un sistema interactivo de acuerdo a las metodologías y técnicas explicadas en clase. El tema final del proyecto deberá ser aprobado previamente por el profesor. El trabajo será presentado en defensa pública a finales de enero. En caso de superar la defensa los miembros del grupo quedarán exentos de realizar el examen final. Al igual que con las prácticas, es necesario **aprobar** el proyecto para que su nota sea tenida en cuenta en la nota final.
 
