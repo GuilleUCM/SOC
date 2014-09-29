@@ -1,250 +1,147 @@
-% Tema 0: Presentación de la asignatura
-% Pablo Moreno Ger (pablom@fdi.ucm.es); Guillermo Jiménez Díaz (gjimenez@ucm.es)
-% Curso 2013 - 2014
+% Análisis de Redes Sociales
+% Guillermo Jiménez Díaz (gjimenez@ucm.es); Alberto Díaz (albertodiaz@fdi.ucm.es)
+% 1 de octubre de 2014
 
 
-<!-- # Prefacio
+# Prefacio {-}
 
-Estos son los apuntes de la asignatura Desarrollo de Sistemas Interactivos, impartida en la Facultad de Informática de la Universidad Complutense de Madrid por los profesores Guillermo Jiménez Díaz y Pablo Moreno Ger, del Departamento de Ingeniería del Software e Inteligencia Artificial.
+Estos son los apuntes de la asignatura Análisis de Redes Sociales, impartida en la Facultad de Informática de la Universidad Complutense de Madrid por los profesores Guillermo Jiménez Díaz y Alberto Díaz, del Departamento de Ingeniería del Software e Inteligencia Artificial.
 
-Este material ha sido desarrollado a partir de distintas fuertes, destacando como referencia principal las notas de la asignatura _Human Computer Interaction_ del Prof. Keith Andrews de la  Universidad Tecnológica de Graz, el material de la asignatura _Human Computer Interaction_ impartido por Scott Klemmer a través de Coursera y los libro _About Face 3: The Essentials of Interaction Design_ de Alan Cooper y _Interaction Design. Beyond Human Computer Interaction_ de Rogers, Sharp y Preece.
+Este material ha sido desarrollado a partir de distintas fuertes, destacando como referencia principal el libro _Network Science_ de Laszlo Barabasi y el material de la asignatura _Social Network Analysis_ impartido por Lada Adamic a través de Coursera.
 
-# Tema 0
+# Tema 0: Presentación de la asignatura {-}
 
-Presentación de la asignatura -->
+## Ejemplos
 
-## Motivación
+<!-- DESARROLAR MAS LOS EJEMPLOS? si, con las fotos -->
 
-### ¿Con cuántos productos hemos interactuado a lo largo del día?
+Las redes y la captura de Saddam Hussein
 
-> * Despertador
-> * Teléfono
-> * Cafetera
-> * Ordenador
-> * Control remoto
-> * Coche
-> * Máquina de comprar billetes en el transporte público
-> * Cajero automático
-> * ...
+![La red de Saddam Hussein](../images/tema00/SaddamHusseinNetwork.jpg)
 
-### ¿Cómo de usables son?
+La captura de Saddam Hussein ilustra muchos de los aspectos claves de las redes que estudiaremos en esta asignatura:
 
-> * ¿Cuáles son fáciles de usar?
-> * ¿Con cuáles disfrutas usándolos?
-> * ¿Cuáles son frustrantes y te dan problemas?
+* Muestra el poder predictivo de las redes, que permite extraer información clave incluso a los no expertos (los soldados en este caso).
+* Resalta la necesidad de diseñar mapas precisos de las redes a estudiar (en muchos casos, el proceso de diseño es muy complicado y costoso).
+* Destaca la estabilidad de estas redes (la captura de Hussein no se basó en las técnicas clásicas de Inteligencia sino en sus conexiones sociales antes de la invasión, extraídas de viejas fotos de su álbum familiar).
+* Ejemplifica el hecho de que la elección de la red a emplear marca la diferencia (los militares americanos tardaron meses en darse cuenta que la red jerárquica que representaba la organización oficial iraní era inútil para encontrar a Saddam).
+
+Predicción de la epidemia de la gripe aviar (H1N1) en 2009
+
+![Predicción de la difusión del contagio de la gripe aviar](../images/tema00/gripeAviar.jpg)
+
+La gripe aviar de 2009 es la primera pandemia cuya evolución fue predicha meses antes de que alcanzara su punto álgido:
+
+* Haciendo uso de las redes de transporte a nivel mundial, se determinó correctamente que alcanzaría su pico en Octubre de 2009, en lugar de en Enero-Febrero (picos habituales de la gripe estándar).
+* Con ello, se demostró que la vacunación masiva realizada en Noviembre de 2009 fue inútil por demasiado tardía, hecho comprobado a posteriori
+* El cambio fundamental consistió en considerar el rol de las redes en la propagación de los virus en contraste con los modelos epidémicos clásicos.
+* Hoy en día, la predicción de epidemias es una de las aplicaciones más activas del Análisis de Redes. No sólo se centra en virus biológicos sino también electrónicos (ej: predicción de la infección de 300.000 teléfonos móviles en China en 2010).
+
+El apagón de la costa noroeste de EEUU el 14/08/2003:
+
+![20 horas antes del apagón](../images/tema00/beforeBlackout.jpg)
+
+![5 horas después del apagón](../images/tema00/afterBlackout.jpg)
+
+* Este apagón es un ejemplo típico de un fallo en cascada: cuando una red actúa como sistema de transporte, un fallo local en un nodo provoca una transferencia de carga a otros nodos. Si la carga extra es excesiva para los nodos vecinos, éstos pueden fallar y redistribuirla a otros nodos a su vez.
+* La magnitud del fallo depende de la posición de la red y la capacidad de los nodos afectados (eliminados) en el primer momento y en los siguientes.
+* Los fallos en cascada son habituales en los Sistemas Complejos (ej: tráfico en Internet). La actual crisis financiera mundial es un ejemplo provocado por la crisis de crédito en los EEUU. También pueden tener efectos positivos. Ej: tratamientos del cáncer.
+* La estructura de la red afecta a la robustez del Sistema Complejo. Se pueden establecer herramientas cuantitativas que evalúen la relación entre la estructura de la red y los procesos dinámicos que se producen en ella, así como su impacto en los fallos.
+* Esos fallos no son caóticos e impredecibles, siguen una serie de leyes reproducibles.
+
+## ¿Para qué sirve el Análisis de Redes Sociales?
+
+* Para entender la estructura y el comportamiento de un sistema complejo.
+* Para la extracción de información y predicción.
+* Para la detección de vulnerabilidades y posibles fallos en cascada debido a las interconexiones entre nodos (por ejemplo, en una red eléctrica por sobrecarga de una central o en internet, debido a un ataque por denegación de servicio en un router)
+* Para hacer mapas de una red
+* Para entender cómo la estructura de la red afecta a la robustez de la misma.
+* Para conocer los procesos dinámicos que aparecen en ella.
+
+## Sistemas complejos
+
+Generalmente un sistema complejo puede representarse mediante una red que codifica las interacciones entre los componentes del sistema.
+
+Detrás de cada sistema complejo estudiado siempre hay un diagrama de conexiones, una red, que define las interacciones entre sus componentes.
+No seremos capaces de entender los sistemas complejos a menos que podamos mapear y comprender las redes que los soportan.
+A pesar de las diferencias aparentes en componentes e interacciones, las redes que regulan los distintos sistemas complejos existentes en nuestro mundo son similares, siguen unas leyes comunes y presentan mecanismos reproducibles.
+
+Ejemplos de sistemas complejos representables como redes
+
+* El cerebro humano es una red de neuronas
+* La sociedad es una red de conexiones familiares, profesionales y de amistad entre individuos.
+* Un sistema de comunicación es un conjunto de dispositivos de comunicación que interaccionan a través de Internet o de enlaces wireless.
+* La red eléctrica se compone de generadores y líneas de transmisión entre ellos.
+* El comercio y la economía se puede representar como una red de intercambio de bienes y servicios entre personas, empresas y países.
+* Internet es una red de páginas enlazadas entre sí.
+
+## La emergencia de las redes y los sistemas complejos
+
+Disponibilidad de Datos:
+
+* Red de Actores de Cine, 1998
+* La World Wide Web, 1999
+* Red Neuronal del gusano C.Elegans, 1990
+* Redes de Citas de Artículos Científicos, 1998
+* Genoma Humano, 2001
+* Red de Interacciones entre Proteínas, 2001
+
+Universalidad: La arquitectura de las distintas redes que están apareciendo en varios dominios de la ciencia, naturaleza y tecnología es más similar de lo que
+podría esperarse en principio.
+
+Necesidad (urgente) de entender la complejidad: Cada vez está más aceptado el hecho de que, a pesar de su dificultad, no podemos permitirnos no entender el
+comportamiento de los sistemas complejos. Varios de los avances más significativos para entender la complejidad obtenidos en la última década provienen de la Teoría de Redes.
+
+<!-- ## Características de la ciencia de las redes y los sistemas complejos
+
+* Interdisciplinaria
+* Empírica, basada en datos
+* Cuantitativa y Matemática
+* Computacional -->
 
 
+## El Análisis de Redes Sociales y la Teoría de Grafos
 
-### Objetivo general del curso
+Como veremos más adelante, el Análisis de Redes Sociales (ARS) hace uso de la teoría de grafos matemática, aunque tiene ciertas diferencias:
 
-> Reducir las experiencias de usuarios negativas aprendiendo a desarrollar sistemas interactivos que sean fáciles de usar, efectivos en la realización de tareas y con los que el **usuario** pueda disfrutar.
+* El ARS es más empírico que la teoría de grafos.
+* El ARS se centra en los datos y en la utilidad de los mismos.
+* Usa, al igual que la teoría de grafos, conceptos y modelos matemáticos para describir las propiedades de la red.
+* Trabaja con grandes cantidades de información por lo que genera grafos enormes.
+ 
+## Aplicaciones del Análisis de Redes Sociales
+
+* Predicción de epidemias
+* Lucha contra el terrorismo
+* Economía: recomendaciones y anuncios. Detección de influenciadores, personas con una importante conexión con otras personas, como foco para la propagación de campañas.
+* Salud: Medicina y genómica, investigación sobre el cerebro humano y redes neuronales.
+* Gestión: estructura de organizaciones, identificación de líderes de opinión, grupos óptimos...
+
+
+# Objetivo general del curso {-}
+
+En esta asignatura se pretenden enseñar las principales características de las redes, los métodos que se utilizan para identificarlas a partir de datos reales, la detección de grupos y comunidades, así como de individuos influyentes, y los modelos relacionados con el flujo de información a través de una red social.
 
 ## Contenidos del curso
 
-### ¿Qué es DSI / HCI?
-
-**Human-Computer Interaction (HCI)** <!-- según el [SIGCHI de ACM](http://old.sigchi.org/cdg/cdg2.html#2_1) es  -->
-
-> La disciplina que se encarga del diseño, evaluación e implementación de sistemas informáticos interactivos para uso humano y del estudio de los fenómenos que se  producen alrededor de la interacción con dicho sistema.
-
-* _Human_: Persona que usa la máquina, **el usuario**.
-* _Computer_: El responsable de ejecutar una aplicación
-* _Interaction_: La forma en la que el usuario interactúa con la máquina.
-
-<!-- El DSI es multidisciplinar por lo que hablaremos de temas variados, no siempre relacionados con la Ingeniería Informática. -->
-
-### HCI es multidisciplinar
-
-![HCI es multidisciplinar](../images/tema00/HCI.gif "HCI es multidisciplinar")
-
-### ¿Qué vamos a estudiar?
-
-* Cuál es el proceso y los métodos que son efectivos a la hora de garantizar la creación de sistemas interactivos que tienen un __buen diseño__ desde el punto de vista de la interacción. 
-
-* Se darán algunas directrices y principios para evitar realizar __malos diseños__ ya que hay errores que pueden ser fácilmente evitables teniendo en cuenta ciertas pautas.
-
-* Vamos a aprender técnicas para conocer a los **usuarios** de los sistemas interactivos que desarrollemos:
-
-    * Quién va a usar el sistema.
-    * Cómo se va a usar.
-    * Cuándo y en qué contexto se va a usar.
-
-### ¿Qué vamos a estudiar?
-
-A grandes rasgos, los principales temas que se impartirán en la asignatura serán los siguientes:
-
-* Principios básicos de diseño de sistemas interactivos
-* Metodología de diseño de sistemas interactivos
-* Prototipado de sistemas interactivos
-* Métodos de evaluación de sistemas interactivos
-
-## Buenos diseños frente a malos diseños
-
-La pincipal forma con la que aprenderemos en esta asignatura es teniendo los ojos bien abiertos y observando lo que nos rodea con [ojos de principiante](http://www.redmindfulness.org/646033/).
-
-De esta forma podremos aprender comparando *buenos diseños* con *malos diseños*
-
-### Malos diseños
-
-![Fogones: ¿Cómo sé cuál es cuál sin las etiquetas?](../images/tema00/fogones.jpg)
-
-### Malos diseños
-
-![Word XP: Toda la funcionalidad en una sola pantalla y un ayudante un tanto molesto](../images/tema00/word.jpg)
-
-### Malos diseños
-
-![Mensajes absurdos: ¿Qué significa? <br/>¿Por qué me lo cuentas? ¿Podemos seguir trabajando? <br/>(Fuente: _About Face_)](../images/tema00/dialogo.gif)
-
-### ¿Que caracteriza a un mal diseño?
-
-* Es confuso
-* Te resulta molesto, te enfada usarlo
-* Es ineficiente, te obliga a realizar muchos pasos para completar una tarea sencilla
-* Es difícil de usar
-* No es _obvio_
-
-Un mal diseño cuesta vidas, dinero y tiempo.
-
-### Vidas
-
-![B-17 Flying Fortress](../images/tema00/b17.jpg)
-
-### Vidas
-
-![B-17 Flying Fortress: Flaps vs. tren de aterrizaje](../images/tema00/b17-2.png)
-
-<!-- Durante los primeros años de la Segunda Guerra Mundial los aviones B-17, B-25 y P-47 sufrieron muchos accidentes debidos a "errores del piloto": aterrizaban en tierra con el tren de aterrizaje subido. 
-
-El problema era realmente un **error de diseño** debido a que los mandos para manipular los flaps (necesarios durante el aterrizaje) y el tren de aterrizaje eran idénticos y estaban muy próximos. La solución inicial (que luego fue estandarizada) fue la de que los mandos que manipulaban las ruedas y los flaps tuviesen una forma distinta. Así los pilotos los pueden identificar incluso solo al tacto. -->
-
-### Dinero
-
-[idearapida.com](http://idearapida.com/) 
-<!-- es una plataforma de crowdfounding. El crowdfounding consiste en financiar de manera colectiva un proyecto. Las plataformas de crowdfounding dan publicidad de estos proyectos y proporcionan el soporte para que cualquiera pueda aportar dinero a estos proyectos (a cambio de un porcentaje del dinero recaudado). Otras plataformas como esta son [Kickstarter](http://www.kickstarter.com/) o [Lanzanos](http://www.lanzanos.com/) (entre otras muchas)
-
-Si entramos en la página de [uno de los proyectos](http://idearapida.com/proyectos/16/a16.php) (Calm Night of Snowfall es uno de los videojuegos desarrollados en el Master de Desarrollo de Videojuegos de este pasado curso) veremos que a la derecha aparecen botones para contribuir: -->
-
-![IdeaRapida.com: Botón para contribuir](../images/tema00/ideaRapida1.jpg)
-
-### Dinero
-
-[idearapida.com](http://idearapida.com/) 
-<!-- Pero al pulsar sobre él... ¡¡sale una lista interminable con todas las opciones de nuevo!! Y el método de pago aparece en medio de la lista por lo que tienes que buscarlo. -->
-
-![IdeaRapida.com: Elige de nuevo tu aportación](../images/tema00/ideaRapida2.jpg)
-
-<!-- ¿Te da confianza esta página (a pesar de que su aspecto ha mejorado con respecto [a su antiguo aspecto](http://web.archive.org/web/20130515195705/http://idearapida.com))? ¿No te molesta llegado ese punto pagar dinero? -->
-
-### Dinero
-
-![IdeaRapida.com: Primera versión](../images/tema00/ideaRapida3.jpg)
-
-### Dinero
-
-![Penny Arcade: De compras en PSN](../images/tema00/PSN-Penny_Arcade.jpg "Cómo funciona PSN")
-
-### Tiempo
-
-<!-- [The Palm Beach County Ballot](http://en.wikipedia.org/wiki/United_States_presidential_election_in_Florida,_2000): El incidente con las papeletas que hicieron que George Bush posiblemente se llevase el estado de Florida en las elecciones de 2000. Se produjo una gran cantidad de votos para un tercer candidato (Pat Buchanan) que ocupaba, de acuerdo a la papeleta, el segundo puesto de la misma. Se supone que muchos de los votantes se confundieron al votar por Al Gore. El caso terminó en el tribunal supremo y retrasó en más de un mes la elección del nuevo presidente de los EEUU. --> 
-
-![Butterfly Ballot](../images/tema00/florida_ballot.gif "La papeleta de Palm Beach")
-
-### Tiempo
-
-Resultados de Pat Buchanan:
-
-![Butterfly Ballot: Votos para Pat Buchanan](../images/tema00/florida_ballot2.jpg "La papeleta de Palm Beach")
-
-### Buenos diseños
-
-![Fogones: un buen diseño](../images/tema00/fogonesBien.jpg)
-
-### Buenos diseños
-
-![Incluso borroso sabemos qué es](../images/tema00/google.jpg)
-
-### ¿Qué tiene un buen diseño?
-
-<!-- Las interfaces bien diseñadas tienen la particularidad de que suelen ser invisibles para nosotros. No nos fijamos en ellas porque nos ayudan a completar la tarea que neceesitamos realizar. -->
-
-* Reconocible: Un interfaz bonito o inteligente no implica que sea usable.
-* Simple y elegante
-* El propósito de cada uno de sus elementos es claro
-* Es fácil aprender a usarlo
-* Seguro y robusto
-* Es flexible, se adapta tanto a usuarios novatos como a los más avanzados
-* Utiliza metáforas adecuadas
-* Lo más importante: se han diseñado **pensando en el usuario** por lo que satisfacen sus necesidades  y proporcionan una agradable experiencia de usuario.
-
-### Diseño centrado en el usuario
-
-Vamos a aprender una metodología de diseño, el **diseño centrado en objetivos**, que ayuda en el desarrollo de sistemas interactivos. A grandes rasgos, este proceso consiste en:
-
-1. Conocer al usuario
-2. Crear diseños alternativos
-3. Crear prototipos de estos diseños
-3. Evaluar los diseños creados con los usuarios
-
-### Conocer al usuario
-
-Entender a la gente en el contexto en el que vive, trabaja y utiliza un producto ayuda a saber cómo diseñar productos interactivos que encajen en ese contexto y que les ayuden a mejorar la forma en la que trabajan, se comunican e interactúan.
-
-Estudiaremos técnicas para obtener ese conocimiento del usuario así como a modelar usuarios prototípicos.
-
-### Diseñar y crear prototipos 
-
-<!-- La metodología de diseño centrada en el usuario define que es importante que el usuario pueda interactuar (o simular que interactúa) con el sistema. Por este motivo veremos que una parte importante de la asignatura será la realización de prototipos con distinto nivel de detalle. -->
-
-![Prototipo en papel del Campus Virtual](../images/tema00/prototipo.jpg)
-
-<!-- Lo importante de los prototipos no serán los prototipos en sí mismo sino el _feedback_ que obtengamos del usuario que interaccione con ellos. Será nuestro medio para comunicarnos con los usuarios del sistema así como con otras personas relacionadas con la creación del sistema. -->
-
-### Diseñar y crear prototipos 
-
-![El prototipo de un Palm Pilot (extraído de `computerhistory.org`)](../images/tema00/palmpilot.jpg)
-
-<!-- Un ejemplo: [Palm Pilot](http://en.wikipedia.org/wiki/Palm_%28PDA%29). Su inventor, Jeff Hawkins, se dedicó durante un tiempo a hacer su vida normal llevando un bloque de madera con el tamaño del dispositivo y sobre el que simulaba que hacía anotaciones, apuntaba citas, etc.  -->
-
-<!-- También aprenderemos a realizar prototipos simples pero funcionales. En particular, usaremos [Balsamiq Mockup](http://balsamiq.com/products/mockups/) para trabajar en el desarrollo algunos prototipos como [este ejemplo](https://uxapprentice.mybalsamiq.com/projects/zen/naked/Landing). -->
-
-### Diseñar y crear prototipos 
-
-![Ejemplo de prototipo en Balsamiq Mockup](../images/tema00/mockup.jpg)
-
-### Evaluación de diseños
-
-<!-- Vamos a conocer técnicas de evaluación de diseños que se realizan con usuarios (no más test de unidad, bancos de prueba...) ya que no podemos determinar cómo de buena es una interfaz de usuario hasta que no lo probemos con los usuarios reales del sistema. No siempre los programadores del sistema conocen exactamente cómo el usuario final va a usar _realmente_ el sistema. -->
-
-<!-- Vamos a aprender distintos métodos de evaluación para alcanzar distintos objetivos: -->
-
-* Estudios de usabilidad
-* Feedback de expertos (evaluación heurística)
-* Experimentos comparativos
-* Observación del usuario
-* ...
-
-### Conceptos avanzados de sistemas de interacción
-
-<!-- Para completar el curso hablaremos sobre:  -->
-
-* Accesibilidad 
-* Interfaces inteligentes
-* Interfaces para sistemas de propósito específico
+1. Introducción.
+2. Propiedades básicas de las redes
+3. Estudio de la estructura de las redes sociales.
+    1. Modelos de redes 
+    2. Centralidad
+    3. Detección y estructura de comunidades
+4. Dinámica en las redes sociales.
+    1. Procesos de contagio, difusión y formación de opiniones.
+
+Las clases teóricas se impartirán en el aula 12 los viernes y las clases prácticas en el laboratorio 11 los miércoles. En algunas sesiones prácticas se impartirán seminarios para facilitar la realización de las prácticas.
+
+Las prácticas se realizarán en grupos de 3 o 4 alumnos.
 
 ## Evaluación de la asignatura
 
-La evaluación final del curso se compone de tres partes:
+La evaluación final del curso se compone de dos partes:
 
-### Participación (10%)
-
-Este 10% se consigue mediante:
-
-* La participación activa en el aula 
-* Pequeñas actividades entregables en el laboratorio
-* Participación en actividades en los foros (discusiones, búsquedas de buenos-malos diseño...)
-
-### Prácticas (30%)
+### Prácticas (70%)
 
 Las prácticas son **obligatorias** y es necesario que estén **aprobadas** para que sean tenidas en cuenta en la nota final:
 
@@ -252,43 +149,31 @@ Las prácticas son **obligatorias** y es necesario que estén **aprobadas** para
 * Satisfaciendo los requisitos del enunciado
 * Obteniendo una nota entre 5 y 10
 
-Habrá 4-5 prácticas que se realizarán en grupos (2-4 personas).
+Serán probablemente 3 o 4 prácticas que se irán ajustando a los conceptos teóricos que se vayan contando en clase.
 
 Las prácticas no entregadas o suspensas se tendrán que volver a entregar en septiembre.
 
-### Proyecto o examen final (60%)
+### Proyecto (30%)
 
-En diciembre se comenzará con un **proyecto final** que consistirá en el diseño de un sistema interactivo de acuerdo a las metodologías y técnicas explicadas en clase.
+El proyecto final consistirá en el análisis de un conjunto de datos real elegido por el alumno. Se realizará con los mismos grupos que las prácticas y será presentado en defensa pública.
 
-El tema final del proyecto deberá ser aprobado previamente por el profesor. 
+El proyecto es obligatorio y debe cumplir los mismos requisitos que las prácticas para poder aprobar la asignatura: entregado en plazo, cumpliendo requisitos enunciado y obteniendo una nota mayor o igual que 5.
 
-El trabajo será presentado en defensa pública a finales de enero. 
+<!-- En diciembre se comenzará con un **proyecto final** que consistirá en el diseño de un sistema interactivo de acuerdo a las metodologías y técnicas explicadas en clase. El tema final del proyecto deberá ser aprobado previamente por el profesor. El trabajo será presentado en defensa pública a finales de enero. En caso de superar la defensa los miembros del grupo quedarán exentos de realizar el examen final. Al igual que con las prácticas, es necesario **aprobar** el proyecto para que su nota sea tenida en cuenta en la nota final.
 
-En caso de superar la defensa los miembros del grupo quedarán exentos de realizar el examen final.
-
-Al igual que con las prácticas, es necesario **aprobar** el proyecto para que su nota sea tenida en cuenta en la nota final.
-
-### Proyecto o examen final (60%)
-
-En caso de no presentar el proyecto o no superar la defensa habrá un **examen final** sobre los contenidos teórico-prácticos de la asignatura.
-
-Este examen podrá realizarse tanto en la convocatoria de febrero como septiembre.
-
-Será necesario **aprobar** el examen para que su nota sea tenida en cuenta en la nota final.
+En caso de no presentar el proyecto o no superar la defensa habrá un **examen final** sobre los contenidos teórico-prácticos de la asignatura. Este examen podrá realizarse tanto en la convocatoria de febrero como septiembre. Será necesario **aprobar** el examen para que su nota sea tenida en cuenta en la nota final. -->
 
 ## Bibliografía
 
 ### Principal 
 
-* [About Face 3 : The essentials of interaction design](http://0-proquest.safaribooksonline.com.cisne.sim.ucm.es/9780470084113). Alan Cooper, Robert Reimann, and Dave Cronin. Wiley, cop. 2007
-* Interaction Design: Beyond Human-Computer Interaction. Helen Sharp, Yvonne Rogers, Jenny Preece. John Wiley & Sons, 2007.
-* Usability Engineering. Jakob Nielsen. AP Professional, 1993.
+* [Network Science](http://barabasilab.neu.edu/networksciencebook/). Laszlo Barabasi.
+* [Networks, Crowds and Markets](http://www.cs.cornell.edu/home/kleinber/networks-book/). David Easley and Jon Kleinberg, Cambridge University Press. 2010.
+* Social and Economic Networks. Matthew O. Jackson. Princeton University Press. 2008.
 
 ### Complementaria
 
-* [Designing Interfaces. Patterns for Effective Interaction Design](http://zv4fy5pr5l.search.serialssolutions.com/?ctx_ver=Z39.88-2004&ctx_enc=info%3Aofi%2Fenc%3AUTF-8&rfr_id=info:sid/summon.serialssolutions.com&rft_val_fmt=info:ofi/fmt:kev:mtx:book&rft.genre=book&rft.title=Designing+Interfaces+%3A+Patterns+for+Effective+Interaction+Design&rft.au=Tidwell%2C+Jenifer&rft.date=2009-02-09&rft.pub=O%27Reilly+Media&rft.isbn=9780596008031&rft.externalDBID=n%2Fa&rft.externalDocID=443495&paramdict=es-es) (Second Edition). Jennifer Tidwell. O'Reilly. 2010.
-* [Handbook of usability testing.](http://zv4fy5pr5l.search.serialssolutions.com/?ctx_ver=Z39.88-2004&ctx_enc=info%3Aofi%2Fenc%3AUTF-8&rfr_id=info:sid/summon.serialssolutions.com&rft_val_fmt=info:ofi/fmt:kev:mtx:book&rft.genre=book&rft.title=Handbook+of+usability+testing&rft.au=Rubin%2C+Jeffrey&rft.au=Chisnell%2C+Dana&rft.date=2008-01-01&rft.pub=Wiley+Pub&rft.isbn=9780470185483&rft.externalDocID=bks00025203&paramdict=es-es) Jeff Rubin, Dana Chisnell. Wiley Publishing. 2008.
-* [Sketching User Experiences: Getting the Design Right and the Right Design.](http://0-proquest.safaribooksonline.com.cisne.sim.ucm.es/book/web-development/usability/9780123740373) Bill Buxton. Morgan Kauffman. 2007.
-    *  [Sketching User Experiences: The Workbook.](http://zv4fy5pr5l.search.serialssolutions.com/?ctx_ver=Z39.88-2004&ctx_enc=info%3Aofi%2Fenc%3AUTF-8&rfr_id=info:sid/summon.serialssolutions.com&rft_val_fmt=info:ofi/fmt:kev:mtx:book&rft.genre=book&rft.title=Sketching+User+Experiences%3A+The+Workbook&rft.au=Greenberg%2C+Saul&rft.au=Carpendale%2C+Sheelagh&rft.au=Marquardt%2C+Nicolai&rft.au=Buxton%2C+Bill&rft.date=2011-11-14&rft.pub=Morgan+Kaufmann&rft.isbn=9780123819598&rft.externalDBID=n%2Fa&rft.externalDocID=809159&paramdict=es-es) Saul Greenberg; Sheelagh Carpendale; Nicolai Marquardt; Bill Buxton. Morgan Kauffman. 2010.
+* The Structure and Dynamics of Networks. Mark Newman, Albert-László Barabási, and Duncan J. Watts. 2006.
+* [Linked: The New Science of Networks](http://barabasilab.com/LinkedBook/index.html). Albert-Laszlo Barabasi, Jennifer Frangos.
 
 
