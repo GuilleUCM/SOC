@@ -9,6 +9,7 @@ Estos son los apuntes de la asignatura Análisis de Redes Sociales, impartida en
 
 Este material ha sido desarrollado a partir de distintas fuertes, destacando como referencia principal el libro _Network Science_ de Laszlo Barabasi, el libro _Social and Economic Networks_ de Mathew O. Jackson y el material de la asignatura _Social Network Analysis_ impartido por Lada Adamic a través de Coursera.
 
+
 # Tema 0: Presentación de la asignatura {-}
 
 ## Ejemplos motivadores
@@ -128,7 +129,7 @@ En esta asignatura se pretende enseñar a identificar las principales propiedade
 1. Introducción.
 2. Propiedades básicas de las redes
 3. Estudio de la estructura de las redes sociales.
-    1. Modelos de redes 
+    1. Modelos de redes
     2. Centralidad
     3. Detección y estructura de comunidades
 4. Dinámica en las redes sociales.

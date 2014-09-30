@@ -5,6 +5,10 @@ div.level3 *{
 	font-size: 22pt;
 }
 
+span.header-section-number {
+	visibility: hidden;
+}
+
 .nota {
 	visibility:hidden;
 }

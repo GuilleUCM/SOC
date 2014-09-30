@@ -195,7 +195,7 @@
 			// Anything placed under templates and will be found by the "template"
 			// setting; otherwise, to set an include directory, use the "includes_paths"
 			// option above.
-			"data-dir": "./pandownTemplates",
+			"data-dir": "../pandownTemplates",
 
 			// "Parse untranslatable HTML codes and LaTeX environments as
 			// raw HTML or LaTeX, instead of ignoring them."
@@ -266,7 +266,7 @@
 
 			// The number of section levels to include in the table of contents.
 			// Specify a number or "false" for default (3).
-			"toc-depth": false,
+			"toc-depth": 2,
 
 			// Disable syntax highlighting globally.
 			"no-highlight": false,
@@ -318,7 +318,7 @@
 			"chapters": false,
 
 			// Generate section numbers.
-			"number-sections": false,
+			"number-sections": true,
 
 			// Sections in HTML output can be offset by a fixed number.
 			// The first number is added to the output for top-level
@@ -341,7 +341,7 @@
 			// creates subheads. Normally set based on context of document.
 			// See: http://johnmacfarlane.net/pandoc/README.html#structuring-the-slide-show
 			// Set to a number or "false" to disable.
-			"slide-level": 2,
+			"slide-level": 3,
 
 			// Enclose sections in <div> or <section> tags, attach "id" attributes based on
 			// the section name.

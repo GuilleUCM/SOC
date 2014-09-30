@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Guillermo Jiménez Díaz (gjimenez@ucm.es)" />
+  <meta name="author" content="Alberto Díaz (albertodiaz@fdi.ucm.es)" />
+  <title>Análisis de Redes Sociales</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+   href="../pandownTemplates/slidy/styles/slidy.css" />
+   
+
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+   href="../pandownTemplates/soc.css" />
+
+  <script src="../pandownTemplates/slidy/scripts/slidy.js"
+    charset="utf-8" type="text/javascript"></script>
+</head>
+<body>
+<div class="slide titlepage">
+  <h1 class="title">Análisis de Redes Sociales</h1>
+  <p class="author">
+Guillermo Jiménez Díaz (gjimenez@ucm.es)<br/>Alberto Díaz (albertodiaz@fdi.ucm.es)
+  </p>
+  <p class="date">1 de octubre de 2014</p>
+</div>
+<div class="slide section level3">
+
+<!-- # Prefacio {-}
+
+Estos son los apuntes de la asignatura Análisis de Redes Sociales, impartida en la Facultad de Informática de la Universidad Complutense de Madrid por los profesores Guillermo Jiménez Díaz y Alberto Díaz, del Departamento de Ingeniería del Software e Inteligencia Artificial.
+
+Este material ha sido desarrollado a partir de distintas fuertes, destacando como referencia principal el libro _Network Science_ de Laszlo Barabasi, el libro _Social and Economic Networks_ de Mathew O. Jackson y el material de la asignatura _Social Network Analysis_ impartido por Lada Adamic a través de Coursera.
+ -->
+
+</div>
+<div id="tema-0-presentación-de-la-asignatura" class="titleslide slide section level1 unnumbered"><h1>Tema 0: Presentación de la asignatura</h1></div><div id="ejemplos-motivadores" class="titleslide slide section level2"><h1><span class="header-section-number">0.1</span> Ejemplos motivadores</h1></div><div id="las-redes-y-la-captura-de-sadam-husseim" class="slide section level3">
+<h1><span class="header-section-number">0.1.1</span> Las redes y la captura de Sadam Husseim</h1>
+<div class="figure">
+<img src="../images/tema00/SaddamHusseinNetwork.jpg" alt="La red de Saddam Hussein" /><p class="caption">La red de Saddam Hussein</p>
+</div>
+<p>La captura de Saddam Hussein ilustra algunos de los aspectos claves de las redes que estudiaremos en esta asignatura:</p>
+<ul>
+<li>Muestra el poder predictivo de las redes, que permite extraer información clave incluso a los no expertos (los soldados en este caso)</li>
+<li>Resalta la necesidad de diseñar mapas precisos de las redes a estudiar (en muchos casos, el proceso de diseño es muy complicado y costoso)</li>
+<li>Ejemplifica el hecho de que la elección de la red a emplear marca la diferencia (los militares americanos tardaron meses en darse cuenta que la red jerárquica que representaba la organización oficial iraquí era inútil para encontrar a Saddam)</li>
+<li>Destaca la estabilidad de algunas redes de confianza (la captura de Hussein no se basó en las técnicas clásicas de Inteligencia sino en sus conexiones sociales antes de la invasión, extraídas de viejas fotos de su álbum familiar)</li>
+</ul>
+</div><div id="predicción-de-la-epidemia-de-la-gripe-aviar-h1n1-en-2009" class="slide section level3">
+<h1><span class="header-section-number">0.1.2</span> Predicción de la epidemia de la gripe aviar (H1N1) en 2009</h1>
+<div class="figure">
+<img src="../images/tema00/gripeAviar.jpg" alt="Predicción de la difusión del contagio de la gripe aviar. Extraída de esta charla de TED." /><p class="caption">Predicción de la difusión del contagio de la gripe aviar. Extraída de <a href="http://www.ted.com/talks/nicholas_christakis_how_social_networks_predict_epidemics">esta charla de TED</a>.</p>
+</div>
+<p>La gripe aviar de 2009 es la primera pandemia cuya evolución fue predicha meses antes de que alcanzara su punto álgido:</p>
+<ul>
+<li>Haciendo uso de las redes de transporte a nivel mundial, se determinó correctamente que alcanzaría su pico en Octubre de 2009, en lugar de en Enero-Febrero (picos habituales de la gripe estándar).</li>
+<li>Se demostró que la vacunación masiva realizada en Noviembre de 2009 fue inútil por ser demasiado tardía, hecho comprobado a posteriori.</li>
+<li>El cambio fundamental consistió en considerar el rol de las redes en la propagación de los virus, en contraste con los modelos epidémicos clásicos.</li>
+<li>Hoy en día, la predicción de epidemias es una de las aplicaciones más activas del Análisis de Redes. No sólo se centra en virus biológicos sino también electrónicos (ej: predicción de la infección de 300.000 teléfonos móviles en China en 2010).</li>
+</ul>
+</div><div id="el-apagón-de-la-costa-noroeste-de-eeuu-el-14082003" class="slide section level3">
+<h1><span class="header-section-number">0.1.3</span> El apagón de la costa noroeste de EEUU el 14/08/2003</h1>
+<div class="figure">
+<img src="../images/tema00/blackout.jpg" alt="Apagón de 2003 debido a una sobrecarga y un fallo en cascada" /><p class="caption">Apagón de 2003 debido a una sobrecarga y un fallo en cascada</p>
+</div>
+<ul>
+<li>Este apagón es un ejemplo típico de un fallo en cascada: cuando una red actúa como sistema de transporte, un fallo local en un nodo provoca una transferencia de carga a otros nodos. Si la carga extra es excesiva para los nodos vecinos, éstos pueden fallar y redistribuirla a otros nodos a su vez (cayeron 256 plantas y 508 unidades generadoras).</li>
+<li>La magnitud del fallo depende de la posición en la red y la capacidad de los nodos afectados (eliminados) en el primer momento y en los siguientes.</li>
+<li>Los fallos en cascada son habituales en los Sistemas Complejos (ej: tráfico en Internet). La actual crisis financiera mundial es un ejemplo provocado por la crisis de crédito en los EEUU.</li>
+<li>También pueden tener efectos positivos. Ej: tratamientos del cáncer.</li>
+<li>La estructura de la red afecta a la robustez del sistema. Se pueden establecer herramientas cuantitativas que evalúen la relación entre la estructura de la red y los procesos dinámicos que se producen en ella, así como su impacto en los fallos.</li>
+<li>Esos fallos no son caóticos e impredecibles, siguen una serie de leyes reproducibles.</li>
+</ul>
+</div><div id="sistemas-complejos" class="titleslide slide section level2"><h1><span class="header-section-number">0.2</span> Sistemas complejos</h1></div><div id="la-emergencia-de-las-redes-y-los-sistemas-complejos" class="titleslide slide section level2"><h1><span class="header-section-number">0.3</span> La emergencia de las redes y los sistemas complejos</h1></div><div id="disponibilidad-de-datos" class="slide section level3">
+<h1><span class="header-section-number">0.3.1</span> Disponibilidad de Datos</h1>
+<ul>
+<li>Red de Actores de Cine, 1998</li>
+<li>La World Wide Web, 1999</li>
+<li>Red Neuronal del gusano C.Elegans, 1990</li>
+<li>Redes de Citas de Artículos Científicos, 1998</li>
+<li>Genoma Humano, 2001</li>
+<li>Red de Interacciones entre Proteínas, 2001</li>
+<li>Extracción de datos en principales redes sociales (Facebook, Twitter…), actualidad.</li>
+</ul>
+</div><div id="universalidad" class="slide section level3">
+<h1><span class="header-section-number">0.3.2</span> Universalidad</h1>
+<p>La arquitectura de las distintas redes que están apareciendo en varios dominios de la ciencia, naturaleza y tecnología es más similar de lo que podría esperarse en principio.</p>
+</div><div id="necesidad-urgente-de-entender-la-complejidad" class="slide section level3">
+<h1><span class="header-section-number">0.3.3</span> Necesidad (urgente) de entender la complejidad</h1>
+<p>Cada vez está más aceptado el hecho de que, a pesar de su dificultad, no podemos permitirnos no entender el comportamiento de los sistemas complejos. Varios de los avances más significativos para entender la complejidad obtenidos en la última década provienen de la Teoría de Redes.</p>
+</div><div id="para-qué-sirve-el-análisis-de-redes-sociales" class="titleslide slide section level2"><h1><span class="header-section-number">0.4</span> ¿Para qué sirve el Análisis de Redes Sociales?</h1></div><div id="el-análisis-de-redes-sociales-y-la-teoría-de-grafos" class="titleslide slide section level2"><h1><span class="header-section-number">0.5</span> El Análisis de Redes Sociales y la Teoría de Grafos</h1></div><div id="aplicaciones-del-análisis-de-redes-sociales" class="titleslide slide section level2"><h1><span class="header-section-number">0.6</span> Aplicaciones del Análisis de Redes Sociales</h1></div>
+<div id="objetivo-general-del-curso" class="titleslide slide section level1 unnumbered"><h1>Objetivo general del curso</h1></div><div id="contenidos-del-curso" class="titleslide slide section level2"><h1><span class="header-section-number">0.7</span> Contenidos del curso</h1></div><div id="evaluación-de-la-asignatura" class="titleslide slide section level2"><h1><span class="header-section-number">0.8</span> Evaluación de la asignatura</h1></div><div id="prácticas-70" class="slide section level3">
+<h1><span class="header-section-number">0.8.1</span> Prácticas (70%)</h1>
+<p>Las prácticas son <strong>obligatorias</strong> y es necesario que estén <strong>aprobadas</strong> para que sean tenidas en cuenta en la nota final:</p>
+<ul>
+<li>Entregadas en plazo</li>
+<li>Satisfaciendo los requisitos del enunciado</li>
+<li>Obteniendo una nota entre 5 y 10</li>
+</ul>
+<p>Las prácticas se realizarán en grupos de 3 o 4 alumnos. Serán 3-4 prácticas que se irán ajustando a los conceptos teóricos que se vayan contando en clase.</p>
+<p>Las prácticas no entregadas o suspensas se tendrán que volver a entregar en septiembre.</p>
+</div><div id="proyecto-30" class="slide section level3">
+<h1><span class="header-section-number">0.8.2</span> Proyecto (30%)</h1>
+<p>El proyecto final consistirá en el análisis de un conjunto de datos real elegido por el grupo de alumnos. Se realizará con los mismos grupos que las prácticas y será presentado en defensa pública.</p>
+<p>El proyecto es obligatorio y debe cumplir los mismos requisitos que las prácticas para poder aprobar la asignatura: entregado en plazo, cumpliendo los requisitos del enunciado y obteniendo una nota mayor o igual que 5.</p>
+<p>Al igual que con las prácticas, los proyectos no entregados o suspensos se tendrán que volver a entregar en septiembre.</p>
+<!-- En diciembre se comenzará con un **proyecto final** que consistirá en el diseño de un sistema interactivo de acuerdo a las metodologías y técnicas explicadas en clase. El tema final del proyecto deberá ser aprobado previamente por el profesor. El trabajo será presentado en defensa pública a finales de enero. En caso de superar la defensa los miembros del grupo quedarán exentos de realizar el examen final. Al igual que con las prácticas, es necesario **aprobar** el proyecto para que su nota sea tenida en cuenta en la nota final.
+
+En caso de no presentar el proyecto o no superar la defensa habrá un **examen final** sobre los contenidos teórico-prácticos de la asignatura. Este examen podrá realizarse tanto en la convocatoria de febrero como septiembre. Será necesario **aprobar** el examen para que su nota sea tenida en cuenta en la nota final. -->
+
+</div><div id="bibliografía" class="titleslide slide section level2"><h1><span class="header-section-number">0.9</span> Bibliografía</h1></div><div id="principal" class="slide section level3">
+<h1><span class="header-section-number">0.9.1</span> Principal</h1>
+<ul>
+<li><a href="http://barabasilab.neu.edu/networksciencebook/">Network Science</a>. Laszlo Barabasi.</li>
+<li><a href="http://www.cs.cornell.edu/home/kleinber/networks-book/">Networks, Crowds and Markets</a>. David Easley and Jon Kleinberg, Cambridge University Press. 2010.</li>
+<li>Social and Economic Networks. Matthew O. Jackson. Princeton University Press. 2008.</li>
+</ul>
+</div><div id="complementaria" class="slide section level3">
+<h1><span class="header-section-number">0.9.2</span> Complementaria</h1>
+<ul>
+<li>The Structure and Dynamics of Networks. Mark Newman, Albert-László Barabási, and Duncan J. Watts. 2006.</li>
+<li><a href="http://barabasilab.com/LinkedBook/index.html">Linked: The New Science of Networks</a>. Albert-Laszlo Barabasi, Jennifer Frangos.</li>
+</ul>
+</div>
+</body>
+</html>

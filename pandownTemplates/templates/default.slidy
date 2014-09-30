@@ -20,11 +20,11 @@ $highlighting-css$
   </style>
 $endif$
   <link rel="stylesheet" type="text/css" media="screen, projection, print"
-   href="../css/slidy/styles/slidy.css" />
+   href="../pandownTemplates/slidy/styles/slidy.css" />
    
 
   <link rel="stylesheet" type="text/css" media="screen, projection, print"
-   href="../css/soc.css" />
+   href="../pandownTemplates/soc.css" />
 
 $if(math)$
   $math$
@@ -32,7 +32,7 @@ $endif$
 $for(header-includes)$
   $header-includes$
 $endfor$
-  <script src="../css/slidy/scripts/slidy.js"
+  <script src="../pandownTemplates/slidy/scripts/slidy.js"
     charset="utf-8" type="text/javascript"></script>
 $if(duration)$
   <meta name="duration" content="$duration$" />
