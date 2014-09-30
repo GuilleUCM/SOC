@@ -7,15 +7,25 @@
 
 Estos son los apuntes de la asignatura Análisis de Redes Sociales, impartida en la Facultad de Informática de la Universidad Complutense de Madrid por los profesores Guillermo Jiménez Díaz y Alberto Díaz, del Departamento de Ingeniería del Software e Inteligencia Artificial.
 
-Este material ha sido desarrollado a partir de distintas fuertes, destacando como referencia principal el libro _Network Science_ de Laszlo Barabasi y el material de la asignatura _Social Network Analysis_ impartido por Lada Adamic a través de Coursera.
+Este material ha sido desarrollado a partir de distintas fuertes, destacando como referencia principal el libro _Network Science_ de Laszlo Barabasi, el libro _Social and Economic Networks_ de Mathew O. Jackson y el material de la asignatura _Social Network Analysis_ impartido por Lada Adamic a través de Coursera.
 
 # Tema 0: Presentación de la asignatura {-}
 
 ## Motivación
 
-Ejemplos
+### Las redes y la captura de Sadam Husseim
 
-* Las redes y la captura de Sadam Husseim
+![Red de allegados de Sadam Hussein](../images/tema00/sadam.png)
+
+La captura de Saddam Hussein ilustra algunos de los aspectos claves de las redes que estudiaremos en esta asignatura:
+
+* Muestra el poder predictivo de las redes, que permite extraer información clave incluso a los no expertos (los soldados en este caso)
+* Resalta la necesidad de diseñar mapas precisos de las redes a estudiar (en muchos casos, el proceso de diseño es muy complicado y costoso)
+* Ejemplifica el hecho de que la elección de la red a emplear marca la diferencia (los militares americanos tardaron meses en darse cuenta que la red jerárquica que representaba la organización oficial iraquí era inútil para encontrar a Saddam)
+* Destaca la estabilidad de estas redes (la captura de Hussein no se basó en las técnicas clásicas de Inteligencia sino en sus conexiones sociales antes de la invasión, extraídas de viejas fotos de su álbum familiar)
+
+
+
 * Predicción de la epidemia de la gripe aviar (H1N1) en 2009
 * El apagón de la costa noroeste de EEUU el 14/08/2003
 
@@ -50,6 +60,7 @@ Ejemplos de sistemas complejos representables como redes {-}
 ## La emergencia de las redes y los sistemas complejos
 
 Disponibilidad de Datos:
+
 * Red de Actores de Cine, 1998
 * La World Wide Web, 1999
 * Red Neuronal del gusano C.Elegans, 1990
