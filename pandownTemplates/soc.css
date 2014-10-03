@@ -2,11 +2,16 @@
 	Fuente en general
  */
 div.level3 *{
-	font-size: 22pt;
+	font-size: 17pt;
+}
+
+div.slide {
+	padding-left: 5px;
+	padding-right: 5px;
 }
 
 span.header-section-number {
-	visibility: hidden;
+	display: none;
 }
 
 .nota {
@@ -25,12 +30,6 @@ span.header-section-number {
     max-width: 700px;
 }
 
-/* Antiguo Guille
-.figure img {
-	height: 500px;
-    width: auto;
-}
-*/
 /*
 	Primera traspa
  */
@@ -66,7 +65,7 @@ div.titleslide h1 {
 }
 
 ul {
-    margin: 1em 4em;
+    margin: 1em 2em;
 }
 /*
 	Para los bloques de citas
@@ -78,5 +77,5 @@ blockquote {
     font-style: italic;
     padding: 0.2em 0;
     text-align: center;
-    margin: 1.5em 3em;
+    margin: 1.5em 2em;
 }
