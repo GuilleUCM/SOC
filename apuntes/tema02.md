@@ -185,8 +185,14 @@ Gráficamente se puede ver en la siguiente figura:
 
 ![Longitud media frente al número de nodos. A la izquierda se usa la escala lineal; a la derecha se representa mediante una escala logarítmica.](../images/tema02/dmedio_N.png)
 
-Estas conclusiones son lo que se conoce como la propiedad de **los pequeños mundos** o _small worlds_: la distancia entre dos nodos cualquiera de la red es sorprendentemente corta.
+Estas conclusiones son lo que se conoce como la propiedad de **los pequeños mundos** o _small worlds_: la distancia entre dos nodos cualquiera de la red es sorprendentemente corta. Este fenómeno también se conoce como el de _los 6 grados de separación_. Indica que si eligiésemos al azar dos personas del planeta, por muy lejos que estuviesen, estarían a 6 "conocidos" de distancia entre sí. En posteriores temas hablaremos más en detalle de este fenómeno y de su importancia en el análisis de redes sociales.
 
-### Pequeños mundos
+En las redes reales este número "6" se reduce drásticamente. Por ejemplo, si calculamos la longitud media en Facebook que, de acuerdo a los datos de mayo de 2011, tenía 721 millones de usuarios y 68.000 millones de relaciones (simétricas) de amistad:
 
-El fenómeno de los _pequeños mundos_ también se conoce como el de _los 6 grados de separación_. Indica que si eligiésemos al azar dos personas del planeta, por muy lejos que estuviesen, estarían a 6 "conocidos" de distancia entre sí.
+$$
+\langle d \rangle = \frac{log N}{log \langle k \rangle} \simeq 3.90
+$$
+
+## Coeficiente de agrupamiento
+
+Para calcular el coeficiente de agrupamiento $C_i$ necesitamos estimar cuál es el número de enlaces entre los vecinos de un nodo. Recordemos que la probabilidad de que haya un enlace entre dos nodos en una red aleatoria es $p$ y que, para un nodo $i$, hay $\frac{k_i(k_i-1)}{2}$ posibles enlaces entre sus $k_i$ vecinos. Según esto, el valor estimado de enlaces de los vecinos $L_i$ es:
