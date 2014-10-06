@@ -156,4 +156,37 @@ Si suponemos que las redes reales siguen el modelo de red aleatoria entonces se 
 
 ![Datos sobre algunas redes reales](../images/tema02/datosRedes.png)
 
-De acuerdo a estos datos todas estas redes cumplen que $\langle k \rangle > 1$ por lo que tienen un componente gigante. Sin embargo se aprecia que en la mayoría de ellas (salvo en la red de actores) no se cumple que $\langle k \rangle \sim ln N$ por lo que deberíamos suponer que se encuentran en la fase supercrítica y que, por tanto, existen nodos y componentes aislados. Si las redes reales se modelan de acuerdo al modelo de Erdös-Renyi entonces deberían existir nodos desconectados del componente gigante. Como ejemplo, en el caso de la red Internet, esto supondría que existen subredes que no están conectados a la red global. Si esto fuese así, ¿cómo los alcanzaríamos?. Estamos ante la evidencia de que tal vez este modelo no es del todo válido para algunas redes reales.
+De acuerdo a estos datos todas estas redes cumplen que $\langle k \rangle > 1$ por lo que tienen un componente gigante. Sin embargo se aprecia que en la mayoría de ellas (salvo en la red de actores) no se cumple que $\langle k \rangle \sim ln N$ por lo que deberíamos suponer que se encuentran en la fase supercrítica y que, por tanto, existen nodos y componentes aislados. Si las redes reales se modelan de acuerdo al modelo de Erdös-Renyi entonces deberían existir nodos desconectados del componente gigante. Como ejemplo, en el caso de la red Internet, esto supondría que existen subredes que no están conectados a la red global. Si esto fuese así, ¿cómo los alcanzaríamos?. 
+
+Estamos ante la evidencia de que tal vez este modelo no es del todo válido para algunas redes reales.
+
+## Propiedades de los caminos en redes aleatorias
+
+En una red aleatoria de grado $\langle k \rangle$ se cumple que cualquier nodo de la red tiene, _en media_:
+
+* $\langle k \rangle$ nodos a distancia 1 ($d=1$)
+* $\langle k \rangle^2$ nodos a distancia 2 ($d=2$)
+* ...
+* $\langle k \rangle^d$ nodos a distancia d 
+
+Según eso, el número de nodos a distancia $d$ ($N(d)$) se puede calcular como:
+
+$$N(d) =1+\langle k \rangle+\langle k \rangle^2+\dots=\frac{\langle k \rangle^{d+1}-1}{\langle k \rangle-1}$$
+
+Si suponemos que $\langle k \rangle \gg 1$ entonces podemos estimar que la _longitud media de los caminos_ de la red ($\langle d \rangle$) es:
+
+$$\langle d \rangle \propto \frac{log N}{log \langle k \rangle}$$
+
+Esto implica que:
+* La longitud media de los caminos de la red va a ser varios órdenes de magnitud más pequeño que $N$.
+* Cuanto más densa sea la red, menor es la distancia entre los nodos.
+
+Gráficamente se puede ver en la siguiente figura:
+
+![Longitud media frente al número de nodos. A la izquierda se usa la escala lineal; a la derecha se representa mediante una escala logarítmica.](../images/tema02/dmedio_N.png)
+
+Estas conclusiones son lo que se conoce como la propiedad de **los pequeños mundos** o _small worlds_: la distancia entre dos nodos cualquiera de la red es sorprendentemente corta.
+
+### Pequeños mundos
+
+El fenómeno de los _pequeños mundos_ también se conoce como el de _los 6 grados de separación_. Indica que si eligiésemos al azar dos personas del planeta, por muy lejos que estuviesen, estarían a 6 "conocidos" de distancia entre sí.
