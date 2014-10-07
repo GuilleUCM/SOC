@@ -121,7 +121,7 @@ La densidad del grafo describe cómo de conectado está el grafo. Se calcula com
 
 En la mayoría de las redes reales se cumple que $L \ll L_{max}$ por lo que se suele decir que estas redes son *dispersas* (_sparse_).
 
-![Ejemplos de redes reales](../images/tema01/tablaRedes.jpg)
+![Ejemplos de redes reales](../images/tema01/datosRedesMejor.png)
 
 Otra propiedad básica pero bastante importante de los grafos (y que usaremos a menudo a lo largo de la asignatura) es el grado de un nodo $i$ ($k_i$), que es el número de enlaces que tiene $i$ con otros nodos.
 
@@ -184,6 +184,7 @@ Este método de cálculo de la distancia más corta es bastante ineficiente para
 > 4. Repetimos 3 hasta encontrar $j$ o hasta que la cola esté vacía. Si se produce este caso, entonces $d_{ij}= \infty$.
 
 Otros caminos:
+
 * Camino euleriano: Camino que cruza cada enlace exactamente una vez.
 * Camino hamiltoniano: Camino que visita cada nodo exactamente una vez.
 

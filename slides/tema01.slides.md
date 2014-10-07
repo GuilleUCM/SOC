@@ -133,7 +133,7 @@ La densidad del grafo describe cómo de conectado está el grafo. Se calcula com
 
 En la mayoría de las redes reales se cumple que $L \ll L_{max}$ por lo que se suele decir que estas redes son *dispersas* (_sparse_).
 
-![Ejemplos de redes reales](../images/tema01/tablaRedes2.jpg)
+![Ejemplos de redes reales](../images/tema01/datosRedesMejor.png)
 
 ### Propiedades básicas de los grafos
 
