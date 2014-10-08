@@ -8,7 +8,7 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla et, aperiam fugi
 
 # Práctica 1: Análisis básico de un grafo
 
-Usar la aplicación Netvizz de Facebook
+Usar la aplicación Netvizz de Facebook o <http://snacourse.com/getnet>
 
 ## Entrega
 
