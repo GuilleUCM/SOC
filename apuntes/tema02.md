@@ -47,7 +47,7 @@ De esta función de distribución nos interesan las siguientes métricas:
 * Varianza de la distribución: $\sigma _x ^2= p \cdot (1-p) \cdot n$
 * Desviación estándar de la distribución: $\sigma _x = [p \cdot (1-p) \cdot n]^{\frac{1}{2}}$
 
-De acuerdo a esto podemos representar la probabilidad de una red de tener exactamente $L$ enlaces como:
+De acuerdo a esto podemos representar la probabilidad de una red $G(N, p)$ de tener exactamente $L$ enlaces como:
 
 $$ p_L = B(L_{max}, L, p) \to p_L = \binom{L_{max}}{L} p^L(1-p)^{L_{max}-L} $$
 
@@ -65,7 +65,7 @@ De acuerdo a esto, una de las primeras características que podemos extraer de l
 
 ## Distribución del grado de los nodos
 
-Al igual que antes, podemos representar esta distribución como una binomial.
+Al igual que antes, podemos representar la distribución del grado de los nodos como una binomial.
 
 $$ p_k = B(N-1, k, p) \to p_k = \binom{N-1}{k} p^k(1-p)^{N-1-k}$$
 
