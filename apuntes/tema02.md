@@ -173,7 +173,11 @@ Según eso, el número de nodos a distancia $d$ ($N(d)$) se puede calcular como:
 
 $$N(d) =1+\langle k \rangle+\langle k \rangle^2+\dots=\frac{\langle k \rangle^{d+1}-1}{\langle k \rangle-1}$$
 
-Si suponemos que $\langle k \rangle \gg 1$ entonces podemos estimar que la _longitud media de los caminos_ de la red ($\langle d \rangle$) es:
+Si suponemos que $\langle k \rangle \gg 1$ entonces podemos estimar que el diámetro ($d_{max}$) de la red es:
+
+$$d_{max} \propto \frac{log N}{log \langle k \rangle}$$
+
+En la mayoría de los casos se puede considerar que esta misma fórmula aproxima la _longitud media de los caminos_ de la red ($\langle d \rangle$) es:
 
 $$\langle d \rangle \propto \frac{log N}{log \langle k \rangle}$$
 
