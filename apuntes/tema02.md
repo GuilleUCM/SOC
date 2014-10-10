@@ -24,7 +24,7 @@ En este y en sucesivos capítulos estudiaremos algunos de los modelos más conoc
 Una red aleatoria es una red en la que cada uno de los enlaces entre dos nodos se ha creado siguiendo un proceso completamente aleatorio. De manera más matemática podemos decir que una red aleatoria es una red que tiene $N$ nodos donde cada nodo puede estar conectado con otro con una probabilidad $p$. Se representa como $G(N,p)$ y se construye siguiendo el siguiente algoritmo:
 
 > 1. Crear N nodos aislados
-> 2. Seleccionar un par de nodos y generar un número aleatorio entre 0 y 1. Si es mayor que $p$ entonces añadimos un enlace entre ellos. En otro caso, los dejamos desconectados.
+> 2. Seleccionar un par de nodos y generar un número aleatorio entre 0 y 1. Si es menor o igual que $p$ entonces añadimos un enlace entre ellos. En otro caso, los dejamos desconectados.
 > 3. Repetir el paso 2 para los $\frac{N(N-1)}{2}$ pares de nodos de la red.
 
 El modelo de red aleatoria también se conoce como el modelo de Erdös-Renyi en honor de los dos matemáticos húngaros que las estudiaron inicialmente y que proporcionaron gran cantidad de información sobre las propiedades contenidas en este tipo de redes.
@@ -92,6 +92,8 @@ Vemos que ambas distribuciones tienen propiedades comunes:
 * Tienen un pico en $\langle x \rangle$ de modo que si modificamos $p$ entonces el pico se desplaza hacia la derecha.
 * Cuanto más densa es la distribución entonces más ancha es la distribución.
 
+Las principales ventajas de la Poisson frente a la binomial son que las principales propiedades tienen una forma más simple y que la Poisson no depende de $N$.
+
 Si estamos seguros de que tenemos una red en la que $N\gg k$ y aproximamos su distribución de grados mediante una Poisson entonces se cumple que:
 
 $$p_k = P(k, \langle k \rangle) \to p_k = e^{-\langle k \rangle}\cdot \frac{\langle k \rangle ^k}{k!}$$
@@ -101,7 +103,11 @@ De modo que:
 * Varianza de $k$: $\sigma _x ^2= \langle k \rangle $
 * Desviación estándar de $k$: $\sigma _x = \langle k \rangle ^{\frac{1}{2}}$
 
-De acuerdo a esto podemos sacar las siguientes propiedades de las redes aleatorias dispersas:
+La siguiente figura resume las diferencias entre una y otra función de distribución:
+
+![Comparativa de distribuciones de grados (izq: Binomial; der: Poisson)](../images/tema02/binomPoisson2.png)
+
+De acuerdo a la distribución de Poisson podemos sacar las siguientes propiedades de las redes aleatorias dispersas:
 
 *  La distribución de grados no depende de $N$ por lo que dos redes con igual $\langle k \rangle$ y distinto tamaño $N$ tienen funciones de distribución de grado indistinguibles.
 *  La mayoría de los nodos tienen un grado entorno a la media ($\langle k \rangle$) y los nodos de mayor grado tienen solo unos pocos más que la media.

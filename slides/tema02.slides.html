@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Guillermo Jiménez Díaz (gjimenez@ucm.es)" />
+  <meta name="author" content="Alberto Díaz (albertodiaz@fdi.ucm.es)" />
+  <title>Análisis de Redes Sociales</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+   href="../pandownTemplates/slidy/styles/slidy.css" />
+   
+
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+   href="../pandownTemplates/soc.css" />
+
+  <script src="../pandownTemplates/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">MathJax.Hub.Queue(["Typeset",MathJax.Hub]);</script>
+  <script src="../pandownTemplates/slidy/scripts/slidy.js"
+    charset="utf-8" type="text/javascript"></script>
+</head>
+<body>
+<div class="slide titlepage">
+  <h1 class="title">Análisis de Redes Sociales</h1>
+  <p class="author">
+Guillermo Jiménez Díaz (gjimenez@ucm.es)<br/>Alberto Díaz (albertodiaz@fdi.ucm.es)
+  </p>
+  <p class="date">10 de octubre de 2014</p>
+</div>
+<div id="tema-2-modelos-de-redes-el-modelo-de-red-aleatoria" class="titleslide slide section level1"><h1><span class="header-section-number">1</span> Tema 2: Modelos de redes: <br/>El modelo de red aleatoria</h1></div><div id="modelos" class="titleslide slide section level2"><h1><span class="header-section-number">1.1</span> Modelos</h1></div><div id="modelos-1" class="slide section level3">
+<h1><span class="header-section-number">1.1.1</span> Modelos</h1>
+<ul>
+<li>Un <strong>modelo</strong> es una <em>representación simple</em> de un sistema complejo del que podemos <em>extraer y derivar propiedades</em> matemáticamente.</li>
+<li>Los modelos nos ayudan a entender cómo y por qué se han formado las redes tal y como son ahora.</li>
+<li>Mediante un modelo que se aproxime a una red real podremos <em>predecir propiedades y resultados</em> de la misma.</li>
+</ul>
+<blockquote>
+<p>En este y en sucesivos capítulos estudiaremos algunos de los modelos más conocidos de redes sociales. El primero de ellos es el <strong>modelo de red aleatoria</strong>.</p>
+</blockquote>
+</div><div id="modelo-de-red-aleatoria" class="titleslide slide section level2"><h1><span class="header-section-number">1.2</span> Modelo de red aleatoria</h1></div><div id="ejemplo-motivante" class="slide section level3">
+<h1><span class="header-section-number">1.2.1</span> Ejemplo motivante</h1>
+<div class="figure">
+<img src="../images/tema02/ejemplo.png" alt="Primer día de clase en la Universidad. Charlas en grupos con encuentros aleatorios" /><p class="caption">Primer día de clase en la Universidad. Charlas en grupos con encuentros aleatorios</p>
+</div>
+</div><div id="modelo-de-red-aleatoria-1" class="slide section level3">
+<h1><span class="header-section-number">1.2.2</span> Modelo de red aleatoria</h1>
+<ul>
+<li>Una <strong>red aleatoria</strong> es una red en la que cada uno de los enlaces entre dos nodos se ha creado siguiendo un proceso completamente aleatorio.</li>
+<li>Matemáticamente es una red que tiene <strong><span class="math">\(N\)</span> nodos</strong> donde cada nodo puede estar conectado con otro con una <strong>probabilidad <span class="math">\(p\)</span></strong>. Se representa como <strong><span class="math">\(G(N,p)\)</span></strong></li>
+</ul>
+</div><div id="modelo-de-red-aleatoria-2" class="slide section level3">
+<h1><span class="header-section-number">1.2.3</span> Modelo de red aleatoria</h1>
+<ul>
+<li>Modelo de Erdös-Renyi (1960)</li>
+</ul>
+<div class="figure">
+<img src="../images/tema02/erdosRenyi.png" alt="Pal Erdös y Alfred Renyi, matemáticos hungaros principales investigadores del modelo de red aleatoria." /><p class="caption">Pal Erdös y Alfred Renyi, matemáticos hungaros principales investigadores del modelo de red aleatoria.</p>
+</div>
+</div><div id="construcción" class="slide section level3">
+<h1><span class="header-section-number">1.2.4</span> Construcción</h1>
+<ol class="incremental" style="list-style-type: decimal">
+<li>Crear N nodos aislados</li>
+<li>Seleccionar un par de nodos y generar un número aleatorio entre 0 y 1. Si es menor o igual que <span class="math">\(p\)</span> entonces añadimos un enlace entre ellos. En otro caso, los dejamos desconectados.</li>
+<li>Repetir el paso 2 para los <span class="math">\(\frac{N(N-1)}{2}\)</span> pares de nodos de la red.</li>
+</ol>
+</div><div id="alternativa" class="slide section level3">
+<h1><span class="header-section-number">1.2.5</span> Alternativa</h1>
+<ul>
+<li>El modelo de red aleatoria también puede caracterizarse como <strong><span class="math">\(G(N, L)\)</span></strong>, donde <span class="math">\(L\)</span> es el número de enlaces de la red.</li>
+<li>La red se forma seleccionando aleatoriamente 2 nodos y, si no existe un enlace entre ellos, se añade.</li>
+<li>Este proceso se repite hasta conseguir un total de <span class="math">\(L\)</span> enlaces.</li>
+<li>Forma menos usada.</li>
+</ul>
+</div><div id="número-de-enlaces" class="titleslide slide section level2"><h1><span class="header-section-number">1.3</span> Número de enlaces</h1></div><div id="igual-parámetros-distintas-redes" class="slide section level3">
+<h1><span class="header-section-number">1.3.1</span> Igual parámetros, distintas redes</h1>
+<div class="figure">
+<img src="../images/tema02/distintasRedes.png" alt="Distintas redes generadas con los mismos parámetros" /><p class="caption">Distintas redes generadas con los mismos parámetros</p>
+</div>
+<ul>
+<li>Si la red se representa como <span class="math">\(G(L,p)\)</span> entonces ya sabemos el número exacto de enlaces.</li>
+</ul>
+</div><div id="número-variable-de-enlaces" class="slide section level3">
+<h1><span class="header-section-number">1.3.2</span> Número variable de enlaces</h1>
+<ul>
+<li>Las redes aleatorias <span class="math">\(G(N, p)\)</span> tienen un número variable de enlaces (<span class="math">\(L\)</span>).</li>
+<li><p>Podemos calcular la probabilidad de que la red tenga exactamente <span class="math">\(L\)</span> enlaces.</p></li>
+<li><p><strong>Distribución binomial</strong>: el número de éxitos (<span class="math">\(x\)</span>) que se pueden conseguir en la realización de <span class="math">\(n\)</span> experimentos independientes donde la probabilidad de acierto es <span class="math">\(p\)</span> y la de fracaso, <span class="math">\(1-p\)</span>.</p></li>
+</ul>
+<p><span class="math">\[ B(n, x, p) \to p_x = \binom{n}{x}p^x(1-p)^{n-x}\]</span></p>
+</div><div id="propiedades-de-la-distribución-binomial" class="slide section level3">
+<h1><span class="header-section-number">1.3.3</span> Propiedades de la distribución binomial</h1>
+<p><span class="math">\[ B(n, x, p) \to p_x = \binom{n}{x}p^x(1-p)^{n-x}\]</span></p>
+<ul>
+<li>Media de la distribución: <span class="math">\(\langle x \rangle = \sum_{x=1}^{N}x \cdot p_x = n \cdot p\)</span></li>
+<li>Varianza de la distribución: <span class="math">\(\sigma _x ^2= p \cdot (1-p) \cdot n\)</span></li>
+<li>Desviación estándar de la distribución: <span class="math">\(\sigma _x = [p \cdot (1-p) \cdot n]^{\frac{1}{2}}\)</span></li>
+</ul>
+</div><div id="probabilidad-de-l" class="slide section level3">
+<h1><span class="header-section-number">1.3.4</span> Probabilidad de L</h1>
+<ul>
+<li>La probabilidad de una red <span class="math">\(G(N, p)\)</span> de tener exactamente <span class="math">\(L\)</span> enlaces es:</li>
+</ul>
+<p><span class="math">\[ p_L = B(L_{max}, L, p) \to p_L = \binom{L_{max}}{L} p^L(1-p)^{L_{max}-L} \]</span></p>
+<ul>
+<li>Número medio de enlaces esperados en <span class="math">\(G(N,p)\)</span> como:</li>
+</ul>
+<p><span class="math">\[ \langle L \rangle = p \cdot L_{max} = p \cdot \binom{N}{2} = p \cdot \frac{N(N-1)}{2}\]</span></p>
+</div><div id="grado-medio" class="slide section level3">
+<h1><span class="header-section-number">1.3.5</span> Grado medio</h1>
+<p>Si la red se representa como <span class="math">\(G(L,p)\)</span></p>
+<p><span class="math">\[\langle k \rangle = \frac{2L}{N}\]</span></p>
+<p>En otro caso:</p>
+<p><span class="math">\[ \langle k \rangle = \frac{2 \langle L \rangle }{N}  = p \cdot (N-1)\]</span></p>
+<blockquote>
+<p><strong>Conclusión</strong>: cuanto mayor sea <span class="math">\(p\)</span>, mayor es el grado medio y, por tanto, más densa se vuelve la red.</p>
+</blockquote>
+</div><div id="distribución-del-grado-de-los-nodos" class="titleslide slide section level2"><h1><span class="header-section-number">1.4</span> Distribución del grado de los nodos</h1></div><div id="distribución-del-grado-de-los-nodos-1" class="slide section level3">
+<h1><span class="header-section-number">1.4.1</span> Distribución del grado de los nodos</h1>
+<p>Podemos representarla como una binomial.</p>
+<p><span class="math">\[ p_k = B(N-1, k, p) \to p_k = \binom{N-1}{k} p^k(1-p)^{N-1-k}\]</span></p>
+<ul>
+<li>El <strong>grado medio</strong>: <span class="math">\(\langle k \rangle = (N-1) \cdot p\)</span></li>
+<li>La <strong>varianza</strong> de <span class="math">\(k\)</span> será: <span class="math">\(\sigma _k ^2 = p \cdot (1-p) \cdot (N-1)\)</span></li>
+<li>La <strong>desviación estándar</strong> de <span class="math">\(k\)</span> será: <span class="math">\(\sigma _k = [p \cdot (1-p) \cdot (N-1)]^{\frac{1}{2}}\)</span></li>
+</ul>
+</div><div id="aproximación-para-redes-reales" class="slide section level3">
+<h1><span class="header-section-number">1.4.2</span> Aproximación para redes reales</h1>
+<ul>
+<li><p>La mayoría de las redes reales son <strong>dispersas: <span class="math">\(\langle k \rangle \ll N\)</span></strong></p></li>
+<li><p>La distribución de grados de los nodos se aproxima mejor usando una <em>distribución de Poisson</em>:</p></li>
+</ul>
+<p><span class="math">\[ P(x, \lambda) \to p_x = e^{-\lambda} \cdot \frac{\lambda ^x}{x!}\]</span></p>
+</div><div id="propiedades-de-la-distribución-de-poisson" class="slide section level3">
+<h1><span class="header-section-number">1.4.3</span> Propiedades de la distribución de Poisson</h1>
+<p><span class="math">\[ P(x, \lambda) \to p_x = e^{-\lambda} \cdot \frac{\lambda ^x}{x!}\]</span></p>
+<ul>
+<li>Media de la distribución: <span class="math">\(\langle x \rangle = \lambda\)</span></li>
+<li>Varianza de la distribución: <span class="math">\(\sigma _x ^2= \lambda\)</span></li>
+<li>Desviación estándar: <span class="math">\(\sigma _x = \lambda ^{\frac{1}{2}}\)</span></li>
+</ul>
+</div><div id="comparativa-entre-la-distribución-binomial-y-la-poisson" class="slide section level3">
+<h1><span class="header-section-number">1.4.4</span> Comparativa entre la distribución binomial y la Poisson</h1>
+<div class="figure">
+<img src="../images/tema02/binomPoisson.png" alt="Representación gráfica de la distribución binomial y de la distribución de Poisson" /><p class="caption">Representación gráfica de la distribución binomial y de la distribución de Poisson</p>
+</div>
+</div><div id="comparativa-entre-la-distribución-binomial-y-la-poisson-1" class="slide section level3">
+<h1><span class="header-section-number">1.4.5</span> Comparativa entre la distribución binomial y la Poisson</h1>
+<p>Propiedades comunes:</p>
+<ul>
+<li>Tienen un pico en <span class="math">\(\langle x \rangle\)</span> de modo que si modificamos <span class="math">\(p\)</span> entonces el pico se desplaza hacia la derecha.</li>
+<li>Cuanto más densa es la distribución entonces más ancha es la distribución.</li>
+</ul>
+<p>Ventaja de la Poisson frente a la binomial</p>
+<ul>
+<li>Las principales propiedades tienen una forma más simple</li>
+<li>La Poisson no depende de <span class="math">\(N\)</span></li>
+</ul>
+</div><div id="distribución-de-grados-cuando-ngg-k" class="slide section level3">
+<h1><span class="header-section-number">1.4.6</span> Distribución de grados cuando <span class="math">\(N\gg k\)</span></h1>
+<p>Aproximamos mediante una Poisson:</p>
+<p><span class="math">\[p_k = P(k, \langle k \rangle) \to p_k = e^{-\langle k \rangle}\cdot \frac{\langle k \rangle ^k}{k!}\]</span></p>
+<ul>
+<li>Varianza de <span class="math">\(k\)</span>: <span class="math">\(\sigma _x ^2= \langle k \rangle \)</span></li>
+<li>Desviación estándar de <span class="math">\(k\)</span>: <span class="math">\(\sigma _x = \langle k \rangle ^{\frac{1}{2}}\)</span></li>
+</ul>
+</div><div id="resumen" class="slide section level3">
+<h1><span class="header-section-number">1.4.7</span> Resumen</h1>
+<div class="figure">
+<img src="../images/tema02/binomPoisson2.png" alt="Comparativa de distribuciones de grados (izq: Binomial; der: Poisson)" /><p class="caption">Comparativa de distribuciones de grados (izq: Binomial; der: Poisson)</p>
+</div>
+</div><div id="propiedades-derivables-de-la-distribución-de-grados" class="slide section level3">
+<h1><span class="header-section-number">1.4.8</span> Propiedades derivables de la distribución de grados</h1>
+<blockquote>
+<p><strong>Conclusión: La distribución de grados no depende de <span class="math">\(N\)</span></strong></p>
+<p>Dos redes con igual <span class="math">\(\langle k \rangle\)</span> y distinto tamaño <span class="math">\(N\)</span> tienen funciones de distribución de grado indistinguibles.</p>
+</blockquote>
+</div><div id="propiedades-derivables-de-la-distribución-de-grados-1" class="slide section level3">
+<h1><span class="header-section-number">1.4.9</span> Propiedades derivables de la distribución de grados</h1>
+<blockquote>
+<p><strong>Conclusión: La mayoría de los nodos tienen un grado entorno a la media (<span class="math">\(\langle k \rangle\)</span>)</strong></p>
+<p>Los nodos de mayor grado tienen solo unos pocos más que la media</p>
+</blockquote>
+</div><div id="propiedades-derivables-de-la-distribución-de-grados-2" class="slide section level3">
+<h1><span class="header-section-number">1.4.10</span> Propiedades derivables de la distribución de grados</h1>
+<blockquote>
+<p><strong>Conclusión: Las redes aleatorias no tienen <strong>concentradores o hubs</strong></strong></p>
+<p>Nodos con conectividad o grado muy alto: la probabilidad de tener nodos con grado muy alto es extremadamente baja</p>
+</blockquote>
+</div><div id="ejemplo" class="slide section level3">
+<h1><span class="header-section-number">1.4.11</span> Ejemplo</h1>
+<ul>
+<li><span class="math">\(\langle k \rangle = 1000\)</span></li>
+<li><span class="math">\(\sigma _x = 31,62\)</span></li>
+<li>Los nodos tienen entre 970 y 1030 enlaces.</li>
+<li><span class="math">\(k_{max}=1185\)</span> y <span class="math">\(k_{min}=816\)</span>.</li>
+</ul>
+<blockquote>
+<p>Más adelante veremos que este modelo de red aleatoria no se ajusta correctamente muchas de las redes reales</p>
+</blockquote>
+</div><div id="evolución-de-una-red-aleatoria" class="titleslide slide section level2"><h1><span class="header-section-number">1.5</span> Evolución de una red aleatoria</h1></div><div id="redes-reales-frente-a-redes-aleatorias" class="slide section level3">
+<h1><span class="header-section-number">1.5.1</span> Redes reales frente a redes aleatorias</h1>
+<p>Si suponemos que las redes reales siguen el modelo de red aleatoria entonces se cumplirán las propiedades vistas anteriormente. Vamos a observar los datos de una serie de redes reales tomadas del libro de Barabasi (cap. 3, pág 60):</p>
+<div class="figure">
+<img src="../images/tema02/datosRedes.png" alt="Datos sobre algunas redes reales" /><p class="caption">Datos sobre algunas redes reales</p>
+</div>
+<p>De acuerdo a estos datos todas estas redes cumplen que <span class="math">\(\langle k \rangle &gt; 1\)</span> por lo que tienen un componente gigante. Sin embargo se aprecia que en la mayoría de ellas (salvo en la red de actores) no se cumple que <span class="math">\(\langle k \rangle \sim ln N\)</span> por lo que deberíamos suponer que se encuentran en la fase supercrítica y que, por tanto, existen nodos y componentes aislados. Si las redes reales se modelan de acuerdo al modelo de Erdös-Renyi entonces deberían existir nodos desconectados del componente gigante. Como ejemplo, en el caso de la red Internet, esto supondría que existen subredes que no están conectados a la red global. Si esto fuese así, ¿cómo los alcanzaríamos?.</p>
+<p>Estamos ante la evidencia de que tal vez este modelo no es del todo válido para algunas redes reales.</p>
+</div><div id="propiedades-de-los-caminos-en-redes-aleatorias" class="titleslide slide section level2"><h1><span class="header-section-number">1.6</span> Propiedades de los caminos en redes aleatorias</h1></div><div id="coeficiente-de-agrupamiento" class="titleslide slide section level2"><h1><span class="header-section-number">1.7</span> Coeficiente de agrupamiento</h1></div><div id="resumen-1" class="titleslide slide section level2"><h1><span class="header-section-number">1.8</span> Resumen</h1></div>
+</body>
+</html>
