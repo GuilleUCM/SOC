@@ -199,14 +199,115 @@ Guillermo Jiménez Díaz (gjimenez@ucm.es)<br/>Alberto Díaz (albertodiaz@fdi.uc
 <blockquote>
 <p>Más adelante veremos que este modelo de red aleatoria no se ajusta correctamente muchas de las redes reales</p>
 </blockquote>
-</div><div id="evolución-de-una-red-aleatoria" class="titleslide slide section level2"><h1><span class="header-section-number">1.5</span> Evolución de una red aleatoria</h1></div><div id="redes-reales-frente-a-redes-aleatorias" class="slide section level3">
-<h1><span class="header-section-number">1.5.1</span> Redes reales frente a redes aleatorias</h1>
-<p>Si suponemos que las redes reales siguen el modelo de red aleatoria entonces se cumplirán las propiedades vistas anteriormente. Vamos a observar los datos de una serie de redes reales tomadas del libro de Barabasi (cap. 3, pág 60):</p>
+</div><div id="evolución-de-una-red-aleatoria" class="titleslide slide section level2"><h1><span class="header-section-number">1.5</span> Evolución de una red aleatoria</h1></div><div id="evolución" class="slide section level3">
+<h1><span class="header-section-number">1.5.1</span> Evolución</h1>
+<ul>
+<li>La creación de una red aleatoria parte de un conjunto de nodos aislados que se van uniendo aleatoriamente.</li>
+<li><p>Una simulación del algoritmo de creación permite ver:</p>
+<ul>
+<li>cómo varía el grado medio de la red</li>
+<li>cómo aparece un componente gigante cuyo tamaño va variando a medida que se modifica dicho grado medio.</li>
+</ul></li>
+</ul>
+</div><div id="evolución-1" class="slide section level3">
+<h1><span class="header-section-number">1.5.2</span> Evolución</h1>
+<div class="figure">
+<img src="../images/tema02/evolucion.png" alt="Evolución del tamaño del componente gigante (\frac{N_G}{N}) con respecto al grado medio de la red \langle k \rangle" /><p class="caption">Evolución del tamaño del componente gigante (<span class="math">\(\frac{N_G}{N}\)</span>) con respecto al grado medio de la red <span class="math">\(\langle k \rangle\)</span></p>
+</div>
+</div><div id="evolución-2" class="slide section level3">
+<h1><span class="header-section-number">1.5.3</span> Evolución</h1>
+<ul>
+<li>Partimos de nodos aislados</li>
+<li>A partir de <span class="math">\(\langle k \rangle = 1\)</span> el valor de <span class="math">\(\frac{N_G}{N}\)</span> comienza a crecer rápidamente</li>
+<li>Comienza la aparición de un componente gigante.</li>
+<li>A partir de otro punto desaparecen los nodos aislados</li>
+</ul>
+</div><div id="evolución-3" class="slide section level3">
+<h1><span class="header-section-number">1.5.4</span> Evolución</h1>
+<p>Con respecto a la probabilidad <span class="math">\(p\)</span>:</p>
+<ul>
+<li>Si <span class="math">\(p=0\)</span> entonces <span class="math">\(\langle k \rangle = 0\)</span>, <span class="math">\(N_G = 1\)</span> y <span class="math">\(\frac{N_G}{N} \sim 0\)</span>.</li>
+<li>Si <span class="math">\(p=1\)</span> entonces <span class="math">\(\langle k \rangle = N-1\)</span>, <span class="math">\(N_G = N\)</span> y <span class="math">\(\frac{N_G}{N} = 1\)</span>.</li>
+<li>La aparición del componente gigante aparece cuando <span class="math">\(\langle k \rangle=1\)</span></li>
+<li>Cuantos más nodos <span class="math">\(N\)</span> tenga la red, menor <span class="math">\(p\)</span> es necesario para crear un componente gigante.</li>
+</ul>
+</div><div id="etapas" class="slide section level3">
+<h1><span class="header-section-number">1.5.5</span> Etapas</h1>
+<ul>
+<li>Etapa o regimen subcrítico</li>
+<li>Regimen o punto crítico</li>
+<li>Etapa o regimen supercrítico</li>
+<li>Etapa o regimen conectado</li>
+</ul>
+</div><div id="etapa-subcrítica" class="slide section level3">
+<h1><span class="header-section-number">1.5.6</span> Etapa subcrítica</h1>
+<ul>
+<li><span class="math">\(0 &lt; \langle k \rangle &lt; 1 \to p &lt; \frac{1}{N}\)</span></li>
+<li>Durante esta etapa se crean pares de enlaces</li>
+<li>Según incrementa el grado medio se crean pequeños grupos (no componentes gigantes ya que <span class="math">\(\frac{N_G}{N} \sim 0\)</span>)</li>
+<li>El tamaño del grupo más grande es <span class="math">\(N_G \sim ln N\)</span>.</li>
+</ul>
+</div><div id="punto-crítico" class="slide section level3">
+<h1><span class="header-section-number">1.5.7</span> Punto crítico</h1>
+<ul>
+<li><span class="math">\(\langle k \rangle = 1 \to p= \frac{1}{N}\)</span>.</li>
+<li>Hay un gran número de componentes de pequeño tamaño</li>
+<li>Apaerce un componente gigante</li>
+<li>El tamaño del componente más grande es <span class="math">\(N_G \sim N^{\frac{2}{3}}\)</span>.</li>
+</ul>
+</div><div id="etapa-supercrítica" class="slide section level3">
+<h1><span class="header-section-number">1.5.8</span> Etapa supercrítica</h1>
+<ul>
+<li><span class="math">\(\langle k \rangle &gt; 1 \to p &gt; \frac{1}{N}\)</span>.</li>
+<li>El componente gigante crece según nos alejamos del punto crítico.</li>
+<li><span class="math">\(\frac{N_G}{N} \sim \langle k \rangle -1 \to N_G \sim (p-p_c)\cdot N\)</span>, donde <span class="math">\(p_c = \frac{1}{N}\)</span>.</li>
+<li>Siguen existiendo componentes aislados que conviven con el componente gigante.</li>
+</ul>
+</div><div id="etapa-conectada" class="slide section level3">
+<h1><span class="header-section-number">1.5.9</span> Etapa conectada</h1>
+<ul>
+<li><span class="math">\(\langle k \rangle \ge ln N \to p \ge \frac{ln N}{N}\)</span>.</li>
+<li>Cuando <span class="math">\(p\)</span> es lo suficientemente grande el componente gigante absorbe todos los nodos y componentes de la red</li>
+<li><span class="math">\(N_G \sim N\)</span>. En este momento toda la red es conexa.</li>
+<li>La rede sigue siendo relativamente dispersa</li>
+</ul>
+</div><div id="resultados" class="slide section level3">
+<h1><span class="header-section-number">1.5.10</span> Resultados</h1>
+<blockquote>
+<p><strong>Conclusión:</strong> Si <span class="math">\(\langle k \rangle &gt; 1\)</span> entonces la red puede comenzar a considerarse como tal (existe un componente gigante)</p>
+</blockquote>
+<blockquote>
+<p><strong>Conclusión:</strong> Si <span class="math">\(\langle k \rangle \sim ln N\)</span> entonces todos los componentes son absorbidos, creando una red global conectada.</p>
+</blockquote>
+</div><div id="redes-reales-frente-a-redes-aleatorias" class="slide section level3">
+<h1><span class="header-section-number">1.5.11</span> Redes reales frente a redes aleatorias</h1>
+<p>Si suponemos que las redes reales siguen el modelo de red aleatoria entonces se cumplirán las propiedades vistas anteriormente.</p>
 <div class="figure">
 <img src="../images/tema02/datosRedes.png" alt="Datos sobre algunas redes reales" /><p class="caption">Datos sobre algunas redes reales</p>
 </div>
-<p>De acuerdo a estos datos todas estas redes cumplen que <span class="math">\(\langle k \rangle &gt; 1\)</span> por lo que tienen un componente gigante. Sin embargo se aprecia que en la mayoría de ellas (salvo en la red de actores) no se cumple que <span class="math">\(\langle k \rangle \sim ln N\)</span> por lo que deberíamos suponer que se encuentran en la fase supercrítica y que, por tanto, existen nodos y componentes aislados. Si las redes reales se modelan de acuerdo al modelo de Erdös-Renyi entonces deberían existir nodos desconectados del componente gigante. Como ejemplo, en el caso de la red Internet, esto supondría que existen subredes que no están conectados a la red global. Si esto fuese así, ¿cómo los alcanzaríamos?.</p>
+</div><div id="redes-reales-frente-a-redes-aleatorias-1" class="slide section level3">
+<h1><span class="header-section-number">1.5.12</span> Redes reales frente a redes aleatorias</h1>
+<ul>
+<li>todas estas redes cumplen que <span class="math">\(\langle k \rangle &gt; 1\)</span> por lo que tienen un componente gigante.</li>
+<li><p>No se cumple que <span class="math">\(\langle k \rangle \sim ln N\)</span></p>
+<ul>
+<li>Deberíamos suponer que se encuentran en la fase supercrítica</li>
+<li>Existen nodos y componentes aislados.</li>
+</ul></li>
+</ul>
+<blockquote>
+<p>Si las redes reales se modelan de acuerdo al modelo de Erdös-Renyi entonces deberían existir nodos desconectados del componente gigante.</p>
+</blockquote>
+</div><div id="redes-reales-frente-a-redes-aleatorias-2" class="slide section level3">
+<h1><span class="header-section-number">1.5.13</span> Redes reales frente a redes aleatorias</h1>
+<blockquote>
+<p><strong>Internet</strong></p>
+<p>Existen subredes que no están conectados a la red global.</p>
+<p>Si esto fuese así, ¿cómo los alcanzaríamos?.</p>
+</blockquote>
+<blockquote>
 <p>Estamos ante la evidencia de que tal vez este modelo no es del todo válido para algunas redes reales.</p>
+</blockquote>
 </div><div id="propiedades-de-los-caminos-en-redes-aleatorias" class="titleslide slide section level2"><h1><span class="header-section-number">1.6</span> Propiedades de los caminos en redes aleatorias</h1></div><div id="coeficiente-de-agrupamiento" class="titleslide slide section level2"><h1><span class="header-section-number">1.7</span> Coeficiente de agrupamiento</h1></div><div id="resumen-1" class="titleslide slide section level2"><h1><span class="header-section-number">1.8</span> Resumen</h1></div>
 </body>
 </html>

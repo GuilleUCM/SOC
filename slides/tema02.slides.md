@@ -182,50 +182,100 @@ $$p_k = P(k, \langle k \rangle) \to p_k = e^{-\langle k \rangle}\cdot \frac{\lan
 
 ## Evolución de una red aleatoria
 
-La creación de una red aleatoria parte de un conjunto de nodos aislados que se van uniendo aleatoriamente. Si simulamos el algoritmo de creación podemos ver cómo varía el grado medio de la red y cómo aparece un componente gigante cuyo tamaño va variando a medida que se modifica dicho grado medio. En la siguiente figura podemos ver la evolución del tamaño del componente gigante con respecto al grado medio de la red ($\langle k \rangle$). En lugar de observar solo el número de nodos del componente ($N_G$) vamos a tener en cuenta el porcentaje del mismo con respecto al número total de nodos de la red ($\frac{N_G}{N}$).
+### Evolución
 
-![Evolución del tamaño del componente gigante con respecto al grado medio de la red $\langle k \rangle$](../images/tema02/evolucion.png)
+* La creación de una red aleatoria parte de un conjunto de nodos aislados que se van uniendo aleatoriamente. 
+* Una simulación del algoritmo de creación permite ver:
 
-Se puede ver que partimos de nodos aislados y que a partir de $\langle k \rangle = 1$ el valor de $\frac{N_G}{N}$ comienza a crecer rápidamente, lo que implica que comienza la aparición de un componente gigante.
+    * cómo varía el grado medio de la red
+    * cómo aparece un componente gigante cuyo tamaño va variando a medida que se modifica dicho grado medio.
+     
+### Evolución
 
-Con respecto a la probabilidad $p$ podemos sacar las siguientes conclusiones:
+![Evolución del tamaño del componente gigante ($\frac{N_G}{N}$) con respecto al grado medio de la red $\langle k \rangle$](../images/tema02/evolucion.png)
+
+### Evolución
+
+* Partimos de nodos aislados
+* A partir de $\langle k \rangle = 1$ el valor de $\frac{N_G}{N}$ comienza a crecer rápidamente
+* Comienza la aparición de un componente gigante.
+* A partir de otro punto desaparecen los nodos aislados
+
+### Evolución
+
+Con respecto a la probabilidad $p$:
 
 * Si $p=0$ entonces $\langle k \rangle = 0$, $N_G = 1$ y $\frac{N_G}{N} \sim 0$.
 * Si $p=1$ entonces $\langle k \rangle = N-1$, $N_G = N$ y $\frac{N_G}{N} = 1$.
-* Cuantos más nodos tenga la red $N$, menor $p$ es necesario para crear un componente gigante.
+* La aparición del componente gigante aparece cuando $\langle k \rangle=1$
+* Cuantos más nodos $N$ tenga la red, menor $p$ es necesario para crear un componente gigante.
 
-Observando la evolución de la red podemos diferenciar 4 etapas con sus características propias:
+### Etapas
 
-* **Etapa subcrítica**
+* Etapa o regimen subcrítico
+* Regimen o punto crítico
+* Etapa o regimen supercrítico
+* Etapa o regimen conectado
 
-    Se produce cuando $0 < \langle k \rangle < 1 \to p < \frac{1}{N}$. Durante esta etapa se crean pares de enlaces. Según incrementa el grado medio algunos de estos pares crean pequeños grupos, tan pequeños que $\frac{N_G}{N} \sim 0$. En general, la mayoría de los grupos pequeños tienen un tamaño parecido (no hay un componente gigante definido). El tamaño del componente más grande es $N_G \sim ln N$.
+### Etapa subcrítica
 
-* **Punto crítico**
+* $0 < \langle k \rangle < 1 \to p < \frac{1}{N}$
+* Durante esta etapa se crean pares de enlaces
+* Según incrementa el grado medio se crean pequeños grupos (no componentes gigantes ya que $\frac{N_G}{N} \sim 0$)
+* El tamaño del grupo más grande es $N_G \sim ln N$.
 
-    Se produce cuando $\langle k \rangle = 1 \to p= \frac{1}{N}$. En este momento existe un gran número de componentes de pequeño tamaño cuya distribución sigue una función de ley potencial o _power-law_, las cuales se caracterizan por tener una larga cola. En este caso, el tamaño del componente más grande es $N_G \sim N^{\frac{2}{3}}$.
+### Punto crítico
 
-* **Etapa supercrítica**
+* $\langle k \rangle = 1 \to p= \frac{1}{N}$.
+* Hay un gran número de componentes de pequeño tamaño
+* Apaerce un componente gigante
+* El tamaño del componente más grande es $N_G \sim N^{\frac{2}{3}}$.
 
-    Se produce cuando $\langle k \rangle > 1 \to p > \frac{1}{N}$. Cerca de este punto aparece el componente gigante, cuyo tamaño es  $\frac{N_G}{N} \sim \langle k \rangle -1 \to N_G \sim (p-p_c)\cdot N$, donde $p_c = \frac{1}{N}$. En este momento se puede considerar realmente que el componente gigante tiene una proporción significativa de los nodos de la red. Siguen existiendo componentes aislados que conviven con el componente gigante.
+### Etapa supercrítica
 
-* **Etapa conectada**
+* $\langle k \rangle > 1 \to p > \frac{1}{N}$.
+* El componente gigante crece según nos alejamos del punto crítico.
+* $\frac{N_G}{N} \sim \langle k \rangle -1 \to N_G \sim (p-p_c)\cdot N$, donde $p_c = \frac{1}{N}$.
+* Siguen existiendo componentes aislados que conviven con el componente gigante.
 
-    Se produce cuando $\langle k \rangle \ge ln N \to p \ge \frac{ln N}{N}$. Cuando $p$ es lo suficientemente grande el componente gigante absorbe todos los nodos y componentes de la red, lo que implica que $N_G \sim N$. En este momento toda la red es conexa.
+### Etapa conectada
 
-Como resultados importantes podemos destacar que:
+* $\langle k \rangle \ge ln N \to p \ge \frac{ln N}{N}$.
+* Cuando $p$ es lo suficientemente grande el componente gigante absorbe todos los nodos y componentes de la red
+* $N_G \sim N$. En este momento toda la red es conexa.
+* La rede sigue siendo relativamente dispersa
 
-* Si $\langle k \rangle > 1$ entonces la red puede comenzar a considerarse como tal (existe un componente gigante)
-* Si $\langle k \rangle \sim ln N$ entonces todos los componentes son absorbidos, creando una red global conectada.
+### Resultados
+
+> __Conclusión:__ Si $\langle k \rangle > 1$ entonces la red puede comenzar a considerarse como tal (existe un componente gigante)
+
+> __Conclusión:__ Si $\langle k \rangle \sim ln N$ entonces todos los componentes son absorbidos, creando una red global conectada.
 
 ### Redes reales frente a redes aleatorias
 
-Si suponemos que las redes reales siguen el modelo de red aleatoria entonces se cumplirán las propiedades vistas anteriormente. Vamos a observar los datos de una serie de redes reales tomadas del libro de Barabasi (cap. 3, pág 60):
+Si suponemos que las redes reales siguen el modelo de red aleatoria entonces se cumplirán las propiedades vistas anteriormente. 
 
 ![Datos sobre algunas redes reales](../images/tema02/datosRedes.png)
 
-De acuerdo a estos datos todas estas redes cumplen que $\langle k \rangle > 1$ por lo que tienen un componente gigante. Sin embargo se aprecia que en la mayoría de ellas (salvo en la red de actores) no se cumple que $\langle k \rangle \sim ln N$ por lo que deberíamos suponer que se encuentran en la fase supercrítica y que, por tanto, existen nodos y componentes aislados. Si las redes reales se modelan de acuerdo al modelo de Erdös-Renyi entonces deberían existir nodos desconectados del componente gigante. Como ejemplo, en el caso de la red Internet, esto supondría que existen subredes que no están conectados a la red global. Si esto fuese así, ¿cómo los alcanzaríamos?. 
+### Redes reales frente a redes aleatorias
 
-Estamos ante la evidencia de que tal vez este modelo no es del todo válido para algunas redes reales.
+* todas estas redes cumplen que $\langle k \rangle > 1$ por lo que tienen un componente gigante.
+* No se cumple que $\langle k \rangle \sim ln N$
+
+    * Deberíamos suponer que se encuentran en la fase supercrítica
+    * Existen nodos y componentes aislados.
+
+> Si las redes reales se modelan de acuerdo al modelo de Erdös-Renyi entonces deberían existir nodos desconectados del componente gigante.
+
+### Redes reales frente a redes aleatorias
+
+> **Internet**
+> 
+> Existen subredes que no están conectados a la red global.
+> 
+> Si esto fuese así, ¿cómo los alcanzaríamos?. 
+
+> Estamos ante la evidencia de que tal vez este modelo no es del todo válido para algunas redes reales.
 
 ## Propiedades de los caminos en redes aleatorias
 

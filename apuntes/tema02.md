@@ -131,7 +131,8 @@ Con respecto a la probabilidad $p$ podemos sacar las siguientes conclusiones:
 
 * Si $p=0$ entonces $\langle k \rangle = 0$, $N_G = 1$ y $\frac{N_G}{N} \sim 0$.
 * Si $p=1$ entonces $\langle k \rangle = N-1$, $N_G = N$ y $\frac{N_G}{N} = 1$.
-* Cuantos más nodos tenga la red $N$, menor $p$ es necesario para crear un componente gigante.
+* La aparición del componente gigante aparece cuando $\langle k \rangle=1$
+* De lo anterior se deriva que cuantos más nodos tenga la red $N$, menor $p$ es necesario para crear un componente gigante.
 
 Observando la evolución de la red podemos diferenciar 4 etapas con sus características propias:
 
@@ -141,11 +142,11 @@ Observando la evolución de la red podemos diferenciar 4 etapas con sus caracter
 
 * **Punto crítico**
 
-    Se produce cuando $\langle k \rangle = 1 \to p= \frac{1}{N}$. En este momento existe un gran número de componentes de pequeño tamaño cuya distribución sigue una función de ley potencial o _power-law_, las cuales se caracterizan por tener una larga cola. En este caso, el tamaño del componente más grande es $N_G \sim N^{\frac{2}{3}}$.
+    Se produce cuando $\langle k \rangle = 1 \to p= \frac{1}{N}$. En este momento hay un gran número de componentes de pequeño tamaño cuya distribución sigue una función de ley potencial o _power-law_, las cuales se caracterizan por tener una larga cola. En este momento aparece el componente gigante, cuyo tamaño es $N_G \sim N^{\frac{2}{3}}$.
 
 * **Etapa supercrítica**
 
-    Se produce cuando $\langle k \rangle > 1 \to p > \frac{1}{N}$. Cerca de este punto aparece el componente gigante, cuyo tamaño es  $\frac{N_G}{N} \sim \langle k \rangle -1 \to N_G \sim (p-p_c)\cdot N$, donde $p_c = \frac{1}{N}$. En este momento se puede considerar realmente que el componente gigante tiene una proporción significativa de los nodos de la red. Siguen existiendo componentes aislados que conviven con el componente gigante.
+    Se produce cuando $\langle k \rangle > 1 \to p > \frac{1}{N}$. El componente gigante crece según nos alejamos del punto crítico. Su tamaño es $\frac{N_G}{N} \sim \langle k \rangle -1 \to N_G \sim (p-p_c)\cdot N$, donde $p_c = \frac{1}{N}$. En este momento se puede considerar realmente que el componente gigante tiene una proporción significativa de los nodos de la red. Siguen existiendo componentes aislados que conviven con el componente gigante.
 
 * **Etapa conectada**
 
