@@ -269,4 +269,4 @@ Lo que sí que han demostrado que cumplen las redes reales de acuerdo a lo predi
 
 > En un sistema complejo hay un camino de longitud _corta_  entre cualquier par de nodos de la red que lo modela.
 
-![Cuadro resumen (extraído de _Network Science_, pp. 70)](../images/tema02/resumen.png)
+![Cuadro resumen (extraído de _Network Science_, pp. 70)](../images/tema02/resumen2.png)
