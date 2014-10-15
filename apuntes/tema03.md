@@ -25,10 +25,30 @@ Aunque a primera vista parecía que este mapa cumplía esa aleatoriedad predicha
 
 ![Mapa de la WWW: se puede ver la existencia de hubs.](../images/tema03/www.png)
 
+El análisis de los datos de la WWW muestra que la distribución de grados no se asemeja a la distribución de Poisson que predice el modelo de redes aleatorias sino que dicha distribución se asemeja a una **ley potencial** o _power law_. Esta distribución se caracteriza por tener una cola mucho más ancha que una exponencial. La diferencia entre una y otra es mucho más clara si las representamos en una escala logarítmica.
 
+![Comparativa de una función exponencial (negro) frente a funciones de ley potencial (azul y rojo). A la izquierda se presenta en escala lineal mientras que a la derecha se ve en escala logarítmica](../images/tema03/powerlawExp2.png)
 
-Lo que sí que han demostrado que cumplen las redes reales de acuerdo a lo predicho por el modelo de red aleatoria es la **propiedad de los pequeños mundos**:
+De acuerdo a esto, la distribución de grados en la WWW se puede representar como:
 
-> En un sistema complejo hay un camino de longitud _corta_  entre cualquier par de nodos de la red que lo modela.
+$$p_k \sim k^{-\gamma} \to log\: p_k \sim -\gamma \cdot log\: k$$
+
+Como la WWW es una red dirigida podemos distinguir entre la distribución de grados de entrada y la distribución de grados de salida:
+
+$$p_{k_{in}} \sim k^{-\gamma_{in}} \;\;\; p_{k_{out}} \sim k^{-\gamma_{out}}$$
+
+De acuerdo a los datos usados por Barabasi y Albert se pudo estimar que $\gamma_{in} \approx 2,1$ mientras que $\gamma_{in} \approx 2,45$.
+
+Lo realmente interesante de este estudio no fueron los datos resultantes obtenidos sino la gran diferencia entre la distribución esperada (una Poisson) y la distribución final obtenida (una ley potencial). En la siguiente figura se observa claramente estas diferencias obtenidas:
+
+![Distribución de grados de entrada y de salida de la WWW frente a la Poisson (en escala logarítmica)](../images/tema03/distkinkot.png)
+
+Esto dio a entender que esta red real no se comportaba de acuerdo al modelo de red aleatoria sino que era "otro tipo de red"
+
+## Redes libres de escala
+
+Finalmente, podemos ver que las redes reales cumplen otra nueva ley que es la **propiedad libre de escala**:
+
+> Muchas redes reales presentan distribuciones de cola ancha. Esto implica que nodos de grado bajo conviven con nodos con un grado excepcionalmente grande: los hubs.
 
 ![Cuadro resumen (extraído de _Network Science_, pp. 70)](../images/tema02/resumen2.png)

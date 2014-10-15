@@ -22,8 +22,8 @@ Las más populares pueden ser Gephi, Pajek, UCINet, NodeXL y varias bibliotecas 
 
 En particular a lo largo de la asignatura vamos a usar:
 
-* Gephi (visualización y métricas básicas): http://gephi.org/
-* NetLogo (modelado de procesos dinámicos en redes): http://ccl.northwestern.edu/netlogo/
+* Gephi (visualización y métricas básicas): <http://gephi.org/>
+* NetLogo (modelado de procesos dinámicos en redes): <http://ccl.northwestern.edu/netlogo/>
 
 
 ## Primera parte: tutorial Gephi
@@ -32,7 +32,7 @@ En particular a lo largo de la asignatura vamos a usar:
 
 * Cargar Gephi
 * Abrir dining.gephi
-* 26 chicas. Representa la primera y segunda elección de con quien prefieren sentarse en la cena cada una de las 26 chicas.
+* 26 chicas. Representa la primera y segunda elección de con quien prefieren sentarse en la cena.
 * Context: Número de nodos y número de enlaces. Grafo dirigido.
 * Con Random layout es dificil de ver.
 * Seleccionar nodo con más conexiones: aparece en ventana Edit?.
