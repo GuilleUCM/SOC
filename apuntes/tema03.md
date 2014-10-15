@@ -47,6 +47,46 @@ Esto dio a entender que esta red real no se comportaba de acuerdo al modelo de r
 
 ## Redes libres de escala
 
+Una **red libre de escala** es una red cuya distribución de grados sigue una ley potencial. Esta distribución se caracteriza por tener una larga cola. Para esta distribución se pueden emplear dos formulaciones distintas aunque las propiedades de la red son independientes del formalismo empleado.
+
+### Formalismo discreto
+
+En este caso consideramos que el grado de un nodo es siempre un entero positivo ($K=0,1,2\dots$). De acuerdo a esto, la probabilidad de que un nodo aleatorio tenga grado $k$ se puede expresar como:
+
+$$p_k = C \cdot k^{-\gamma}$$
+
+La constante C se puede calcular teniendo en cuenta que $\sum_{k=1}^{\infty}{p_k} = 1$:
+
+$$C = \frac{1}{\sum_{k=1}^{\infty}{k^{-\gamma}}} = \frac{1}{\varsigma(\gamma)}$$
+
+donde $\varsigma(\gamma)$ es la función Zeta de Riemann.
+
+Para valores de $k>0$ se cumple que la función de distribución es:
+
+$$p_k = \frac{k^{-\gamma}}{\varsigma(\gamma)}$$
+
+Los nodos aislado ($k=0$) tienen que tratarse de manera independiente.
+
+### Formalismo contínuo
+
+En este formalismo consideramos que $k$ puede tomar cualquier valor real positivo. En este caso:
+
+$$p(k) = C \cdot k^{-\gamma}$$
+
+La constante C se puede calcular teniendo en cuenta que $\int_{k_{min}}^{\infty}{p(k)dk} = 1$:
+
+$$C = \frac{1}{\int_{k_{min}}^{\infty}{k^{-\gamma}dk}} = (\gamma -1)\cdot k_{min}^{\gamma -1}$$
+
+De acuerdo a esto, la función de distribución según el formalismo continuo es:
+
+$$p(k)= (\gamma -1)\cdot k_{min}^{\gamma -1}\cdot k^{\gamma -1}$$
+
+Donde $k_{min}$ es el menor grado de la red (o función de distribución). En este caso, la función de distribución se ha de interpretar como la probabilidad de que un nodo tenga un grado entre dos valores $k_1$ y $k_2$:
+
+$$\int_{k_1}^{k_2}{p(k)dk}$$
+
+El primer informe relacionado con una función de ley potencial fue realizado por Pareto (conocido por la ley 80/20), donde destacaba que durante el siglo XIX, el 80% del dinero en Italia estaba en manos de solo un 20% de la población.
+
 Finalmente, podemos ver que las redes reales cumplen otra nueva ley que es la **propiedad libre de escala**:
 
 > Muchas redes reales presentan distribuciones de cola ancha. Esto implica que nodos de grado bajo conviven con nodos con un grado excepcionalmente grande: los hubs.
