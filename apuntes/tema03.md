@@ -7,7 +7,9 @@
 
 Estos son los apuntes de la asignatura Análisis de Redes Sociales, impartida en la Facultad de Informática de la Universidad Complutense de Madrid por los profesores Guillermo Jiménez Díaz y Alberto Díaz, del Departamento de Ingeniería del Software e Inteligencia Artificial.
 
-Este material ha sido desarrollado a partir de distintas fuertes, destacando como referencia principal el libro _Network Science_ de Laszlo Barabasi, el material de la asignatura _Social Network Analysis_, impartido por Lada Adamic a través de Coursera, y las transparencias de la asignatura Redes y Sistemas Complejos, creadas por Oscar Cordón García de la Universidad de Granada.
+Este material ha sido desarrollado a partir de distintas fuertes, destacando como referencia principal el libro _Network Science_ de Laszlo Barabasi, el material de la asignatura _Social Network Analysis_, impartido por Lada Adamic a través de Coursera, y las transparencias de la asignatura Redes y Sistemas Complejos, creadas por Óscar Cordón García de la Universidad de Granada.
+
+Este obra está bajo una [licencia de Creative Commons Reconocimiento-NoComercial-CompartirIgual 4.0 Internacional](http://creativecommons.org/licenses/by-nc-sa/4.0/).
 
 \setcounter{section}{3}
 
@@ -268,6 +270,13 @@ Desde el punto de vista de la robustez, las redes libres de escala son mucho má
 Desde el punto de vista de la propagación de virus nos encontramos que en una red libre de escala (como puede ser la WWW) es prácticamente imposible erradicar un virus ya que las distancias cortas permiten la rápida propagación del mismo, evitando el aislamiento. Esto se puede utilizar en el sentido opuesto ya que, si inmunizamos o vacunamos a los hubs frente a un virus entonces estaremos reduciendo su propagación. Por ejemplo, los profesores de esta Universidad tenemos campañas de vacunación contra la gripe (nos vacunan gratuitamente), no porque "seamos más importantes" y quieran que no nos contagiemos sino porque somos hubs en la transmisión de la enfermedad (cada día estamos conectados a varias decenas de alumnos).
 
 ## Resumen de las redes libres de escala
+
+La distribución de grados $p_k$ nos ha ayudado a distinguir entre dos tipos de redes:
+
+* Las redes "acotadas" son las que su distribución de grados decrece exponencialmente (o más rápido) a medida que crece $k$. Estas funciones de distribución suelen ser la exponencial, la gaussiana o la de Poisson, entre otras. Las redes aleatorias son un ejemplo de estas redes. Carecen de hubs y de nodos con grado muy bajo por lo que todos los nodos tienen un grado más o menos similar. Algunos ejemplos de redes reales que se comportan de esta forma son las redes de carreteras, las redes eléctricas y las redes atómicas, entre otras.
+* Las redes "no acotadas" o libres de escala son aquellas cuya distribución de grados sigue una ley potencial. en estas redes existen (y se espera que existan) nodos de grado muy alto (hubs), conviviendo con nodos de grado varios órdenes de magnitud menor. el grado de los nodos no está acotado por lo que no se puede expresar con las funciones vistas anteriormente. Algunos ejemplos de redes reales que se comporten de esta forma son la WWW, las redes de interacción de proteínas, las redes de investigación, etc.
+ 
+Como hemos podido ver, muchas de las redes reales presentan la propiedad de ser libres de escala. Los hubs son posibles en estas redes y afectan significativamente a las propiedades de la red. En particular, estas redes pueden presentar la propiedad de los mundos ultra-pequeños, ya que reducen las distancias entre nodos aún más que en las redes aleatorias.
 
 Finalmente, podemos ver que las redes reales cumplen otra nueva ley que es la **propiedad libre de escala**:
 

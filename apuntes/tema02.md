@@ -9,6 +9,8 @@ Estos son los apuntes de la asignatura Análisis de Redes Sociales, impartida en
 
 Este material ha sido desarrollado a partir de distintas fuertes, destacando como referencia principal el libro _Network Science_ de Laszlo Barabasi, el material de la asignatura _Social Network Analysis_, impartido por Lada Adamic a través de Coursera, y las transparencias de la asignatura Redes y Sistemas Complejos, creadas por Óscar Cordón García de la Universidad de Granada.
 
+Este obra está bajo una [licencia de Creative Commons Reconocimiento-NoComercial-CompartirIgual 4.0 Internacional](http://creativecommons.org/licenses/by-nc-sa/4.0/).
+
 \setcounter{section}{2}
 
 # Tema 2: Modelos de redes: El modelo de red aleatoria {-}
