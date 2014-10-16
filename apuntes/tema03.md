@@ -122,9 +122,40 @@ Podemos ver gráficamente esta dependencia:
 
 ![Relación entre el grado del mayor hub ($k_{max}$) y el tamaño de la red ($N$)](../images/tema03/kmax-n.png)
 
-A modo de resumen podemos decir que las redes aleatorias están "acotadas", en el sentido de que todos sus nodos tienen un grado similar y la existencia de hubs es muy improbable. En cambio, las redes libres de escala no están "acotadas" (son libres, de ahí su nombre) y se espera que existan hubs junto con nodos de grado muy pequeño. Además hemos visto que el tamaño de la red influye en el tamaño de los hubs. Más gráficamente podemos comparar la red de carreteras de EEUU (una red aleatoria) frente a la red de tráfico aéreo del mismo país (red libre de escala). Como veremos más adelante, el tipo de red afecta a las distancias y a la forma en la que se navega por ellas.
+A modo de resumen podemos decir que las redes aleatorias están "acotadas", en el sentido de que todos sus nodos tienen un grado similar y la existencia de hubs es muy improbable. En cambio, las redes libres de escala no están "acotadas" (son libres, de ahí su nombre como veremos en la próxima sección) y se espera que existan hubs junto con nodos de grado muy pequeño. Además hemos visto que el tamaño de la red influye en el tamaño de los hubs. Más gráficamente podemos comparar la red de carreteras de EEUU (una red aleatoria) frente a la red de tráfico aéreo del mismo país (red libre de escala). Como veremos más adelante, el tipo de red afecta a las distancias y a la forma en la que se navega por ellas.
 
 ![Red de carreteras de EEUU (una red aleatoria) frente a la red de tráfico aéreo del mismo país (red libre de escala)](../images/tema03/transporte.png)
+
+### Origen del término
+
+El término "libre de escala" está relacionado con los momentos de la distribución de probabilidad de grados.
+
+$$\langle k^n \rangle = \sum_{k_{min}}^{\infty}{k^np_k}=\int_{k_{min}}^{\infty}{k^np(k)dk}$$
+
+Recordemos que:
+
+* n=1: El primer momento es el grado medio ($\langle k \rangle$).
+* n=2: el segundo momento es la varianza ($\sigma^2 = \langle k^2 \rangle - \langle k \rangle^2$), la cual mide la dispersión de los grados. su raíz cuadrada es la desviación típica ($\sigma$)
+* n=3: el tercer momento $\langle k^3 \rangle$ determina la asimetría, es decir, cómo de simétrica es p_k alrededor de la  media (si la función es simétrica entonces $\langle k^3 \rangle=0$)
+
+En una red libre de escala el momento n-ésimo es:
+
+$$\langle k^n \rangle = \int_{k_{min}}^{k_{max}}{k^np(k)dk} = C \frac{k_{max}^{n-\gamma+1} - k_{min}^{n-\gamma+1}}{n-\gamma + 1}$$
+
+Como ya hemos deducido anteriormente, $k_{max}$ crece con el tamaño de la red por lo que analizaremos su comportamiento en el límite $k_{max} \to \infty$:
+
+$$\langle k^n \rangle = \frac{(\gamma -1)}{(n-\gamma- 1)} k_{min}^{\gamma-1} \Big[ k^{n-\gamma+1}\Big]_{k_{min}}^\infty$$
+
+De aquí se deduce que:
+
+* Si $n-\gamma+1 \leq 0$ entonces el momento está acotado, por lo que todos los momentos en los que $n \leq \gamma+1$ son finitos.
+* Si $n-\gamma+1 > 0$ entonces el momento tiende a infinito según la red crece, por lo que todos los momentos en los que $n > \gamma+1$ divergen.
+
+El uso de los datos de distintas redes reales muestra que el exponente del grado $\gamma$ tiene un valor entre 2 y 3. Según lo anterior se deduce que el primer momento ($\langle k \rangle$) es finito pero que la varianza (segundo momento o $\langle k^2 \rangle$) y el resto de momentos tienden a infinito. Si esto es así entonces resulta que los valores medios no tienen realmente sentido ya que hay fluctuaciones demasiado grandes. La escala interna (la media) no tiene sentido por lo que es una red "libre de escala".
+
+![Datos de redes reales. Podemos ver que la mayoría de los exponentes $\gamma$ tienen un valor entre 2 y 3](../images/tema03/datosRedesReales.png)
+
+Más adelante estudiaremos más en detalle la implicación del valor del exponente $\gamma$.
 
 ## Universalidad en las redes libres de escala
 
