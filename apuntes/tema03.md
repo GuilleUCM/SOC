@@ -214,6 +214,27 @@ Una vez que hemos representado la distribución necesitamos comprobar que realme
 
 Una forma sencilla de aproximar el valor del exponente es buscando la línea recta que se ajusta al gráfico logarítmico. Esto puede introducir cierto error por lo que se pueden usar otras técnicas más precisas que quedan fuera de los objetivos de este curso (pero que se pueden consultar en el anexo 4.C del capítulo 4 del libro de Barabasi).
 
+## Propiedad de los mundos ultra-pequeños
+
+La existencia de hubs en las redes libres de escala modifica las distancias dentro de la red con respecto al modelo aleatorio. Intuitivamente, y volviendo al ejemplo del transporte, podemos ver que si vamos por carretera de una ciudad a otra en EEUU pasaremos por muchas ciudades (red aleatoria) mientras que la red aeroportuaria crea hubs (como el aeropuerto de Chicago) que reducen el número de saltos que tenemos que dar entre aeropuertos para ir de una ciudad a otra.
+
+Para demostrar esta idea tendremos que probar que las distancias en una red libre de escala es menor que las distancias en una red aleatoria. Si estudiamos el valor de la distancia media ($\langle d \rangle$) en función del valor del exponente $\gamma$ diferenciamos 4 regímenes (recordemos que $k_{max}\sim k_{min} \cdot N^{\frac{1}{\gamma -1}}$):
+
+* $\langle d \rangle \sim const \text{ si }\gamma=2$
+    El grado (o tamaño) del mayor hub es $k_{max}\sim N$. La mayoría de los nodos están conectados a él por lo que la distancia media es independiente del tamaño de la red.
+
+* $\langle d \rangle \sim \frac{lnlnN}{ln(\gamma-1)} \text{ si }2<\gamma <3$
+    Esto es lo que se conoce como **mundo ultra-pequeño**: la distancia media se incrementa en un orden menor que el logaritmo cuando el tamaño de la red aumenta. Recordemos que la distancia media en una red aleatoria aumenta en orden logarítmico cuando el tamaño de la red aumenta. Esto se debe a que la gran mayoría de los caminos pasan a través de unos pocos hubs, lo que reduce la distancia entre nodos.
+    A modo de ejemplo, la red que conforma la población mundial tiene un tamaño de $N \approx 7\cdot 10^9$. Si consideramos que la red es aleatoria entonces $lnN = 22.6$. Sin embargo, si consideramos que es una red libre de escala entonces $lnlnN=3.12$.
+* $\langle d \rangle \sim \frac{lnN}{lnlnN} \text{ si }\gamma =3$
+    Este resultado representa un punto crítico. En este caso, el segundo momento de la distribución ($\langle k^2 \rangle$) no diverge y las distancias vuelven a tener una dependencia logarítmica, similar a las de una red aleatoria (aunque levemente suavizadas).
+* $\langle d \rangle \sim lnN \text{ si }\gamma >3$
+    n este caso, el segundo momento de la distribución ($\langle k^2 \rangle$) es finito y la red se comporta como una red aleatoria. A pesar de este comportamiento en esta red siguen existiendo hubs, aunque estos no influyen significativamente en las distancias.
+
+![Representación de las distancias con respecto al tamaño de la red. Se puede ver que $p_d$ (figuras b, c y d) no se ve afectada significativamente por $N$ cuando $\gamma =2.1$ (línea azul), no así para los demás valores de $\gamma$ (líneas verde y roja)](../images/tema03/distancias.png)
+
+En resumen, las redes libres de escala en general reducen la distancia media de la red y modifican la dependencia de $\langle d \rangle$ con respecto al tamaño de la red. Cuando menor es el exponente $\gamma$ menor es la distancia entre nodos (y menor es la dependencia de $N$, si tiene un valor entre 2 y 3).
+
 ## Resumen de las redes libres de escala
 
 Finalmente, podemos ver que las redes reales cumplen otra nueva ley que es la **propiedad libre de escala**:
