@@ -87,6 +87,47 @@ $$\int_{k_1}^{k_2}{p(k)dk}$$
 
 El primer informe relacionado con una función de ley potencial fue realizado por Pareto (conocido por la ley 80/20), donde destacaba que durante el siglo XIX, el 80% del dinero en Italia estaba en manos de solo un 20% de la población.
 
+## Hubs en las redes libres de escala
+
+La principal diferencia entre la función de distribución en una red aleatoria frente a la de una red libre de escala es la cola de la distribución, observándose más claramente en la escala logarítmica. La principal implicación de esta cola es que las redes libres de escala contemplan la existencia de **hubs**, algo poco probable en una red aleatoria.
+
+![Distribuciones para redes aleatorias y redes libres de escala ((a) en escala lineal; (b) en escala logarítmica y representación gráfica de una (c)red aleatoria frente a una (d)red libre de escala ($\langle k \rangle=3 \text{; }N=50$)](../images/tema03/aleatoriavslibre.png)
+
+Analizando las distribuciones de grados de ambas redes más en detalle podemos ver que:
+
+* La distribución de grados de la red libre de escala presenta una probabilidad de la existencia de nodos con un $k$ pequeño mayor que en una red aleatoria (donde la probabilidad de estos nodos es casi nula).
+* La red aleatoria tiene una mayor probabilidad de tener nodos con un grado $k \sim \langle k \rangle$ que la red libre de escala (ya que la función de distribución de la primera está por encima de la segunda)
+* La red libre de escala presenta una mayor probabilidad de que existan nodos con $k$ muy alto. De hecho, la probabilidad de que existan hubs en una red libre de escala es varios órdenes  de magnitud mayor que en una red aleatoria (aunque este hecho no se aprecia en la escala lineal podemos verlo claramente reflejado en la escala logarítmica)
+
+A modo de ejemplo, si usamos los datos de la WWW y suponemos que es una red aleatoria (donde hemos calculado que $\langle k \rangle = 4,6$) la probabilidad de que un nodo tenga 100 enlaces es $p_{aleatoria}(100)=10^{-30}$. Sin embargo, suponiendo que es una red libre de escala esta probabilidad desciende a $p_{libre-escala}(100)=10^{-4}$.
+
+Para cualquier $p_k$ podemos calcular el máximo grado esperado $k_{max}$, es decir, el grado del mayor hub existente en la red:
+
+* Si suponemos que tenemos una red aleatoria con una distribución de grados $p_k$ exponencial entonces tenemos que:
+    $$p_k = C \cdot e^{-\lambda k}: \;\; k_{max}= k_{min} + \frac{lnN}{\lambda}$$
+    El tamaño del hub más grande ($k_{max}$) depende de $lnN$, que es una función que crece suavemente, por lo que hay muy poca diferencia entre $k_{min}$ y $k_{max}$. Esto implica que no hay hubs.
+
+* Si suponemos que tenemos una red aleatoria con una distribución de grados $p_k$ que sigue una Poisson entonces tenemos que la dependencia de $k_{max}$ es aún más suave por lo que hay aún menor diferencia entre $k_{min}$ y $k_{max}$.
+* Si suponemos que tenemos una red libre de escala y, por tanto, con una distribución de grados $p_k$ de ley potencial entonces tenemos que:
+    $$p(k) = C \cdot k^{-\gamma}\;\; k_{max}\sim k_{min} \cdot N^{\frac{1}{\gamma -1}}$$
+    En este caso, el tamaño del hub mayor depende de $N$. Esto implica que cuanto mayor es la red mayor es el grado del hub más grande.
+
+De nuevo, si tomamos los datos de una muestra de la WWW con $N=3\cdot10^5$ nodos:
+
+$$k_{max}\approx 13 \;\;\text{ si la red es aleatoria}$$
+
+$$k_{max}\approx 85000 \;\;\text{ si la red es libre de escala}$$
+
+Podemos ver gráficamente esta dependencia:
+
+![Relación entre el grado del mayor hub ($k_{max}$) y el tamaño de la red ($N$)](../images/tema03/kmax-n.png)
+
+A modo de resumen podemos decir que las redes aleatorias están "acotadas", en el sentido de que todos sus nodos tienen un grado similar y la existencia de hubs es muy improbable. En cambio, las redes libres de escala no están "acotadas" (son libres, de ahí su nombre) y se espera que existan hubs junto con nodos de grado muy pequeño. Además hemos visto que el tamaño de la red influye en el tamaño de los hubs. Más gráficamente podemos comparar la red de carreteras de EEUU (una red aleatoria) frente a la red de tráfico aéreo del mismo país (red libre de escala). Como veremos más adelante, el tipo de red afecta a las distancias y a la forma en la que se navega por ellas.
+
+![Red de carreteras de EEUU (una red aleatoria) frente a la red de tráfico aéreo del mismo país (red libre de escala)](../images/tema03/transporte.png)
+
+## Universalidad en las redes libres de escala
+
 Finalmente, podemos ver que las redes reales cumplen otra nueva ley que es la **propiedad libre de escala**:
 
 > Muchas redes reales presentan distribuciones de cola ancha. Esto implica que nodos de grado bajo conviven con nodos con un grado excepcionalmente grande: los hubs.
