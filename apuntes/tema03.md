@@ -51,6 +51,8 @@ Esto dio a entender que esta red real no se comportaba de acuerdo al modelo de r
 
 Una **red libre de escala** es una red cuya distribución de grados sigue una ley potencial. Esta distribución se caracteriza por tener una larga cola. Para esta distribución se pueden emplear dos formulaciones distintas aunque las propiedades de la red son independientes del formalismo empleado.
 
+El primer informe relacionado con una función de ley potencial fue realizado por Pareto (conocido por la ley 80/20), donde destacaba que durante el siglo XIX, el 80% del dinero en Italia estaba en manos de solo un 20% de la población.
+
 ### Formalismo discreto
 
 En este caso consideramos que el grado de un nodo es siempre un entero positivo ($K=0,1,2\dots$). De acuerdo a esto, la probabilidad de que un nodo aleatorio tenga grado $k$ se puede expresar como:
@@ -69,7 +71,7 @@ $$p_k = \frac{k^{-\gamma}}{\varsigma(\gamma)}$$
 
 Los nodos aislado ($k=0$) tienen que tratarse de manera independiente.
 
-### Formalismo contínuo
+### Formalismo continuo
 
 En este formalismo consideramos que $k$ puede tomar cualquier valor real positivo. En este caso:
 
@@ -87,7 +89,6 @@ Donde $k_{min}$ es el menor grado de la red (o función de distribución). En es
 
 $$\int_{k_1}^{k_2}{p(k)dk}$$
 
-El primer informe relacionado con una función de ley potencial fue realizado por Pareto (conocido por la ley 80/20), donde destacaba que durante el siglo XIX, el 80% del dinero en Italia estaba en manos de solo un 20% de la población.
 
 ## Hubs en las redes libres de escala
 
@@ -97,7 +98,7 @@ La principal diferencia entre la función de distribución en una red aleatoria 
 
 Analizando las distribuciones de grados de ambas redes más en detalle podemos ver que:
 
-* La distribución de grados de la red libre de escala presenta una probabilidad de la existencia de nodos con un $k$ pequeño mayor que en una red aleatoria (donde la probabilidad de estos nodos es casi nula).
+* La red libre de escala presenta una probabilidad de la existencia de nodos con un $k$ pequeño mayor que en una red aleatoria (donde la probabilidad de estos nodos es casi nula).
 * La red aleatoria tiene una mayor probabilidad de tener nodos con un grado $k \sim \langle k \rangle$ que la red libre de escala (ya que la función de distribución de la primera está por encima de la segunda)
 * La red libre de escala presenta una mayor probabilidad de que existan nodos con $k$ muy alto. De hecho, la probabilidad de que existan hubs en una red libre de escala es varios órdenes  de magnitud mayor que en una red aleatoria (aunque este hecho no se aprecia en la escala lineal podemos verlo claramente reflejado en la escala logarítmica)
 
@@ -111,7 +112,7 @@ Para cualquier $p_k$ podemos calcular el máximo grado esperado $k_{max}$, es de
 
 * Si suponemos que tenemos una red aleatoria con una distribución de grados $p_k$ que sigue una Poisson entonces tenemos que la dependencia de $k_{max}$ es aún más suave por lo que hay aún menor diferencia entre $k_{min}$ y $k_{max}$.
 * Si suponemos que tenemos una red libre de escala y, por tanto, con una distribución de grados $p_k$ de ley potencial entonces tenemos que:
-    $$p(k) = C \cdot k^{-\gamma}\;\; k_{max}\sim k_{min} \cdot N^{\frac{1}{\gamma -1}}$$
+    $$p(k) = C \cdot k^{-\gamma}:\;\; k_{max}\sim k_{min} \cdot N^{\frac{1}{\gamma -1}}$$
     En este caso, el tamaño del hub mayor depende de $N$. Esto implica que cuanto mayor es la red mayor es el grado del hub más grande.
 
 De nuevo, si tomamos los datos de una muestra de la WWW con $N=3\cdot10^5$ nodos:
@@ -137,7 +138,7 @@ $$\langle k^n \rangle = \sum_{k_{min}}^{\infty}{k^np_k}=\int_{k_{min}}^{\infty}{
 Recordemos que:
 
 * n=1: El primer momento es el grado medio ($\langle k \rangle$).
-* n=2: el segundo momento es la varianza ($\sigma^2 = \langle k^2 \rangle - \langle k \rangle^2$), la cual mide la dispersión de los grados. su raíz cuadrada es la desviación típica ($\sigma$)
+* n=2: el segundo momento es la varianza ($\sigma^2 = \langle k^2 \rangle - \langle k \rangle^2$), la cual mide la dispersión de los grados. Su raíz cuadrada es la desviación típica ($\sigma$)
 * n=3: el tercer momento $\langle k^3 \rangle$ determina la asimetría, es decir, cómo de simétrica es p_k alrededor de la  media (si la función es simétrica entonces $\langle k^3 \rangle=0$)
 
 En una red libre de escala el momento n-ésimo es:
