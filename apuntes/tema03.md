@@ -175,17 +175,44 @@ Generalmente, esta propiedad no aparece en redes en las que existe una limitaci�
 
 Ante cualquier nueva red estudiada deberíamos verificar si cumple la propiedad de ser libre de escala. Para esto deberíamos hacer lo siguiente:
 
-#### Representar gráficamente la distribución de grados {-}
+#### Representar gráficamente la distribución de grados. {-}
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores, quidem, a! Est rerum temporibus dolores magnam, quidem quaerat officia, nobis totam odit laboriosam, quo impedit, dolorem deleniti consequuntur voluptatum labore.
+Dada una red real de $N$ nodos tendremos que calcular el grado de cada nodo y calcular los distintos $N_k$ (número de nodos con grado $k$) para todos los valores de $k$ que encontremos en la red. Con ello calcularemos los distintos $p_k = \frac{N_k}{N}$ y lo representaremos gráficamente de tal modo que el eje de abcisas (X) representa los valores de $k$ y el eje de ordenadas (Y) representa el valor $p_k$. Como ya hemos dicho, una representación lineal puede que comprima el grafo por lo que es recomendable usar una escala logarítmica. Una escala logarítmica pura (log $p_k$ en función de log $k$) suele ser difícil de leer por lo que se puede usar una escala logarítmico-aritmética con potencias de 10 (si $log(1000)=3$ entonces en el eje escribimos $10^3$).
 
-#### Comprobar que la distribución sigue realmente una ley potencial {-}
+La representación en escala logarítmica se conoce como _linear binning_. El problema de esta gráfica es que aparecen mesetas (_plateau_) para los valores de $k$ grandes. Esto se debe a que solo hay 0 ($N_k=0$) o 1 ($N_k=1$) nodos para cada uno de estos grados. Los primeros no se representan (si $N_k=0 \to p_k=0$) pero los segundos crean mesetas en el valor $p_k = \frac{1}{N}$. Esto puede hacer que no se pueda estimar correctamente el exponente.
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit praesentium dolor ab, magni ad eum labore deserunt iusto similique minus, quo aperiam? Voluptatibus illo cum doloribus illum tempore dignissimos ipsam!
+Una alternativa es hacer lo que se conoce como un _log-binning_. En lugar de contar los $k$ de uno en uno, los agrupamos por cubos (o _bins_) de tamaño variable:
+
+* $b_0 = 1$: contiene los nodos con $k=1$
+* $b_1 = 2$: contiene los nodos con $k \in \{2, 3\}$
+* $b_2 = 4$: contiene los nodos con $k \in \{4, 5, 6, 7\}$
+* En general, $b_n = 2^n$ y contiene los nodos con $k \in \{2^n, 2^n+1, \dots, 2^{n+1}-1\}$
+
+En este caso, en la gráfica representaremos $p_{\langle k_n \rangle} = \frac{N_n}{b_n}$, donde $\langle k_n \rangle$ es el grado medio del cubo n-ésimo, $N_n$ es el número de nodos en el cubo n-ésimo y $b_n$ es el tamaño del cubo.
+
+Esta representación palía parcialmente el problema anterior pero siguen apareciendo mesetas.
+
+La última alternativa es mostrar la distribución acumulada:
+
+$$p_x = \sum_{q=k}^{\infty}P_q$$
+
+Si $p_k$ sigue una distribución de ley potencial entonces:
+
+$$p_x \sim k^{-\gamma+1}$$
+
+Esta distribución elimina las mesetas y nos permite estimar más fácilmente el exponente de la distribución.
+
+![Representación de la función de distribución utilizando distintas escalas](../images/tema03/graficas.png)
+
+#### Comprobar que la distribución sigue realmente una ley potencial. {-}
+
+Una vez que hemos representado la distribución necesitamos comprobar que realmente sigue una ley potencial por lo que dibujaremos en las gráficas las distribuciones de Poisson o exponenciales equivalentes (usando el valor $\langle k \rangle$ de la red) para ver que realmente son distintas.
+
+![Distribución de grado en escala logarítmica de Internet y de la red de interacción de proteínas. En cada gráfica se ha presentado punteada la distribución de Poisson usando el grado medio $\langle k \rangle$ calculado para cada una de las redes.](../images/tema03/poissonYpowerlaw.png)
 
 #### Calcular el valor del exponente de la función {-}
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui quae accusamus fugiat, hic temporibus veniam ad inventore fuga tenetur praesentium possimus debitis neque voluptates voluptatem modi corporis illo numquam, aperiam.
+Una forma sencilla de aproximar el valor del exponente es buscando la línea recta que se ajusta al gráfico logarítmico. Esto puede introducir cierto error por lo que se pueden usar otras técnicas más precisas que quedan fuera de los objetivos de este curso (pero que se pueden consultar en el anexo 4.C del capítulo 4 del libro de Barabasi).
 
 ## Resumen de las redes libres de escala
 
