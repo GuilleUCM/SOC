@@ -308,6 +308,177 @@ Guillermo Jiménez Díaz (gjimenez@ucm.es)<br/>Alberto Díaz (albertodiaz@fdi.uc
 <blockquote>
 <p>Estamos ante la evidencia de que tal vez este modelo no es del todo válido para algunas redes reales.</p>
 </blockquote>
-</div><div id="propiedades-de-los-caminos-en-redes-aleatorias" class="titleslide slide section level2"><h1><span class="header-section-number">1.6</span> Propiedades de los caminos en redes aleatorias</h1></div><div id="coeficiente-de-agrupamiento" class="titleslide slide section level2"><h1><span class="header-section-number">1.7</span> Coeficiente de agrupamiento</h1></div><div id="resumen-1" class="titleslide slide section level2"><h1><span class="header-section-number">1.8</span> Resumen</h1></div>
+</div><div id="propiedades-de-los-caminos-en-redes-aleatorias" class="titleslide slide section level2"><h1><span class="header-section-number">1.6</span> Propiedades de los caminos en redes aleatorias</h1></div><div id="distancia-media-en-una-red-aleatoria" class="slide section level3">
+<h1><span class="header-section-number">1.6.1</span> Distancia media en una red aleatoria</h1>
+<p>En una red aleatoria de grado <span class="math">\(\langle k \rangle\)</span> se cumple que cualquier nodo de la red tiene, <em>en media</em>:</p>
+<ul>
+<li><span class="math">\(\langle k \rangle\)</span> nodos a distancia 1 (<span class="math">\(d=1\)</span>)</li>
+<li><span class="math">\(\langle k \rangle^2\)</span> nodos a distancia 2 (<span class="math">\(d=2\)</span>)</li>
+<li>…</li>
+<li><span class="math">\(\langle k \rangle^d\)</span> nodos a distancia d</li>
+</ul>
+<p><span class="math">\[N(d) =1+\langle k \rangle+\langle k \rangle^2+\dots=\frac{\langle k \rangle^{d+1}-1}{\langle k \rangle-1}\]</span></p>
+</div><div id="distancia-media-en-una-red-aleatoria-1" class="slide section level3">
+<h1><span class="header-section-number">1.6.2</span> Distancia media en una red aleatoria</h1>
+<p>Si suponemos que <span class="math">\(\langle k \rangle \gg 1\)</span>:</p>
+<p><span class="math">\[d_{max} \propto \frac{log N}{log \langle k \rangle}\]</span></p>
+<p>Se puede considerar que la misma fórmula aproxima <span class="math">\(\langle d \rangle\)</span></p>
+<p><span class="math">\[\langle d \rangle \propto \frac{log N}{log \langle k \rangle}\]</span></p>
+</div><div id="distancia-media-en-una-red-aleatoria-2" class="slide section level3">
+<h1><span class="header-section-number">1.6.3</span> Distancia media en una red aleatoria</h1>
+<blockquote>
+<p><strong>Conclusión</strong>: La longitud media de los caminos de la red va a ser varios órdenes de magnitud más pequeño que <span class="math">\(N\)</span>.</p>
+</blockquote>
+<blockquote>
+<p><strong>Conclusión</strong>: Cuanto más densa sea la red, menor es la distancia entre los nodos.</p>
+</blockquote>
+</div><div id="mundos-pequeños-o-small-worlds" class="titleslide slide section level2"><h1><span class="header-section-number">1.7</span> Mundos pequeños o <em>small worlds</em></h1></div><div id="definición" class="slide section level3">
+<h1><span class="header-section-number">1.7.1</span> Definición</h1>
+<blockquote>
+<p><strong>Small worlds</strong>: la distancia entre dos nodos cualquiera de la red es sorprendentemente corta.</p>
+</blockquote>
+<blockquote>
+<p><strong>6 grados de separación</strong>. Si eligiésemos al azar dos personas del planeta, por muy lejos que estuviesen, estarían a 6 “conocidos” de distancia entre sí.</p>
+</blockquote>
+</div><div id="primeras-referencias" class="slide section level3">
+<h1><span class="header-section-number">1.7.2</span> Primeras referencias</h1>
+<ul>
+<li>Sugerido por Frigyes Karinthy, escritor y periodista húngaro, en 1929.</li>
+<li>Cómo era capaz de unir a un premio Nobel con él mismo contando los “apretones de manos” (<em>handshake</em>) entre personas.</li>
+</ul>
+</div><div id="primeras-referencias-1" class="slide section level3">
+<h1><span class="header-section-number">1.7.3</span> Primeras referencias</h1>
+<blockquote>
+<p>Look, Selma Lagerlöf just won the Nobel Prize for Literature, thus she is bound to know King Gustav of Sweden. After all he is the one who handed her the Prize, as required by tradition. King Gustav, to be sure, is a passionate tennis player, who always participates in international tournaments. He is known to have played Mr. Kehrling, whom he must therefore know for sure, and as it happens I myself know Mr. Kehrling quite well.</p>
+</blockquote>
+</div><div id="primeras-referencias-2" class="slide section level3">
+<h1><span class="header-section-number">1.7.4</span> Primeras referencias</h1>
+<blockquote>
+<p>The worker knows the manager in the shop, who knows Ford; Ford is on friendly terms with the general director of Hearst Publications, who last year became good friends with Arpad Pasztor, someone I not only know, but to the best of my knowledge a good friend of mine. So I could easily ask him to send a telegram via the general director telling Ford that he should talk to the manager and have the worker in the shop quickly hammer together a car for me, as I happen to need one.</p>
+</blockquote>
+</div><div id="experimentos" class="slide section level3">
+<h1><span class="header-section-number">1.7.5</span> Experimentos</h1>
+<ul>
+<li>Stanley Milgram (1967) propuso un experimento para demostrarlo</li>
+<li>Experimento: hacer llegar una carta a un par de personas de Boston y Sharon, a base de que una persona cualquiera (desde cualquier punto de Estado Unidos) fuese enviando la carta a aquellos familiares, amigos o conocidos que más se “acercaran” a la persona objetivo.</li>
+</ul>
+</div><div id="experimentos-1" class="slide section level3">
+<h1><span class="header-section-number">1.7.6</span> Experimentos</h1>
+<blockquote>
+<p>HOW TO TAKE PART IN THIS STUDY</p>
+<ol style="list-style-type: decimal">
+<li>ADD YOUR NAME TO THE ROSTER AT THE BOTTOM OF THIS SHEET, so that the next person who receives this letter will know who it came from.</li>
+<li>DETACH ONE POSTCARD. FILL IT AND RETURN IT TO HARVARD UNIVERSITY. No stamp is needed. The postcard is very important. It allows us to keep track of the progress of the folder as it moves toward the target person.</li>
+<li>IF YOU KNOW THE TARGET PERSON ON A PERSONAL BASIS, MAIL THIS FOLDER DIRECTLY TO HIM (HER). Do this only if you have previously met the target person and know each other on a first name basis.</li>
+<li>IF YOU DO NOT KNOW THE TARGET PERSON ON A PERSONAL BASIS, DO NOT TRY TO CONTACT HIM DIRECTLY. INSTEAD, MAIL THIS FOLDER (POST CARDS AND ALL) TO A PERSONAL ACQUAINTANCE WHO IS MORE LIKELY THAN YOU TO KNOW THE TARGET PERSON. You may send the folder to a friend, relative or acquaintance, but it must be someone you know on a first name basis.</li>
+</ol>
+</blockquote>
+</div><div id="experimentos-2" class="slide section level3">
+<h1><span class="header-section-number">1.7.7</span> Experimentos</h1>
+<ul>
+<li>Se enviaron 296 cartas.</li>
+<li>La primera llegó en pocos días, pasando sólo por 2 enlaces.</li>
+<li>Resultado final: 64 cartas con un máximo de 12 intermediarios.</li>
+<li>La mediana de intermediarios fueron entre 5,5 y 6</li>
+<li>De ahí viene la idea de los <em>6 grados de separación</em> (aunque el nombre proviene de una obra de teatro).</li>
+</ul>
+</div><div id="mundos-pequeños-en-redes-reales" class="slide section level3">
+<h1><span class="header-section-number">1.7.8</span> Mundos pequeños en redes reales</h1>
+<ul>
+<li>En las redes reales este número “6” se reduce drásticamente.</li>
+<li><p>Ejemplo: Facebook</p>
+<p>Datos de mayo de 2011: <span class="math">\(721\cdot 10^6\)</span> usuarios y <span class="math">\(68\cdot 10^9\)</span> relaciones (simétricas) de amistad</p></li>
+</ul>
+<p><span class="math">\[
+\langle d \rangle = \frac{log N}{log \langle k \rangle} \simeq 3.90
+\]</span></p>
+<blockquote>
+<p>En posteriores lecciones entenderemos por qué ocurre eso</p>
+</blockquote>
+</div><div id="coeficiente-de-agrupamiento" class="titleslide slide section level2"><h1><span class="header-section-number">1.8</span> Coeficiente de agrupamiento</h1></div><div id="coeficiente-de-agrupamiento-1" class="slide section level3">
+<h1><span class="header-section-number">1.8.1</span> Coeficiente de agrupamiento</h1>
+<ul>
+<li>Para calcular <span class="math">\(C_i\)</span> necesitamos estimar cuál es el número de enlaces entre los vecinos de un nodo.</li>
+<li>La probabilidad de que haya un enlace entre dos nodos en una red aleatoria es <span class="math">\(p\)</span></li>
+<li>Un nodo <span class="math">\(i\)</span> puede tener <span class="math">\(\frac{k_i(k_i-1)}{2}\)</span> posibles enlaces entre sus <span class="math">\(k_i\)</span> vecinos.</li>
+</ul>
+<p><span class="math">\[ \langle L_i \rangle = p \cdot \frac{k_i(k_i-1)}{2}\]</span></p>
+<p><span class="math">\[
+C_i = \langle C \rangle = \frac{2 \cdot \langle L_i \rangle }{k_i(k_i-1)} = p = \frac{\langle k \rangle}{N}
+\]</span></p>
+</div><div id="coeficiente-agrupamiento" class="slide section level3">
+<h1><span class="header-section-number">1.8.2</span> Coeficiente agrupamiento</h1>
+<blockquote>
+<p><strong>Conclusión</strong>: Para un <span class="math">\(\langle k \rangle\)</span> fijo, el coeficiente de agrupamiento decrece cuanto mayor es el tamaño de la red (<span class="math">\(N\)</span>).</p>
+<p>Este coeficiente decrecerá a razón de <span class="math">\(\frac{1}{N}\)</span>.</p>
+</blockquote>
+<blockquote>
+<p><strong>Conclusión</strong>: El coeficiente de agrupamiento de un nodo es independiente de su grado.</p>
+</blockquote>
+</div><div id="coeficiente-agrupamiento-en-redes-reales" class="slide section level3">
+<h1><span class="header-section-number">1.8.3</span> Coeficiente agrupamiento en redes reales</h1>
+<div class="figure">
+<img src="../images/tema02/ci_reales.png" alt="Cálculos del coeficiente de agrupamiento para redes reales" /><p class="caption">Cálculos del coeficiente de agrupamiento para redes reales</p>
+</div>
+</div><div id="coeficiente-agrupamiento-en-redes-reales-1" class="slide section level3">
+<h1><span class="header-section-number">1.8.4</span> Coeficiente agrupamiento en redes reales</h1>
+<ul>
+<li><span class="math">\(C_i\)</span> no decrece a razón de <span class="math">\(\frac{1}{N}\)</span> (línea punteada)</li>
+<li><span class="math">\(C_i\)</span> <em>sí</em> depende del grado de los nodos.</li>
+</ul>
+<blockquote>
+<p>De nuevo nos encontramos que las redes reales incumplen propiedades de las redes aleatorias</p>
+</blockquote>
+</div><div id="resumen-1" class="titleslide slide section level2"><h1><span class="header-section-number">1.9</span> Resumen</h1></div><div id="resumen-2" class="slide section level3">
+<h1><span class="header-section-number">1.9.1</span> Resumen</h1>
+<ul>
+<li>Una <strong>red aleatoria</strong> es una red en la que cada uno de los enlaces entre dos nodos se ha creado siguiendo un proceso completamente aleatorio.</li>
+</ul>
+<div class="figure">
+<img src="../images/tema02/resumen.png" alt="Cuadro resumen (extraído de Network Science, pp. 70)" /><p class="caption">Cuadro resumen (extraído de <em>Network Science</em>, pp. 70)</p>
+</div>
+</div><div id="resumen-3" class="slide section level3">
+<h1><span class="header-section-number">1.9.2</span> Resumen</h1>
+<ul>
+<li><p>Las redes reales <strong>incumplen</strong> algunas de las propiedades de las redes aleatorias.</p></li>
+<li><p><strong>Distribución de grados</strong> <span style="color: #e74c3c;">(Incumplida)</span></p></li>
+</ul>
+<blockquote>
+<p>La distribución de grados se puede aproximar a una función de Poisson pero esta distribución no explica la existencia del gran número de nodos altamente conectados que aparecen en las redes reales.</p>
+</blockquote>
+</div><div id="resumen-4" class="slide section level3">
+<h1><span class="header-section-number">1.9.3</span> Resumen</h1>
+<ul>
+<li><strong>Conectividad</strong> <span style="color: #e74c3c;">(Incumplida)</span></li>
+</ul>
+<blockquote>
+<p>El modelo de redes aleatorias predice que si <span class="math">\(1 &lt; \langle k \rangle &lt; ln N\)</span> entonces la red presenta grupos aislados.</p>
+</blockquote>
+<blockquote>
+<p>Redes como Internet no cumplen que <span class="math">\(\langle k \rangle &gt; ln N\)</span> y, sin embargo, no están fragmentadas.</p>
+</blockquote>
+</div><div id="resumen-5" class="slide section level3">
+<h1><span class="header-section-number">1.9.4</span> Resumen</h1>
+<ul>
+<li><strong>Coeficiente de agrupamiento</strong> <span style="color: #e74c3c;">(Incumplida)</span></li>
+</ul>
+<blockquote>
+<p>Según el modelo de red aleatoria, el coeficiente de agrupamiento es independiente del grado del nodo sobre el que se calcula</p>
+</blockquote>
+<blockquote>
+<p>Según el modelo de red aleatoria, el coeficiente de agrupamiento depende del tamaño de la red en relación <span class="math">\(\frac{1}{N}\)</span>.</p>
+</blockquote>
+<blockquote>
+<p>Las redes reales no cumplen ninguna de estas dos propiedades.</p>
+</blockquote>
+</div><div id="resumen-6" class="slide section level3">
+<h1><span class="header-section-number">1.9.5</span> Resumen</h1>
+<ul>
+<li><strong>Propiedad de los pequeños mundo</strong> <span style="color: #2ecc71;">(Cumplida)</span></li>
+</ul>
+<blockquote>
+<p>En un sistema complejo hay un camino de longitud <em>corta</em> entre cualquier par de nodos de la red que lo modela.</p>
+</blockquote>
+</div>
 </body>
 </html>

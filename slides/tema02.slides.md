@@ -279,6 +279,8 @@ Si suponemos que las redes reales siguen el modelo de red aleatoria entonces se 
 
 ## Propiedades de los caminos en redes aleatorias
 
+### Distancia media en una red aleatoria
+
 En una red aleatoria de grado $\langle k \rangle$ se cumple que cualquier nodo de la red tiene, _en media_:
 
 * $\langle k \rangle$ nodos a distancia 1 ($d=1$)
@@ -286,77 +288,150 @@ En una red aleatoria de grado $\langle k \rangle$ se cumple que cualquier nodo d
 * ...
 * $\langle k \rangle^d$ nodos a distancia d 
 
-Según eso, el número de nodos a distancia $d$ ($N(d)$) se puede calcular como:
 
 $$N(d) =1+\langle k \rangle+\langle k \rangle^2+\dots=\frac{\langle k \rangle^{d+1}-1}{\langle k \rangle-1}$$
 
-Si suponemos que $\langle k \rangle \gg 1$ entonces podemos estimar que el diámetro ($d_{max}$) de la red es:
+### Distancia media en una red aleatoria
+
+Si suponemos que $\langle k \rangle \gg 1$:
 
 $$d_{max} \propto \frac{log N}{log \langle k \rangle}$$
 
-En la mayoría de los casos se puede considerar que esta misma fórmula aproxima la _longitud media de los caminos_ de la red ($\langle d \rangle$) es:
+Se puede considerar que la misma fórmula aproxima $\langle d \rangle$
 
 $$\langle d \rangle \propto \frac{log N}{log \langle k \rangle}$$
 
-Esto implica que:
-* La longitud media de los caminos de la red va a ser varios órdenes de magnitud más pequeño que $N$.
-* Cuanto más densa sea la red, menor es la distancia entre los nodos.
+### Distancia media en una red aleatoria
 
-Gráficamente se puede ver en la siguiente figura:
+> __Conclusión__: La longitud media de los caminos de la red va a ser varios órdenes de magnitud más pequeño que $N$.
 
-![Longitud media frente al número de nodos. A la izquierda se usa la escala lineal; a la derecha se representa mediante una escala logarítmica.](../images/tema02/dmedio_N.png)
+> __Conclusión__: Cuanto más densa sea la red, menor es la distancia entre los nodos.
 
-Estas conclusiones son lo que se conoce como la propiedad de **los pequeños mundos** o _small worlds_: la distancia entre dos nodos cualquiera de la red es sorprendentemente corta. Este fenómeno también se conoce como el de _los 6 grados de separación_. Indica que si eligiésemos al azar dos personas del planeta, por muy lejos que estuviesen, estarían a 6 "conocidos" de distancia entre sí. En posteriores temas hablaremos más en detalle de este fenómeno y de su importancia en el análisis de redes sociales.
 
-En las redes reales este número "6" se reduce drásticamente. Por ejemplo, si calculamos la longitud media en Facebook que, de acuerdo a los datos de mayo de 2011, tenía 721 millones de usuarios y 68.000 millones de relaciones (simétricas) de amistad:
+## Mundos pequeños o _small worlds_
+
+### Definición
+
+> __Small worlds__: la distancia entre dos nodos cualquiera de la red es sorprendentemente corta.
+
+> __6 grados de separación__. Si eligiésemos al azar dos personas del planeta, por muy lejos que estuviesen, estarían a 6 "conocidos" de distancia entre sí. 
+
+### Primeras referencias
+
+* Sugerido por Frigyes Karinthy, escritor y periodista húngaro, en 1929.
+* Cómo era capaz de unir a un premio Nobel con él mismo contando los "apretones de manos" (_handshake_) entre personas.
+
+### Primeras referencias
+
+> Look, Selma Lagerlöf just won the Nobel Prize for Literature, thus she is bound to know King Gustav of Sweden. After all he is the one who handed her the Prize, as required by tradition. King Gustav, to be sure, is a passionate tennis player, who always participates in international tournaments. He is known to have played Mr. Kehrling, whom he must therefore know for sure, and as it happens I myself know Mr. Kehrling quite well.
+
+### Primeras referencias
+
+> The worker knows the manager in the shop, who knows Ford; Ford is on friendly terms with the general director of Hearst Publications, who last year became good friends with Arpad Pasztor, someone I not only know, but to the best of my knowledge a good friend of mine. So I could easily ask him to send a telegram via the general director telling Ford that he should talk to the manager and have the worker in the shop quickly hammer together a car for me, as I happen to need one.
+
+### Experimentos
+
+* Stanley Milgram (1967) propuso un experimento para demostrarlo
+* Experimento: hacer llegar una carta a un par de personas de Boston y Sharon, a base de que una persona cualquiera (desde cualquier punto de Estado Unidos) fuese enviando la carta a aquellos familiares, amigos o conocidos que más se "acercaran" a la persona objetivo.
+
+### Experimentos
+
+> HOW TO TAKE PART IN THIS STUDY
+> 
+> 1. ADD YOUR NAME TO THE ROSTER AT THE BOTTOM OF THIS SHEET, so that the next person who receives this letter will know who it came from.
+> 2. DETACH ONE POSTCARD. FILL IT AND RETURN IT TO HARVARD UNIVERSITY. No stamp is needed. The postcard is very important. It allows us to keep track of the progress of the folder as it moves toward the target person.
+> 3. IF YOU KNOW THE TARGET PERSON ON A PERSONAL BASIS, MAIL THIS FOLDER DIRECTLY TO HIM (HER). Do this only if you have previously met the target person and know each other on a first name basis. 
+> 4. IF YOU DO NOT KNOW THE TARGET PERSON ON A PERSONAL BASIS, DO NOT TRY TO CONTACT HIM DIRECTLY. INSTEAD, MAIL THIS FOLDER (POST CARDS AND ALL) TO A PERSONAL ACQUAINTANCE WHO IS MORE LIKELY THAN YOU TO KNOW THE TARGET PERSON. You may send the folder to a friend, relative or acquaintance, but it must be someone you know on a first name basis.
+
+### Experimentos
+
+* Se enviaron 296 cartas.
+* La primera llegó en pocos días, pasando sólo por 2 enlaces.
+* Resultado final: 64 cartas con un máximo de 12 intermediarios.
+* La mediana de intermediarios fueron entre 5,5 y 6
+* De ahí viene la idea de los _6 grados de separación_ (aunque el nombre proviene de una obra de teatro).
+
+### Mundos pequeños en redes reales
+
+* En las redes reales este número "6" se reduce drásticamente. 
+* Ejemplo: Facebook
+    
+    Datos de mayo de 2011: $721\cdot 10^6$ usuarios y $68\cdot 10^9$ relaciones (simétricas) de amistad
 
 $$
 \langle d \rangle = \frac{log N}{log \langle k \rangle} \simeq 3.90
 $$
 
+> En posteriores lecciones entenderemos por qué ocurre eso
+
 ## Coeficiente de agrupamiento
 
-Para calcular el coeficiente local de agrupamiento $C_i$ necesitamos estimar cuál es el número de enlaces entre los vecinos de un nodo. Recordemos que la probabilidad de que haya un enlace entre dos nodos en una red aleatoria es $p$ y que, para un nodo $i$, hay $\frac{k_i(k_i-1)}{2}$ posibles enlaces entre sus $k_i$ vecinos. Según esto, el valor estimado de enlaces de los vecinos $L_i$ es:
+### Coeficiente de agrupamiento
+
+* Para calcular $C_i$ necesitamos estimar cuál es el número de enlaces entre los vecinos de un nodo.
+* La probabilidad de que haya un enlace entre dos nodos en una red aleatoria es $p$ 
+* Un nodo $i$ puede tener $\frac{k_i(k_i-1)}{2}$ posibles enlaces entre sus $k_i$ vecinos.
 
 $$ \langle L_i \rangle = p \cdot \frac{k_i(k_i-1)}{2}$$
-
-De acuerdo a esto, el coeficiente $C_i$ se calcula como:
 
 $$
 C_i = \langle C \rangle = \frac{2 \cdot \langle L_i \rangle }{k_i(k_i-1)} = p = \frac{\langle k \rangle}{N}
 $$
 
-De este cálculo se pueden extraer dos predicciones:
+### Coeficiente agrupamiento
 
-* Para un $\langle k \rangle$ fijo, el coeficiente de agrupamiento decrece cuanto mayor es el tamaño de la red ($N$). Este coeficiente decrecerá a razón de $\frac{1}{N}$.
-* El coeficiente de agrupamiento de un nodo es independiente de su grado.
+> __Conclusión__: Para un $\langle k \rangle$ fijo, el coeficiente de agrupamiento decrece cuanto mayor es el tamaño de la red ($N$).
+> 
+> Este coeficiente decrecerá a razón de $\frac{1}{N}$. 
 
-Sin embargo, si usamos los datos conocidos de las redes reales nos encontramos con que para muchas de ellas no se cumplen ninguna de las dos predicciones, tal y como podemos ver en la siguiente Figura:
+> __Conclusión__: El coeficiente de agrupamiento de un nodo es independiente de su grado.
+
+### Coeficiente agrupamiento en redes reales
 
 ![Cálculos del coeficiente de agrupamiento para redes reales](../images/tema02/ci_reales.png)
 
-En la gráfica (a) se puede ver que, aunque tenemos redes con distinto tamaño, $C_i$ no decrece a razón de $\frac{1}{N}$ (línea punteada). Así mismo, las gráficas (b, c, d) muestran que $C_i$ _sí_ depende del grado de los nodos. De nuevo nos encontramos con propiedades que las redes reales incumplen, lo que nos hacen plantearnos si realmente son redes aleatorias.
+### Coeficiente agrupamiento en redes reales
+
+* $C_i$ no decrece a razón de $\frac{1}{N}$ (línea punteada)
+* $C_i$ _sí_ depende del grado de los nodos.
+
+> De nuevo nos encontramos que las redes reales incumplen propiedades de las redes aleatorias
 
 ## Resumen
 
-En resumen, aunque parecía que el modelo de redes aleatorias podía ser válido para modelar las redes reales vemos que, en realidad, las redes reales incumplen algunas de sus propiedades. En realidad, esta afirmación tiene cierto sentido ya que nos hace pensar que hay algún tipo de regla u orden que afecta a la estructura de algunas redes reales.
-
-A modo de resumen, estas son las propiedades violadas por las redes aleatorias:
-
-* **Distribución de grados**
-
-    Aunque la distribución de grados se puede aproximar a una función de Poisson (cuando $k \ll N$) en una red aleatoria, esta distribución no explica la existencia del gran número de nodos altamente conectados que aparecen en las redes reales.
-
-* **Conectividad**
-    
-    El modelo de redes aleatorias predice que si $1 < \langle k \rangle < ln N$ entonces la red presenta grupos aislados. Sin embargo, muchas redes como Internet no cumplen que $\langle k \rangle > ln N$ y, sin embargo, no están fragmentadas.
-    
-* **Coeficiente de agrupamiento**
-
-    Según el modelo de red aleatoria, el coeficiente local de agrupamiento es independiente del grado del nodo sobre el que se calcula. Además, el coeficiente de agrupamiento depende del tamaño de la red en relación $\frac{1}{N}$. Sin embargo hemos visto que las redes reales no cumplen ninguna de estas dos propiedades.
-
-Lo que sí que han demostrado que cumplen las redes reales de acuerdo a lo predicho por el modelo de red aleatoria es la **propiedad de los pequeños mundos**:
-
-> En un sistema complejo hay un camino de longitud _corta_  entre cualquier par de nodos de la red que lo modela.
+### Resumen
+* Una __red aleatoria__ es una red en la que cada uno de los enlaces entre dos nodos se ha creado siguiendo un proceso completamente aleatorio.
 
 ![Cuadro resumen (extraído de _Network Science_, pp. 70)](../images/tema02/resumen.png)
+
+### Resumen
+
+* Las redes reales **incumplen** algunas de las propiedades de las redes aleatorias.
+
+* **Distribución de grados** <span style="color: #e74c3c;">(Incumplida)</span>
+
+> La distribución de grados se puede aproximar a una función de Poisson pero esta distribución no explica la existencia del gran número de nodos altamente conectados que aparecen en las redes reales.
+
+### Resumen
+
+* **Conectividad** <span style="color: #e74c3c;">(Incumplida)</span>
+    
+> El modelo de redes aleatorias predice que si $1 < \langle k \rangle < ln N$ entonces la red presenta grupos aislados.
+
+> Redes como Internet no cumplen que $\langle k \rangle > ln N$ y, sin embargo, no están fragmentadas.
+ 
+### Resumen
+
+* **Coeficiente de agrupamiento** <span style="color: #e74c3c;">(Incumplida)</span>
+
+> Según el modelo de red aleatoria, el coeficiente de agrupamiento es independiente del grado del nodo sobre el que se calcula
+
+> Según el modelo de red aleatoria, el coeficiente de agrupamiento depende del tamaño de la red en relación $\frac{1}{N}$.
+
+> Las redes reales no cumplen ninguna de estas dos propiedades.
+
+### Resumen
+
+* **Propiedad de los pequeños mundo** <span style="color: #2ecc71;">(Cumplida)</span>
+
+> En un sistema complejo hay un camino de longitud _corta_  entre cualquier par de nodos de la red que lo modela.
