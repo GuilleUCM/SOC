@@ -235,10 +235,33 @@ Para demostrar esta idea tendremos que probar que las distancias en una red libr
 
 En resumen, las redes libres de escala en general reducen la distancia media de la red y modifican la dependencia de $\langle d \rangle$ con respecto al tamaño de la red. Cuando menor es el exponente $\gamma$ menor es la distancia entre nodos (y menor es la dependencia de $N$, si tiene un valor entre 2 y 3).
 
+## Regímenes de las redes libres de escala
+
+Como se puede ver, el valor del exponente $\gamma$ influye en algunas propiedades de las redes libres de escala. De acuerdo a los valores que puede tomar distinguimos 3 regímenes.
+
+### Régimen anómalo {-}
+
+Se produce cuando $\gamma \leq 2$. En este régimen casi no existen redes y sus propiedades son bastante anómalas. Por ejemplo, nos encontramos que el tamaño del mayor hub es mayor que el tamaño de la red $N$. Esto es algo que solo se puede producir cuando los hubs tienen ciclos o hay múltiples enlaces entre nodos. en este régimen tanto el primer como el segundo momento divergen.
+
+### Régimen libre de escala {-}
+
+Se produce cuando $2<\gamma <3$. En este caso, la propiedad libre de escala es manifiesta (el primer momento es finito pero el segundo momento diverge) y el tamaño de los hubs crece con el tamaño de la red. En este régimen se cumple la propiedad del mundo ultra-pequeño, de modo que las distancias son menores que en una red aleatoria.
+
+### Régimen  de red aleatoria {-}
+
+Se produce cuando $\gamma \geq 3$. Las redes libres de escala que se encuentran en este régimen son prácticamente indistinguibles de las aleatorias de igual tamaño. Cuanto mayor es el exponente, más pequeños y menos numerosos son los hubs. Además, implica que el tamaño del hub más grande ($k_{max}$) ha de ser entre $10^2 - 10^3$ veces mayor que el menor nodo ($k_{min}$), lo que implica que el tamaño ha de ser enorme. Por ejemplo, para $\gamma=5$ y una relación de $10^3$ entre la tamaño del mayor y del menos nodo necesitamos que $N \approx 10^{12}$.
+
+$$k_{max}\sim k_{min} \cdot N^{\frac{1}{\gamma -1}};\;N=\Big(\frac{k_{max}}{k_{min}}\Big)^{5-1} \approx 10^{12}$$
+
+Aunque estas redes no son muy frecuentes realmente existen. Ej: Red de llamadas móviles donde $N=4.6\cdot 10^6$ y $\gamma = 8.4$.
+
+![Resumen de los regímenes de una red libre de escala.](../images/tema03/regimenes.png)
+
+
 ## Resumen de las redes libres de escala
 
 Finalmente, podemos ver que las redes reales cumplen otra nueva ley que es la **propiedad libre de escala**:
 
 > Muchas redes reales presentan distribuciones de cola ancha. Esto implica que nodos de grado bajo conviven con nodos con un grado excepcionalmente grande: los hubs.
 
-![Cuadro resumen (extraído de _Network Science_, pp. 70)](../images/tema02/resumen2.png)
+![Cuadro resumen (extraído de _Network Science_, cap 4, pp. 37)](../images/tema03/resumen.png)
