@@ -159,6 +159,36 @@ Más adelante estudiaremos más en detalle la implicación del valor del exponen
 
 ## Universalidad en las redes libres de escala
 
+Aunque hemos dicho que la primera red en la que se vio la propiedad de ser libre de escala fue la WWW, realmente existe un trabajo anterior de 1965 en el que Price ya constata esta propiedad en las redes científicas. Sin embargo fue el estudio de Barabasi sobre la WWW la que le dio este nombre. Tras el estudio de esta red real (WWW) se comprobó que no era un caso aislado sino que existen un gran número de redes que cumplen la propiedad de ser libres de escala. En 1999 se estudian, además de la WWW, la red de Internet (la red física de routers) y la de actores, observando esta misma propiedad. Posteriormente se continúa su estudio en múltiples redes biológicas, tecnológicas y sociales: redes de interacción entre proteínas, comunidades virtuales, redes metabólicas, circuitos eléctricos, etc. Algunas de las últimas en ser estudiadas y presentar también esta propiedad fueron Twitter (2010) y Facebook (2011).
+
+En todas ellas se ha observado que hay diferencias de varios órdenes de magnitud entre los nodos con menor y mayor grado. Una observación más detallada muestra que:
+
+* Los exponentes $\gamma$ de las funciones de distribución de grados son similares independientemente del dominio de la red.
+* La mayoría de los exponentes varían entre 2 y 3.
+* Las redes estudiadas muestran características comunes
+
+Sin embargo hay que recalcar que **no todas las redes son libres de escala**. Si nos fijamos en la tabla con los valores de las redes reales vemos que algunas redes como la de  la red eléctrica (_Power grid_) no cumplen la propiedad de ser libre de escala. Otras redes que tampoco son libres de escala son las redes existentes en materiales (enlaces atómicos que conforman estructuras cristalinas y amorfas) o en la red neuronal del gusano _C.elegans_.
+
+Generalmente, esta propiedad no aparece en redes en las que existe una limitación en el número de enlaces que un nodo puede tener (como la red eléctrica o la estructura atómica).
+
+### Identificación de las redes libres de escala
+
+Ante cualquier nueva red estudiada deberíamos verificar si cumple la propiedad de ser libre de escala. Para esto deberíamos hacer lo siguiente:
+
+#### Representar gráficamente la distribución de grados {-}
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores, quidem, a! Est rerum temporibus dolores magnam, quidem quaerat officia, nobis totam odit laboriosam, quo impedit, dolorem deleniti consequuntur voluptatum labore.
+
+#### Comprobar que la distribución sigue realmente una ley potencial {-}
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit praesentium dolor ab, magni ad eum labore deserunt iusto similique minus, quo aperiam? Voluptatibus illo cum doloribus illum tempore dignissimos ipsam!
+
+#### Calcular el valor del exponente de la función {-}
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui quae accusamus fugiat, hic temporibus veniam ad inventore fuga tenetur praesentium possimus debitis neque voluptates voluptatem modi corporis illo numquam, aperiam.
+
+## Resumen de las redes libres de escala
+
 Finalmente, podemos ver que las redes reales cumplen otra nueva ley que es la **propiedad libre de escala**:
 
 > Muchas redes reales presentan distribuciones de cola ancha. Esto implica que nodos de grado bajo conviven con nodos con un grado excepcionalmente grande: los hubs.
