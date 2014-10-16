@@ -257,6 +257,15 @@ Aunque estas redes no son muy frecuentes realmente existen. Ej: Red de llamadas 
 
 ![Resumen de los regímenes de una red libre de escala.](../images/tema03/regimenes.png)
 
+## Propiedades adicionales de las redes libres de escala
+
+Debido a las divergencias que presentan las redes libres de escala se puede ver que estas redes son bastante robustas a fallos aleatorios y tienen un comportamiento anómalo con respecto a la propagación de virus.
+
+Desde el punto de vista de la robustez, las redes libres de escala son mucho más tolerantes a fallos accidentales (o aleatorios) que las redes aleatorias. Mientras que la eliminación aleatoria de algunos nodos en las segundas puede romper la red en múltiples componentes conexas, las redes libres de escala suelen permanecer conectadas tras la misma eliminación aleatoria de nodos. Sin embargo, las redes libres de escala son extremadamente vulnerables si se eliminan sus hubs, ya que en ese caso sí se produce la fractura del sistema.
+
+![Robustez de las redes. Las dos primeras filas muestran fallos aleatorios de los nodos de una red aleatoria y una red libre de escala, respectivamente. La última fila muestra el peligro de un ataque coordinado a los hubs de una red](../images/tema03/robustez.png)
+
+Desde el punto de vista de la propagación de virus nos encontramos que en una red libre de escala (como puede ser la WWW) es prácticamente imposible erradicar un virus ya que las distancias cortas permiten la rápida propagación del mismo, evitando el aislamiento. Esto se puede utilizar en el sentido opuesto ya que, si inmunizamos o vacunamos a los hubs frente a un virus entonces estaremos reduciendo su propagación. Por ejemplo, los profesores de esta Universidad tenemos campañas de vacunación contra la gripe (nos vacunan gratuitamente), no porque "seamos más importantes" y quieran que no nos contagiemos sino porque somos hubs en la transmisión de la enfermedad (cada día estamos conectados a varias decenas de alumnos).
 
 ## Resumen de las redes libres de escala
 
