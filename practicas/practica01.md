@@ -8,7 +8,17 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla et, aperiam fugi
 
 # Práctica 1: Análisis básico de un grafo
 
+## Parte A:
+
 Usar la aplicación Netvizz de Facebook o <http://snacourse.com/getnet>
+
+## Parte B: Desarrollo de una aplicación para la creación de redes aleatorias
+
+Desarrollar una pequeña aplicación que genere una red aleatoria dados los valores N y p. La red generada ha de ser exportada a [uno de los formatos que es capaz de importar Gephi](http://gephi.github.io/users/supported-graph-formats/) (por ejemplo, CSV para nodos y aristas por separado). La aplicación puede estar desarrollada en cualquier tecnología (Java, C++, Python, hoja excel, Javascript), se puede usar desde la línea de comandos o puede tener una pequeña interfaz y se debe incluir un pequeño manual de uso. No es necesaria ninguna simulación como las que se han visto en clase relacionada con cómo se genera la red.
+
+## Parte C: Verificación de las propiedades de las redes aleatorias
+
+Verificar las propiedades vistas en clase en las redes generadas en la Parte A y la parte B.
 
 ## Entrega
 
