@@ -236,7 +236,7 @@ Para demostrar esta idea tendremos que probar que las distancias en una red libr
 * $\langle d \rangle \sim \frac{lnN}{lnlnN} \text{ si }\gamma =3$
     Este resultado representa un punto crítico. En este caso, el segundo momento de la distribución ($\langle k^2 \rangle$) no diverge y las distancias vuelven a tener una dependencia logarítmica, similar a las de una red aleatoria (aunque levemente suavizadas).
 * $\langle d \rangle \sim lnN \text{ si }\gamma >3$
-    n este caso, el segundo momento de la distribución ($\langle k^2 \rangle$) es finito y la red se comporta como una red aleatoria. A pesar de este comportamiento en esta red siguen existiendo hubs, aunque estos no influyen significativamente en las distancias.
+    En este caso, el segundo momento de la distribución ($\langle k^2 \rangle$) es finito y la red se comporta como una red aleatoria. A pesar de este comportamiento en esta red siguen existiendo hubs, aunque estos no influyen significativamente en las distancias.
 
 ![Representación de las distancias con respecto al tamaño de la red. Se puede ver que $p_d$ (figuras b, c y d) no se ve afectada significativamente por $N$ cuando $\gamma =2.1$ (línea azul), no así para los demás valores de $\gamma$ (líneas verde y roja)](../images/tema03/distancias.png)
 
@@ -248,7 +248,7 @@ Como se puede ver, el valor del exponente $\gamma$ influye en algunas propiedade
 
 ### Régimen anómalo {-}
 
-Se produce cuando $\gamma \leq 2$. En este régimen casi no existen redes y sus propiedades son bastante anómalas. Por ejemplo, nos encontramos que el tamaño del mayor hub es mayor que el tamaño de la red $N$. Esto es algo que solo se puede producir cuando los hubs tienen ciclos o hay múltiples enlaces entre nodos. en este régimen tanto el primer como el segundo momento divergen.
+Se produce cuando $\gamma \leq 2$. En este régimen casi no existen redes y sus propiedades son bastante anómalas. Por ejemplo, nos encontramos que el tamaño del mayor hub es mayor que el tamaño de la red $N$. Esto es algo que solo se puede producir cuando los hubs tienen ciclos o hay múltiples enlaces entre nodos. En este régimen tanto el primer como el segundo momento divergen.
 
 ### Régimen libre de escala {-}
 

@@ -385,6 +385,115 @@ $$p_x \sim k^{-\gamma+1}$$
 
 ## Propiedad de los mundos ultra-pequeños
 
+### Hubs y reducción de distancias
+
+* La existencia de hubs en las redes libres de escala modifica las distancias dentro de la red con respecto al modelo aleatorio
+* Intuición: Ejemplo de red de transportes
+    
+    * Si vamos por carretera de una ciudad a otra pasaremos por muchas ciudades (red aleatoria)
+    * La red aeroportuaria crea hubs (como el aeropuerto de Chicago) que reducen el número de saltos que tenemos que dar entre aeropuertos para ir de una ciudad a otra.
+
+* Demostración: probar que las distancias en una red libre de escala es menor que las distancias en una red aleatoria.
+
+### Distancia media en función del exponente
+
+* Estudiar $\langle d \rangle$ en función del valor del exponente $\gamma$
+ 
+$$k_{max}\sim k_{min} \cdot N^{\frac{1}{\gamma -1}}$$
+
+* 4 regímenes
+
+### Distancia media en función del exponente
+
+1. $\langle d \rangle \sim const \text{ si }\gamma=2$
+
+* $k_{max}\sim N$.
+* La mayoría de los nodos están conectados al hub por lo que la distancia media es independiente del tamaño de la red.
+
+### Distancia media en función del exponente
+
+2. $\langle d \rangle \sim \frac{lnlnN}{ln(\gamma-1)} \text{ si }2<\gamma <3$
+
+* **Mundo ultra-pequeño**: la distancia media se incrementa en un orden menor que el logaritmo cuando el tamaño de la red aumenta.
+* La distancia media en una red aleatoria aumenta en orden logarítmico cuando el tamaño de la red aumenta. 
+* La gran mayoría de los caminos pasan a través de unos pocos hubs, lo que reduce la distancia entre nodos.
+* Ejemplo:
+
+> $N \approx 7\cdot 10^9$
+> 
+> Si la red es aleatoria: $lnN = 22.6$. 
+> 
+> Si la red es libre de escala: $lnlnN=3.12$.
+
+### Distancia media en función del exponente
+
+3. $\langle d \rangle \sim \frac{lnN}{lnlnN} \text{ si }\gamma =3$
+
+* Punto crítico: $\langle k^2 \rangle$ no diverge
+* Las distancias vuelven a tener una dependencia logarítmica, similar a las de una red aleatoria
+* Aunque levemente suavizadas.
+
+### Distancia media en función del exponente
+
+4. $\langle d \rangle \sim lnN \text{ si }\gamma >3$
+
+* ($\langle k^2 \rangle$) es finito
+* La red se comporta como una red aleatoria
+* Siguen existiendo hubs pero no influyen significativamente en las distancias.
+
+### Distancia media en función del exponente
+
+![Representación de las distancias con respecto al tamaño de la red. Se puede ver que $p_d$ (figuras b, c y d) no se ve afectada significativamente por $N$ cuando $\gamma =2.1$ (línea azul), no así para los demás valores de $\gamma$ (líneas verde y roja)](../images/tema03/distancias.png)
+
+### Distancia media en función del exponente
+
+> **Conclusión:** Las redes libres de escala en general reducen la distancia media de la red.
+> 
+>  Modifican la dependencia de $\langle d \rangle$ con respecto al tamaño de la red
+
+>  **Conclusión:** Cuando menor es $\gamma$ menor es la distancia entre nodos
+>  
+>  Si $2<\gamma <3$ menor es la dependencia de $N$
+
+## Regímenes de las redes libres de escala
+
+### Regímenes de las redes libres de escala
+
+* El valor del exponente $\gamma$ influye en algunas propiedades de las redes libres de escala
+* Distinguimos 3 regímenes
+
+![Resumen de los regímenes de una red libre de escala.](../images/tema03/regimenes.png)
+
+### Régimen anómalo {-}
+
+* $\gamma \leq 2$
+* Primer y segundo momento divergen
+* Casi no se da en redes
+* Propiedades son bastante anómalas
+* Ej: Tamaño del mayor hub es mayor que el tamaño de la red $N$
+
+    * Los hubs tienen ciclos o hay múltiples enlaces entre nodos.
+
+### Régimen libre de escala {-}
+
+* $2<\gamma <3$
+* El primer momento es finito pero el segundo momento diverge
+* Se manifiesta la propiedad libre de escala
+* El tamaño de los hubs crece con el tamaño de la red
+* Mundo ultra-pequeño
+
+### Régimen  de red aleatoria {-}
+
+* $\gamma \geq 3$
+* Las redes libres de escala que se encuentran en este régimen son prácticamente indistinguibles de las aleatorias de igual tamaño
+* Cuanto mayor es el exponente, más pequeños y menos numerosos son los hubs
+* $k_{max}$ ha de ser entre $10^2 - 10^3$ veces mayor que $k_{min}$ por lo que $N$ ha de ser enorme
+
+> Ejemplo: $\gamma=5$ y $k_{max} \approx 10^3 \cdot k_{min}$
+> 
+> $$k_{max}\sim k_{min} \cdot N^{\frac{1}{\gamma -1}};\;N=\Big(\frac{k_{max}}{k_{min}}\Big)^{5-1} \approx 10^{12}$$
+
+
 ## Resumen
 
 ### Resumen

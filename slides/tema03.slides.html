@@ -432,13 +432,137 @@ Guillermo Jiménez Díaz (gjimenez@ucm.es)<br/>Alberto Díaz (albertodiaz@fdi.uc
 <div class="figure">
 <img src="../images/tema03/detectarAcumulada.png" alt="Valor estimado: \gamma=2,43. Valor real con otras técnicas: \gamma=2,45" /><p class="caption">Valor estimado: <span class="math">\(\gamma=2,43\)</span>. Valor real con otras técnicas: <span class="math">\(\gamma=2,45\)</span></p>
 </div>
-</div><div id="propiedad-de-los-mundos-ultra-pequeños" class="titleslide slide section level2"><h1><span class="header-section-number">1.7</span> Propiedad de los mundos ultra-pequeños</h1></div><div id="resumen" class="titleslide slide section level2"><h1><span class="header-section-number">1.8</span> Resumen</h1></div><div id="resumen-1" class="slide section level3">
-<h1><span class="header-section-number">1.8.1</span> Resumen</h1>
+</div><div id="propiedad-de-los-mundos-ultra-pequeños" class="titleslide slide section level2"><h1><span class="header-section-number">1.7</span> Propiedad de los mundos ultra-pequeños</h1></div><div id="hubs-y-reducción-de-distancias" class="slide section level3">
+<h1><span class="header-section-number">1.7.1</span> Hubs y reducción de distancias</h1>
+<ul>
+<li>La existencia de hubs en las redes libres de escala modifica las distancias dentro de la red con respecto al modelo aleatorio</li>
+<li><p>Intuición: Ejemplo de red de transportes</p>
+<ul>
+<li>Si vamos por carretera de una ciudad a otra pasaremos por muchas ciudades (red aleatoria)</li>
+<li>La red aeroportuaria crea hubs (como el aeropuerto de Chicago) que reducen el número de saltos que tenemos que dar entre aeropuertos para ir de una ciudad a otra.</li>
+</ul></li>
+<li><p>Demostración: probar que las distancias en una red libre de escala es menor que las distancias en una red aleatoria.</p></li>
+</ul>
+</div><div id="distancia-media-en-función-del-exponente" class="slide section level3">
+<h1><span class="header-section-number">1.7.2</span> Distancia media en función del exponente</h1>
+<ul>
+<li>Estudiar <span class="math">\(\langle d \rangle\)</span> en función del valor del exponente <span class="math">\(\gamma\)</span></li>
+</ul>
+<p><span class="math">\[k_{max}\sim k_{min} \cdot N^{\frac{1}{\gamma -1}}\]</span></p>
+<ul>
+<li>4 regímenes</li>
+</ul>
+</div><div id="distancia-media-en-función-del-exponente-1" class="slide section level3">
+<h1><span class="header-section-number">1.7.3</span> Distancia media en función del exponente</h1>
+<ol style="list-style-type: decimal">
+<li><span class="math">\(\langle d \rangle \sim const \text{ si }\gamma=2\)</span></li>
+</ol>
+<ul>
+<li><span class="math">\(k_{max}\sim N\)</span>.</li>
+<li>La mayoría de los nodos están conectados al hub por lo que la distancia media es independiente del tamaño de la red.</li>
+</ul>
+</div><div id="distancia-media-en-función-del-exponente-2" class="slide section level3">
+<h1><span class="header-section-number">1.7.4</span> Distancia media en función del exponente</h1>
+<ol start="2" style="list-style-type: decimal">
+<li><span class="math">\(\langle d \rangle \sim \frac{lnlnN}{ln(\gamma-1)} \text{ si }2&lt;\gamma &lt;3\)</span></li>
+</ol>
+<ul>
+<li><strong>Mundo ultra-pequeño</strong>: la distancia media se incrementa en un orden menor que el logaritmo cuando el tamaño de la red aumenta.</li>
+<li>La distancia media en una red aleatoria aumenta en orden logarítmico cuando el tamaño de la red aumenta.</li>
+<li>La gran mayoría de los caminos pasan a través de unos pocos hubs, lo que reduce la distancia entre nodos.</li>
+<li>Ejemplo:</li>
+</ul>
+<blockquote>
+<p><span class="math">\(N \approx 7\cdot 10^9\)</span></p>
+<p>Si la red es aleatoria: <span class="math">\(lnN = 22.6\)</span>.</p>
+<p>Si la red es libre de escala: <span class="math">\(lnlnN=3.12\)</span>.</p>
+</blockquote>
+</div><div id="distancia-media-en-función-del-exponente-3" class="slide section level3">
+<h1><span class="header-section-number">1.7.5</span> Distancia media en función del exponente</h1>
+<ol start="3" style="list-style-type: decimal">
+<li><span class="math">\(\langle d \rangle \sim \frac{lnN}{lnlnN} \text{ si }\gamma =3\)</span></li>
+</ol>
+<ul>
+<li>Punto crítico: <span class="math">\(\langle k^2 \rangle\)</span> no diverge</li>
+<li>Las distancias vuelven a tener una dependencia logarítmica, similar a las de una red aleatoria</li>
+<li>Aunque levemente suavizadas.</li>
+</ul>
+</div><div id="distancia-media-en-función-del-exponente-4" class="slide section level3">
+<h1><span class="header-section-number">1.7.6</span> Distancia media en función del exponente</h1>
+<ol start="4" style="list-style-type: decimal">
+<li><span class="math">\(\langle d \rangle \sim lnN \text{ si }\gamma &gt;3\)</span></li>
+</ol>
+<ul>
+<li>(<span class="math">\(\langle k^2 \rangle\)</span>) es finito</li>
+<li>La red se comporta como una red aleatoria</li>
+<li>Siguen existiendo hubs pero no influyen significativamente en las distancias.</li>
+</ul>
+</div><div id="distancia-media-en-función-del-exponente-5" class="slide section level3">
+<h1><span class="header-section-number">1.7.7</span> Distancia media en función del exponente</h1>
+<div class="figure">
+<img src="../images/tema03/distancias.png" alt="Representación de las distancias con respecto al tamaño de la red. Se puede ver que p_d (figuras b, c y d) no se ve afectada significativamente por N cuando \gamma =2.1 (línea azul), no así para los demás valores de \gamma (líneas verde y roja)" /><p class="caption">Representación de las distancias con respecto al tamaño de la red. Se puede ver que <span class="math">\(p_d\)</span> (figuras b, c y d) no se ve afectada significativamente por <span class="math">\(N\)</span> cuando <span class="math">\(\gamma =2.1\)</span> (línea azul), no así para los demás valores de <span class="math">\(\gamma\)</span> (líneas verde y roja)</p>
+</div>
+</div><div id="distancia-media-en-función-del-exponente-6" class="slide section level3">
+<h1><span class="header-section-number">1.7.8</span> Distancia media en función del exponente</h1>
+<blockquote>
+<p><strong>Conclusión:</strong> Las redes libres de escala en general reducen la distancia media de la red.</p>
+<p>Modifican la dependencia de <span class="math">\(\langle d \rangle\)</span> con respecto al tamaño de la red</p>
+</blockquote>
+<blockquote>
+<p><strong>Conclusión:</strong> Cuando menor es <span class="math">\(\gamma\)</span> menor es la distancia entre nodos</p>
+<p>Si <span class="math">\(2&lt;\gamma &lt;3\)</span> menor es la dependencia de <span class="math">\(N\)</span></p>
+</blockquote>
+</div><div id="regímenes-de-las-redes-libres-de-escala" class="titleslide slide section level2"><h1><span class="header-section-number">1.8</span> Regímenes de las redes libres de escala</h1></div><div id="regímenes-de-las-redes-libres-de-escala-1" class="slide section level3">
+<h1><span class="header-section-number">1.8.1</span> Regímenes de las redes libres de escala</h1>
+<ul>
+<li>El valor del exponente <span class="math">\(\gamma\)</span> influye en algunas propiedades de las redes libres de escala</li>
+<li>Distinguimos 3 regímenes</li>
+</ul>
+<div class="figure">
+<img src="../images/tema03/regimenes.png" alt="Resumen de los regímenes de una red libre de escala." /><p class="caption">Resumen de los regímenes de una red libre de escala.</p>
+</div>
+</div><div id="régimen-anómalo" class="slide section level3 unnumbered">
+<h1>Régimen anómalo</h1>
+<ul>
+<li><span class="math">\(\gamma \leq 2\)</span></li>
+<li>Primer y segundo momento divergen</li>
+<li>Casi no se da en redes</li>
+<li>Propiedades son bastante anómalas</li>
+<li><p>Ej: Tamaño del mayor hub es mayor que el tamaño de la red <span class="math">\(N\)</span></p>
+<ul>
+<li>Los hubs tienen ciclos o hay múltiples enlaces entre nodos.</li>
+</ul></li>
+</ul>
+</div><div id="régimen-libre-de-escala" class="slide section level3 unnumbered">
+<h1>Régimen libre de escala</h1>
+<ul>
+<li><span class="math">\(2&lt;\gamma &lt;3\)</span></li>
+<li>El primer momento es finito pero el segundo momento diverge</li>
+<li>Se manifiesta la propiedad libre de escala</li>
+<li>El tamaño de los hubs crece con el tamaño de la red</li>
+<li>Mundo ultra-pequeño</li>
+</ul>
+</div><div id="régimen-de-red-aleatoria" class="slide section level3 unnumbered">
+<h1>Régimen de red aleatoria</h1>
+<ul>
+<li><span class="math">\(\gamma \geq 3\)</span></li>
+<li>Las redes libres de escala que se encuentran en este régimen son prácticamente indistinguibles de las aleatorias de igual tamaño</li>
+<li>Cuanto mayor es el exponente, más pequeños y menos numerosos son los hubs</li>
+<li><span class="math">\(k_{max}\)</span> ha de ser entre <span class="math">\(10^2 - 10^3\)</span> veces mayor que <span class="math">\(k_{min}\)</span> por lo que <span class="math">\(N\)</span> ha de ser enorme</li>
+</ul>
+<blockquote>
+<p>Ejemplo: <span class="math">\(\gamma=5\)</span> y <span class="math">\(k_{max} \approx 10^3 \cdot k_{min}\)</span></p>
+<p><span class="math">\[k_{max}\sim k_{min} \cdot N^{\frac{1}{\gamma -1}};\;N=\Big(\frac{k_{max}}{k_{min}}\Big)^{5-1} \approx 10^{12}\]</span></p>
+</blockquote>
+<p>Aunque estas redes no son muy frecuentes realmente existen. Ej: Red de llamadas móviles donde <span class="math">\(N=4.6\cdot 10^6\)</span> y <span class="math">\(\gamma = 8.4\)</span>.</p>
+<p><img src="../images/tema03/regimenes.png" alt="Resumen de los regímenes de una red libre de escala." /> ## Resumen</p>
+</div><div id="resumen" class="slide section level3">
+<h1><span class="header-section-number">1.8.2</span> Resumen</h1>
 <div class="figure">
 <img src="../images/tema03/resumen.png" alt="Cuadro resumen" /><p class="caption">Cuadro resumen</p>
 </div>
-</div><div id="resumen-2" class="slide section level3">
-<h1><span class="header-section-number">1.8.2</span> Resumen</h1>
+</div><div id="resumen-1" class="slide section level3">
+<h1><span class="header-section-number">1.8.3</span> Resumen</h1>
 <p>Las redes reales cumplen otra nueva ley que es la <strong>propiedad libre de escala</strong>:</p>
 <blockquote>
 <p>Muchas redes reales presentan distribuciones de cola ancha. Esto implica que nodos de grado bajo conviven con nodos con un grado excepcionalmente grande: los hubs.</p>
