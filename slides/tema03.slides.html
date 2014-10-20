@@ -554,15 +554,51 @@ Guillermo Jiménez Díaz (gjimenez@ucm.es)<br/>Alberto Díaz (albertodiaz@fdi.uc
 <p>Ejemplo: <span class="math">\(\gamma=5\)</span> y <span class="math">\(k_{max} \approx 10^3 \cdot k_{min}\)</span></p>
 <p><span class="math">\[k_{max}\sim k_{min} \cdot N^{\frac{1}{\gamma -1}};\;N=\Big(\frac{k_{max}}{k_{min}}\Big)^{5-1} \approx 10^{12}\]</span></p>
 </blockquote>
-<p>Aunque estas redes no son muy frecuentes realmente existen. Ej: Red de llamadas móviles donde <span class="math">\(N=4.6\cdot 10^6\)</span> y <span class="math">\(\gamma = 8.4\)</span>.</p>
-<p><img src="../images/tema03/regimenes.png" alt="Resumen de los regímenes de una red libre de escala." /> ## Resumen</p>
-</div><div id="resumen" class="slide section level3">
-<h1><span class="header-section-number">1.8.2</span> Resumen</h1>
+</div><div id="propiedades-adicionales-de-las-redes-libres-de-escala" class="titleslide slide section level2"><h1><span class="header-section-number">1.9</span> Propiedades adicionales de las redes libres de escala</h1></div><div id="robustas-a-fallos-aleatorios" class="slide section level3">
+<h1><span class="header-section-number">1.9.1</span> Robustas a fallos aleatorios</h1>
+<div class="figure">
+<img src="../images/tema03/robustez.png" alt="Robustez de las redes. Las dos primeras filas muestran fallos aleatorios de los nodos de una red aleatoria y una red libre de escala, respectivamente. La última fila muestra el peligro de un ataque coordinado a los hubs de una red" /><p class="caption">Robustez de las redes. Las dos primeras filas muestran fallos aleatorios de los nodos de una red aleatoria y una red libre de escala, respectivamente. La última fila muestra el peligro de un ataque coordinado a los hubs de una red</p>
+</div>
+</div><div id="robustas-a-fallos-aleatorios-1" class="slide section level3">
+<h1><span class="header-section-number">1.9.2</span> Robustas a fallos aleatorios</h1>
+<ul>
+<li>Las redes libres de escala son mucho más tolerantes a fallos accidentales (o aleatorios) que las redes aleatorias</li>
+<li>Sin embargo, las redes libres de escala son extremadamente vulnerables si se eliminan sus hubs, ya que en ese caso sí se produce la fractura del sistema.</li>
+</ul>
+</div><div id="propagación-de-virus" class="slide section level3">
+<h1><span class="header-section-number">1.9.3</span> Propagación de virus</h1>
+<ul>
+<li>En una red libre de escala (como puede ser la WWW) es prácticamente imposible erradicar un virus ya que las distancias cortas permiten la rápida propagación del mismo, evitando el aislamiento</li>
+<li>Inmunizar a los hubs reducen su propagación</li>
+</ul>
+<blockquote>
+<p>Ejemplo: Vacunación de la gripe de los profesores de Universidad</p>
+</blockquote>
+</div><div id="resumen" class="titleslide slide section level2"><h1><span class="header-section-number">1.10</span> Resumen</h1></div><div id="resumen-1" class="slide section level3">
+<h1><span class="header-section-number">1.10.1</span> Resumen</h1>
+<ul>
+<li>Las redes “acotadas” son las que su distribución de grados decrece exponencialmente (o más rápido) a medida que crece <span class="math">\(k\)</span></li>
+<li>Exponencial, la gaussiana o la de Poisson, entre otras</li>
+<li>Las redes aleatorias son un ejemplo de estas redes</li>
+<li>Carecen de hubs y de nodos con grado muy bajo por lo que todos los nodos tienen un grado más o menos similar</li>
+<li>Ejemplos: redes de carreteras, las redes eléctricas y las redes atómicas, entre otras.</li>
+</ul>
+</div><div id="resumen-2" class="slide section level3">
+<h1><span class="header-section-number">1.10.2</span> Resumen</h1>
+<ul>
+<li>Las redes “no acotadas” o libres de escala son aquellas cuya distribución de grados sigue una ley potencial</li>
+<li>En estas redes existen (y se espera que existan) nodos de grado muy alto (hubs), conviviendo con nodos de grado varios órdenes de magnitud menor</li>
+<li>El grado de los nodos no está acotado por el grado medio</li>
+<li>Ejemplos: la WWW, las redes de interacción de proteínas, las redes de investigación, etc.</li>
+<li>Los hubs afectan significativamente a las propiedades de la red: mundos ultra-pequeños</li>
+</ul>
+</div><div id="resumen-3" class="slide section level3">
+<h1><span class="header-section-number">1.10.3</span> Resumen</h1>
 <div class="figure">
 <img src="../images/tema03/resumen.png" alt="Cuadro resumen" /><p class="caption">Cuadro resumen</p>
 </div>
-</div><div id="resumen-1" class="slide section level3">
-<h1><span class="header-section-number">1.8.3</span> Resumen</h1>
+</div><div id="resumen-4" class="slide section level3">
+<h1><span class="header-section-number">1.10.4</span> Resumen</h1>
 <p>Las redes reales cumplen otra nueva ley que es la <strong>propiedad libre de escala</strong>:</p>
 <blockquote>
 <p>Muchas redes reales presentan distribuciones de cola ancha. Esto implica que nodos de grado bajo conviven con nodos con un grado excepcionalmente grande: los hubs.</p>

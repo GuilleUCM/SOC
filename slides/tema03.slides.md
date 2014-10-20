@@ -493,12 +493,43 @@ $$k_{max}\sim k_{min} \cdot N^{\frac{1}{\gamma -1}}$$
 > 
 > $$k_{max}\sim k_{min} \cdot N^{\frac{1}{\gamma -1}};\;N=\Big(\frac{k_{max}}{k_{min}}\Big)^{5-1} \approx 10^{12}$$
 
+## Propiedades adicionales de las redes libres de escala
+
+### Robustas a fallos aleatorios
+
+![Robustez de las redes. Las dos primeras filas muestran fallos aleatorios de los nodos de una red aleatoria y una red libre de escala, respectivamente. La última fila muestra el peligro de un ataque coordinado a los hubs de una red](../images/tema03/robustez.png)
+
+### Robustas a fallos aleatorios
+
+* Las redes libres de escala son mucho más tolerantes a fallos accidentales (o aleatorios) que las redes aleatorias
+* Sin embargo, las redes libres de escala son extremadamente vulnerables si se eliminan sus hubs, ya que en ese caso sí se produce la fractura del sistema.
+
+### Propagación de virus
+
+* En una red libre de escala (como puede ser la WWW) es prácticamente imposible erradicar un virus ya que las distancias cortas permiten la rápida propagación del mismo, evitando el aislamiento
+* Inmunizar a los hubs reducen su propagación
+
+> Ejemplo: Vacunación de la gripe de los profesores de Universidad
 
 ## Resumen
 
 ### Resumen
 
+* Las redes "acotadas" son las que su distribución de grados decrece exponencialmente (o más rápido) a medida que crece $k$
+* Exponencial, la gaussiana o la de Poisson, entre otras
+* Las redes aleatorias son un ejemplo de estas redes
+* Carecen de hubs y de nodos con grado muy bajo por lo que todos los nodos tienen un grado más o menos similar
+* Ejemplos: redes de carreteras, las redes eléctricas y las redes atómicas, entre otras.
 
+### Resumen
+
+* Las redes "no acotadas" o libres de escala son aquellas cuya distribución de grados sigue una ley potencial
+* En estas redes existen (y se espera que existan) nodos de grado muy alto (hubs), conviviendo con nodos de grado varios órdenes de magnitud menor
+* El grado de los nodos no está acotado por el grado medio
+* Ejemplos: la WWW, las redes de interacción de proteínas, las redes de investigación, etc.
+* Los hubs afectan significativamente a las propiedades de la red: mundos ultra-pequeños
+
+### Resumen
 
 ![Cuadro resumen](../images/tema03/resumen.png)
 
