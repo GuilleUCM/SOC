@@ -282,17 +282,106 @@ $$\langle k^n \rangle = \frac{(\gamma -1)}{(n-\gamma- 1)} k_{min}^{\gamma-1} \Bi
 
 ## Identificación de las redes libres de escala
 
+### Identificación de las redes libres de escala
+
+* No podemos suponer que todas las redes reales son libres de escala
+* Se proponen unas pautas para detectar la propiedad de ser libre de escala
+
+1. Representar gráficamente la distribución de grados
+2. Comprobar que la distribución sigue realmente una ley potencial
+3. Estimar el valor del exponente de la función
+
 ### Representar gráficamente la distribución de grados
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis doloribus ullam enim tempore suscipit odio explicabo consectetur at itaque ea, sed debitis, laboriosam atque dolorum? Dicta recusandae, quasi. Impedit, neque?
+* Dada una red real de $N$ nodos tendremos que calcular el grado de cada nodo
+* Calcular  $p_k = \frac{N_k}{N}$ para todos los valores de $k$ que encontremos en la red ($N_k$ es el número de nodos con grado $k$)
+* Representar gráficamente $p_k$/$k$
+
+![Representación gráfica en escala lineal de $p_k$/$k$](../images/tema03/detectarLineal.png)
+
+### Representar gráficamente la distribución de grados
+
+* La representación lineal puede que comprima el grafo 
+* Usar escala logarítmica: log $p_k$ en función de log $k$
+* Difícil de entender: Usar escala logarítmico-aritmética con potencias de 10
+    
+    * Si $log(1000)=3$ entonces en el eje escribimos $10^3$.
+
+![Representación gráfica en escala logarítmica de $p_k$/$k$](../images/tema03/detectarLog.png)
+
+### Representar gráficamente la distribución de grados
+
+* _Linear binning_
+* Problema: aparecen mesetas (_plateau_) para los valores de $k$ grandes.
+* $N_k=0 \to p_k=0$: No se representan.
+* $N_k=1 \to p_k = \frac{1}{N}$: Meseta
+* Esto puede hacer que no se pueda estimar correctamente el exponente.
+
+![Problema: aparición de mesetas](../images/tema03/detectarProbLinealBinning.png)
+
+### Representar gráficamente la distribución de grados
+
+* _Logarithmic binning_
+* Agrupamos $k$ por cubos (o _bins_) de tamaño variable:
+
+    * $b_0 = 1$: contiene los nodos con $k=1$
+    * $b_1 = 2$: contiene los nodos con $k \in \{2, 3\}$
+    * $b_2 = 4$: contiene los nodos con $k \in \{4, 5, 6, 7\}$
+    * En general, $b_n = 2^n$ y contiene los nodos con $k \in \{2^n, 2^n+1, \dots, 2^{n+1}-1\}$
+
+* Representaremos $p_{\langle k_n \rangle} = \frac{N_n}{b_n}$
+
+    * $\langle k_n \rangle$ es el grado medio del cubo n-ésimo
+    * $N_n$ es el número de nodos en el cubo n-ésimo
+    * $b_n$ es el tamaño del cubo.
+
+### Representar gráficamente la distribución de grados
+
+* Suaviza las mesetas
+* Perdemos información
+
+![Representación mediante log binning](../images/tema03/detectarLogBinning.png)
+
+### Representar gráficamente la distribución de grados
+
+* Distribución acumulada: cuántos nodos tienen al menos grado k
+
+$$p_x = \sum_{q=k}^{\infty}P_q$$
+
+* Distribución acumulada sigue siendo un ley potencial
+
+$$p_x \sim k^{-\gamma+1}$$
+
+* No existen mesetas
+
+![Representación mediante distribución acumulada](../images/tema03/detectarAcumulada.png)
+
+### Representar gráficamente la distribución de grados
+
+![Representación de la función de distribución utilizando distintas escalas](../images/tema03/graficas.png)
 
 ### Comprobar que la distribución sigue realmente una ley potencial
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis doloribus ullam enim tempore suscipit odio explicabo consectetur at itaque ea, sed debitis, laboriosam atque dolorum? Dicta recusandae, quasi. Impedit, neque?
+* Comprobar que realmente sigue una ley potencial
+* Dibujar distribuciones de Poisson o exponenciales equivalentes (usando el valor $\langle k \rangle$ de la red) para ver que realmente son distintas.
+
+![Distribución de grado en escala logarítmica de Internet y de la red de interacción de proteínas. En cada gráfica se ha presentado punteada la distribución de Poisson usando el grado medio $\langle k \rangle$ calculado para cada una de las redes.](../images/tema03/poissonYpowerlaw.png)
+
+### Comprobar que la distribución sigue realmente una ley potencial
+
+* Algunas distribuciones solo presentan la propiedad de ley potencial en la cola
+* Estimar $k_{min}$ a partir del cual se exhibe ley potencial
+* $k_{min}>0$ ya que $k^{-\gamma} = \infty$ para $k=0$
+
+![Red de citas en artículos científicos: la ley potencial aparece solo a partir de $k_{min}$](../images/tema03/estimarKmin.png)
 
 ### Calcular el valor del exponente de la función
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis doloribus ullam enim tempore suscipit odio explicabo consectetur at itaque ea, sed debitis, laboriosam atque dolorum? Dicta recusandae, quasi. Impedit, neque?
+* Aproximar el valor del exponente es buscando la línea recta que se ajusta al gráfico logarítmico
+* Puede introducir cierto error
+* Existen otras técnicas más precisas que quedan fuera de los objetivos de este curso (pero que se pueden consultar en el anexo 4.C del capítulo 4 del libro de Barabasi).
+
+![Valor estimado: $\gamma=2,43$. Valor real con otras técnicas: $\gamma=2,45$](../images/tema03/detectarAcumulada.png)
 
 ## Propiedad de los mundos ultra-pequeños
 

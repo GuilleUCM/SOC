@@ -309,15 +309,129 @@ Guillermo Jiménez Díaz (gjimenez@ucm.es)<br/>Alberto Díaz (albertodiaz@fdi.uc
 <li>Contraejemplo: red neuronal del gusano <em>C.elegans</em>.</li>
 <li>Generalmente no aparece en redes en las que existe una limitación en el número de enlaces que un nodo puede tener (como la red eléctrica o la estructura atómica).</li>
 </ul>
-</div><div id="identificación-de-las-redes-libres-de-escala" class="titleslide slide section level2"><h1><span class="header-section-number">1.6</span> Identificación de las redes libres de escala</h1></div><div id="representar-gráficamente-la-distribución-de-grados" class="slide section level3">
-<h1><span class="header-section-number">1.6.1</span> Representar gráficamente la distribución de grados</h1>
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis doloribus ullam enim tempore suscipit odio explicabo consectetur at itaque ea, sed debitis, laboriosam atque dolorum? Dicta recusandae, quasi. Impedit, neque?</p>
+</div><div id="identificación-de-las-redes-libres-de-escala" class="titleslide slide section level2"><h1><span class="header-section-number">1.6</span> Identificación de las redes libres de escala</h1></div><div id="identificación-de-las-redes-libres-de-escala-1" class="slide section level3">
+<h1><span class="header-section-number">1.6.1</span> Identificación de las redes libres de escala</h1>
+<ul>
+<li>No podemos suponer que todas las redes reales son libres de escala</li>
+<li>Se proponen unas pautas para detectar la propiedad de ser libre de escala</li>
+</ul>
+<ol style="list-style-type: decimal">
+<li>Representar gráficamente la distribución de grados</li>
+<li>Comprobar que la distribución sigue realmente una ley potencial</li>
+<li>Estimar el valor del exponente de la función</li>
+</ol>
+</div><div id="representar-gráficamente-la-distribución-de-grados" class="slide section level3">
+<h1><span class="header-section-number">1.6.2</span> Representar gráficamente la distribución de grados</h1>
+<ul>
+<li>Dada una red real de <span class="math">\(N\)</span> nodos tendremos que calcular el grado de cada nodo</li>
+<li>Calcular <span class="math">\(p_k = \frac{N_k}{N}\)</span> para todos los valores de <span class="math">\(k\)</span> que encontremos en la red (<span class="math">\(N_k\)</span> es el número de nodos con grado <span class="math">\(k\)</span>)</li>
+<li>Representar gráficamente <span class="math">\(p_k\)</span>/<span class="math">\(k\)</span></li>
+</ul>
+<div class="figure">
+<img src="../images/tema03/detectarLineal.png" alt="Representación gráfica en escala lineal de p_k/k" /><p class="caption">Representación gráfica en escala lineal de <span class="math">\(p_k\)</span>/<span class="math">\(k\)</span></p>
+</div>
+</div><div id="representar-gráficamente-la-distribución-de-grados-1" class="slide section level3">
+<h1><span class="header-section-number">1.6.3</span> Representar gráficamente la distribución de grados</h1>
+<ul>
+<li>La representación lineal puede que comprima el grafo</li>
+<li>Usar escala logarítmica: log <span class="math">\(p_k\)</span> en función de log <span class="math">\(k\)</span></li>
+<li><p>Difícil de entender: Usar escala logarítmico-aritmética con potencias de 10</p>
+<ul>
+<li>Si <span class="math">\(log(1000)=3\)</span> entonces en el eje escribimos <span class="math">\(10^3\)</span>.</li>
+</ul></li>
+</ul>
+<div class="figure">
+<img src="../images/tema03/detectarLog.png" alt="Representación gráfica en escala logarítmica de p_k/k" /><p class="caption">Representación gráfica en escala logarítmica de <span class="math">\(p_k\)</span>/<span class="math">\(k\)</span></p>
+</div>
+</div><div id="representar-gráficamente-la-distribución-de-grados-2" class="slide section level3">
+<h1><span class="header-section-number">1.6.4</span> Representar gráficamente la distribución de grados</h1>
+<ul>
+<li><em>Linear binning</em></li>
+<li>Problema: aparecen mesetas (<em>plateau</em>) para los valores de <span class="math">\(k\)</span> grandes.</li>
+<li><span class="math">\(N_k=0 \to p_k=0\)</span>: No se representan.</li>
+<li><span class="math">\(N_k=1 \to p_k = \frac{1}{N}\)</span>: Meseta</li>
+<li>Esto puede hacer que no se pueda estimar correctamente el exponente.</li>
+</ul>
+<div class="figure">
+<img src="../images/tema03/detectarProbLinealBinning.png" alt="Problema: aparición de mesetas" /><p class="caption">Problema: aparición de mesetas</p>
+</div>
+</div><div id="representar-gráficamente-la-distribución-de-grados-3" class="slide section level3">
+<h1><span class="header-section-number">1.6.5</span> Representar gráficamente la distribución de grados</h1>
+<ul>
+<li><em>Logarithmic binning</em></li>
+<li><p>Agrupamos <span class="math">\(k\)</span> por cubos (o <em>bins</em>) de tamaño variable:</p>
+<ul>
+<li><span class="math">\(b_0 = 1\)</span>: contiene los nodos con <span class="math">\(k=1\)</span></li>
+<li><span class="math">\(b_1 = 2\)</span>: contiene los nodos con <span class="math">\(k \in \{2, 3\}\)</span></li>
+<li><span class="math">\(b_2 = 4\)</span>: contiene los nodos con <span class="math">\(k \in \{4, 5, 6, 7\}\)</span></li>
+<li>En general, <span class="math">\(b_n = 2^n\)</span> y contiene los nodos con <span class="math">\(k \in \{2^n, 2^n+1, \dots, 2^{n+1}-1\}\)</span></li>
+</ul></li>
+<li><p>Representaremos <span class="math">\(p_{\langle k_n \rangle} = \frac{N_n}{b_n}\)</span></p>
+<ul>
+<li><span class="math">\(\langle k_n \rangle\)</span> es el grado medio del cubo n-ésimo</li>
+<li><span class="math">\(N_n\)</span> es el número de nodos en el cubo n-ésimo</li>
+<li><span class="math">\(b_n\)</span> es el tamaño del cubo.</li>
+</ul></li>
+</ul>
+</div><div id="representar-gráficamente-la-distribución-de-grados-4" class="slide section level3">
+<h1><span class="header-section-number">1.6.6</span> Representar gráficamente la distribución de grados</h1>
+<ul>
+<li>Suaviza las mesetas</li>
+<li>Perdemos información</li>
+</ul>
+<div class="figure">
+<img src="../images/tema03/detectarLogBinning.png" alt="Representación mediante log binning" /><p class="caption">Representación mediante log binning</p>
+</div>
+</div><div id="representar-gráficamente-la-distribución-de-grados-5" class="slide section level3">
+<h1><span class="header-section-number">1.6.7</span> Representar gráficamente la distribución de grados</h1>
+<ul>
+<li>Distribución acumulada: cuántos nodos tienen al menos grado k</li>
+</ul>
+<p><span class="math">\[p_x = \sum_{q=k}^{\infty}P_q\]</span></p>
+<ul>
+<li>Distribución acumulada sigue siendo un ley potencial</li>
+</ul>
+<p><span class="math">\[p_x \sim k^{-\gamma+1}\]</span></p>
+<ul>
+<li>No existen mesetas</li>
+</ul>
+<div class="figure">
+<img src="../images/tema03/detectarAcumulada.png" alt="Representación mediante distribución acumulada" /><p class="caption">Representación mediante distribución acumulada</p>
+</div>
+</div><div id="representar-gráficamente-la-distribución-de-grados-6" class="slide section level3">
+<h1><span class="header-section-number">1.6.8</span> Representar gráficamente la distribución de grados</h1>
+<div class="figure">
+<img src="../images/tema03/graficas.png" alt="Representación de la función de distribución utilizando distintas escalas" /><p class="caption">Representación de la función de distribución utilizando distintas escalas</p>
+</div>
 </div><div id="comprobar-que-la-distribución-sigue-realmente-una-ley-potencial" class="slide section level3">
-<h1><span class="header-section-number">1.6.2</span> Comprobar que la distribución sigue realmente una ley potencial</h1>
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis doloribus ullam enim tempore suscipit odio explicabo consectetur at itaque ea, sed debitis, laboriosam atque dolorum? Dicta recusandae, quasi. Impedit, neque?</p>
+<h1><span class="header-section-number">1.6.9</span> Comprobar que la distribución sigue realmente una ley potencial</h1>
+<ul>
+<li>Comprobar que realmente sigue una ley potencial</li>
+<li>Dibujar distribuciones de Poisson o exponenciales equivalentes (usando el valor <span class="math">\(\langle k \rangle\)</span> de la red) para ver que realmente son distintas.</li>
+</ul>
+<div class="figure">
+<img src="../images/tema03/poissonYpowerlaw.png" alt="Distribución de grado en escala logarítmica de Internet y de la red de interacción de proteínas. En cada gráfica se ha presentado punteada la distribución de Poisson usando el grado medio \langle k \rangle calculado para cada una de las redes." /><p class="caption">Distribución de grado en escala logarítmica de Internet y de la red de interacción de proteínas. En cada gráfica se ha presentado punteada la distribución de Poisson usando el grado medio <span class="math">\(\langle k \rangle\)</span> calculado para cada una de las redes.</p>
+</div>
+</div><div id="comprobar-que-la-distribución-sigue-realmente-una-ley-potencial-1" class="slide section level3">
+<h1><span class="header-section-number">1.6.10</span> Comprobar que la distribución sigue realmente una ley potencial</h1>
+<ul>
+<li>Algunas distribuciones solo presentan la propiedad de ley potencial en la cola</li>
+<li>Estimar <span class="math">\(k_{min}\)</span> a partir del cual se exhibe ley potencial</li>
+<li><span class="math">\(k_{min}&gt;0\)</span> ya que <span class="math">\(k^{-\gamma} = \infty\)</span> para <span class="math">\(k=0\)</span></li>
+</ul>
+<div class="figure">
+<img src="../images/tema03/estimarKmin.png" alt="Red de citas en artículos científicos: la ley potencial aparece solo a partir de k_{min}" /><p class="caption">Red de citas en artículos científicos: la ley potencial aparece solo a partir de <span class="math">\(k_{min}\)</span></p>
+</div>
 </div><div id="calcular-el-valor-del-exponente-de-la-función" class="slide section level3">
-<h1><span class="header-section-number">1.6.3</span> Calcular el valor del exponente de la función</h1>
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis doloribus ullam enim tempore suscipit odio explicabo consectetur at itaque ea, sed debitis, laboriosam atque dolorum? Dicta recusandae, quasi. Impedit, neque?</p>
+<h1><span class="header-section-number">1.6.11</span> Calcular el valor del exponente de la función</h1>
+<ul>
+<li>Aproximar el valor del exponente es buscando la línea recta que se ajusta al gráfico logarítmico</li>
+<li>Puede introducir cierto error</li>
+<li>Existen otras técnicas más precisas que quedan fuera de los objetivos de este curso (pero que se pueden consultar en el anexo 4.C del capítulo 4 del libro de Barabasi).</li>
+</ul>
+<div class="figure">
+<img src="../images/tema03/detectarAcumulada.png" alt="Valor estimado: \gamma=2,43. Valor real con otras técnicas: \gamma=2,45" /><p class="caption">Valor estimado: <span class="math">\(\gamma=2,43\)</span>. Valor real con otras técnicas: <span class="math">\(\gamma=2,45\)</span></p>
+</div>
 </div><div id="propiedad-de-los-mundos-ultra-pequeños" class="titleslide slide section level2"><h1><span class="header-section-number">1.7</span> Propiedad de los mundos ultra-pequeños</h1></div><div id="resumen" class="titleslide slide section level2"><h1><span class="header-section-number">1.8</span> Resumen</h1></div><div id="resumen-1" class="slide section level3">
 <h1><span class="header-section-number">1.8.1</span> Resumen</h1>
 <div class="figure">

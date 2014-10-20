@@ -213,6 +213,10 @@ Una vez que hemos representado la distribución necesitamos comprobar que realme
 
 ![Distribución de grado en escala logarítmica de Internet y de la red de interacción de proteínas. En cada gráfica se ha presentado punteada la distribución de Poisson usando el grado medio $\langle k \rangle$ calculado para cada una de las redes.](../images/tema03/poissonYpowerlaw.png)
 
+Algunas distribuciones solo presentan la propiedad de ley potencial en la cola por lo que hay que estimar el valor inicial ($k_{min}$) a partir del cual la distribución de grados exhibe esa propiedad de ley potencial. Recordemos que $k_{min}>0$ ya que $k^{-\gamma} = \infty$ para $k=0$.
+
+![Red de citas en artículos científicos: la ley potencial aparece solo a partir de $k_{min}$](../images/tema03/estimarKmin.png)
+
 #### Calcular el valor del exponente de la función {-}
 
 Una forma sencilla de aproximar el valor del exponente es buscando la línea recta que se ajusta al gráfico logarítmico. Esto puede introducir cierto error por lo que se pueden usar otras técnicas más precisas que quedan fuera de los objetivos de este curso (pero que se pueden consultar en el anexo 4.C del capítulo 4 del libro de Barabasi).
