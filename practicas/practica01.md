@@ -18,37 +18,35 @@ En primer lugar hay que usar la aplicación Netvizz de Facebook <https://apps.fa
 
 Una vez generada la red, se cargará en Gephi y se realizarán tareas básicas de
 análisis y visualización. Si la red presenta más de una componente conexa, se
-recomienda usar Force Atlas 2 como algoritmo de layout (Distribución). Para evitar que las componentes conexas queden fuera de la vista principal que muestra la componente gigante, fijar el valor del parámetro Gravedad en Puesta a punto en torno a 20. Si todo queda demasiado amontonado, se puede probar a marcar la opción Disuadir Hubs y/o Evitar el solapamiento. Los aspectos estéticos de la visualización se dejan al parecer del propio alumno, que puede probar las distintas variantes de algoritmos de layout implementados en Gephi y de parámetros para determinar cuál le proporciona la distribución que más le guste
+recomienda usar `Force Atlas 2` como algoritmo de layout (Distribución). Para evitar que las componentes conexas queden fuera de la vista principal que muestra la componente gigante, fijad el valor del parámetro `Puesta a punto >> Gravedad` en torno a 20. Si todo queda demasiado amontonado, se puede probar a marcar la opción `Disuadir Hubs` y/o `Evitar el solapamiento`. Los aspectos estéticos de la visualización se dejan al parecer del propio alumno, que puede probar las distintas variantes de algoritmos de layout implementados en Gephi y de parámetros para determinar cuál le proporciona la distribución que más le guste
 
-Para los primeros pasos del análisis, comenzaremos por anotar los valores de las medidas globales básicas: número de nodos N y número de enlaces L, que aparecen directamente en la ventana Contexto, además de calcular manualmente el número máximo de enlaces Lmax. Posteriormente, calcularemos las restantes medidas globales (grado medio <k>, diámetro dmax y distancia media d) ejecutando las opciones correspondientes en la ventana Estadísticas.
+Para los primeros pasos del análisis, comenzaremos por anotar los valores de las medidas globales básicas: número de nodos $N$ y número de enlaces $L$ que aparecen directamente en la ventana `Contexto`, además de calcular manualmente el número máximo de enlaces $L_{max}$. Posteriormente, calcularemos las restantes medidas globales (grado medio $\langle k \rangle$, diámetro $d_{max}$ y distancia media $\langle d \rangle$) ejecutando las opciones correspondientes en la ventana `Estadísticas`.
 
-Al realizar el cálculo del grado medio, obtendremos también la distribución de
+Al realizar el cálculo del grado medio obtendremos también la distribución de
 grados de la red completa, que debemos grabar (Gephi lo guarda en una carpeta con una imagen png y un fichero html). El cálculo del diámetro nos proporciona también el valor de la distancia media, que anotaremos, y la distribución de distancias, que guardaremos, así como otras muchas medidas, varias de las cuales estudiaremos en temas de teoría posteriores como por ejemplo la Centralidad.
 
-La opción Densidad de grafo nos mide la relación entre número de enlaces L y
-el número máximo de enlaces Lmax. La ejecutaremos y anotaremos el valor.
+La opción Densidad de grafo nos mide la relación entre número de enlaces $L$ y
+el número máximo de enlaces $L_{max}$. La ejecutaremos y anotaremos el valor.
 Finalmente, ejecutaremos la opción Coeficiente medio de clustering para obtener
-la medida del mismo nombre, <C>. Dicha opción nos proporcionará también la
-distribución del coeficiente de clustering en la red, que guardaremos.
+la medida del mismo nombre, $\langle C \rangle$. Dicha opción nos proporcionará también la distribución del coeficiente de clustering en la red, que guardaremos.
 
 Ahora pasaremos a analizar la conectividad de la red. En primer lugar,
-obtendremos el número de componentes conexas ejecutando la opción Componentes
-conexos y lo anotaremos. Luego nos centraremos en la componente gigante y
-calcularemos su número de nodos. Para ello, iremos a Filtros, seleccionaremos
-Topología->Componente gigante y arrastramos el filtro a la ventana de abajo llamada Consultas donde pone Arrastrar filtro aquí. Entonces pulsaremos en el botón Filtrar con la flecha verde en la esquina inferior izquierda de la pantalla. La visualización cambiará y sólo mostrará la componente gigante. La ventana Contexto en la esquina superior izquierda nos mostrará el número de nodos y enlaces de dicha componente y sus porcentajes con respecto a la red total, los cuales anotaremos.
+obtendremos el número de componentes conexas ejecutando la opción `Componentes conexos` y lo anotaremos. Luego nos centraremos en la componente gigante y
+calcularemos su número de nodos. Para ello, iremos a `Filtros`, seleccionaremos
+`Topología >> Componente gigante` y arrastramos el filtro a la ventana de abajo llamada `Consultas`, en donde pone `Arrastrar filtro aquí`. Entonces pulsaremos en el botón `Filtrar` con la flecha verde en la esquina inferior izquierda de la pantalla. La visualización cambiará y sólo mostrará la componente gigante. La ventana `Contexto` en la esquina superior izquierda nos mostrará el número de nodos y enlaces de dicha componente y sus porcentajes con respecto a la red total, los cuales anotaremos.
 
 Una vez realizadas todo esto, cada alumno guardará el proyecto desde Gephi
 nombrándolo con sus apellidos y su nombre propio. Por otro lado, cada alumno del grupo almacenará todos los valores obtenidos en una tabla incluida en un fichero Excel llamado con el nombre del alumno.
 
-La última tarea a realizar será escribir un pequeño análisis de las redes estudiadas a partir de los valores de medidas y de las gráficas de distribución de grados, distancias, etc. obtenidas. En particular hay que explicar como se ajustan los valores obtenidos a los modelos de redes aleatorias. Hay que realizar un análsis individual de cada red, así como discutir la similitud o diferencia entre las redes analizadas por cada uno. No se trata de escribir mucho sino de hacer un análisis razonable considerando los conocimientos limitados que todavía tenemos sobre el análisis de redes.
+La última tarea a realizar será escribir un pequeño análisis de las redes estudiadas a partir de los valores de medidas y de las gráficas de distribución de grados, distancias, etc. obtenidas. En particular hay que explicar como se ajustan los valores obtenidos a las propiedades definidas por el modelo de red aleatoria (al final del documento aparece un cuadro resumen de las principales propiedades). Hay que realizar un análisis individual de cada red, así como discutir la similitud o diferencias entre las redes analizadas por cada uno. No se trata de escribir mucho sino de hacer un análisis razonable considerando los conocimientos limitados que todavía tenemos sobre el análisis de redes.
 
 
 
 # Entrega
 
-La práctica se entregará en el campus virtual, antes de las 23:59 del día 2 de noviembre de 2013.
+La práctica se entregará en el Campus Virtual, antes de las 23:55 del día 2 de noviembre de 2014.
 
-La entrega de la práctica será un archivo .zip (etiquetado con el número de grupo _GrupoXX_) con los siguientes contenidos:
+La entrega de la práctica será un archivo `.zip` (etiquetado con el número de grupo _GrupoXX_) con los siguientes contenidos:
 
 * _Documentación.pdf_: Un archivo pdf que deberá incluir, al menos, el siguiente contenido:
     -   Portada con el número y título de la práctica.
@@ -56,12 +54,15 @@ La entrega de la práctica será un archivo .zip (etiquetado con el número de g
     -   Nombre y apellidos de los integrantes del grupo.
     -   Para cada una de las redes de cada alumno
         +   Una imagen de la red completa y otra de la componente gigante con una visualización lo más estética posible.
-        +   La tabla excel con los valores de las medidas estudiadas.
-        +   Los gráficos de las distruciones de grado, distancia, etc.
+        +   La tabla Excel con los valores de las medidas estudiadas.
+        +   Los gráficos de las distribuciones de grado, distancia, etc. generados por Gephi.
         +   Un análisis de la red en función de los datos anteriores.
     -   Una comparativa de las distintas redes analizadas.
     -   Referencias bibliográficas u otro tipo de material distinto del proporcionado en la asignatura que se haya consultado para realizar la práctica. 
 * Ficheros obtenidos con netvizz para cada red.
+* Ficheros de proyecto Gephi de los análisis realizados.
 * Un fichero excel con los datos de todas las redes analizadas.
 
 El archivo puede ser subido por cualquiera de los integrantes del grupo (sólo una entrega).
+
+![Resumen de las propiedades del modelo de red aleatoria](../images/tema02/resumen.png)
