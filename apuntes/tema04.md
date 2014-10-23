@@ -33,9 +33,9 @@ Este modelo de evolución crea una red con una determinada topología (ya estudi
 
 ![Topología de una red aleatoria](../images/tema04/topAleatoria.png)
 
-La intuición nos puede hacer pensar que si modificamos el modelo de evolución la red generada puede ser diferente. Para ello vamos a comenzar con unos modelos simples de evolución [^1] a partir del modelo aleatorio:
+La intuición nos puede hacer pensar que si modificamos el modelo de evolución la red generada puede ser diferente. Para ello vamos a comenzar con unos modelos simples de evolución[^1] a partir del modelo aleatorio:
 
-[^1] Estos modelos simples pueden verse en NetLogo usando el archivo `Modelos de Evolución Simples` que está en el Campus Virtual.
+[^1]: Estos modelos simples pueden verse en NetLogo usando el archivo `Modelos de Evolución Simples` que está en el Campus Virtual.
 
 ### Modelo de presentación
 
@@ -113,17 +113,34 @@ Este modelo fue usado para modelar la distribución de los nodos de la WWW. En e
 
     Donde el denominador representa la suma de los grados de todos los demás nodos que están presentes en la red en ese momento.
 
+De acuerdo a este modelo, tras $t$ pasos tenemos que la red se compone de $N=m_0+t$ nodos y de $L=m_0+mt$ enlaces.
+
 A este modelo se le conoce también como modelo libre de escala ya que genera redes cuya distribución de grados sigue una ley potencial con exponente $\gamma = 3$.
 
 ![Distribución de los grados en una red generadas por el modelo de Barabasi-Albert](../images/tema04/distGrados.png)
 
-De acuerdo a este modelo, tras $t$ pasos tenemos que la red se compone de $N=m_0+t$ nodos y de $L=m_0+mt$ enlaces. Este modelo no especifica:
+### Limitaciones del modelo
+
+Este modelo no especifica:
 
 - Cuál es la configuración inicial de los $m_0$ nodos.
 - Si los $m$ enlaces se unen uno a uno (procesos independientes) o simultáneamente.
 - No contempla la existencia de ciclos (enlaces sobre sí mismo).
 
 Por tanto hay variantes de este modelo (como el _linearized chord diagram_) que intentan tener en cuenta algunas de estos supuestos.
+
+Por otro lado, este modelo presenta otras limitaciones:
+
+* El modelo de Barabasi-Albert estima un exponente $\gamma = 3$. Sin embargo hemos visto que en la mayoría de las redes reales este exponente oscila entre 2 y 5.
+* El modelo genera redes no dirigidas aunque algunas de las redes reales que modelo son dirigidas (como la de citas de artículos o la WWW)
+* El modelo no permite enlaces entre nodos ya presentes en la red (colo los permite en el momento en el que el nodo entra en la red).
+* El modelo no tiene en cuenta la desaparición de nodos.
+* El modelo no tiene en cuenta que algunas características intrínsecas de algunos nodos pueden hacer que la conexión preferencial varíe. Esto se debe a que el modelo es una simplificación que considera a todos los nodos por igual (sin ninguna característica adicional).
+
+A lo largo de los últimos años se han desarrollado otros modelos que intentan abordar estas limitaciones. Sin embargo, no los vamos a tratar en este tema[^2].
+
+[^2]: Para más información sobre estos modelos se puede consultar el capítulo 6 del libro de Barabasi.
+
 
 A partir de ahora vamos a estudiar en detalle este modelo para entender y justificar por qué genera una red libre de escala.
 
@@ -234,7 +251,7 @@ $$k_i(t) \approx \frac{2}{N}t$$
 
 Al principio la red se parece a la generada por el modelo de Barabasi-Albert. Sin embargo, a medida que crece, el grado $k_i(t)$ converge a $\langle k \rangle$. Con el tiempo, la red se satura y se convierte en un grafo completo con $\langle k \rangle = N-1$
 
-## Diámetro según el modelo de Barabasi-Albert
+## Diámetro
 
 El diámetro de una red creada usando el modelo de Barabasi-Albert tiene la siguiente forma:
 
@@ -244,10 +261,24 @@ Como ya hemos visto en otras ocasiones, podemos estimar la misma fórmula para l
 
 Como conclusión a esto podemos destacar que las distancias en el modelo de Barabasi-Albert crecen más lentamente que $logN$ por lo que crecen más lentamente que en el modelo aleatorio. Esto es especialmente notable en redes grandes ($N\gg10^4$).
 
+![Distancia media en una red que sigue el modelo de Barabasi-Albert](../images/tema04/distmedia.png)
+
+## Coeficiente de agrupamiento
+
+El coeficiente de agrupamiento de una red creada siguiendo el modelo de Barabasi-Albert es:
+
+$$C = \frac{m-1}{8}\cdot \frac{(lnN)^2}{N}$$
+
+Aquí se ve que el coeficiente de agrupamiento tiene una dependencia del tamaño de la red muy diferente al $\frac{1}{N}$ obtenido con el modelo de red aleatoria. En este caso, el coeficiente de agrupamiento decae más lentamente por lo que la red obtenida siguiendo el modelo tiene un mayor agrupamiento local que la red aleatoria equivalente.
+
+![Coeficiente de agrupamiento en una red que sigue el modelo de Barabasi-Albert](../images/tema04/coefagr.png)
+
 ## Resumen de los modelos de crecimiento
 
-Finalmente, podemos ver que las redes reales cumplen otra nueva ley que es la **propiedad libre de escala**:
+En este tema hemos podido ver que para entender la topología de la red es necesario describir cómo se ha formado la red. Hemos descrito un par de modelos de crecimiento, el de Price y del modelo de Barabasi-Albert, los cuales generan redes que cumplen la propiedad de ser libres de escala.
 
-> Muchas redes reales presentan distribuciones de cola ancha. Esto implica que nodos de grado bajo conviven con nodos con un grado excepcionalmente grande: los hubs.
+Hemos visto que estos modelos se caracterizan por tener crecimiento (el número de nodos crece con el tiempo) y por tener conexiones preferenciales (los nodos con mayor grado son preferidos a los nodos de menor grado). De acuerdo a esto podemos definir la siguiente ley:
 
-![Cuadro resumen (extraído de _Network Science_, cap 4, pp. 37)](../images/tema03/resumen.png)
+> Las redes cuya distribución de grados sigue una ley potencial y que presentan hubs son consecuencia de un proceso de crecimiento y de conexión preferencial
+
+![Cuadro resumen (extraído de _Network Science_, cap 5, pp. 32)](../images/tema04/resumen.png)
