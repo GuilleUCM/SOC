@@ -71,6 +71,8 @@ En 1999, los investigadores Barabasi y Albert destacaron dos supuestos que no er
     
     Las redes reales se expanden mediante la adición de nuevos nodos y nuevos enlaces. Recordemos que el modelo de red aleatoria supone un número fijo de nodos $N$ inicial y que este modelo crea enlaces nuevos pero no modifica el número de nodos existentes. En las redes reales, el número de nodos no es fijo sino que crece con el tiempo. Por ejemplo, en 2001, la WWW tenía un nodo (la página inicialmente creada por Tim Berners-Lee) mientras que en la actualidad está en torno a los 1000 millones.
 
+![Las redes reales crecen (red de Internet y red de citas en artículos científicos)](../images/tema04/crecimiento.png)
+
 * **Los nodos nuevos prefieren conectarse a los nodos más conectados.**
     
     Cuando un nuevo nodo llega a la red en ella ya existen enlaces por lo que cada nodo puede decidir a quién conectarse en función del número de enlaces que otro nodo ya tiene. Sin embargo, el modelo de red aleatoria asume que la probabilidad de conectarse a otro nodo es la misma para todos los nodos (es completamente aleatoria). Esta preferencia existente en las redes reales de conectarse con los nodos con más conexiones se conoce como **conexión preferencial** o _preferential attachment_. Por ejemplo, en la WWW solemos tener más información de las páginas con más enlaces (Facebook, Google...) por lo si creamos nuestra propia web es muy probable que nos conectemos a una de ellas en lugar de a otra menos conocida.
@@ -99,7 +101,7 @@ El estudio y la simulación de este modelo demostró que las redes generadas sig
 
 ## Modelo de Barabasi-Albert
 
-Este modelo fue usado para modelar la distribución de los nodos de la WWW. En este caso, el modelo sigue las siguientes etapas:
+Este modelo fue usado para modelar la distribución de los nodos de la WWW. En este caso, el modelo de Barabasi-Albert sigue las siguientes etapas:
 
 * Partimos de una distribución inicial aleatoria de $m_0$ nodos y todos los nodos tienen al menos un enlace.
 * La red evoluciona realizando los dos siguientes pasos.
@@ -113,6 +115,8 @@ Este modelo fue usado para modelar la distribución de los nodos de la WWW. En e
 
 A este modelo se le conoce también como modelo libre de escala ya que genera redes cuya distribución de grados sigue una ley potencial con exponente $\gamma = 3$.
 
+![Distribución de los grados en una red generadas por el modelo de Barabasi-Albert](../images/tema04/distGrados.png)
+
 De acuerdo a este modelo, tras $t$ pasos tenemos que la red se compone de $N=m_0+t$ nodos y de $L=m_0+mt$ enlaces. Este modelo no especifica:
 
 - Cuál es la configuración inicial de los $m_0$ nodos.
@@ -124,6 +128,121 @@ Por tanto hay variantes de este modelo (como el _linearized chord diagram_) que 
 A partir de ahora vamos a estudiar en detalle este modelo para entender y justificar por qué genera una red libre de escala.
 
 ## Evolución de los grados de los nodos
+
+Para estudiar la distribución de grados generada por este tipo de redes hay que tener en cuenta que el grado $k_i$ de un nodo $i$ es dependiente del tiempo, es decir, depende del momento en el que $i$ entró en la red. También hay que tener en cuenta que el número de nodos también es dependiente del tiempo por lo que el número de nodos que hay en un momento $t$ lo definiremos como $N(t)$.
+
+De acuerdo a esto podemos definir la tasa a la que un nodo adquiere nuevos enlaces (velocidad a la que aumenta su grado) como:
+
+$$\frac{dk_i}{dt}=m \cdot \pi (k_i) = m \cdot \frac{k_i}{\sum_{j \neq i}^{k_j}}$$
+
+Se puede calcular que $\sum_{j \neq i}^{k_j} = 2mt - m$ por lo que la velocidad a la que aumenta el grado de un nodo es:
+
+$$\frac{dk_i}{dt}=m \cdot \pi (k_i) = m \cdot \frac{k_i}{2mt - m} = \frac{k_i}{2t-1}$$
+
+Para valores de $t$ muy grandes podemos obviar el término $-1$ del denominador, por lo que:
+
+$$\frac{dk_i}{dt} = \frac{1}{2} \cdot \frac{k_i}{t}$$
+
+Para conocer cuál es el número de enlaces que tiene un nodo desde su nacimiento hasta el tiempo $t$ entonces tenemos que hacer la integral de la anterior función (teniendo en cuenta que $k_i (t_i) = m$):
+
+$$k_i(t) = m \cdot \Big( \frac{t}{t_i}\Big)^\beta \text{  donde }\beta = \frac{1}{2}$$
+
+El exponente $\beta$ se conoce como el exponente de la dinámica de la red. Las conclusiones que podemos sacar de esta fórmula son las siguientes:
+
+* El grado de cada nodo de la red crece siguiendo una ley potencial de acuerdo al exponente de la dinámica de la red.
+* El crecimiento del grado de los nodos es sublineal ya que cada nuevo nodo tiene un mayor número de nodos a los que conectarse y, por lo tanto, cada nodo tiene que competir con un mayor número de nodos para conseguir enlaces.
+* Los hubs aparecen debido al efecto _"rich get richer"_: los nuevos nodos prefieren a los nodos con mayor grado. Pero los hubs no son más grandes porque crezcan más rápidamente sino porque aparecieron antes. Esto en marketing se conoce como el fenómeno _"first-mover advantage"_.
+* La tasa de crecimiento de un nodo es:
+
+    $$k_i(t) =\frac{m}{2} \cdot \frac{1}{\sqrt{t_i t}}$$
+
+    Esto implica que los nodos más viejos adquieren más enlaces que los más jóvenes (ya que tienen menor $t_i$), es decir, tienen ventaja sobre los nodos nuevos. Además, la tasa con la que un nodo adquiere enlaces decrece con el tiempo a razón de $\sqrt{t}$. Este hecho se ve claramente en la siguiente gráfica:
+
+![Grado de los nodos dependiente del tiempo en el que aparecieron.](../images/tema04/gradot.png)
+
+## Distribución de grados
+
+A partir de la tasa de crecimiento podemos extraer cuál es la distribución de grados de estas redes. Según el formalismo continuo, la probabilidad de que un nodo tenga un grado menor que $k$ es:
+
+$$P(k_i(t) < k) = P(t_i > \frac{m^{\frac{t}{\beta}}\cdot t}{k^{\frac{1}{\beta}}})$$
+
+La probabilidad de que un nodo llegue en el tiempo $t_i$:
+
+$$p(t_i) = \frac{1}{m_0+t}$$
+
+Si sustituimos en la primera:
+
+$$P(k) = P(t_ \leq \frac{m^{\frac{t}{\beta}}}{k^{\frac{1}{\beta}}}) = 1 - \frac{m^{\frac{t}{\beta}}\cdot t}{k^{\frac{1}{\beta}}(m_0+t)}$$
+
+Esto es una distribución acumulada por lo que si hacemos la derivada de la función obtenemos que:
+
+$$p(k) = \frac{\partial P(k_i(t)<k)}{\partial k} = \frac{2m^{\frac{1}{\beta}\cdot t}}{m_0 + t} \cdot \frac{1}{k^{\frac{t}{\beta}+1}}$$
+
+Cuando $t \gg m_0$ entonces:
+
+$$p(k) \sim 2\cdot m^{\frac{1}{\beta}}\cdot k^{-\frac{1}{\beta} +1}$$
+
+O lo que es equivalente:
+ 
+$$p(k)\sim 2\cdot m^{\frac{1}{\beta}}\cdot k^{-\gamma} \text{   donde } \gamma = \frac{1}{\beta} +1$$
+
+Con esto queda de mostrado que **las redes creadas siguiendo el modelo de Barabasi-Albert tienen una distribución de grados que siguen una ley potencial** con un exponente $\gamma =3$
+
+Mediante otros formalismos y técnicas que quedan fuera de las explicaciones de este capítulo (pero que se pueden consultar en el capítulo 5 del libro de Barabasi) podemos calcular el valor de probabilidad exacto:
+
+$$p_k = \frac{2m(m+1)}{k(k+1)(k+2)}$$
+
+De esta fórmula destacamos las siguientes conclusiones:
+
+* La distribución de grados es independiente del tiempo. Esta conclusión es muy importante ya que nos ayuda a entender por qué redes reales de distinta antigüedad y distinto tamaño compartan la misma propiedad de ser libres de escala.
+* El modelo de Barabasi-Albert genera una distribución de grados de ley potencial prediciendo $\gamma =3$. Además este exponente es independiente de $m$ y de $m_0$, lo que da una idea de la universalidad del modelo.
+
+## ¿Son los dos ingredientes imprescindibles?
+
+Hemos dicho que para generar una red libre de escala necesitamos que la red esté en crecimiento ($N(t)$) y que haya conexión preferencial. Vamos a probar que es necesario ambos y que no podemos prescindir de ninguno de los dos.
+
+### Sin enlace preferencial
+
+El modelo de Barabasi-Albert sin enlace preferencial quedaría como sigue:
+
+* Comenzamos con $m_0$ nodos
+* Añadimos un nuevo nodo a la red con $m$ enlaces.
+* La probabilidad de que el nuevo nodo se una otro es aleatoria:
+
+$$\pi(k_i) = \frac{1}{m_0 +t-1}$$
+
+Para este modelo se cumple que:
+
+$$k(t) = \cdot ln \Big( e \frac{m_0+t+1}{m_0+t_i+1}\Big)$$
+
+$$p_k = \frac{e}{m}\cdot exp \Big(-\frac{k}{m}\Big)$$
+
+Como se puede ver, $k(t)$ crece de manera logarítmica, mucho más lenta que una ley potencial y $p_k$ sigue una exponencial por lo que no permite la existencia de hubs, algo que, como ya vimos, es esperable en una red libre de escala.
+
+### Sin crecimiento
+
+Si eliminamos el crecimiento el modelo de Barabasi-Albert queda como sigue:
+
+* Empezamos con $N$ nodos.
+* En cada momento $t$ seleccionamos un nodo aleaatoriamente y decidimos que se conecta al nodo $i$ presente en la red con probabilidad:
+
+    $$ \pi (k) = \frac{k_i}{\sum_{j \neq i}k_j}$$
+
+Aunque $N$ permanece constante, $L$ crece linealmente por lo que:
+
+$$k_i(t) \approx \frac{2}{N}t$$
+
+Al principio la red se parece a la generada por el modelo de Barabasi-Albert. Sin embargo, a medida que crece, el grado $k_i(t)$ converge a $\langle k \rangle$. Con el tiempo, la red se satura y se convierte en un grafo completo con $\langle k \rangle = N-1$
+
+## Diámetro según el modelo de Barabasi-Albert
+
+El diámetro de una red creada usando el modelo de Barabasi-Albert tiene la siguiente forma:
+
+$$d_{max} = \frac{logN}{log\;log N}$$
+
+Como ya hemos visto en otras ocasiones, podemos estimar la misma fórmula para la distancia media ($\langle d \rangle$) de la red.
+
+Como conclusión a esto podemos destacar que las distancias en el modelo de Barabasi-Albert crecen más lentamente que $logN$ por lo que crecen más lentamente que en el modelo aleatorio. Esto es especialmente notable en redes grandes ($N\gg10^4$).
 
 ## Resumen de los modelos de crecimiento
 
