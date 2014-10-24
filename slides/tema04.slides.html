@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Guillermo Jiménez Díaz (gjimenez@ucm.es)" />
+  <meta name="author" content="Alberto Díaz (albertodiaz@fdi.ucm.es)" />
+  <title>Análisis de Redes Sociales</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+   href="../pandownTemplates/slidy/styles/slidy.css" />
+   
+
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+   href="../pandownTemplates/soc.css" />
+
+  <script src="../pandownTemplates/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">MathJax.Hub.Queue(["Typeset",MathJax.Hub]);</script>
+  <script src="../pandownTemplates/slidy/scripts/slidy.js"
+    charset="utf-8" type="text/javascript"></script>
+</head>
+<body>
+<div class="slide titlepage">
+  <h1 class="title">Análisis de Redes Sociales</h1>
+  <p class="author">
+Guillermo Jiménez Díaz (gjimenez@ucm.es)<br/>Alberto Díaz (albertodiaz@fdi.ucm.es)
+  </p>
+  <p class="date">24 de octubre de 2014</p>
+</div>
+<div id="tema-4-modelos-de-crecimiento" class="titleslide slide section level1"><h1><span class="header-section-number">1</span> Tema 4: Modelos de crecimiento</h1></div><div id="preguntas-pendientes" class="slide section level3">
+<h1><span class="header-section-number">1.0.1</span> Preguntas pendientes</h1>
+<ul>
+<li>¿Por qué el modelo aleatorio no reproduce hubs ni sigue una distribución de ley potencial?</li>
+<li>¿Por qué la mayoría de los sistema reales complejos convergen a una topología de red libre de escala?</li>
+</ul>
+<blockquote>
+<p>Para entender esta información estructural es necesario entender el mecanismo responsable de que aparezca la propiedad libre de escala</p>
+<p>Nos centraremos en los <strong>modelos de crecimiento y evolución de los sistemas complejos</strong></p>
+</blockquote>
+</div><div id="los-modelos-de-evolución-influyen-en-la-topología-de-la-red" class="titleslide slide section level2"><h1><span class="header-section-number">1.1</span> Los modelos de evolución influyen en la topología de la red</h1></div><div id="evolución-de-una-red-aleatoria" class="slide section level3">
+<h1><span class="header-section-number">1.1.1</span> Evolución de una red aleatoria</h1>
+<ul>
+<li>Partimos de un conjunto fijo de nodos <span class="math">\(N\)</span>.</li>
+<li>Creamos aleatoriamente enlaces entre los nodos.</li>
+</ul>
+<div class="figure">
+<img src="../images/tema04/topAleatoria.png" alt="Topología de una red aleatoria" /><p class="caption">Topología de una red aleatoria</p>
+</div>
+</div><div id="modelo-de-presentación" class="slide section level3">
+<h1><span class="header-section-number">1.1.2</span> Modelo de presentación</h1>
+<ul>
+<li>La probabilidad de que me presenten (y me enlace) a un amigo de un amigo es mayor que la probabilidad de que me presenten a un desconocido.</li>
+</ul>
+<div class="figure">
+<img src="../images/tema04/topPresentacion.png" alt="Topología de una red generada según el modelo de presentación" /><p class="caption">Topología de una red generada según el modelo de presentación</p>
+</div>
+</div><div id="modelo-geográfico-estático" class="slide section level3">
+<h1><span class="header-section-number">1.1.3</span> Modelo geográfico estático</h1>
+<ul>
+<li>Cada nodo se conectará directamente a los <span class="math">\(k\)</span> nodos más cercanos.</li>
+</ul>
+<div class="figure">
+<img src="../images/tema04/topStaticGeo.png" alt="Dos redes distintas siguiendo el modelo estático geográfico" /><p class="caption">Dos redes distintas siguiendo el modelo estático geográfico</p>
+</div>
+</div><div id="modelo-de-encuentros-aleatorios" class="slide section level3">
+<h1><span class="header-section-number">1.1.4</span> Modelo de encuentros aleatorios</h1>
+<p>Los nodos se mueven aleatoriamente y dos nodos se unen si chocan. Cada nodo tiene un número máximo de enlaces.</p>
+<div class="figure">
+<img src="../images/tema04/topDynamicGeo.png" alt="Dos redes distintas siguiendo el modelo de encuentros aleatorios" /><p class="caption">Dos redes distintas siguiendo el modelo de encuentros aleatorios</p>
+</div>
+</div><div id="ingredientes-para-la-creación-de-una-red-libre-de-escala" class="titleslide slide section level2"><h1><span class="header-section-number">1.2</span> Ingredientes para la creación de una red libre de escala</h1></div><div id="ingredientes-para-la-creación-de-una-red-libre-de-escala-1" class="slide section level3">
+<h1><span class="header-section-number">1.2.1</span> Ingredientes para la creación de una red libre de escala</h1>
+<p>En 1999, los investigadores Barabasi y Albert destacaron dos supuestos que no eran tenidos en cuenta en el modelo de red aleatoria pero que existían en las redes reales:</p>
+<ul>
+<li><strong>La red crece a lo largo del tiempo.</strong></li>
+<li><strong>Los nodos nuevos prefieren conectarse a los nodos más conectados.</strong></li>
+</ul>
+</div><div id="la-red-crece-a-lo-largo-del-tiempo" class="slide section level3">
+<h1><span class="header-section-number">1.2.2</span> La red crece a lo largo del tiempo</h1>
+<ul>
+<li>Las redes reales se expanden mediante la adición de nuevos nodos y nuevos enlaces</li>
+<li>El número de nodos no es fijo sino que crece con el tiempo</li>
+<li>El modelo de red aleatoria supone un número fijo de nodos <span class="math">\(N\)</span> inicial y crea enlaces nuevos pero no modifica el número de nodos existentes.</li>
+</ul>
+<div class="figure">
+<img src="../images/tema04/crecimiento.png" alt="Las redes reales crecen (red de Internet y red de citas en artículos científicos)" /><p class="caption">Las redes reales crecen (red de Internet y red de citas en artículos científicos)</p>
+</div>
+</div><div id="los-nodos-nuevos-prefieren-conectarse-a-los-nodos-más-conectados" class="slide section level3">
+<h1><span class="header-section-number">1.2.3</span> Los nodos nuevos prefieren conectarse a los nodos más conectados</h1>
+<div class="figure">
+<img src="../images/tema04/conexionPrefEsquema.png" />
+</div>
+</div><div id="los-nodos-nuevos-prefieren-conectarse-a-los-nodos-más-conectados-1" class="slide section level3">
+<h1><span class="header-section-number">1.2.4</span> Los nodos nuevos prefieren conectarse a los nodos más conectados</h1>
+<ul>
+<li>Cuando un nuevo nodo llega a la red decide a quién conectarse en función del número de enlaces que otro nodo ya tiene</li>
+<li>El modelo de red aleatoria asume que la probabilidad de conectarse a otro nodo es la misma para todos los nodos (es completamente aleatoria)</li>
+<li>Esta preferencia existente en las redes reales de conectarse con los nodos con más conexiones se conoce como <strong>conexión preferencial</strong> o <em>preferential attachment</em></li>
+</ul>
+</div><div id="conexión-preferencial" class="slide section level3">
+<h1><span class="header-section-number">1.2.5</span> Conexión preferencial</h1>
+<ul>
+<li>Un matemático húngaro lo referencia por primera vez en 1923 y lo llama el <em>proceso Polya</em></li>
+<li>En estadística es conocido como el <em>proceso Yule</em></li>
+<li>En 1923, Gibrart lo denomina <em>crecimiento proporcional</em></li>
+<li>En 1955, Simon lo usa para demostrar la naturaleza de la cola ancha de algunas distribuciones como el tamaño de las ciudades o el número de citas</li>
+<li>En 1965, Price, basándose en el anterior trabajo, lo denomina <em>ventaja acumulativa</em></li>
+<li>En sociología se conoce como el <em>efecto Matthew</em></li>
+<li>El término de <em>conexión preferencial</em> es acuñado por Barabasi y Albert en 1999</li>
+</ul>
+</div><div id="modelo-de-price" class="titleslide slide section level2"><h1><span class="header-section-number">1.3</span> Modelo de Price</h1></div><div id="modelo-de-price-1" class="slide section level3">
+<h1><span class="header-section-number">1.3.1</span> Modelo de Price</h1>
+<div class="figure">
+<img src="../images/tema04/citas.png" alt="Citas en artículos de investigación" /><p class="caption">Citas en artículos de investigación</p>
+</div>
+</div><div id="modelo-de-price-2" class="slide section level3">
+<h1><span class="header-section-number">1.3.2</span> Modelo de Price</h1>
+<ul>
+<li>Price (1965): usado para explicar la cola ancha que presenta la distribución de citas de los artículos de investigación</li>
+<li>Pasos</li>
+</ul>
+<ul class="incremental">
+<li>Cada artículo nuevo tiene <span class="math">\(m\)</span> citas (tendrá <span class="math">\(m\)</span> enlaces a otros nodos ya existentes en la red)</li>
+</ul>
+<ul class="incremental">
+<li>Un artículo nuevo cita a otro ya publicado con un probabilidad proporcional al número de citas que este último tiene.</li>
+</ul>
+<ul class="incremental">
+<li>Todos los artículos tienen al menos una cita: la probabilidad de enlazarse a un nodo no va a ser proporcional a <span class="math">\(k\)</span> sino a <span class="math">\(k+1\)</span>.</li>
+</ul>
+</div><div id="modelo-de-price-3" class="slide section level3">
+<h1><span class="header-section-number">1.3.3</span> Modelo de Price</h1>
+<blockquote>
+<p>El estudio y la simulación de este modelo demostró que las redes generadas siguiendo este modelo tienen una distribución de grados que sigue una ley potencial con exponente <span class="math">\(\gamma = 2 + \frac{1}{m}\)</span>.</p>
+</blockquote>
+</div><div id="modelo-de-barabasi-albert" class="titleslide slide section level2"><h1><span class="header-section-number">1.4</span> Modelo de Barabasi-Albert</h1></div><div id="modelo-de-barabasi-albert-1" class="slide section level3">
+<h1><span class="header-section-number">1.4.1</span> Modelo de Barabasi-Albert</h1>
+<ul>
+<li>Modelo usado para modelar la distribución de los nodos de la WWW</li>
+<li>Etapas</li>
+</ul>
+<ul class="incremental">
+<li>Inicialmente <span class="math">\(m_0\)</span> nodos y todos los nodos tienen al menos un enlace.</li>
+</ul>
+<ol class="incremental" style="list-style-type: decimal">
+<li>En cada momento de tiempo <span class="math">\(t\)</span> se añade un nuevo nodo a la red con <span class="math">\(m \leq m_0\)</span> enlaces que se conectarán a <span class="math">\(m\)</span> nodos ya existentes en la red.</li>
+</ol>
+<ol class="incremental" start="2" style="list-style-type: decimal">
+<li>La probabilidad de que uno de los enlaces del nuevo nodo se conecte a un nodo ya existente <span class="math">\(i\)</span> depende del grado de dicho nodo <span class="math">\(k_i\)</span> <span class="math">\[ \pi (k) = \frac{k_i}{\sum_{j \neq i}k_j}\]</span></li>
+</ol>
+</div><div id="modelo-de-barabasi-albert-2" class="slide section level3">
+<h1><span class="header-section-number">1.4.2</span> Modelo de Barabasi-Albert</h1>
+<ul>
+<li><span class="math">\(N=m_0+t\)</span></li>
+<li><span class="math">\(L=m_0+mt\)</span></li>
+</ul>
+<blockquote>
+<p>A este modelo se le conoce también como modelo libre de escala ya que genera redes cuya distribución de grados sigue una ley potencial con exponente <span class="math">\(\gamma = 3\)</span>.</p>
+</blockquote>
+</div><div id="modelo-de-barabasi-albert-3" class="slide section level3">
+<h1><span class="header-section-number">1.4.3</span> Modelo de Barabasi-Albert</h1>
+<div class="figure">
+<img src="../images/tema04/distGrados.png" />
+</div>
+</div><div id="limitaciones-del-modelo" class="slide section level3">
+<h1><span class="header-section-number">1.4.4</span> Limitaciones del modelo</h1>
+<p>Este modelo no especifica:</p>
+<ul>
+<li>Cuál es la configuración inicial de los <span class="math">\(m_0\)</span> nodos</li>
+<li>Si los <span class="math">\(m\)</span> enlaces se unen uno a uno (procesos independientes) o simultáneamente</li>
+<li>No contempla la existencia de ciclos (enlaces sobre sí mismo)</li>
+</ul>
+<blockquote>
+<p>Hay variantes de este modelo (como el <em>linearized chord diagram</em>) que intentan tener en cuenta algunas de estas limitaciones</p>
+</blockquote>
+</div><div id="limitaciones-del-modelo-1" class="slide section level3">
+<h1><span class="header-section-number">1.4.5</span> Limitaciones del modelo</h1>
+<ul>
+<li>El modelo de Barabasi-Albert estima un exponente <span class="math">\(\gamma = 3\)</span>. En la mayoría de las redes reales este exponente oscila entre 2 y 5</li>
+<li>El modelo genera redes no dirigidas aunque algunas de las redes reales que modelo son dirigidas</li>
+<li>El modelo no permite enlaces entre nodos ya presentes en la red</li>
+<li>El modelo no tiene en cuenta la desaparición de nodos</li>
+<li>El modelo no tiene en cuenta que algunas características intrínsecas de algunos nodos pueden hacer que la conexión preferencial varíe</li>
+</ul>
+</div><div id="evolución-de-los-grados-de-los-nodos" class="titleslide slide section level2"><h1><span class="header-section-number">1.5</span> Evolución de los grados de los nodos</h1></div><div id="evolución-de-los-grados-de-los-nodos-1" class="slide section level3">
+<h1><span class="header-section-number">1.5.1</span> Evolución de los grados de los nodos</h1>
+<ul>
+<li>El grado <span class="math">\(k_i\)</span> de un nodo <span class="math">\(i\)</span> es dependiente del tiempo, es decir, depende del momento en el que <span class="math">\(i\)</span> entró en la red</li>
+<li><p>El número de nodos es dependiente del tiempo: <span class="math">\(N(t)\)</span></p></li>
+<li><p>La tasa a la que un nodo adquiere nuevos enlaces (velocidad a la que aumenta su grado):</p></li>
+</ul>
+<p><span class="math">\[\frac{dk_i}{dt}=m \cdot \pi (k_i) = m \cdot \frac{k_i}{\sum_{j \neq i}^{k_j}}\]</span></p>
+<ul>
+<li>Como <span class="math">\(\sum_{j \neq i}^{k_j} = 2mt - m\)</span>:</li>
+</ul>
+<p><span class="math">\[\frac{dk_i}{dt}=m \cdot \pi (k_i) = m \cdot \frac{k_i}{2mt - m} = \frac{k_i}{2t-1}\]</span></p>
+<ul>
+<li>Para valores de <span class="math">\(t\)</span> muy grandes:</li>
+</ul>
+<p><span class="math">\[\frac{dk_i}{dt} = \frac{1}{2} \cdot \frac{k_i}{t}\]</span></p>
+</div><div id="evolución-de-los-grados-de-los-nodos-2" class="slide section level3">
+<h1><span class="header-section-number">1.5.2</span> Evolución de los grados de los nodos</h1>
+<ul>
+<li>Número de enlaces que tiene un nodo desde su nacimiento hasta el tiempo <span class="math">\(t\)</span></li>
+<li>Integramos la anterior función (teniendo en cuenta que <span class="math">\(k_i (t_i) = m\)</span>):</li>
+</ul>
+<p><span class="math">\[k_i(t) = m \cdot \Big( \frac{t}{t_i}\Big)^\beta \text{  donde }\beta = \frac{1}{2}\]</span></p>
+<ul>
+<li><span class="math">\(\beta\)</span> es el exponente de la dinámica de la red</li>
+</ul>
+</div><div id="evolución-de-los-grados-de-los-nodos-3" class="slide section level3">
+<h1><span class="header-section-number">1.5.3</span> Evolución de los grados de los nodos</h1>
+<blockquote>
+<p><strong>Conclusión:</strong> El grado de cada nodo de la red crece siguiendo una ley potencial de acuerdo al exponente de la dinámica de la red</p>
+</blockquote>
+<blockquote>
+<p><strong>Conclusión:</strong> El crecimiento del grado de los nodos es sublineal ya que cada nuevo nodo tiene un mayor número de nodos a los que conectarse y, por lo tanto, cada nodo tiene que competir con un mayor número de nodos para conseguir enlaces</p>
+</blockquote>
+</div><div id="evolución-de-los-grados-de-los-nodos-4" class="slide section level3">
+<h1><span class="header-section-number">1.5.4</span> Evolución de los grados de los nodos</h1>
+<blockquote>
+<p><strong>Conclusión:</strong> Los hubs aparecen debido al efecto <em>“rich get richer”</em>: los nuevos nodos prefieren a los nodos con mayor grado</p>
+</blockquote>
+<blockquote>
+<p><strong>Conclusión:</strong> Los hubs no son más grandes porque crezcan más rápidamente sino porque aparecieron antes (fenómeno <em>“first-mover advantage”</em>)</p>
+</blockquote>
+</div><div id="evolución-de-los-grados-de-los-nodos-5" class="slide section level3">
+<h1><span class="header-section-number">1.5.5</span> Evolución de los grados de los nodos</h1>
+<ul>
+<li><p>La tasa de crecimiento de un nodo es:</p>
+<p><span class="math">\[k_i(t) =\frac{m}{2} \cdot \frac{1}{\sqrt{t_i t}}\]</span></p></li>
+</ul>
+<div class="figure">
+<img src="../images/tema04/firstMover.png" />
+</div>
+</div><div id="evolución-de-los-grados-de-los-nodos-6" class="slide section level3">
+<h1><span class="header-section-number">1.5.6</span> Evolución de los grados de los nodos</h1>
+<div class="figure">
+<img src="../images/tema04/gradot.png" alt="Grado de los nodos dependiente del tiempo en el que aparecieron." /><p class="caption">Grado de los nodos dependiente del tiempo en el que aparecieron.</p>
+</div>
+</div><div id="distribución-de-grados" class="titleslide slide section level2"><h1><span class="header-section-number">1.6</span> Distribución de grados</h1></div><div id="distribución-de-grados-1" class="slide section level3">
+<h1><span class="header-section-number">1.6.1</span> Distribución de grados</h1>
+<ul>
+<li>La probabilidad de que un nodo tenga un grado menor que <span class="math">\(k\)</span></li>
+</ul>
+<p><span class="math">\[P(k_i(t) &lt; k) = P(t_i &gt; \frac{m^{\frac{t}{\beta}}\cdot t}{k^{\frac{1}{\beta}}})\]</span></p>
+<ul>
+<li>La probabilidad de que un nodo llegue en el tiempo <span class="math">\(t_i\)</span>:</li>
+</ul>
+<p><span class="math">\[p(t_i) = \frac{1}{m_0+t}\]</span></p>
+<ul>
+<li>Sustituimos</li>
+</ul>
+<p><span class="math">\[P(k) = P(t_ \leq \frac{m^{\frac{t}{\beta}}}{k^{\frac{1}{\beta}}}) = 1 - \frac{m^{\frac{t}{\beta}}\cdot t}{k^{\frac{1}{\beta}}(m_0+t)}\]</span></p>
+</div><div id="distribución-de-grados-2" class="slide section level3">
+<h1><span class="header-section-number">1.6.2</span> Distribución de grados</h1>
+<ul>
+<li>Derivada de la función de distribución acumulada</li>
+</ul>
+<p><span class="math">\[p(k) = \frac{\partial P(k_i(t)&lt;k)}{\partial k} = \frac{2m^{\frac{1}{\beta}\cdot t}}{m_0 + t} \cdot \frac{1}{k^{\frac{t}{\beta}+1}}\]</span></p>
+<ul>
+<li>Cuando <span class="math">\(t \gg m_0\)</span></li>
+</ul>
+<p><span class="math">\[p(k) \sim 2\cdot m^{\frac{1}{\beta}}\cdot k^{-\frac{1}{\beta} +1}\]</span></p>
+<p><span class="math">\[p(k)\sim 2\cdot m^{\frac{1}{\beta}}\cdot k^{-\gamma} \text{   donde } \gamma = \frac{1}{\beta} +1\]</span></p>
+</div><div id="distribución-de-grados-3" class="slide section level3">
+<h1><span class="header-section-number">1.6.3</span> Distribución de grados</h1>
+<blockquote>
+<p>Las redes creadas siguiendo el modelo de Barabasi-Albert tienen una distribución de grados que siguen una ley potencial con un exponente <span class="math">\(\gamma =3\)</span></p>
+</blockquote>
+<ul>
+<li>Probabilidad de tener grado <span class="math">\(k\)</span></li>
+</ul>
+<p><span class="math">\[p_k = \frac{2m(m+1)}{k(k+1)(k+2)}\]</span></p>
+</div><div id="distribución-de-grados-4" class="slide section level3">
+<h1><span class="header-section-number">1.6.4</span> Distribución de grados</h1>
+<blockquote>
+<p><strong>Conclusión:</strong> La distribución de grados es independiente del tiempo</p>
+</blockquote>
+<blockquote>
+<p><strong>Conclusión:</strong> El modelo de Barabasi-Albert genera una distribución de grados de ley potencial prediciendo <span class="math">\(\gamma =3\)</span></p>
+</blockquote>
+<blockquote>
+<p><strong>Conclusión:</strong> Este exponente es independiente de <span class="math">\(m\)</span> y de <span class="math">\(m_0\)</span></p>
+</blockquote>
+</div><div id="son-los-dos-ingredientes-imprescindibles" class="titleslide slide section level2"><h1><span class="header-section-number">1.7</span> ¿Son los dos ingredientes imprescindibles?</h1></div><div id="sin-enlace-preferencial" class="slide section level3">
+<h1><span class="header-section-number">1.7.1</span> Sin enlace preferencial</h1>
+<p>El modelo de Barabasi-Albert sin enlace preferencial</p>
+<ul class="incremental">
+<li>Comenzamos con <span class="math">\(m_0\)</span> nodos</li>
+</ul>
+<ul class="incremental">
+<li>Añadimos un nuevo nodo a la red con <span class="math">\(m\)</span> enlaces</li>
+</ul>
+<ul class="incremental">
+<li>La probabilidad de que el nuevo nodo se una otro es aleatoria: <span class="math">\[\pi(k_i) = \frac{1}{m_0 +t-1}\]</span></li>
+</ul>
+</div><div id="sin-enlace-preferencial-1" class="slide section level3">
+<h1><span class="header-section-number">1.7.2</span> Sin enlace preferencial</h1>
+<ul>
+<li>Para este modelo se cumple</li>
+</ul>
+<p><span class="math">\[k(t) = m \cdot ln \Big( e \frac{m_0+t+1}{m_0+t_i+1}\Big)\]</span></p>
+<p><span class="math">\[p_k = \frac{e}{m}\cdot exp \Big(-\frac{k}{m}\Big)\]</span></p>
+<ul>
+<li><span class="math">\(k(t)\)</span> crece de manera logarítmica, mucho más lenta que una ley potencial</li>
+<li><span class="math">\(p_k\)</span> sigue una exponencial por lo que no permite la existencia de hubs</li>
+</ul>
+</div><div id="sin-crecimiento" class="slide section level3">
+<h1><span class="header-section-number">1.7.3</span> Sin crecimiento</h1>
+<p>El modelo de Barabasi-Albert sin crecimiento</p>
+<ul class="incremental">
+<li>Empezamos con <span class="math">\(N\)</span> nodos.</li>
+</ul>
+<ul class="incremental">
+<li>En cada momento <span class="math">\(t\)</span> seleccionamos un nodo aleatoriamente y decidimos que se conecta al nodo <span class="math">\(i\)</span> presente en la red con probabilidad: <span class="math">\[ \pi (k) = \frac{k_i}{\sum_{j \neq i}k_j}\]</span></li>
+</ul>
+</div><div id="sin-crecimiento-1" class="slide section level3">
+<h1><span class="header-section-number">1.7.4</span> Sin crecimiento</h1>
+<ul>
+<li><span class="math">\(N\)</span> permanece constante y <span class="math">\(L\)</span> crece linealmente</li>
+</ul>
+<p><span class="math">\[k_i(t) \approx \frac{2}{N}t\]</span></p>
+<ul>
+<li>Al principio la red se parece a la generada por el modelo de Barabasi-Albert</li>
+<li>A medida que crece, el grado <span class="math">\(k_i(t)\)</span> converge a <span class="math">\(\langle k \rangle\)</span></li>
+<li>Con el tiempo, la red se satura y se convierte en un grafo completo con <span class="math">\(\langle k \rangle = N-1\)</span></li>
+</ul>
+</div><div id="diámetro" class="titleslide slide section level2"><h1><span class="header-section-number">1.8</span> Diámetro</h1></div><div id="diámetro-1" class="slide section level3">
+<h1><span class="header-section-number">1.8.1</span> Diámetro</h1>
+<p><span class="math">\[d_{max} = \frac{logN}{log\;log N}\]</span></p>
+<ul>
+<li>Podemos estimar la misma fórmula para la distancia media (<span class="math">\(\langle d \rangle\)</span>) de la red</li>
+</ul>
+<blockquote>
+<p><strong>Conclusión:</strong> Las distancias en el modelo de Barabasi-Albert crecen más lentamente que <span class="math">\(logN\)</span> por lo que crecen más lentamente que en el modelo aleatorio</p>
+<p>Esto es especialmente notable en redes grandes (<span class="math">\(N\gg10^4\)</span>).</p>
+</blockquote>
+</div><div id="diámetro-2" class="slide section level3">
+<h1><span class="header-section-number">1.8.2</span> Diámetro</h1>
+<div class="figure">
+<img src="../images/tema04/distmedia.png" alt="Distancia media en una red que sigue el modelo de Barabasi-Albert" /><p class="caption">Distancia media en una red que sigue el modelo de Barabasi-Albert</p>
+</div>
+</div><div id="coeficiente-de-agrupamiento" class="titleslide slide section level2"><h1><span class="header-section-number">1.9</span> Coeficiente de agrupamiento</h1></div><div id="coeficiente-de-agrupamiento-1" class="slide section level3">
+<h1><span class="header-section-number">1.9.1</span> Coeficiente de agrupamiento</h1>
+<p><span class="math">\[C = \frac{m-1}{8}\cdot \frac{(lnN)^2}{N}\]</span></p>
+<ul>
+<li>Dependencia del tamaño de la red muy diferente al <span class="math">\(\frac{1}{N}\)</span> obtenido con el modelo de red aleatoria</li>
+</ul>
+<blockquote>
+<p><strong>Conclusión:</strong> En este caso, el coeficiente de agrupamiento decae más lentamente</p>
+<p>Mayor agrupamiento local que la red aleatoria equivalente</p>
+</blockquote>
+</div><div id="coeficiente-de-agrupamiento-2" class="slide section level3">
+<h1><span class="header-section-number">1.9.2</span> Coeficiente de agrupamiento</h1>
+<div class="figure">
+<img src="../images/tema04/coefagr.png" alt="Coeficiente de agrupamiento en una red que sigue el modelo de Barabasi-Albert" /><p class="caption">Coeficiente de agrupamiento en una red que sigue el modelo de Barabasi-Albert</p>
+</div>
+</div><div id="resumen" class="titleslide slide section level2"><h1><span class="header-section-number">1.10</span> Resumen</h1></div><div id="resumen-1" class="slide section level3">
+<h1><span class="header-section-number">1.10.1</span> Resumen</h1>
+<blockquote>
+<p>Para entender la topología de la red es necesario describir cómo se ha formado la red</p>
+</blockquote>
+<ul>
+<li>Los modelos de crecimiento de Price y de Barabasi-Albert generan redes que cumplen la propiedad de ser libres de escala</li>
+<li>Estos modelos se caracterizan por tener
+<ol style="list-style-type: decimal">
+<li>Crecimiento: el número de nodos crece con el tiempo</li>
+<li>Conexiones preferenciales: los nodos con mayor grado son preferidos a los nodos de menor grado</li>
+</ol></li>
+</ul>
+</div><div id="resumen-2" class="slide section level3">
+<h1><span class="header-section-number">1.10.2</span> Resumen</h1>
+<blockquote>
+<p>Las redes cuya distribución de grados sigue una ley potencial y que presentan hubs son consecuencia de un proceso de crecimiento y de conexión preferencial</p>
+</blockquote>
+</div><div id="resumen-3" class="slide section level3">
+<h1><span class="header-section-number">1.10.3</span> Resumen</h1>
+<div class="figure">
+<img src="../images/tema04/resumen.png" alt="Cuadro resumen" /><p class="caption">Cuadro resumen</p>
+</div>
+</div>
+</body>
+</html>

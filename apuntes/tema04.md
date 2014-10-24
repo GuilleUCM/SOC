@@ -127,13 +127,13 @@ Este modelo no especifica:
 - Si los $m$ enlaces se unen uno a uno (procesos independientes) o simultáneamente.
 - No contempla la existencia de ciclos (enlaces sobre sí mismo).
 
-Por tanto hay variantes de este modelo (como el _linearized chord diagram_) que intentan tener en cuenta algunas de estos supuestos.
+Por tanto hay variantes de este modelo (como el _linearized chord diagram_) que intentan tener en cuenta algunas de estas limitaciones.
 
 Por otro lado, este modelo presenta otras limitaciones:
 
 * El modelo de Barabasi-Albert estima un exponente $\gamma = 3$. Sin embargo hemos visto que en la mayoría de las redes reales este exponente oscila entre 2 y 5.
 * El modelo genera redes no dirigidas aunque algunas de las redes reales que modelo son dirigidas (como la de citas de artículos o la WWW)
-* El modelo no permite enlaces entre nodos ya presentes en la red (colo los permite en el momento en el que el nodo entra en la red).
+* El modelo no permite enlaces entre nodos ya presentes en la red (solo los permite en el momento en el que el nodo entra en la red).
 * El modelo no tiene en cuenta la desaparición de nodos.
 * El modelo no tiene en cuenta que algunas características intrínsecas de algunos nodos pueden hacer que la conexión preferencial varíe. Esto se debe a que el modelo es una simplificación que considera a todos los nodos por igual (sin ninguna característica adicional).
 
@@ -230,7 +230,7 @@ $$\pi(k_i) = \frac{1}{m_0 +t-1}$$
 
 Para este modelo se cumple que:
 
-$$k(t) = \cdot ln \Big( e \frac{m_0+t+1}{m_0+t_i+1}\Big)$$
+$$k(t) = m \cdot ln \Big( e \frac{m_0+t+1}{m_0+t_i+1}\Big)$$
 
 $$p_k = \frac{e}{m}\cdot exp \Big(-\frac{k}{m}\Big)$$
 
@@ -241,7 +241,7 @@ Como se puede ver, $k(t)$ crece de manera logarítmica, mucho más lenta que una
 Si eliminamos el crecimiento el modelo de Barabasi-Albert queda como sigue:
 
 * Empezamos con $N$ nodos.
-* En cada momento $t$ seleccionamos un nodo aleaatoriamente y decidimos que se conecta al nodo $i$ presente en la red con probabilidad:
+* En cada momento $t$ seleccionamos un nodo aleatoriamente y decidimos que se conecta al nodo $i$ presente en la red con probabilidad:
 
     $$ \pi (k) = \frac{k_i}{\sum_{j \neq i}k_j}$$
 
