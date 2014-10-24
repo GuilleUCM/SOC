@@ -110,7 +110,7 @@ En 1999, los investigadores Barabasi y Albert destacaron dos supuestos que no er
 > 1. En cada momento de tiempo $t$ se añade un nuevo nodo a la red con $m \leq m_0$ enlaces que se conectarán a $m$ nodos ya existentes en la red.
 
 > 2. La probabilidad de que uno de los enlaces del nuevo nodo se conecte a un nodo ya existente $i$ depende del grado de dicho nodo $k_i$ 
-    $$ \pi (k) = \frac{k_i}{\sum_{j \neq i}k_j}$$
+    $$ \pi (k) = \frac{k_i}{\sum_{j}k_j}$$
 
 ### Modelo de Barabasi-Albert
 
@@ -150,9 +150,9 @@ Este modelo no especifica:
 
 * La tasa a la que un nodo adquiere nuevos enlaces (velocidad a la que aumenta su grado):
 
-$$\frac{dk_i}{dt}=m \cdot \pi (k_i) = m \cdot \frac{k_i}{\sum_{j \neq i}^{k_j}}$$
+$$\frac{dk_i}{dt}=m \cdot \pi (k_i) = m \cdot \frac{k_i}{\sum_{j}^{k_j}}$$
 
-* Como $\sum_{j \neq i}^{k_j} = 2mt - m$:
+* Como $\sum_{j}^{k_j} = 2mt - m$:
 
 $$\frac{dk_i}{dt}=m \cdot \pi (k_i) = m \cdot \frac{k_i}{2mt - m} = \frac{k_i}{2t-1}$$
 
@@ -268,7 +268,7 @@ El modelo de Barabasi-Albert sin crecimiento
 > * Empezamos con $N$ nodos.
 
 > * En cada momento $t$ seleccionamos un nodo aleatoriamente y decidimos que se conecta al nodo $i$ presente en la red con probabilidad:
->   $$ \pi (k) = \frac{k_i}{\sum_{j \neq i}k_j}$$
+>   $$ \pi (k) = \frac{k_i}{\sum_{j}k_j}$$
 
 ### Sin crecimiento
 

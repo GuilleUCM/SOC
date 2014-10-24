@@ -109,7 +109,7 @@ Este modelo fue usado para modelar la distribución de los nodos de la WWW. En e
     1. En cada momento de tiempo $t$ se añade un nuevo nodo a la red con $m \leq m_0$ enlaces que se conectarán a $m$ nodos ya existentes en la red.
     2. La probabilidad de que uno de los enlaces del nuevo nodo se conecte a un nodo ya existente $i$ depende del grado de dicho nodo $k_i$. Esta probabilidad se puede representar como:
     
-    $$ \pi (k) = \frac{k_i}{\sum_{j \neq i}k_j}$$
+    $$ \pi (k) = \frac{k_i}{\sum_{j}k_j}$$
 
     Donde el denominador representa la suma de los grados de todos los demás nodos que están presentes en la red en ese momento.
 
@@ -150,9 +150,9 @@ Para estudiar la distribución de grados generada por este tipo de redes hay que
 
 De acuerdo a esto podemos definir la tasa a la que un nodo adquiere nuevos enlaces (velocidad a la que aumenta su grado) como:
 
-$$\frac{dk_i}{dt}=m \cdot \pi (k_i) = m \cdot \frac{k_i}{\sum_{j \neq i}^{k_j}}$$
+$$\frac{dk_i}{dt}=m \cdot \pi (k_i) = m \cdot \frac{k_i}{\sum_{j}^{k_j}}$$
 
-Se puede calcular que $\sum_{j \neq i}^{k_j} = 2mt - m$ por lo que la velocidad a la que aumenta el grado de un nodo es:
+Se puede calcular que $\sum_{j}^{k_j} = 2mt - m$ por lo que la velocidad a la que aumenta el grado de un nodo es:
 
 $$\frac{dk_i}{dt}=m \cdot \pi (k_i) = m \cdot \frac{k_i}{2mt - m} = \frac{k_i}{2t-1}$$
 
@@ -243,7 +243,7 @@ Si eliminamos el crecimiento el modelo de Barabasi-Albert queda como sigue:
 * Empezamos con $N$ nodos.
 * En cada momento $t$ seleccionamos un nodo aleatoriamente y decidimos que se conecta al nodo $i$ presente en la red con probabilidad:
 
-    $$ \pi (k) = \frac{k_i}{\sum_{j \neq i}k_j}$$
+    $$ \pi (k) = \frac{k_i}{\sum_{j}k_j}$$
 
 Aunque $N$ permanece constante, $L$ crece linealmente por lo que:
 
