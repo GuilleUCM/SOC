@@ -28,7 +28,7 @@ Al igual que antes, no es necesaria ninguna simulación como las que se han vist
 
 Crear varias redes de igual número de nodos con ambos modelos. Se recomienda que el análisis se haga con tamaños grandes, por ejemplo $N$ = 500, 1000, 5000, 10000, 50000 y 100000 (cuidado con los valores máximos de los enteros al programar los modelos).
 
-Estudia las propiedades de las redes generadas y haz un análisis comparativo en cuanto a la densidad de las redes generadas, la distribución de grados, la distancia media y el coeficiente de agrupamiento. Este análisis se realizará tanto entre las redes distinto tamaños para un mismo modelo, como entre las redes de igual tamaño creadas con distintos modelos.
+Estudia las propiedades de las redes generadas y haz un análisis comparativo en cuanto a la densidad de las redes generadas, la distribución de grados, la distancia media y el coeficiente de agrupamiento. Este análisis se realizará tanto entre las redes de distintos tamaños para un mismo modelo, como entre las redes de igual tamaño creadas con distintos modelos.
 
 Muestra gráficamente con Gephi la mayor red que hayas generado para cada uno de los modelos de modo que el tamaño de los nodos sea dependiente de su grado. 
 
@@ -44,13 +44,16 @@ Las aplicaciones creadas pueden lanzarse desde la línea de comandos o pueden te
 
 La práctica se entregará en el campus virtual, antes de las 23:55 del día 23 de noviembre de 2014. 
 
-La entrega de la práctica será un archivo .zip con los siguientes contenidos:
+La entrega de la práctica será un archivo `GrupoXX.zip` con los siguientes contenidos:
 
-* `Alumnos.txt`: Un archivo con los nombres de todos los integrantes del grupo.
 * Un archivo `fuentes.zip` con el código fuente de las aplicaciones creadas.
 * Un archivo `ejecutables.zip` con una versión ejecutable de las aplicaciones creadas (no se aceptará solo el código fuente).
 * Un pequeño manual de uso de las aplicaciones creadas (`manual.pdf`).
 * Una hoja Excel con los datos analizados para las redes creadas.
-* Un archivo _memoria.pdf_ en el que se incluirá una breve descripción de los resultados obtenidos en el análisis realizado sobre las redes creadas a partir de los modelos, la comparación con los valores predichos con los modelos y las representaciones gráficas de las redes de mayor tamaño creadas con Gephi.
+* Un archivo `memoria.pdf` donde se incluirá:
+    - Portada con el número y título de la práctica.
+    - Número de grupo.
+    - Nombre y apellidos de los integrantes del grupo.
+    - Una breve descripción de los resultados obtenidos en el análisis realizado sobre las redes creadas a partir de los modelos, la comparación con los valores predichos con los modelos y las representaciones gráficas de las redes de mayor tamaño creadas con Gephi.
 
 El archivo puede ser subido por cualquiera de los integrantes del grupo (sólo una entrega).
