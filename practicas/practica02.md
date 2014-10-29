@@ -14,11 +14,6 @@ Este obra está bajo una [licencia de Creative Commons Reconocimiento-NoComercia
 
 En esta práctica vamos a implementar dos de los modelos que hemos estudiado hasta ahora en la asignatura: el modelo de Erdos-Renyi, para la generación de redes aleatoria, y el modelo de Barabasi-Albert, para la generación de redes libres de escala. La práctica consistirá en implementar estos dos modelos en la tecnología elegida por el grupo de prácticas y hacer una pequeño análisis de las principales propiedades de las redes generadas con estos modelos en Gephi.
 
-
-
-
-
-
 ## Parte A: Desarrollo de un modelo de red aleatoria
 
 Desarrollar una pequeña aplicación que genere una red aleatoria dados los valores $N$(>0) --el número de nodos inicial-- y $p$ ($0 \leq p \leq 1$) --la probabilidad de enlaces dentro de la red. No es necesaria ninguna simulación como las que se han visto en clase sino que lo que queremos es que la aplicación genere un un fichero en [uno de los formatos que es capaz de importar Gephi](http://gephi.github.io/users/supported-graph-formats/) (por ejemplo, CSV para nodos y aristas por separado). 
