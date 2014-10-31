@@ -1,21 +1,12 @@
 % Análisis de Redes Sociales
 % Guillermo Jiménez Díaz (gjimenez@ucm.es); Alberto Díaz (albertodiaz@fdi.ucm.es)
-% 27 de octubre de 2014
+% 31 de octubre de 2014
 
 
-# Prefacio {-}
-
-Estos son los apuntes de la asignatura Análisis de Redes Sociales, impartida en la Facultad de Informática de la Universidad Complutense de Madrid por los profesores Guillermo Jiménez Díaz y Alberto Díaz, del Departamento de Ingeniería del Software e Inteligencia Artificial.
-
-Este material ha sido desarrollado a partir de distintas fuertes, destacando como referencia principal el libro _Network Science_ de Laszlo Barabasi, el material de la asignatura _Social Network Analysis_, impartido por Lada Adamic a través de Coursera, y las transparencias de la asignatura Redes y Sistemas Complejos, creadas por Óscar Cordón García de la Universidad de Granada.
-
-Este obra está bajo una [licencia de Creative Commons Reconocimiento-NoComercial-CompartirIgual 4.0 Internacional](http://creativecommons.org/licenses/by-nc-sa/4.0/).
-
-\setcounter{section}{5}
 
 # Tema 5: Centralidad {-}
 
-## Concepto de centralidad
+### Concepto de centralidad
 
 Los nodos con una "posición más central" (una mayor centralidad) tienen un acceso más fácil y rápido a los demás nodos de la red y una mayor capacidad para ejercer un control del flujo entre ellos.
 
@@ -23,24 +14,28 @@ Los nodos con una "posición más central" (una mayor centralidad) tienen un acc
 
 En los siguientes grafos se representan relaciones entre los actores que aparecen en distintas películas analizando los guiones. Se incluye una arista entre dos actores si un actor interacciona con otro actor en un punto concreto de la película.
 
+### Ejemplos de grafos de actores en películas
+
 <!-- PONER FIGURAS -->
 [Wikipedia: El Fugitivo (1993). Actores principales: Dr. Kimble, Gerard](http://es.wikipedia.org/wiki/El_fugitivo_(pel%C3%ADcula_de_1993))
 
 ![The Fugitive (1993)](../images/tema05/elFugitivo.png)
 
+### Ejemplos de grafos de actores en películas
 
 [Wikipedia: Memento (2000). Actor principal: Leonard](http://es.wikipedia.org/wiki/Memento)
 
 ![Memento (2000)](../images/tema05/Memento.png)
 
-
+### Ejemplos de grafos de actores en películas
 
 Han sido extraídas de la web [moviegalaxies.com](http://moviegalaxies.com)
 
-
 ## Medidas
 
-Para analizar la estructura de las redes sociales existen 2 tipos de medidas:
+### Medidas
+
+Para analizar la estructura de las redes sociales existen 2 tipos de medidas: Medidas locales (a nivel de nodos) y medidas globales (a nivel de red).
 
 ### Medidas locales (a nivel de nodos).
 
@@ -57,8 +52,9 @@ Para analizar la estructura de las redes sociales existen 2 tipos de medidas:
 * Proporcionan información sobre propiedades importantes de los fenónemos sociales subyacentes.
 * Algunas de estas medidas las hemos utilizado en temas anteriores: diámetro, distancia media, grado medio, densidad.
 
-
 ## Medidas locales de centralidad
+
+### Medidas locales de centralidad
 
 Existen varias medidas distintas de centralidad:
 
@@ -70,6 +66,8 @@ Existen varias medidas distintas de centralidad:
 * Coeficiente local de clustering
 
 ## Centralidad de grado
+
+### Centralidad de grado
 
 Mide el número de enlaces con otros nodos.
 Hay que distinguir entre grafos dirigidos y no dirigidos.
@@ -83,6 +81,8 @@ $$C_D(N) = k_N$$
 $C_D(N)$ se define en el intervalo {0, g-1}, siendo g el número de nodos de la componenente conexa donde está el nodo N.
 
 <!-- PINTAR GRAFO CON EJEMPLO -->
+
+### Grafos no dirigidos.
 
 Interpretación:
 
@@ -103,6 +103,8 @@ Ambos se definen en el intervalo {0, g-1}
 
 <!-- PINTAR GRAFO CON EJEMPLO -->
 
+### Grafos dirigidos.
+
 Interpretación Soporte:
 
 * Los nodos con muchos enlaces de entrada son prominentes.
@@ -113,18 +115,16 @@ Interpretación Influencia:
 * Los nodos que tienen muchas conexiones directas de salida con otros son influyentes.
 * Pueden transferir información rápidamente a muchos otros nodos.
 
+### Grafos dirigidos.
+
 ![Ejemplo de Soporte e Influencia. Comercio de petróleo y derivados, 1998. Fuente: NBER-United Nations Trade Data. Cada nodo es un país y hay un enlace entre el exportador y el importador. El grosor de la arista indica el volumen exportado.](../images/tema05/ImagenSoporte.png)
 
 Preguntas sobre Figura 3:
 
-Pregunta sobre Soporte:
-
-¿Qué países importan de muchos otros?: ¿Arabía Saudí, Japón, Iraq, USA, Venezuela?
+Pregunta sobre Soporte: ¿Qué países importan de muchos otros?: ¿Arabía Saudí, Japón, Iraq, USA, Venezuela?
 <!-- Respuesta: Japan y USA -->
 
-Pregunta sobre Influencia:
-
-¿Qué país exporta a pocos países pero lo hace en gran cantidad?: ¿Arabía Saudí, Japón, Iraq, USA, Venezuela?
+Pregunta sobre Influencia: ¿Qué país exporta a pocos países pero lo hace en gran cantidad?: ¿Arabía Saudí, Japón, Iraq, USA, Venezuela?
 <!-- Respuesta: Venezuela -->
 
 
@@ -150,6 +150,8 @@ El grado es una medida adecuada para evaluar la centralidad de un nodo en una re
 
 ## Intermediación
 
+### Intermediación
+
 La intermediación es una medida pensada para capturar como de central es un nodo desde el punto de vista de cuantos caminos mínimos que conectan nodos lo atraviesan
 
 $$C_B(i) = \sum_{j<k}\frac{g_{jk}(i)}{g_{jk}}$$
@@ -158,6 +160,7 @@ donde $g_{jk}$ es el número de caminos mínimos que conectan los nodos j y k (n
 
 $C_B(i)$ se define en el intervalo {0, (g-1)(g-2)} en redes dirigidas y en {0, (g-1)(g-2)/2} en no dirigidas.
 
+### Intermediación
 
 Interpretación:
 
@@ -166,6 +169,8 @@ Interpretación:
 * En la perspectiva de las redes sociales, las interacciones entre dos actores no adyacentes puede depender de otros actores del conjunto, especialmente de aquellos situados en los caminos entre ambos.
 * Los nodos con una intermediación alta ocupan roles críticos en la estructura de una red, puesto que suelen ocupar una posición que les permite trabajar como interfaces entre subgrupos de nodos fuertemente unidos.
 * Son elementos vitales en la conexión entre distintas regiones de una red.
+
+### Intermediación
 
 Es habitual considerar la medida normalizada:
 
@@ -197,12 +202,16 @@ Nodo 2. $C_B = 96.5$. -->
 
 ## Cercanía
 
+### Cercanía
+
 Esta medida da importancia a la facilidad de acceso al resto de la red, a que se pueda llegar al resto de los nodos de la red con pocos saltos, o dicho de otra forma que la distancia al resto de los nodos de la red sea pequeña.
 
 En esta medida no se tiene en cuenta ni tener muchos vecinos directos ni estar situado entre otros nodos. Se le da importancia a estar "en medio" de la red.
 
 La suma de las distancias geodésicas (distancias de los caminos mínimos) de un nodo de la red a todos los demás es la lejanía de un nodo al resto.
 La inversa de dicha suma es la medida de cercanía.
+
+### Cercanía
 
 Centralidad de cercanía:
 
@@ -230,9 +239,13 @@ Se pueden definir dos medidas de cercanía distintas considerando sólo los enla
 
 ## Excentricidad
 
+### Excentricidad
+
 Otra medida local basada en distancias es la centralidad de excentricidad $C_E(i)$. Se define como la inversa de la excentricidad (la máxima distancia geodésica) entre un nodo y el resto de nodos de la red.
 
 Los nodos con mayor valor de excentricidad se denominan nodos periféricos, los de menor valor forman el centro de la red.
+
+### Excentricidad
 
 Centralidad de excentricidad:
 
