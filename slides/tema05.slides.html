@@ -161,54 +161,250 @@ Guillermo Jiménez Díaz (gjimenez@ucm.es)<br/>Alberto Díaz (albertodiaz@fdi.uc
 <p>Es habitual considerar la medida normalizada:</p>
 <p><span class="math">\[C_B^{&#39;}(i) = \frac{C_B(i)}{(g-1)(g-2)/2}\]</span></p>
 <p>donde el denominador representa el número de pares de nodos excluyendo el propio nodo i.</p>
-<!-- PINTAR EJEMPLOS NADA. -->
-<!-- ![Grado vs. Intermediación](../images/tema05/imagenGradovsIntermediacion.jpg)
-
-Grado. $C_D$. Max = 17.
-Nodo 1. $C_D = 6$.
-Nodo 2. $C_D = 6$.
-
-Intermediación. $C_B$. Max = 17*16/2 = 136.
-Nodo 1. $C_B = 70.0$.
-Nodo 2. $C_B = 96.5$. -->
-<!-- ![Ejercicio](../images/tema05/Imagen3.jpg)
-
-* Encontrar un nodo con un valor alto de intermediación pero con un grado bajo
-
-* Encontrar un nodo con un valor bajo de intermediación pero con un grado alto -->
-</div><div id="cercanía" class="titleslide slide section level2"><h1><span class="header-section-number">0.5</span> Cercanía</h1></div><div id="cercanía-1" class="slide section level3">
-<h1><span class="header-section-number">0.5.1</span> Cercanía</h1>
+<p>y cuando trabajamos con redes dirigidas:</p>
+<p><span class="math">\[C_B^{&#39;}(i) = \frac{C_B(i)}{(g-1)(g-2)}\]</span></p>
+</div><div id="cercanía" class="slide section level3">
+<h1><span class="header-section-number">0.4.4</span> Cercanía</h1>
 <p>Esta medida da importancia a la facilidad de acceso al resto de la red, a que se pueda llegar al resto de los nodos de la red con pocos saltos, o dicho de otra forma que la distancia al resto de los nodos de la red sea pequeña.</p>
 <p>En esta medida no se tiene en cuenta ni tener muchos vecinos directos ni estar situado entre otros nodos. Se le da importancia a estar “en medio” de la red.</p>
 <p>La suma de las distancias geodésicas (distancias de los caminos mínimos) de un nodo de la red a todos los demás es la lejanía de un nodo al resto. La inversa de dicha suma es la medida de cercanía.</p>
-</div><div id="cercanía-2" class="slide section level3">
-<h1><span class="header-section-number">0.5.2</span> Cercanía</h1>
 <p>Centralidad de cercanía:</p>
 <p><span class="math">\[C_C(i) = 1 / \sum_{j=1}^{g}d(i,j)\]</span></p>
-<p>Centralidad de cercanía normalizada:</p>
+</div><div id="centralidad-de-cercanía-normalizada" class="slide section level3">
+<h1><span class="header-section-number">0.4.5</span> Centralidad de cercanía normalizada:</h1>
 <p><span class="math">\[C_C^{&#39;}(i) = 1 / (\frac{\sum_{j=1}^{g}d(i,j)}{g-1})\]</span></p>
 <!-- Si hay varias componentes conexas puede haber distancias infinitas, se puede calcular la centralidad de cercanía como la suma de las inversas de las distancias. -->
 <!-- PINTAR EJEMPLOS NADA -->
 <!-- ![Ejercicio](../images/tema05/Imagen4.jpg)
 
 * Encontrar un nodo con grado relativamente alto pero con un valor de cercanía bajo -->
-</div><div id="cercanía-en-redes-dirigidas" class="slide section level3">
-<h1><span class="header-section-number">0.5.3</span> Cercanía en redes dirigidas</h1>
+<h4 id="cercanía-en-redes-dirigidas"><span class="header-section-number">0.4.5.1</span> Cercanía en redes dirigidas</h4>
 <p>Se pueden definir dos medidas de cercanía distintas considerando sólo los enlaces de entrada o de salida:</p>
 <ul>
 <li><p>Cercanía de entrada (p.ej.: prestigio en redes de citación)</p></li>
 <li><p>Cercanía de salida (alcance de la influencia de un nodo)</p></li>
 </ul>
-</div><div id="excentricidad" class="titleslide slide section level2"><h1><span class="header-section-number">0.6</span> Excentricidad</h1></div><div id="excentricidad-1" class="slide section level3">
-<h1><span class="header-section-number">0.6.1</span> Excentricidad</h1>
+</div><div id="excentricidad" class="slide section level3">
+<h1><span class="header-section-number">0.4.6</span> Excentricidad</h1>
 <p>Otra medida local basada en distancias es la centralidad de excentricidad <span class="math">\(C_E(i)\)</span>. Se define como la inversa de la excentricidad (la máxima distancia geodésica) entre un nodo y el resto de nodos de la red.</p>
-<p>Los nodos con mayor valor de excentricidad se denominan nodos periféricos, los de menor valor forman el centro de la red.</p>
-</div><div id="excentricidad-2" class="slide section level3">
-<h1><span class="header-section-number">0.6.2</span> Excentricidad</h1>
+<p>Los nodos con mayor valor de excentricidad se denominan nodos periféricos, los de menor valor forman el centro de la red. Inversamente, los nodos con mayor valor de centralidad de excentricidad forman el centro de la red, los de menor valor son periféricos.</p>
+<p>Excentricidad:</p>
+<p><span class="math">\[ E(i) = \max_{jinV(G)/i}d(i,j)\]</span></p>
 <p>Centralidad de excentricidad:</p>
 <p><span class="math">\[C_E(i) = 1 / \max_{jinV(G)/i}d(i,j)\]</span></p>
-<p>Centralidad de cercanía normalizada:</p>
-<p><span class="math">\[C_E^{&#39;}(i) = C_E(i) / g-1\]</span></p>
+<p>También podémos definir medidas equivalentes para redes dirigidas teniendo en cuenta la dirección en la máxima distancia geodésica.</p>
+</div><div id="centralidad-de-vector-propio-eigenvector-centrality" class="slide section level3">
+<h1><span class="header-section-number">0.4.7</span> Centralidad de vector propio (eigenvector centrality)</h1>
+<!-- ![Lada network. El tamaño de los nodos está asociado al grado. El color de los nodos está asociado a la centralidad de cercanía](../images/tema05/LadaNetwork.jpg)
+
+En redes reales, los nodos con alta cercanía están cerca de otros nodos con alta cercanía. -->
+<p>La Centralidad de vector propio se basa en que la centralidad de un nodo concreto depende de cómo de centrales sean sus vecinos (prominencia). La idea básica es que el poder y el status de un actor (ego) se define recursivamente a partir del poder y el status de sus vecinos (alters).</p>
+<div class="figure">
+<img src="../images/tema05/centralidadVectorPropio.jpg" alt="Centralidad de vector propio. w_{ij} corresponde a la entrada de la matriz de adyacencia A_{ij}. Puede ser binaria {0,1} o un peso numérico." /><p class="caption">Centralidad de vector propio. <span class="math">\(w_{ij}\)</span> corresponde a la entrada de la matriz de adyacencia <span class="math">\(A_{ij}\)</span>. Puede ser binaria {0,1} o un peso numérico.</p>
+</div>
+<p>La medida es válida para redes dirigidas(Prestigio de rango) y no dirigidas.</p>
+</div><div id="centralidad-de-vector-propio-eigenvector-centrality-1" class="slide section level3">
+<h1><span class="header-section-number">0.4.8</span> Centralidad de vector propio (eigenvector centrality)</h1>
+<p>Es una versión más elaborada de la Centralidad de grado al asumir que no todas las conexiones tienen la misma importancia. No se tiene en cuenta la cantidad sino la calidad de las mismas.</p>
+</div><div id="centralidad-de-vector-propio-eigenvector-centrality-2" class="slide section level3">
+<h1><span class="header-section-number">0.4.9</span> Centralidad de vector propio (eigenvector centrality)</h1>
+<p>La medida de Centralidad de vector propio, CVP, se define como una combinación lineal (o una suma, si los enlaces ponderados no están ponderados) de los valores de todos los actores que apunten a i:</p>
+<p><span class="math">\[C_{VP}(i) = a_{1i}C_{VP}(1) + a_{2i}C_{VP}(2) + ... + a_{ni}C_{VP}(n)\]</span></p>
+<p>Para calcular los valores de <span class="math">\(C_{VP}\)</span> para los n actores se construye un sistema de n ecuaciones con n incógnitas que se representa de forma matricial.</p>
+<p>Si <span class="math">\(C=(C_{VP}(1), …, C_{VP}(n))^T\)</span> es el vector transpuesto que almacena los n valores de <span class="math">\(C_{VP}\)</span> (C es un vector columna) y A es la matriz de adyacencia, entonces:</p>
+<p><span class="math">\[C = A^TC\]</span></p>
+<p>Esta ecuación coincide con la ecuación característica para encontrar los vectores y valores propios de la matriz <span class="math">\(A^T\)</span>. C es un vector propio de <span class="math">\(A^T\)</span>.</p>
+<p>Es habitual considerar la medida normalizada:</p>
+<p><span class="math">\[c_i = \frac{1}{\lambda}\sum_{j=1}^na_{ij} \cdot c_j\]</span> <span class="math">\[C = \frac{1}{\lambda}A^T \cdot C\]</span> <span class="math">\[\lambda \cdot C = A^T \cdot C\]</span></p>
+<p>donde <span class="math">\(\lambda\)</span> es una constante que equivale al mayor valor absoulto del vector propio dominante en A.</p>
+</div><div id="centralidad-de-vector-propio-eigenvector-centrality-3" class="slide section level3">
+<h1><span class="header-section-number">0.4.10</span> Centralidad de vector propio (eigenvector centrality)</h1>
+<p>Existen distintos algoritmos para calcular este vector propio C, como el método de las potencias, método iterativo que se basa en el cálculo del autovector del mayor autovalor. Sin embargo, se deben cumplir algunas condiciones específicas para poder aplicarlo.</p>
+<p>Referencias en Wikipedia: <a href="http://es.wikipedia.org/wiki/Método_de_las_potencias">Wikipedia: Método de las potencias</a>, <a href="http://en.wikipedia.org/wiki/Power_iteration">Wikipedia: Power iteration</a></p>
+<p>Este método es el que sigue Gephi para calcular la Eigenvector Centrality.</p>
+</div><div id="centralidad-de-vector-propio-eigenvector-centrality-4" class="slide section level3">
+<h1><span class="header-section-number">0.4.11</span> Centralidad de vector propio (eigenvector centrality)</h1>
+<p>Otra medida de Centralidad de vector propio muy extendida es la Centralidad de Bonacich:</p>
+<p><span class="math">\[c_i(\beta) = \sum_j(\alpha + \beta c_j)A_{ij}\]</span></p>
+<p><span class="math">\[C(\beta) = \alpha(I - \beta A)^{-1}A1\]</span></p>
+<ul>
+<li><span class="math">\(\alpha\)</span> es una constante de normalización</li>
+<li><span class="math">\(\beta\)</span> determina la importancia de la centralidad de los vecinos de i para calcular la centralidad de dicho nodo</li>
+<li>A es la matriz de adyacencia (binaria o ponderada)</li>
+<li>I es la matriz identidad</li>
+<li>1 es una matriz con todas las componentes a 1</li>
+</ul>
+</div><div id="centralidad-de-vector-propio-eigenvector-centrality-5" class="slide section level3">
+<h1><span class="header-section-number">0.4.12</span> Centralidad de vector propio (eigenvector centrality)</h1>
+<p>El parámetro <span class="math">\(\beta\)</span> es un factor de atenuación que determina qué actores de la red influyen en el cálculo de la centralidad del nodo i:</p>
+<ul>
+<li>Si <span class="math">\(\beta\)</span> es pequeño -&gt; atenuación alta: sólo los amigos cercanos influyen y su importancia es muy puntual</li>
+<li>Si <span class="math">\(\beta\)</span> es grande -&gt; atenuación baja: la estructura global de la red tiene importancia (tus amigos, los amigos de tus amigos, etc.)</li>
+<li>Si <span class="math">\(\beta=0\)</span> -&gt; la fórmula coincide directamente con la Centralidad de grado:</li>
+</ul>
+<p><span class="math">\[c_i(\beta) = \sum_j(\alpha)A_{ij}\]</span></p>
+</div><div id="centralidad-de-vector-propio-eigenvector-centrality-6" class="slide section level3">
+<h1><span class="header-section-number">0.4.13</span> Centralidad de vector propio (eigenvector centrality)</h1>
+<p>Además, el signo de <span class="math">\(\beta\)</span> determina el comportamiento de la medida:</p>
+<ul>
+<li>Si <span class="math">\(\beta &gt; 0\)</span> -&gt; los actores tienen una mayor centralidad cuando están conectados a otros actores centrales</li>
+<li>Si <span class="math">\(\beta &lt; 0\)</span> -&gt; los actores tienen una mayor centralidad cuando están conectados a actores poco centrales</li>
+</ul>
+</div><div id="page-rank." class="slide section level3">
+<h1><span class="header-section-number">0.4.14</span> Page Rank.</h1>
+<p>El algoritmo PageRank se basa en una variante del cálculo de centralidad propia. Brin &amp; Page (fundadores de Google) lo introdujeron en 1998 en su buscador como un indicador de la relevancia de una página Web.</p>
+<p>Page Rank ordena la web en el sentido de que tiene en cuenta no sólo las páginas que te apuntan a ti, sino que también tiene en cuenta cuantas páginas apuntan a esas páginas, etc. La idea es que es más difícil aumentar artificialmente una medida de centralidad con una definición recursiva.</p>
+</div><div id="cálculo-de-page-rank-mediante-un-camino-aleatorio" class="slide section level3">
+<h1><span class="header-section-number">0.4.15</span> Cálculo de Page Rank mediante un camino aleatorio</h1>
+<p>Cuando se calcula el vector propio en PageRank se usa un camino aleatorio. Un caminante aleatorio siguiendo enlaces durante mucho tiempo pasará un tiempo en cada nodo. Y este tiempo se puede utilizar como una medida de la importancia de este nodo en la red donde se encuentra.</p>
+<p>Para evitar que un camino aleatorio quede atrapado en un ciclo se incluye una probabilidad de teletransporte a otra parte del grafo. Esto es, el camino aleatorio sigue uno de los enlaces posible con probabilidad p y puede teletransportarse a otro nodo aleatorio en el grafo con probabilidad 1-p.</p>
+<p>Este cambio evita los ciclos pero sigue teniendo en cuenta que las páginas importantes son las que están unidas a páginas importantes.</p>
+<!-- Ejemplo Lada. -->
+<p>Este es el método que sigue Gephi para calcular el valor de PageRank asociado a cada nodo.</p>
+<div class="figure">
+<img src="../images/tema05/PageRanks-Example.png" alt="Ejemplo Wikipedia(http://en.wikipedia.org/wiki/PageRank)" /><p class="caption">Ejemplo Wikipedia(http://en.wikipedia.org/wiki/PageRank)</p>
+</div>
+</div><div id="comparativa-medidas-locales-de-centralidad" class="slide section level3">
+<h1><span class="header-section-number">0.4.16</span> Comparativa medidas locales de centralidad</h1>
+<div class="figure">
+<img src="../images/tema05/comparativaMedidasCentralidad.jpg" alt="Comparativa medidas locales de centralidad. A) centralidad de grado. B) cercanía. C) intermediación. D) centralidad de vector propio. (azul=menor valor, rojo=mayor valor)" /><p class="caption">Comparativa medidas locales de centralidad. A) centralidad de grado. B) cercanía. C) intermediación. D) centralidad de vector propio. (azul=menor valor, rojo=mayor valor)</p>
+</div>
+</div><div id="hits" class="slide section level3">
+<h1><span class="header-section-number">0.4.17</span> HITS</h1>
+<p>El algoritmo HITS (acrónimo del inglés Hypertext Induced Topic Selection) es un algoritmo diseñado por Jon Kleinberg EN 1998 para valorar, y de paso clasificar, la importancia de una página web. Esta medida se puede aplicar a grafos generalizando la idea de la web como grafo.</p>
+<p>HITS usa dos indicadores para cada nodo del grafo para hacer esta valoración (hub y authority), definiendo recursivamente cada uno a partir del otro.</p>
+<ul>
+<li>el authority, que valora cuán buena es la página como recurso de información; para su cálculo se usa una suma ponderada de valores hub de los enlaces que apuntan hacia esta página.</li>
+<li>el hub, que dice cuán buena es la información que se consigue siguiendo los enlaces que tiene a otras páginas; se calcula como una suma ponderada de valores authority de las páginas a las que apunta ésta.</li>
+<li>Algunas implementaciones del algoritmo también consideran cuánta es la relevancia de las páginas enlazadas.</li>
+</ul>
+<p>Entonces un buen hub apunta a buenas authorities y una buena authority es apuntada por buenos hubs.</p>
+</div><div id="hits-1" class="slide section level3">
+<h1><span class="header-section-number">0.4.18</span> HITS</h1>
+<p>Matricialmente se pueden representar los valores de hub y authority</p>
+<p><span class="math">\[h=A \cdot a\]</span> <span class="math">\[a=A^T \cdot h\]</span></p>
+<p>siendo A la matriz de adyacencia del grafo.</p>
+<p>Si reemplazamos en ambas ecuaciones para obtener definiciones recursivas:</p>
+<p><span class="math">\[h=A \cdot A^T \cdot h\]</span> <span class="math">\[h=A^T \cdot A \cdot a\]</span></p>
+<p>Las relaciones anteriores se parecen a las relaciones de vectores propios usadas en Pagerank, pero para poder utilizar el método de las potencias hay que normalizar los vectores h y a tal que la suma de sus elementos sume 1 en cada iteración.</p>
+</div><div id="coeficiente-local-de-clustering" class="slide section level3">
+<h1><span class="header-section-number">0.4.19</span> Coeficiente Local de clustering</h1>
+<p>Transitividad: Las redes sociales son transitivas por naturaleza, es decir, los amigos de un actor dado también suelen ser amigos entre sí.</p>
+<p>La propiedad de transitividad de una red se cuantifica por el Coeficiente de Clustering que puede ser global, a nivel de toda la red, o local, a nivel de cada nodo individual:</p>
+<p><span class="math">\[ C_{CLC}(i) = \frac{2L_i}{k_i(k_i-1)}\]</span></p>
+<ul>
+<li>Nodo <span class="math">\(i\)</span> con grado <span class="math">\(k_i\)</span></li>
+<li><span class="math">\(L_i\)</span> = número de enlaces entre los vecinos del nodo i</li>
+<li><span class="math">\(C_i \epsilon [0,1]\)</span>. <span class="math">\(C_i=0\)</span> indica que ninguno de los vecinos de i están conectados entre sí, <span class="math">\(C_i = 1\)</span> indica que todos están conectados.</li>
+<li>A mayor valor, más central se considera el nodo.</li>
+</ul>
+</div><div id="medidas-globales-de-centralización" class="titleslide slide section level2"><h1><span class="header-section-number">0.5</span> Medidas globales de centralización</h1></div><div id="diámetro" class="slide section level3">
+<h1><span class="header-section-number">0.5.1</span> Diámetro</h1>
+<p>Longitud del camino mínimo más largo de la red.</p>
+<p>En redes grandes, se puede determinar con el algoritmo de búsqueda primero en anchura.</p>
+<p>Equivale al valor máximo de excentricidad para todos los nodos de la red:</p>
+<p><span class="math">\[ d_{max} = \max \{E(i):i \epsilon V(G)\}\]</span></p>
+<p>Esta métrica da una idea de la proximidad entre pares de nodos en la red, indicando cómo de lejos están en el peor de los casos.</p>
+<p>Las redes más dispersas suelen tener un mayor diámetro que las más densas al existir menos caminos entre cada par de nodos.</p>
+</div><div id="radio" class="slide section level3">
+<h1><span class="header-section-number">0.5.2</span> Radio</h1>
+<p>Valor mínimo de excentricidad para toda la red:</p>
+<p><span class="math">\[ r = \min \{E(i):i \epsilon V(G)\}\]</span></p>
+</div><div id="medidas-de-centralización" class="slide section level3">
+<h1><span class="header-section-number">0.5.3</span> Medidas de centralización</h1>
+<p>Indican la variabilidad de los valores de centralidad entre los nodos de la red. Miden el grado en que un nodo tiene una centralidad alta mientras que el resto la tiene baja.</p>
+<p>Existen distintas formas de construir una medida de este tipo, como la formulación de Freeman (1979):</p>
+<p><span class="math">\[C_A = \frac{\sum_{i=1}^g[C_A(n^*)-C_A(i)]}{max \sum_{i=1}^g[C_A(n^*)-C_A(i)]}\]</span></p>
+<ul>
+<li><span class="math">\(C_A\)</span> es una medida de centralidad y <span class="math">\(C_A(i)\)</span> su valor para el nodo i.</li>
+<li><span class="math">\(C_A(n^*)\)</span> es el valor máximo de esa medida para los g nodos de la red <span class="math">\((C_A(n^*) = max_j C_A(j))\)</span></li>
+<li><span class="math">\(max \sum_{i=1}^g[C_A(n^*)-C_A(i)]\)</span> es el máximo teórico del numerador.</li>
+</ul>
+<p>El índice <span class="math">\(C_A\)</span> se define en [0,1]. Toma valor 0 cuando todos los nodos tienen exactamente el mismo valor de Centralidad <span class="math">\((C_A(n^*))\)</span> y 1 cuando un nodo domina totalmente (eclipsa) al resto.</p>
+</div><div id="medidas-de-centralización-1" class="slide section level3">
+<h1><span class="header-section-number">0.5.4</span> Medidas de centralización</h1>
+<p>Un ejemplo sería la medida de Centralización de grado <span class="math">\(C_D\)</span> donde el máximo teórico es <span class="math">\((g-1)(g-2)\)</span>:</p>
+<p><span class="math">\[C_D = \frac{\sum_{i=1}^g[C_D(n^*)-C_D(i)]}{(g-1)(g-2)}\]</span></p>
+<p><span class="math">\(C_D\)</span> toma valor máximo 1 cuando un solo nodo está conectado al resto que no tienen conexiones entre sí (grafo en estrella). El valor mínimo 0 corresponde a un grafo regular donde todos los nodos tienen el mismo grado.</p>
+<!-- Ejemplo Grafos -->
+<p>En redes dirigidas, una red con alta centralización de soporte (grado de entrada) sería aquella en la cual hay un nodo con un grado de entrada muy alto mientras que el resto la tiene baja. Por otro lado, una red con baja centralización de soporte sería aquella en la que todos los nodos tuvieran un grado de entrada similar.</p>
+</div><div id="medidas-de-centralización-2" class="slide section level3">
+<h1><span class="header-section-number">0.5.5</span> Medidas de centralización</h1>
+<p>La medida de Centralización de intermediación <span class="math">\(C_B\)</span> sería:</p>
+<p><span class="math">\[C_B = \frac{\sum_{i=1}^g[C_{B}^{&#39;}(n^*) - C_{B}^{&#39;}(i)]}{(g-1)}\]</span></p>
+<p>Se calcula a partir de la intermediación normalizada <span class="math">\(C^&#39;_B\)</span>. Toma el valor máximo 1 en un grafo en estrella y el valor mínimo 0 en un grafo en el que todos los valores de intermediación sean iguales.</p>
+</div><div id="medidas-de-centralización-3" class="slide section level3">
+<h1><span class="header-section-number">0.5.6</span> Medidas de centralización</h1>
+<p>La medida de Centralización de intermediación <span class="math">\(C_C\)</span> sería:</p>
+<p><span class="math">\[C_C = \frac{\sum_{i=1}^g[C_C(n^*)-C_C(i)]}{[(g-1)(g-2)/(2g-3)]}\]</span></p>
+<p><span class="math">\(C_C\)</span> toma valor 1 en un grafo en estrella y el valor mínimo 0 en un grafo en el que todas las distancias sean iguales (p.ej. un grafo completo o circular).</p>
+<p>El problema de estas medidas es el máximo teórico, que no es calculable para algunas Centralidades de prestigio en redes dirigidas (aunque si para la Centralidad de grado).</p>
+</div><div id="algunas-aplicaciones-del-análisis-de-redes-sociales" class="titleslide slide section level2"><h1><span class="header-section-number">0.6</span> Algunas aplicaciones del análisis de redes sociales</h1></div><div id="análisis-de-juego-en-equipos-de-fútbol" class="slide section level3">
+<h1><span class="header-section-number">0.6.1</span> Análisis de juego en equipos de fútbol</h1>
+<p>Una posible aplicación es el análisis del juego de un equipo de fútbol en un partido. En la figura se pueden observar los pases realizados por los jugadores del equipo de fútbol Rapid de Viena en los últimos 15 minutos del partido que jugaron contra el equipo Sturm Graz el 7 de Diciembre de 2003. Los colores de los nodos indican la posición dej jugador (rojo=atacante, verde=centrocampista, amarillo=defensa).</p>
+<div class="figure">
+<img src="../images/tema05/RapidViena1.jpg" alt="Grafo con los pases realizados por los jugadores del equipo de fútbol Rapid de Viena." /><p class="caption">Grafo con los pases realizados por los jugadores del equipo de fútbol Rapid de Viena.</p>
+</div>
+<p>Posibles factores de análisis del grafo con los pases realizados:</p>
+<ul>
+<li>¿Qué jugador ha iniciado más pases (grado ponderado de salida)? Jazic</li>
+<li>¿Qué jugador ha recibido más pases (grado ponderado de entrada)? Jazic</li>
+<li>¿Quién ha controlado el juego del Rapid (centralidad)? Jazic y Hoffman</li>
+<li>¿Qué jugadores han estado implicados en jugadas con el mayor número de pases (caminos)? Jazic, Hofmann, Feldhofer, Martinez y Carics</li>
+<li>¿Quién ha jugado con quién y quién no (análisis de los enlaces)? Ni un solo pase de Ivanschitz a Wagner</li>
+<li>¿Qué jugadores han tenido un rol similar (análisis de enlaces)? Por ejemplo, Ivanschitz / Martinez</li>
+</ul>
+</div><div id="análisis-de-juego-en-equipos-de-fútbol-1" class="slide section level3">
+<h1><span class="header-section-number">0.6.2</span> Análisis de juego en equipos de fútbol</h1>
+<p>A partir de los <a href="http://revista-redes.rediris.es/webredes/eurocopa/datos.htm">datos de los pases realizados en los partidos de la Eurocopa</a> de Portugal 2004 se pueden obtener grafos con los pases realizados en los distintos partidos y estudiar las redes asociadas.</p>
+<p>J.J. Merelo. Redes contra redes: el fútbol es así. <a href="http://atalaya.blogalia.com/historias/19642">(http://atalaya.blogalia.com/historias/19642)</a>]</p>
+</div><div id="análisis-de-juego-en-equipos-de-fútbol-2" class="slide section level3">
+<h1><span class="header-section-number">0.6.3</span> Análisis de juego en equipos de fútbol</h1>
+<div class="figure">
+<img src="../images/tema05/Espana-Rusia.png" alt="España 1 - Rusia 0" /><p class="caption">España 1 - Rusia 0</p>
+</div>
+<p>El jugador con más centralidad es Iker Casillas, cuando debería haber sido Baraja.</p>
+</div><div id="análisis-de-juego-en-equipos-de-fútbol-3" class="slide section level3">
+<h1><span class="header-section-number">0.6.4</span> Análisis de juego en equipos de fútbol</h1>
+<div class="figure">
+<img src="../images/tema05/Grecia-Espana.png" alt="Grecia 1 - España 1" /><p class="caption">Grecia 1 - España 1</p>
+</div>
+<p>La situación no cambió mucho en el segundo partido (Grecia 1 – España 1) salvo que, en este caso, Albelda, Baraja y Helguera organizaron un poco más el juego. Es curioso ver también que la “autoridad” de la red es Vicente, un extremo. Lo lógico sería que las autoridades fueran los delanteros, pero Morientes y Raúl se hallan ahí perdidos, en la maraña de la red.</p>
+</div><div id="análisis-de-juego-en-equipos-de-fútbol-4" class="slide section level3">
+<h1><span class="header-section-number">0.6.5</span> Análisis de juego en equipos de fútbol</h1>
+<div class="figure">
+<img src="../images/tema05/intereseccionGreciaRusia.png" alt="Interesección de los pases en los partidos contra Grecia y Rusia" /><p class="caption">Interesección de los pases en los partidos contra Grecia y Rusia</p>
+</div>
+<div class="figure">
+<img src="../images/tema05/diferenciaGreciaRusia.png" alt="Diferencia de pases en los partidos contra Grecia y Rusia" /><p class="caption">Diferencia de pases en los partidos contra Grecia y Rusia</p>
+</div>
+<p>Casi el 90% de los pases fueron los mismos.</p>
+</div><div id="hospitales" class="slide section level3">
+<h1><span class="header-section-number">0.6.6</span> Hospitales</h1>
+<p>Infecciones en hospitales de EEUU por transferencia de pacientes</p>
+<p>También se han utilizado las medidas de centralidad en el control de infecciones con organismos resistentes teniendo en cuenta la red de traslados de pacientes en Estados Unidos. La conclusión es que es más eficiente concentrar recursos en los hospitales estratégicamente situados en la red, donde la estrategia de selección está relacionada con las medidas de centralidad de la red.</p>
+</div><div id="hospitales-1" class="slide section level3">
+<h1><span class="header-section-number">0.6.7</span> Hospitales</h1>
+<p>U.H. Karkada, L.A. Adamic LA, J.M. Kahn, T.J. Iwashyna. Limiting the spread of highly resistant hospital-acquired microorganisms via critical care transfers: a simulation study. Intensive Care Med. 2011 37(10): 1633-40</p>
+<p>PURPOSE: Hospital-acquired infections with highly resistant organisms are an important problem among critically ill patients. Control of these organisms has largely focused within individual hospitals. We examine the extent to which transfers of critically ill patients could be a vector for the wide spread of highly resistant organisms, and compare the efficiency of different approaches to targeting infection control resources</p>
+<p>METHODS: We analyzed the network of interhospital transfers of intensive care unit patients in 2005 US Medicare data and 2004-2006 Pennsylvania all-payer data. We simulated the spread of highly resistant hospital-acquired infections by randomly choosing a single hospital to develop a highly resistant organism and following the spread of infection or colonization throughout the network under varying strategies of infection control and varying levels of infectivity.</p>
+<p>RESULTS: Critical care transfers could spread a highly resistant organism between any two US hospitals in a median of 3 years. Hospitals varied substantially in their importance to limiting potential spread. Targeting resources to a small subset of hospitals on the basis of their position in the transfer network was 16 times more efficient than distributing infection control resources uniformly. Within any set of targeted hospitals, the best strategy for infection control heavily concentrated resources at a few particularly important hospitals, regardless of level of infectivity.</p>
+<p>CONCLUSIONS: Critical care transfers provide a plausible vector for widespread dissemination of highly resistant hospital-acquired microorganisms. Infection control efforts can be made more efficient by selectively targeting hospitals most important for transmission.</p>
+</div><div id="hospitales-2" class="slide section level3">
+<h1><span class="header-section-number">0.6.8</span> Hospitales</h1>
+<div class="figure">
+<img src="../images/tema05/Hospital1.jpg" alt="Hospital Patient Transfer Network" /><p class="caption">Hospital Patient Transfer Network</p>
+</div>
+</div><div id="hospitales-3" class="slide section level3">
+<h1><span class="header-section-number">0.6.9</span> Hospitales</h1>
+<div class="figure">
+<img src="../images/tema05/Hospital2.jpg" alt="Infection prevention strategies in a hospital patient transfer network" /><p class="caption">Infection prevention strategies in a hospital patient transfer network</p>
+</div>
+</div><div id="hospitales-4" class="slide section level3">
+<h1><span class="header-section-number">0.6.10</span> Hospitales</h1>
+<div class="figure">
+<img src="../images/tema05/Hospital3.jpg" alt="Budget allocation strategies to avoid spread of infections" /><p class="caption">Budget allocation strategies to avoid spread of infections</p>
+</div>
 </div>
 </body>
 </html>
