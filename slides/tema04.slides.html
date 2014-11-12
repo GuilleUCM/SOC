@@ -148,7 +148,7 @@ Guillermo Jiménez Díaz (gjimenez@ucm.es)<br/>Alberto Díaz (albertodiaz@fdi.uc
 <li>En cada momento de tiempo <span class="math">\(t\)</span> se añade un nuevo nodo a la red con <span class="math">\(m \leq m_0\)</span> enlaces que se conectarán a <span class="math">\(m\)</span> nodos ya existentes en la red.</li>
 </ol>
 <ol class="incremental" start="2" style="list-style-type: decimal">
-<li>La probabilidad de que uno de los enlaces del nuevo nodo se conecte a un nodo ya existente <span class="math">\(i\)</span> depende del grado de dicho nodo <span class="math">\(k_i\)</span> <span class="math">\[ \pi (k) = \frac{k_i}{\sum_{j}k_j}\]</span></li>
+<li>La probabilidad de que uno de los enlaces del nuevo nodo se conecte a un nodo ya existente <span class="math">\(i\)</span> depende del grado de dicho nodo <span class="math">\(k_i\)</span> <span class="math">\[ \pi (k) = \frac{k_i}{\sum_{j=1}^{N(t)}k_j}\]</span></li>
 </ol>
 </div><div id="modelo-de-barabasi-albert-2" class="slide section level3">
 <h1><span class="header-section-number">1.4.2</span> Modelo de Barabasi-Albert</h1>
@@ -179,7 +179,7 @@ Guillermo Jiménez Díaz (gjimenez@ucm.es)<br/>Alberto Díaz (albertodiaz@fdi.uc
 <h1><span class="header-section-number">1.4.5</span> Limitaciones del modelo</h1>
 <ul>
 <li>El modelo de Barabasi-Albert estima un exponente <span class="math">\(\gamma = 3\)</span>. En la mayoría de las redes reales este exponente oscila entre 2 y 5</li>
-<li>El modelo genera redes no dirigidas aunque algunas de las redes reales que modelo son dirigidas</li>
+<li>El modelo genera redes no dirigidas aunque algunas de las redes reales que modela son dirigidas</li>
 <li>El modelo no permite enlaces entre nodos ya presentes en la red</li>
 <li>El modelo no tiene en cuenta la desaparición de nodos</li>
 <li>El modelo no tiene en cuenta que algunas características intrínsecas de algunos nodos pueden hacer que la conexión preferencial varíe</li>
@@ -315,7 +315,7 @@ Guillermo Jiménez Díaz (gjimenez@ucm.es)<br/>Alberto Díaz (albertodiaz@fdi.uc
 <li>Empezamos con <span class="math">\(N\)</span> nodos.</li>
 </ul>
 <ul class="incremental">
-<li>En cada momento <span class="math">\(t\)</span> seleccionamos un nodo aleatoriamente y decidimos que se conecta al nodo <span class="math">\(i\)</span> presente en la red con probabilidad: <span class="math">\[ \pi (k) = \frac{k_i}{\sum_{j}k_j}\]</span></li>
+<li>En cada momento <span class="math">\(t\)</span> seleccionamos un nodo aleatoriamente y decidimos que se conecta al nodo <span class="math">\(i\)</span> presente en la red con probabilidad: <span class="math">\[ \pi (k) = \frac{k_i}{\sum_{j=1}^{N(t)}k_j}\]</span></li>
 </ul>
 </div><div id="sin-crecimiento-1" class="slide section level3">
 <h1><span class="header-section-number">1.7.4</span> Sin crecimiento</h1>

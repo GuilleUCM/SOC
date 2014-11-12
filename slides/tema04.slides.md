@@ -110,7 +110,7 @@ En 1999, los investigadores Barabasi y Albert destacaron dos supuestos que no er
 > 1. En cada momento de tiempo $t$ se añade un nuevo nodo a la red con $m \leq m_0$ enlaces que se conectarán a $m$ nodos ya existentes en la red.
 
 > 2. La probabilidad de que uno de los enlaces del nuevo nodo se conecte a un nodo ya existente $i$ depende del grado de dicho nodo $k_i$ 
-    $$ \pi (k) = \frac{k_i}{\sum_{j}k_j}$$
+    $$ \pi (k) = \frac{k_i}{\sum_{j=1}^{N(t)}k_j}$$
 
 ### Modelo de Barabasi-Albert
 
@@ -136,7 +136,7 @@ Este modelo no especifica:
 ### Limitaciones del modelo
 
 * El modelo de Barabasi-Albert estima un exponente $\gamma = 3$. En la mayoría de las redes reales este exponente oscila entre 2 y 5
-* El modelo genera redes no dirigidas aunque algunas de las redes reales que modelo son dirigidas
+* El modelo genera redes no dirigidas aunque algunas de las redes reales que modela son dirigidas
 * El modelo no permite enlaces entre nodos ya presentes en la red
 * El modelo no tiene en cuenta la desaparición de nodos
 * El modelo no tiene en cuenta que algunas características intrínsecas de algunos nodos pueden hacer que la conexión preferencial varíe
@@ -268,7 +268,7 @@ El modelo de Barabasi-Albert sin crecimiento
 > * Empezamos con $N$ nodos.
 
 > * En cada momento $t$ seleccionamos un nodo aleatoriamente y decidimos que se conecta al nodo $i$ presente en la red con probabilidad:
->   $$ \pi (k) = \frac{k_i}{\sum_{j}k_j}$$
+>   $$ \pi (k) = \frac{k_i}{\sum_{j=1}^{N(t)}k_j}$$
 
 ### Sin crecimiento
 
