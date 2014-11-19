@@ -1,96 +1,42 @@
-% Prácticas de Desarrollo de Sistemas Interactivos
-% Pablo Moreno Ger (pablom@fdi.ucm.es); Guillermo Jiménez Díaz (gjimenez@ucm.es)
-% Curso 2013-2014
+% Análisis de Redes Sociales
+% Guillermo Jiménez Díaz (gjimenez@ucm.es); Alberto Díaz (albertodiaz@fdi.ucm.es)
+% Curso 2014 - 2015
 
-# Acerca de las prácticas de la asignatura {-}
+# Prefacio {-}
 
-La asignatura de Desarrollo de Sistemas Interactivos incluye un conjunto de prácticas para realizar en grupo, que representan un 30% de la calificación final.
+Estos son las prácticas de la asignatura Análisis de Redes Sociales, impartida en la Facultad de Informática de la Universidad Complutense de Madrid por los profesores Guillermo Jiménez Díaz y Alberto Díaz, del Departamento de Ingeniería del Software e Inteligencia Artificial.
 
-Los grupos de prácticas se formarán al principio del curso, con un mínimo de 4 alumnos y un máximo de 6, y deberán mantenerse para todas las entregas del curso.
+Este material ha sido desarrollado a partir de distintas fuertes, destacando como referencia principal el libro _Network Science_ de Laszlo Barabasi, el material de la asignatura _Social Network Analysis_, impartido por Lada Adamic a través de Coursera, y las transparencias de la asignatura Redes y Sistemas Complejos, creadas por Óscar Cordón García de la Universidad de Granada.
 
-El resultado de todas las prácticas deberá entregarse en el campus virtual, en las fechas y formatos indicados en el enunciado de cada una de las prácticas.
+Este obra está bajo una [licencia de Creative Commons Reconocimiento-NoComercial-CompartirIgual 4.0 Internacional](http://creativecommons.org/licenses/by-nc-sa/4.0/).
 
-# Práctica 3: Evaluación Heurística {-}
-\setcounter{section}{3}
+# Práctica 3: Análisis de centralidad y modularidad.
 
-En esta última práctica vamos a realizar una evaluación heurística de los prototipos desarrollados en las anteriores prácticas. 
+En esta práctica hay que obtener los valores de medidas de centralidad que ofrece Gephi sobre las redes obtenidas en la Práctica 1 y en la Práctica 2 (esto incluye tanto medidas locales como globales) y realizar un análisis de los resultados obtenidos con estas medidas. ¿Qué conclusiones se pueden sacar de esos datos?.
 
-## Desarrollo de la práctica
+Por otro lado, también hay que calcular las medidas de modularidad y discutir los resultados obtenidos. ¿Qué conclusiones se pueden sacar de esos datos?.
 
-Para esta evaluación se deberá seguir uno de los dos conjuntos de heurísticas vistas en clase --los 10 principios de diseño de Nielsen o las 8 reglas de oro de Shneiderman-- a elegir por el grupo de prácticas. La evaluación deberán hacerla por separado todos los miembros del grupo (un informe individual por persona).
+El análisis se realizará a partir de los valores de las medidas y de las gráficas de distribución obtenidas para las redes generadas . Además hay que generar visualizaciones en Gephi que apoyen las principales conclusiones obtenidas de las redes. Por ejemplo, se podría utilizar distintos colores para los nodos que están en distintos módulos y distintos tamaños para reflejar una determinada medida de centralidad.
 
-El prototipo a evaluar puede ser el entregado en la práctica 2 o una modificación del mismo. En todo caso será necesario entregar dicho prototipo junto con el informe de la evaluación realizada.
+Hay que realizar un análisis individual de cada red, así como discutir la similitud o diferencias entre las redes analizadas por cada uno. No se trata de escribir mucho sino de hacer un análisis razonable.
 
-Cada evaluador tendrá que evaluar el prototipo individualmente (siguiendo las pautas descritas en clase y en los apuntes) y crear un [informe individual](#infInd) de evaluación. Posteriormente, el grupo de prácticas se reunirá para analizar los informes individuales y crear [la lista unificada de problemas](#infUnif). Una vez completada y ordenada de acuerdo a la severidad media de los problemas encontrados se realizará un breve informe de [cambios y prioridades](#infCambios).
+# Entrega
 
-## Memoria descriptiva
+La práctica se entregará en el Campus Virtual, antes de las 23:55 del día 14 de diciembre de 2014.
 
-Cada grupo debe entregar una memoria descriptiva del trabajo que debe incluir las siguientes secciones:
+La entrega de la práctica será un archivo `.zip` (etiquetado con el número de grupo _GrupoXX_) con los siguientes contenidos:
 
-- Introducción
-- Informes individuales de evaluación
-- Lista unificada de problemas
-- Informe de cambios y prioridades
-
-No hay una longitud fija ya que ésta dependerá del número y longitud de los informes individuales realizados.
-
-
-### Introducción
-
-En la introducción se describirá brevemente el prototipo que se va a evaluar y cuáles son las tareas que se van a poder realizar en dicho prototipo. Así mismo se deberán enumerar cuáles son las heurísticas que se van a emplear para realizar la evaluación.
-
-
-### Informes individuales de evaluación {#infInd}
-
-Cada uno de los evaluadores tendrá que realizar un informe de la evaluación heurística realizada. Este informe ha de contener la siguiente información:
-
-* Nombre del evaluador
-* Edad
-* Sexo
-* Fecha y hora (inicio-fin) de la evaluación
-* Datos técnicos sobre el hardware/software en el que se ha probado el prototipo: sistema operativo, navegador (si procede), tamaño y resolución del monitor, tamaño y resolución de la ventana en la que se ha visualiazdo el prototipo.
-* Impresiones positivas de la aplicación: enumerar algunas de las mejores imopresiones de la aplicación, indicando en qué pantalla se han visto y, si fuera necesario, incluyendo una captura de pantalla.
-* Problemas detectados: Cada problema ha de contener la siguiente información:
-1. Nombre
-2. Breve descripción
-3. Heurística violada
-3. Dónde se ha encontrado
-4. Si es necesario, una captura de pantalla para visualizar el problema.
-5. Grado de severidad del problema: Será un valor entero entre 0 y 4 (no son válidas fracciones) donde cada valor representa lo siguiente:
-
-    4 = Problema catastrófico
-
-    3 = Problema serio
-
-    2 = Problema menor
-
-    1 = Problema estético
-    
-    0 = No es un problema
-
-Se recomienda seguir un formato para las anotaciones que facilite después la integración de los informes en una lista unificada de problemas.
-
-### Lista unificada de problemas {#infUnif}
-
-A partir de los informes individuales de la sección anterior, hay que generar una lista unificada de problemas. Tal y como se ha discutido en clase, esto se hace agregando las evaluaciones de todos los evaluadores (problemas y severidades) y calculando el promedio de las severidades.
-
-Es importante recordar que si un determinado elemento tiene dos problemas de usabilidad (es decir, viola dos heurísticas distintas), entonces tiene que figurar dos veces, uno por cada principio violado.
-
-Junto con este enunciado se incluye un archivo Excel con una plantilla para el resumen unificado de la evaluación heurística.
-
-### Informe de cambios y prioridades {#infCambios}
-
-Es un breve informe en el que se explicarán qué problemas de los encontrados por los evaluadores se abordarían en caso de poder realizar una nueva iteración de diseño y qué cambios se propondrían. Este informe no ha de dar solución a todos los problemas sino establecer unas prioridades sobre los principales problemas encontrados y decidir cómo los resolveríamos.
-
- 
-## Entrega
-
-La práctica se entregará en el campus virtual, antes de las 23:55 del día 31 de enero de 2014. 
-
-La entrega de la práctica será un archivo .zip con los siguientes contenidos:
-
-* _Alumnos.txt_: Un archivo con los nombres de todos los integrantes del grupo.
-* _Memoria.pdf_: La memoria de la práctica. 
-* _Prototipo.pdf_: El prototipo que ha sufrido la evaluación
+* _Documentación.pdf_: Un archivo pdf que deberá incluir, al menos, el siguiente contenido:
+    -   Portada con el número y título de la práctica.
+    -   Número de grupo.
+    -   Nombre y apellidos de los integrantes del grupo.
+    -   Para cada una de las redes de cada alumno
+        +   Visualizaciones significativas de la red.
+        +   La tabla Excel con los valores de las medidas estudiadas.
+        +   Un análisis de la red en función de los datos anteriores.
+    -   Una comparativa de las distintas redes analizadas.
+    -   Referencias bibliográficas u otro tipo de material distinto del proporcionado en la asignatura que se haya consultado para realizar la práctica. 
+* Ficheros de proyecto Gephi de los análisis realizados.
+* Un fichero excel con los datos de todas las redes analizadas.
 
 El archivo puede ser subido por cualquiera de los integrantes del grupo (sólo una entrega).
