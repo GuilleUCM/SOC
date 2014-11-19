@@ -16,7 +16,7 @@ En esta práctica hay que obtener los valores de medidas de centralidad que ofre
 
 Por otro lado, también hay que calcular las medidas de modularidad y discutir los resultados obtenidos. ¿Qué conclusiones se pueden sacar de esos datos?.
 
-El análisis se realizará a partir de los valores de las medidas y de las gráficas de distribución obtenidas para las redes generadas . Además hay que generar visualizaciones en Gephi que apoyen las principales conclusiones obtenidas de las redes. Por ejemplo, se podría utilizar distintos colores para los nodos que están en distintos módulos y distintos tamaños para reflejar una determinada medida de centralidad.
+El análisis se realizará a partir de los valores de las medidas y de las gráficas de distribución obtenidas para las redes generadas. Además hay que generar visualizaciones en Gephi que apoyen las principales conclusiones obtenidas de las redes. Por ejemplo, se podría utilizar distintos colores para los nodos que están en distintos módulos y distintos tamaños para reflejar una determinada medida de centralidad.
 
 Hay que realizar un análisis individual de cada red, así como discutir la similitud o diferencias entre las redes analizadas por cada uno. No se trata de escribir mucho sino de hacer un análisis razonable.
 
