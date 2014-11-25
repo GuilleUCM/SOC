@@ -1,0 +1,585 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Guillermo Jiménez Díaz (gjimenez@ucm.es)" />
+  <meta name="author" content="Alberto Díaz (albertodiaz@fdi.ucm.es)" />
+  <title>Análisis de Redes Sociales</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+   href="../pandownTemplates/slidy/styles/slidy.css" />
+   
+
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+   href="../pandownTemplates/soc.css" />
+
+  <script src="../pandownTemplates/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+  <script src="../pandownTemplates/slidy/scripts/slidy.js"
+    charset="utf-8" type="text/javascript"></script>
+</head>
+<body>
+<div class="slide titlepage">
+  <h1 class="title">Análisis de Redes Sociales</h1>
+  <p class="author">
+Guillermo Jiménez Díaz (gjimenez@ucm.es)<br/>Alberto Díaz (albertodiaz@fdi.ucm.es)
+  </p>
+  <p class="date">21 de noviembre de 2014</p>
+</div>
+<div id="tema-6-estructura-de-comunidades" class="titleslide slide section level1 unnumbered"><h1>Tema 6: Estructura de comunidades</h1></div><div id="introducción" class="titleslide slide section level2"><h1><span class="header-section-number">0.1</span> Introducción</h1></div><div id="concepto-de-comunidad" class="slide section level3">
+<h1><span class="header-section-number">0.1.1</span> Concepto de comunidad</h1>
+<p>Las redes complejas tienden a mostrar una estructura de comunidades.</p>
+<p>A menudo encontramos una alta concentración de enlaces en ciertas regiones del grafo, denominadas comunidades, y una baja concentración de enlaces entre esas regiones.</p>
+<p>Esta propiedad suele darse como consecuencia de la heterogeneidad global y local de la distribución de los enlaces en un grafo.</p>
+<p>Las comunidades, también conocidas como módulos o clusters, se definen como grupos de nodos similares.</p>
+<p>A partir del concepto de densidad de la red, las comunidades pueden definirse como grupos de nodos densamente conectados que presentan conexiones dispersas entre sí.</p>
+</div><div id="caso-ideal" class="slide section level3">
+<h1><span class="header-section-number">0.1.2</span> Caso ideal</h1>
+<div class="figure">
+<img src="../images/tema06/CasoIdeal.jpg" alt="Caso ideal de estructura de comunidades" /><p class="caption">Caso ideal de estructura de comunidades</p>
+</div>
+<p>En esta red hay 3 comunidades: <span class="math">\(C_1, C_2, C_3\)</span>.</p>
+<p>Cada comunidad está formada por un grafo completo (un clique) de tamaño variable <span class="math">\((C_1 = K_6, C_2 = K_3, C_3 = K_7)\)</span>.</p>
+<p>La densidad de enlaces entre comunidades es muy baja. Los pocos enlaces que existen son puentes.</p>
+<!-- Traspas UGR?
+
+Clustering y mundos pequeños
+El clustering implica modularidad.
+La funcionalidad requiere modularidad.
+La propiedad de mundos pequeños tiende a eliminar la modularidad.
+
+Clustering y hubs
+Los hubs tienden a eliminar la modularidad.
+
+¿Cuando es modular una red?
+El clustering sólo debe estar en la periferia.
+Los nodos de grado bajo suelen pertenecer a un único módulo.
+Los hubs hacen de puente entre distintos módulos. -->
+</div><div id="indice" class="slide section level3">
+<h1><span class="header-section-number">0.1.3</span> Indice</h1>
+<p>El tema va a estar dividido en 3 partes:</p>
+<ul>
+<li>¿Porqué detectar comunidades es interesante?</li>
+<li>¿Qué es una comunidad? ¿Cuando se dice que un conjunto de nodos forma una comunidad?</li>
+<li>¿Cómo detectar comunidades?</li>
+</ul>
+</div><div id="por-qué-detectar-comunidades" class="titleslide slide section level2"><h1><span class="header-section-number">0.2</span> ¿Por qué detectar comunidades?</h1></div><div id="por-qué-detectar-comunidades-1" class="slide section level3">
+<h1><span class="header-section-number">0.2.1</span> ¿Por qué detectar comunidades?</h1>
+<p>En la vida real existen muchos ejemplos de grupos que forman comunidades en redes complejas:</p>
+<ul>
+<li>Sociedades: las personas tienen una tendencia natural a formar grupos (familias, círculos de amigos, grupos profesionales o religiosos, ciudades, naciones, etc.)</li>
+<li>Empresariales/Económicas: compañías, clientes, etc.</li>
+<li>Biología: p.ej. redes metabólicas. En redes de interacción de proteínas encontramos grupos de proteínas con funciones similares dentro de la célula.</li>
+<li>Internet: comunidades virtuales (Facebook, Twitter, etc.), grupos de páginas web relacionadas, etc. (útiles para sistemas de recomendaciones)</li>
+<li>y muchos ámbitos más…</li>
+</ul>
+</div><div id="ejemplo-email-spectroscopy" class="slide section level3">
+<h1><span class="header-section-number">0.2.2</span> Ejemplo email spectroscopy</h1>
+<div class="figure">
+<img src="../images/tema06/EmailHP.jpg" alt="Grafo con conexiones por correos electrónicos (gris) y estructura de comunicación entre unidades organizativas en una empresa (HP)" /><p class="caption">Grafo con conexiones por correos electrónicos (gris) y estructura de comunicación entre unidades organizativas en una empresa (HP)</p>
+</div>
+<p>En la Figura aparece un grafo con las conexiones entre las personas de una empresa (HP) según los correos electrónicos que intercambian.</p>
+<p>En gris aparecen los enlaces debidos a los correos y en negro aparecen las conexiones debidas a la estructuración de la empresa desde el punto de vista de la comunicación entre personas (reporting structure).</p>
+<p>Detectar comunidades en este grafo nos da la estructura de colaboración entre las personas que trabajan en la empresa.</p>
+<p>En este estudio, se obtuvieron las comunidades presentes en el grafo de correos y se compararon con la estructura de comunicación de la empresa.</p>
+</div><div id="ejemplo-email-spectroscopy-1" class="slide section level3">
+<h1><span class="header-section-number">0.2.3</span> Ejemplo email spectroscopy</h1>
+<div class="figure">
+<img src="../images/tema06/EmailHP.jpg" alt="Grafo con conexiones por correos electrónicos (gris) y estructura de comunicación entre unidades organizativas en una empresa (HP)" /><p class="caption">Grafo con conexiones por correos electrónicos (gris) y estructura de comunicación entre unidades organizativas en una empresa (HP)</p>
+</div>
+<p>Se encontró que en la mayoría de los casos los grupos de personas coincidían. Esto es, las personas que trabajan en el mismo departamento, con los mismos objetivos y tareas, tienden a comunicarse más entre ellos que con el resto.</p>
+<p>Esto supone una validación de que dicha estructura es útil, de tal forma que si no hubiese salido de forma similar la empresa podría replantearse algún tipo de re-organización de sus departamentos y personas.</p>
+<p>De hecho, si la empresa no tuviera una estructura organizativa, las comunidades obtenidas en el análisis de la red de correos podrían ser una sugerencia sobre una posible estructura organizativa de la que partir.</p>
+</div><div id="ejemplo-email-spectroscopy-2" class="slide section level3">
+<h1><span class="header-section-number">0.2.4</span> Ejemplo email spectroscopy</h1>
+<div class="figure">
+<img src="../images/tema06/EmailHP.jpg" alt="Grafo con conexiones por correos electrónicos (gris) y estructura de comunicación entre unidades organizativas en una empresa (HP)" /><p class="caption">Grafo con conexiones por correos electrónicos (gris) y estructura de comunicación entre unidades organizativas en una empresa (HP)</p>
+</div>
+<p>Otra cosa que fue detectada en este estudio es que había unas pocas comunidades que incluían personas de varias unidades organizativas de la empresa.</p>
+<p>Cuando los autores del estudio entrevistaron a las personas incluidas en estas comunidades resultó que dichas personas realizaban tareas que estaban relacionadas con varias partes de la organización.</p>
+<p>Por ejemplo, en el trabajo asociado con impresoras con funcionalidad de impresión en red es necesario la gente que trabaja en hardware de impresoras y gente que trabaja en manejo de la red, que pertenecen a 2 unidades organizativas distintas.</p>
+<p>De esta forma, las comunidades detectadas dan una visión más real de la estructura de colaboración dentro de la gente que trabaja en la empresa, más allá del simple hecho de trabajar en diferentes unidades organizativas.</p>
+</div><div id="ejemplo-el-club-de-karate-de-zachary" class="slide section level3">
+<h1><span class="header-section-number">0.2.5</span> Ejemplo: El club de karate de Zachary</h1>
+<div class="figure">
+<img src="../images/tema06/KarateClubNetwork.jpg" alt="Red del club de karate de Zachary." /><p class="caption">Red del club de karate de Zachary.</p>
+</div>
+<p>Fuente: Zachary. An information flow model for conflict and fission in small groups. J. Anthropol. Res. 33: 452-473 (1977)</p>
+<p>Zachary, un sociólogo, estudió las interacciones entre las personas de un club de karate universitario. Creó una red social donde enlazaba a las personas que hablaban regularmente y a quien le gustaba cada persona.</p>
+<p>Mientras estaba estudiando las interacciones en el club, hubo un problema interno y el club se dividió en 2 clubs.</p>
+<p>La pregunta es, dada la información de la red (quien habla con quien y a quien le gusta cada persona), se puede predecir como se va a dividir el club?</p>
+<p>Esto es un tipo de test de prueba de si el algoritmo de detección de comunidades es bueno o no.</p>
+<p>Este tipo de información podría ser útil para el análisis de este tipo de casos en cualquier red social.</p>
+</div><div id="ejemplo-red-del-aserradero" class="slide section level3">
+<h1><span class="header-section-number">0.2.6</span> Ejemplo: Red del aserradero</h1>
+<div class="figure">
+<img src="../images/tema06/SawmillNetwork.jpg" alt="Red del aserradero." /><p class="caption">Red del aserradero.</p>
+</div>
+<p>Fuente: Exploratory Social Network Analysis with Pajek</p>
+<p>En esta red aparecen los trabajadores de un aserradero.</p>
+<p>Los trabajadores se pueden clasificar en varias categorías:</p>
+<ul>
+<li>E = ingleses, H = hispanos</li>
+<li>P = planificación, M = corte, Y = patio</li>
+</ul>
+<p>La dirección del aserradero estaba teniendo dificultades para persuadir a los trabajadores para que adoptaran un nuevo plan que redundaría en un beneficio para todos los empleados. En concreto, los trabajadores hispanos eran los más reticentes a aceptar.</p>
+<p>La dirección contrató a un sociólogo que diseñó una red que reflejaba con qué compañeros hablaba cada persona habitualmente.</p>
+</div><div id="ejemplo-red-del-aserradero-1" class="slide section level3">
+<h1><span class="header-section-number">0.2.7</span> Ejemplo: Red del aserradero</h1>
+<div class="figure">
+<img src="../images/tema06/SawmillNetwork.jpg" alt="Red del aserradero." /><p class="caption">Red del aserradero.</p>
+</div>
+<p>El sociólogo recomendó a la dirección que hablaran con Juan y que le pidieran que hablara con el resto de trabajadores hispanos. Fue un éxito, rápidamente todos estaban de acuerdo con el nuevo plan.</p>
+</div><div id="formación-de-opiniones-y-estructura-de-comunidades" class="slide section level3">
+<h1><span class="header-section-number">0.2.8</span> Formación de opiniones y estructura de comunidades</h1>
+<p>En este ejemplo vamos a ver como afecta la estructura de comunidades en una red a la formación de opiniones.</p>
+<p><a href="http://www.ladamic.com/netlearn/NetLogo502/OpinionFormationModelToy.html" class="uri">http://www.ladamic.com/netlearn/NetLogo502/OpinionFormationModelToy.html</a></p>
+<p><img src="../images/tema06/OpinionRedAleatoria.png" alt="Red aleatoria." /> <img src="../images/tema06/Opinion2Comunidades.png" alt="Red con 2 comunidades." /></p>
+<!-- ALBERTO:EJECUTAR NETLOGO -->
+<p>Ejecución en NetLogo</p>
+<ul>
+<li>Se pueden crear 2 tipos de redes: una aleatoria y otra con estructura de 2 comunidades (comunnity? on/off).</li>
+<li>Con Update Opinion cada nodo adopta la opinión mayoritaria de sus vecinos (una opinión aleatoria, en caso de empate).</li>
+<li>Si la mayoría de los vecinos de un nodo tienen opinión roja, entonces el nodo cambia a opinión roja, si no la tenía antes.</li>
+<li>Si hay igual número de rojos que de azules entonces elige aleatoriamente si cambia o no.</li>
+<li>Si cambia de opinión cambia de circulo a cuadrado.</li>
+</ul>
+<!-- At each time step a node wakes up and decides to update its opinion. If most of its neighbors are blue, it will turn blue, if most of its neighbors are red, it will turn red. If its neighbors are split, it will flip a coin and decide in that way.
+ -->
+</div><div id="formación-de-opiniones-y-estructura-de-comunidades-1" class="slide section level3">
+<h1><span class="header-section-number">0.2.9</span> Formación de opiniones y estructura de comunidades</h1>
+<p><a href="http://www.ladamic.com/netlearn/NetLogo502/OpinionFormationModelToy.html" class="uri">http://www.ladamic.com/netlearn/NetLogo502/OpinionFormationModelToy.html</a></p>
+<p><img src="../images/tema06/OpinionRedAleatoria.png" alt="Red aleatoria." /> <img src="../images/tema06/Opinion2Comunidades.png" alt="Red con 2 comunidades." /></p>
+<p>PREGUNTA: Ejecutar alternativamente la configuración de dos comunidades y la de Erdos-Renyi. ¿Cuál puede mantener opiniones divergentes cuando se itera la actualización de opiniones?</p>
+<ol style="list-style-type: lower-alpha">
+<li><p>Sólo la de Erdos-Renyi</p></li>
+<li><p>Sólo la de dos comunidades</p></li>
+<li><p>Ambas</p></li>
+</ol>
+</div><div id="formación-de-opiniones-y-estructura-de-comunidades-2" class="slide section level3">
+<h1><span class="header-section-number">0.2.10</span> Formación de opiniones y estructura de comunidades</h1>
+<div class="figure">
+<img src="../images/tema06/Ejemplo2RedOpinion.png" alt="Red aleatoria." /><p class="caption">Red aleatoria.</p>
+</div>
+<p>Podemos repetir la actualización de opiniones muchas veces y entonces, al final siempre ocurre que todas las partes de la red mantendrán la misma opinión.</p>
+</div><div id="formación-de-opiniones-y-estructura-de-comunidades-3" class="slide section level3">
+<h1><span class="header-section-number">0.2.11</span> Formación de opiniones y estructura de comunidades</h1>
+<div class="figure">
+<img src="../images/tema06/Ejemplo1RedOpinion.png" alt="Red con 2 comunidades." /><p class="caption">Red con 2 comunidades.</p>
+</div>
+<p>Podemos repetir la actualización de opiniones muchas veces y entonces, algunas veces, aunque no siempre, diferentes partes de la red mantendrán una opinión diferente.</p>
+<p>Si tenemos dos comunidades separadas, una de las comunidades puede mantener su opinión aunque el resto de la red piense otra cosa.</p>
+<p>Esto es porque los individuos de la comunidad tienen más enlaces entre ellos que con el resto de individuos de fuera de la comunidad.</p>
+<p>Si cada nodo adopta la opinión de la mayoría de sus vecinos, es posible formar opiniones distintas en subgrupos cohesivos distintos. Hay más uniformidad dentro de un grupo cohesivo.</p>
+</div><div id="mapa-de-la-ciencia-de-citaciones-de-6000-revistas" class="slide section level3">
+<h1><span class="header-section-number">0.2.12</span> Mapa de la ciencia de citaciones de 6000 revistas</h1>
+<p>Fuente: Rosvall y Bergstrom. Maps of random walks on complex networks reveal community structure. Proc. Natl. Acad. Sci. USA 105: 1118-1123 (2008)</p>
+<p>En esta investigación se buscaban patrones de acceso a repositorios online de artículos científicos, por ejemplo, JSTOR.</p>
+<div class="figure">
+<img src="../images/tema06/MapaCiencia1.png" alt="Mapa de la ciencia de citaciones de 6000 revistas." /><p class="caption">Mapa de la ciencia de citaciones de 6000 revistas.</p>
+</div>
+<p>En este primer mapa se muestra los enlaces entre distintas áreas de investigación. De tal forma que si uno accede a un artículo en un área, los enlaces muestran qué otras áreas de investigación es probable que uno explore en la misma sesión.</p>
+<p>Posteriormente se han agrupado en comunidades.</p>
+<!-- Clustering para comprimir la información de random walks que siguen el flujo de las citas de un campo científico a otro, de modo que las áreas emergen de forma natural? traspas ugr? -->
+</div><div id="mapa-de-la-ciencia-de-citaciones-de-6000-revistas-1" class="slide section level3">
+<h1><span class="header-section-number">0.2.13</span> Mapa de la ciencia de citaciones de 6000 revistas</h1>
+<div class="figure">
+<img src="../images/tema06/MapaCiencia2.png" alt="Mapa de la ciencia de citaciones de 6000 revistas." /><p class="caption">Mapa de la ciencia de citaciones de 6000 revistas.</p>
+</div>
+<p>En el segundo mapa se puede ver con más detalle, por ejemplo, plant biology está relacionado con ecology, biodiversity y environmental science.</p>
+</div><div id="mapa-de-la-ciencia-de-citaciones-de-6000-revistas-2" class="slide section level3">
+<h1><span class="header-section-number">0.2.14</span> Mapa de la ciencia de citaciones de 6000 revistas</h1>
+<p>Además si se colapsan las diferentes comunidades en metanodos, se puede ver que metanodos están relacionados con otros.</p>
+<div class="figure">
+<img src="../images/tema06/MapaCiencia3UGR.jpg" alt="Mapa de la ciencia de citaciones de 6000 revistas." /><p class="caption">Mapa de la ciencia de citaciones de 6000 revistas.</p>
+</div>
+</div><div id="qué-es-una-comunidad-cuando-se-dice-que-un-conjunto-de-nodos-forma-una-comunidad" class="titleslide slide section level2"><h1><span class="header-section-number">0.3</span> ¿Qué es una comunidad? ¿Cuando se dice que un conjunto de nodos forma una comunidad?</h1></div><div id="criterios-estructurales-que-identifican-una-comunidad-en-una-red" class="slide section level3">
+<h1><span class="header-section-number">0.3.1</span> Criterios estructurales que identifican una comunidad en una red</h1>
+<p>En este apartado vamos a ver distintas formas de considerar un conjunto de nodos como una comunidad.</p>
+<p>Se pueden utilizar distintos criterios:</p>
+<ul>
+<li>Mutualidad completa (cliques): El grupo es un subgrafo completo (todo el mundo conoce a todo el mundo en el grupo).</li>
+<li>Frecuencia de enlaces entre los miembros (k-cores): Todos los miembros del grupo tiene enlaces al menos a otros k miembros. Cada miembro conoce al menos k miembros dentro de su comunidad.</li>
+<li>Alcanzabilidad/cercanía entre los miembros (n-cliques): Los individuos del grupo están separados por un máximo de n saltos. Se puede llegar de un miembro a otro del grupo en un número pequeño de saltos.</li>
+<li>Comparación de la cohesión interna y externa del grupo (p-cliques): frecuencia relativa de enlaces entre los miembros del grupo en comparación con la de los no miembros. Es suficiente con conocer una cierta proporción de individuos dentro de la comunidad.</li>
+</ul>
+<p>Fuente: Wasserman y Faust. Social Network Analysis. Cambridge University Press; 1994</p>
+<!-- Affiliation networks Lada: NO -->
+</div><div id="identificación-de-cliques" class="slide section level3">
+<h1><span class="header-section-number">0.3.2</span> Identificación de cliques</h1>
+<p>Todos los miembros del grupo tienen enlaces al resto dentro de la misma comunidad. Todo el mundo conoce a todo el mundo en la misma comunidad. Un clique es un subgrafo completo</p>
+<p>Los triángulos son los cliques más básicos, los de mayor dimensión son menos frecuentes.</p>
+<p>Los cliques pueden estar solapados.</p>
+</div><div id="identificación-de-cliques-1" class="slide section level3">
+<h1><span class="header-section-number">0.3.3</span> Identificación de cliques</h1>
+<p>En la Figura hay 2 cliques, cada uno con 3 miembros cada uno. Estos 2 cliques están solapados. Por otro lado, hay un clique con 4 miembros.</p>
+<div class="figure">
+<img src="../images/tema06/EjemploCliques.png" alt="Ejemplos de cliques." /><p class="caption">Ejemplos de cliques.</p>
+</div>
+</div><div id="identificación-de-cliques-2" class="slide section level3">
+<h1><span class="header-section-number">0.3.4</span> Identificación de cliques</h1>
+<p>En este ejemplo en netlogo se pueden observar los cliques obtenidos con distintos tipos de redes.</p>
+<p>Modelo Netlogo: <a href="http://www.ladamic.com/netlearn/nw/Cliques.html" class="uri">http://www.ladamic.com/netlearn/nw/Cliques.html</a>.</p>
+<ul>
+<li>setup con community on/off, layout para visualizar mejor la red.</li>
+<li>al pulsar en biggest maximal clique se obtiene el clique de mayor tamaño.</li>
+</ul>
+<p>Comparar la configuración de red aleatoria ER con la de estructura de comunidades (son las mismas que en el modelo de formación de opiniones).</p>
+</div><div id="identificación-de-cliques-3" class="slide section level3">
+<h1><span class="header-section-number">0.3.5</span> Identificación de cliques</h1>
+<p>PREGUNTA: ¿Cuál de los dos redes tiene un clique máximo de mayor tamaño?</p>
+<p>La red con 2 comunidades tiene un clique de tamaño 5. En la red aleatoria depende de la ejecución, el clique mayor suele tener tamaño 4, pero puede tener tamaño 3 o 5 en algunos casos.</p>
+<p>En general, las redes con estructura de comunidades tienden a tener cliques de mayor tamaño que las redes aleatorias equivalentes.</p>
+</div><div id="problemas-en-la-identificación-de-cliques" class="slide section level3">
+<h1><span class="header-section-number">0.3.6</span> Problemas en la identificación de cliques</h1>
+<p>Es un problema NP-completo.</p>
+<p>No son robustos.</p>
+<ul>
+<li>Un solo enlace faltante puede descalificar un clique, haciendo que el grupo no sea considerado una comunidad.</li>
+<li>Demasiado restrictivo.</li>
+</ul>
+<p>No son interesantes.</p>
+<ul>
+<li>Todo el mundo está conectado entre sí.</li>
+<li>No hay estructura central densamente conectada y un conjunto de individuos más periféricos. Sólo hay una estructura central totalmente conectada.</li>
+<li>Las medidas de centralidad no dan información. Todos los individuos tienen el mismo valor en dichas medidas.</li>
+</ul>
+<p>Por otro lado, el solapamiento de cliques puede ser más relevante que su propia existencia.</p>
+<p>Volveremos sobre esto al final del tema.</p>
+</div><div id="identificación-de-k-cores" class="slide section level3">
+<h1><span class="header-section-number">0.3.7</span> Identificación de k-cores</h1>
+<p>Cada nodo de un grupo está conectado con otros k nodos de dicho grupo. No hacen falta conexiones con todos.</p>
+<div class="figure">
+<img src="../images/tema06/EjemploKCores.png" alt="Ejemplos de k-cores." /><p class="caption">Ejemplos de k-cores.</p>
+</div>
+<p>Pregunta:</p>
+<ul>
+<li>¿Cuál es el valor de k para el k-core marcado en rojo?</li>
+<li>¿y para el azul?</li>
+</ul>
+</div><div id="identificación-de-k-cores-1" class="slide section level3">
+<h1><span class="header-section-number">0.3.8</span> Identificación de k-cores</h1>
+<div class="figure">
+<img src="../images/tema06/EjemploKCores2.png" alt="Ejemplos de k-cores." /><p class="caption">Ejemplos de k-cores.</p>
+</div>
+<p>Cada nodo de un grupo está conectado con otros k nodos de dicho grupo:</p>
+<ul>
+<li>rojo: 3-core. Cada nodo está conectado con al menos otros 3 nodos distintos dentro del mismo grupo.</li>
+<li>azul: 4-core. Cada nodo conectado con al menos otros 4 nodos del mismo grupo.</li>
+</ul>
+</div><div id="problemas" class="slide section level3">
+<h1><span class="header-section-number">0.3.9</span> Problemas</h1>
+<p>Aun así, es una estructura demasiado restrictiva como requisito para identificar comunidades naturales.</p>
+<p>En la siguiente Figura se observa un una red con un nodo que debería pertenecer al grupo del 4 core, pero como sólo tiene 2 aristas no puede pertenecer al grupo, necesitaría tener al menos 4 aristas.</p>
+<p>En realidad habría un 2-core que englobaría a todos los nodos y por tanto no detectaría 2 comunidades.</p>
+<div class="figure">
+<img src="../images/tema06/EjemploKCores3.png" alt="Ejemplos de k-cores." /><p class="caption">Ejemplos de k-cores.</p>
+</div>
+</div><div id="identificación-de-n-cliques-basada-en-alcanzabilidad-y-diámetro" class="slide section level3">
+<h1><span class="header-section-number">0.3.10</span> Identificación de n-cliques basada en alcanzabilidad y diámetro</h1>
+<p>En este caso lo que se tiene en cuenta es el flujo de información en la red, es decir, lo importante es que se puede llegar de un nodo a otro con un número pequeño de saltos.</p>
+<p>Por ejemplo, si se puede llegar con 2 saltos de un miembro a todos los demás miembros de un grupo entonces ese grupo es un 2-clique.</p>
+<p>Dicho de otra forma, la máxima distancia entre cualesquiera dos nodos del grupo es n.</p>
+<p>En la Figura aparecen dos 2-cliques. En cada 2-clique la máxima distancia entre cualesquiera dos nodos del grupo es 2.</p>
+<div class="figure">
+<img src="../images/tema06/EjemploCliques2.png" alt="Dos 2-cliques." /><p class="caption">Dos 2-cliques.</p>
+</div>
+</div><div id="problemas-1" class="slide section level3">
+<h1><span class="header-section-number">0.3.11</span> Problemas</h1>
+<p>El n-clique puede estar desconectado (los caminos pueden pasar por nodos que no estén en el grupo).</p>
+<p>En la Figura se puede observar que el nodo rojo estaría fuera del 2-clique, pero sin embargo el camino rojo uniría 2 nodos del 2-clique.</p>
+<p>Esto está asociado a que el diámetro (camino más largo entre cualesquiera 2 nodos) es igual a 3, que es mayor que n, igual a 2.</p>
+<div class="figure">
+<img src="../images/tema06/EjemploCliques3.png" alt="Ejemplo." /><p class="caption">Ejemplo.</p>
+</div>
+</div><div id="identificación-de-p-cliques" class="slide section level3">
+<h1><span class="header-section-number">0.3.12</span> Identificación de p-cliques</h1>
+<p>Particionamiento de la red en clusters en los que los nodos tienen como mínimo una proporción pÎ[0,1] de vecinos dentro del grupo.</p>
+<p>Tiene en cuenta la cohesión de enlaces en el grupo.</p>
+<div class="figure">
+<img src="../images/tema06/EjemploPCliques.png" alt="Ejemplo." /><p class="caption">Ejemplo.</p>
+</div>
+</div><div id="cohesión-en-redes-dirigidas-y-ponderadas" class="slide section level3">
+<h1><span class="header-section-number">0.3.13</span> Cohesión en redes dirigidas y ponderadas</h1>
+<p>Se aplica obteniendo componentes fuertemente conexas.</p>
+<p>Es un proceso costoso.</p>
+<p>Es conveniente podar enlaces antes de aplicarlo.</p>
+<p>Se podrían podar enlaces de 2 formas:</p>
+<ul>
+<li>Teniendo en cuenta reprocidades.</li>
+<li>Podar enlaces basándose en un umbral sobre los pesos asignados a las aristas.</li>
+</ul>
+</div><div id="cohesión-en-redes-dirigidas-y-ponderadas-1" class="slide section level3">
+<h1><span class="header-section-number">0.3.14</span> Cohesión en redes dirigidas y ponderadas</h1>
+<p>Teniendo en cuenta reciprocidades.</p>
+<p>En el ejemplo de la cena de las 26 chicas se podrían eliminar los enlaces que no correspondieran a elecciones recíprocas.</p>
+<p>Esto reduciría la red y permitiría ver comunidades más coherentes.</p>
+</div><div id="cohesión-en-redes-dirigidas-y-ponderadas-2" class="slide section level3">
+<h1><span class="header-section-number">0.3.15</span> Cohesión en redes dirigidas y ponderadas</h1>
+<p>Podar enlaces basándose en un umbral sobre los pesos asignados a las aristas.</p>
+<p>Si la red representara frecuencia de cuanto habla una persona con otra, podría ser más significativo eliminar enlaces a partir de un cierto umbral de tiempo a la hora de detectar comunidades.</p>
+</div><div id="ejemplo-blogs-políticos" class="slide section level3">
+<h1><span class="header-section-number">0.3.16</span> Ejemplo blogs políticos</h1>
+<p>Ejemplo: Blogs políticos (29 Ago-15 Nov 2004)</p>
+<div class="figure">
+<img src="../images/tema06/EjemploCohesionRedes.png" alt="Ejemplo." /><p class="caption">Ejemplo.</p>
+</div>
+<p>A. Todas las citas entre blogs en los dos meses anteriores a la elección de 2004 B. Citas entre blogs con al menos 5 citas en ambas direcciones C. Poda más restrictiva incluyendo enlaces con al menos 25 citas combinadas</p>
+<p>Sólo un 15% de las citas construyen comunidades.</p>
+<p>Fuente: Adamic y Glance. The Political Blogosphere and the 2004 U.S. Election: Divided They Blog. Proc. LinkKDD2005</p>
+</div><div id="cómo-detectar-comunidades" class="titleslide slide section level2"><h1><span class="header-section-number">0.4</span> ¿Cómo detectar comunidades?</h1></div><div id="enfoques-para-detección-de-comunidades" class="slide section level3">
+<h1><span class="header-section-number">0.4.1</span> Enfoques para detección de comunidades</h1>
+<p>Según Newman y Girvan (2004), existen dos líneas de investigación principales para el descubrimiento de comunidades en redes complejas:</p>
+<ol style="list-style-type: decimal">
+<li><p>Particionamiento de grafos: tiene su origen en Informática, en el campo de la computación distribuida. Busca la mejor forma de asignar tareas a procesadores para minimizar las comunicaciones entre ellos.</p></li>
+<li><p>Modelado de bloques (también llamado clustering jerárquico o detección de la estructura de comunidades): se origina en Sociología. Está motivado por el descubrimiento de grupos en una sociedad para facilitar el análisis de fenómenos sociales.</p></li>
+</ol>
+<p>En cualquier caso, el procedimiento implica dividir el grafo original en un conjunto de subgrafos disjuntos mediante la optimización de una función objetivo (p.ej. la modularidad)</p>
+<p>Newman y Girvan. Finding and evaluating community structure in networks. Phys Rev E 69:026113 (2004)</p>
+</div><div id="enfoques-para-detección-de-comunidades-1" class="slide section level3">
+<h1><span class="header-section-number">0.4.2</span> Enfoques para detección de comunidades</h1>
+<p>El propósito de los dos enfoques es descubrir grupos de nodos relacionados en la red y, si es posible, la estructura jerárquica correspondiente, a partir de la información proporcionada por la topología de la red</p>
+<ul>
+<li>Una de las heurísticas más extendidas es eliminar iterativamente los puentes entre grupos de nodos (Girvan y Newman, 2002)</li>
+<li>Estos métodos devuelven particiones disjuntas del conjunto de nodos, cada nodo pertenece a una única comunidad (no permiten el solapamiento de comunidades).</li>
+<li>Existen algunos que consideran dicho solapamiento, como el clique percolation method de Palla y otros (2005). Son especialmente útiles en Ciencias Sociales</li>
+</ul>
+<p>Fuentes: Girvan y Newman. Community structure in social and biological networks.Proc Natl Acad Sci USA 99:7821–7826 (2002).</p>
+<p>Palla y otros. Uncovering the overlapping community structure of complex networks in nature and society. Nature 435:814–818 (2005)</p>
+</div><div id="clustering-jerárquico" class="slide section level3">
+<h1><span class="header-section-number">0.4.3</span> Clustering jerárquico</h1>
+<p>Este algoritmo empieza con todos los nodos en comunidades diferentes, todos los nodos desconectados.</p>
+<p>Se van agrupando los nodos por pares eligiendo en cada paso aquel par que tenga mayor similitud o menor distancia, dependiendo del criterio que se utilice. Este par forma un cluster y será considerardo como un individuo en la siguiente iteración del algoritmo.</p>
+<p>El proceso de agrupamiento se va realizando hasta que todos los nodos de la red están en la misma componente o comunidad.</p>
+<p>Finalmente lo que se obtiene es un conjunto de componentes anidados formando un dendograma.</p>
+<div class="figure">
+<img src="../images/tema06/Dendograma.png" alt="Ejemplo." /><p class="caption">Ejemplo.</p>
+</div>
+<p>Posteriormente se puede decidir a que nivel de detalle se realizan las particiones en comunidades. Se pueden obtener comunidades muy refinidas o se puede obtener una estructura de comunidades de muy alto nivel.</p>
+<p>Este tipo de algoritmos maximiza la similitud “intra-cluster” y minimiza la similitud entre los clusters. Si usamos la distancia, se minimizaría la distancia “intra-cluster” y se maximizaría la distancia entre clusters.</p>
+</div><div id="clustering-jerárquico-1" class="slide section level3">
+<h1><span class="header-section-number">0.4.4</span> Clustering jerárquico</h1>
+<p>La similitud o distancia puede considerar distintos aspectos: número de vecinos comunes o frecuencia de comunicación entre los individuos asociados a los nodos, si tenemos una red con pesos.</p>
+<p>Hay distintas opciones en el algoritmo de clustering que hay que considerar, por ejemplo, cuando considero distancias de un nodo con respecto a un cluster existente, tengo en cuenta como criterio la mínima distancia con respecto a todos los individuos del cluster o considero la media.</p>
+<p>Por otro lado, no existe un criterio que nos diga cual es el nivel de detalle óptimo. No existe un criterio de parada del algoritmo, se van agrupando los clusters hasta tener sólo 1.</p>
+</div><div id="clustering-jerárquico-2" class="slide section level3">
+<h1><span class="header-section-number">0.4.5</span> Clustering jerárquico</h1>
+<p>Ejemplo algoritmo. Vecino más próximo.</p>
+<p>El punto de partida del algoritmo es una matriz de similitudes o distancias donde se almacenan las distancias entre todos los pares de nodos.</p>
+<p>FASE 1: Crear Matriz de Distancias</p>
+<p>FASE 2: Agrupación de Individuos (técnica jerárquica aglomerativa)</p>
+<ol style="list-style-type: decimal">
+<li><p>Partición inicial <span class="math">\({P_0}\)</span>: Cada objeto es un cluster.</p></li>
+<li><p>Partición siguiente, usando Matriz de Distancias:</p>
+<p>Elegir los dos objetos más cercanos (parecidos) {{i},{j}} =&gt; {{i,j}}: Mínimo en la matriz D</p>
+<p>Agrupar los dos en un cluster (objeto nuevo). Definir la distancia de cualquier objeto {l} al nuevo como la mínima distancia a los elementos del cluster.</p>
+<p>Eliminar los dos originales.</p>
+<p>Recalcular la Matriz de Distancias con los objetos actuales.</p></li>
+<li><p>Repetir paso 2 hasta tener solo un cluster con todos los individuos Formar clases a diferentes niveles: Dendograma o Árbol de Clasificiación</p></li>
+</ol>
+<p>El índice de hetereogeneidad se puede calcular en cada iteración y nos da la distancia a la que se unen los dos clusters de la iteración.</p>
+</div><div id="clustering-jerárquico-3" class="slide section level3">
+<h1><span class="header-section-number">0.4.6</span> Clustering jerárquico</h1>
+<p>La similitud o distancia puede considerar distintos aspectos: número de vecinos comunes o frecuencia de comunicación entre los individuos asociados a los nodos, si tenemos una red con pesos.</p>
+<p>Hay distintas opciones en el algoritmo de clustering que hay que considerar, por ejemplo, cuando considero distancias de un nodo con respecto a un cluster existente, tengo en cuenta como criterio la mínima distancia con respecto a todos los individuos del cluster o considero la media.</p>
+</div><div id="ejemplo-clustering-jerárquico" class="slide section level3">
+<h1><span class="header-section-number">0.4.7</span> Ejemplo clustering jerárquico</h1>
+<p>Supongamos que tenemos una matriz con 5 nodos y que su matriz de distancias es la siguiente:</p>
+<div class="figure">
+<img src="../images/tema06/MatrizDistancias.png" alt="Ejemplo." /><p class="caption">Ejemplo.</p>
+</div>
+<p>El algoritmo crearía la siguiente jerarquía aglomerativa:</p>
+<div class="figure">
+<img src="../images/tema06/JerarquiaAglomerativa.png" alt="Ejemplo." /><p class="caption">Ejemplo.</p>
+</div>
+</div><div id="ejemplo-clustering-jerárquico-1" class="slide section level3">
+<h1><span class="header-section-number">0.4.8</span> Ejemplo clustering jerárquico</h1>
+<p>y el dendograma asociado sería:</p>
+<div class="figure">
+<img src="../images/tema06/DendogramaEjemplo.png" alt="Ejemplo." /><p class="caption">Ejemplo.</p>
+</div>
+<p>según a qué altura se corte en horizontal se producen grupos diferentes.</p>
+</div><div id="ejemplo-club-de-karate-de-zachary" class="slide section level3">
+<h1><span class="header-section-number">0.4.9</span> Ejemplo club de karate de Zachary</h1>
+<div class="figure">
+<img src="../images/tema06/KarateClubNetwork.jpg" alt="Ejemplo club de karate de Zachary." /><p class="caption">Ejemplo club de karate de Zachary.</p>
+</div>
+<p>Podemos aplicar el algoritmo de clustering jerárquico de detección de comunidades y comparar el resultado obtenido con la partición real en 2 clubes que se produjo.</p>
+</div><div id="ejemplo-club-de-karate-de-zachary-1" class="slide section level3">
+<h1><span class="header-section-number">0.4.10</span> Ejemplo club de karate de Zachary</h1>
+<p>Antes de ver el resultado del algoritmo vamos a examinar una visualización de la matriz de adayacencia generada por Pajek. En esta visualización aparecen en negro las casillas de la matriz de adyacencia que corresponden a aristas existentes en la red.</p>
+<div class="figure">
+<img src="../images/tema06/MatrizAdyacenciaOriginal.jpg" alt="Matriz de adyacencia original." /><p class="caption">Matriz de adyacencia original.</p>
+</div>
+<p>Por ejemplo, el 20 está unido con el 1, el 2 y el 34.</p>
+<p>Esta visualización revela una cierta estructura en la red por como están agrupadas las aristas. Pero no se va claramente cuantas comunidades hay.</p>
+</div><div id="ejemplo-club-de-karate-de-zachary-2" class="slide section level3">
+<h1><span class="header-section-number">0.4.11</span> Ejemplo club de karate de Zachary</h1>
+<p>Si realizamos una permutación aleatoria de la matriz se obtiene la figura siguiente:</p>
+<div class="figure">
+<img src="../images/tema06/MatrizPermutaciónAleatoria.jpg" alt="Matriz con permutación aleatoria." /><p class="caption">Matriz con permutación aleatoria.</p>
+</div>
+<p>En ella no se puede observar ningún tipo de estructura de comunidades.</p>
+</div><div id="ejemplo-club-de-karate-de-zachary-3" class="slide section level3">
+<h1><span class="header-section-number">0.4.12</span> Ejemplo club de karate de Zachary</h1>
+<p>Por otro lado, podemos generar otra visualización si permutamos la matriz de tal forma que ponemos contiguos los nodos que pertenezcan al mismo cluster.</p>
+<div class="figure">
+<img src="../images/tema06/MatrizPermutaciónClusteringObtenido.jpg" alt="Matriz con permutación asociada al clustering obtenido." /><p class="caption">Matriz con permutación asociada al clustering obtenido.</p>
+</div>
+<p>En este caso, se puede observar claramente que hay 2 comunidades, cada una de ellas con un individuo muy central.</p>
+</div><div id="ejemplo-club-de-karate-de-zachary-4" class="slide section level3">
+<h1><span class="header-section-number">0.4.13</span> Ejemplo club de karate de Zachary</h1>
+<p>ALBERTO: HACER ALGORTIMO EN CLASE</p>
+<p>Otra forma de visualización es el dendograma, que nos detalla como se han ido agrupando los grupos de nodos.</p>
+<div class="figure">
+<img src="../images/tema06/DendogramaZachary.png" alt="Dendograma para el problema del club de karate de Zachary." /><p class="caption">Dendograma para el problema del club de karate de Zachary.</p>
+</div>
+</div><div id="ejemplo-club-de-karate-de-zachary-5" class="slide section level3">
+<h1><span class="header-section-number">0.4.14</span> Ejemplo club de karate de Zachary</h1>
+<p>Podemos parar el proceso cuando tenemos 2 clusters y comparar con el resultado real obtenido.</p>
+<p>Resultado clustering:</p>
+<p>Cluster 1: 10,15,16,19,21,23,24,25,26,27,28,29,30,31,32,33,34</p>
+<p>Cluster 2: 1,2,3,4,5,6,7,8,9,11,12,13,14,17,18,20,22</p>
+<div class="figure">
+<img src="../images/tema06/KarateClubNetwork.jpg" alt="Ejemplo club de karate de Zachary." /><p class="caption">Ejemplo club de karate de Zachary.</p>
+</div>
+</div><div id="método-de-girvan-newman" class="slide section level3">
+<h1><span class="header-section-number">0.4.15</span> Método de Girvan-Newman</h1>
+<p>Este método comienza con la red completa y va eliminando aristas en cada iteración de tal forma que cada vez van quedando grupos de nodos más desconectados de tal forma que se van generando comunidades cada vez más pequeñas.</p>
+<p>La medida de similitud que se utiliza para decidir que arsita se elimina en cada paso se basa en la topología de la red, es la intermediación de los enlaces o aristas.</p>
+<p>La intermediación de un enlace o arista es similar a la intermediación de un nodo, esto es, cuenta el número de caminos mínimos que pasan a través de la arista. Si una a arista tiene intermediación alta significa que está entre conjuntos de nodos diferentes. Por tanto, eliminando una arista de intermediación alta puede grupos de nodos que constituyen comunidades por sí mismas.</p>
+</div><div id="método-de-girvan-newman-1" class="slide section level3">
+<h1><span class="header-section-number">0.4.16</span> Método de Girvan-Newman</h1>
+<p>Algoritmo (técnica de clustering jerárquico divisiva)</p>
+<p>Divide la red original en partes conectadas más pequeñas de forma progresiva. El algoritmo puede seguir hasta que no haya más enlaces que eliminar y entonces cada nodo representa una comunidad por sí sólo o se puede decidir un umbral a partir del cual se deja de dividir y los grupos de nodos obtenidos son las comunidades detectadas.</p>
+<ol style="list-style-type: decimal">
+<li><p>Calcular el valor de intermediación de todas las aristas de la red.</p></li>
+<li><p>Eliminar el enlace de mayor intermediación. Este paso puede provocar que la red se divida en partes desconectadas, formando el primer nivel de regiones en la división de la red.</p></li>
+<li><p>Repertir los pasos anteriores hasta que no haya enlaces que eliminar en la red o hasta que el valor máximo de intermediación sea menor que un umbral.</p></li>
+</ol>
+</div><div id="método-de-girvan-newman.-ejemplo" class="slide section level3">
+<h1><span class="header-section-number">0.4.17</span> Método de Girvan-Newman. Ejemplo</h1>
+<div class="figure">
+<img src="../images/tema06/Ejemplo1GirvanNewman.png" alt="Ejemplo 1." /><p class="caption">Ejemplo 1.</p>
+</div>
+<p>En este ejemplo las aristas situadas en medio son las que tienen mayor intermediación y son eliminadas iterativamente.</p>
+<p>Aunque en cada paso hay que recalcular la intermediación de todas las aristas, lo cual es muy costoso.</p>
+</div><div id="método-de-girvan-newman.-otro-ejemplo" class="slide section level3">
+<h1><span class="header-section-number">0.4.18</span> Método de Girvan-Newman. Otro Ejemplo</h1>
+<div class="figure">
+<img src="../images/tema06/Ejemplo2GirvanNewman.png" alt="Ejemplo 2." /><p class="caption">Ejemplo 2.</p>
+</div>
+<p>En la figura se puede observar como se va dividiendo la red en componentes separados después de eliminar en cada paso las aristas con mayor intermediación (los puentes o puentes locales).</p>
+<p>En un primer paso se obtienen 2 componetes y en sucesivos pasos se obtendrían 4 componentes de 3 nodos más 2 nodos aislados.</p>
+</div><div id="método-de-girvan-newman.-ejemplo-zachary-club." class="slide section level3">
+<h1><span class="header-section-number">0.4.19</span> Método de Girvan-Newman. Ejemplo Zachary club.</h1>
+<div class="figure">
+<img src="../images/tema06/EjemploZacharyGirvanNewman.png" alt="Ejemplo Zachary club." /><p class="caption">Ejemplo Zachary club.</p>
+</div>
+<p>Este es el resultado que se obtendría para el club de karate de Zachary.</p>
+<p>Si comparamos con la división real, sólo hay un nodo mal categorizado, el 3.</p>
+</div><div id="método-de-girvan-newman-2" class="slide section level3">
+<h1><span class="header-section-number">0.4.20</span> Método de Girvan-Newman</h1>
+<p>Este método de descubrimiento de comunidades es muy popular y existen un gran número de implementaciones. P.ej. la biblioteca igraph de R incorpora la función edge.betwenness.community</p>
+<p>Su problema es que es necesario recalcular la intermediación en cada paso:</p>
+<ul>
+<li><p>La eliminación de un enlace puede impactar en la intermediación del resto</p></li>
+<li><p>Calcular los caminos geodésicos para todos los nodos es muy costoso, O(N3)</p></li>
+<li><p>Puede ser necesario recalcularlos muchas veces</p></li>
+<li><p>El método no escala bien para redes con más de unos cientos de nodos, incluso en las implementaciones más rápidas</p></li>
+</ul>
+</div><div id="medida-de-modularidad" class="slide section level3">
+<h1><span class="header-section-number">0.4.21</span> Medida de modularidad</h1>
+<p>El problema con los algoritmos de clustering jerárquico y de divisón basada en intermediación es que no tienen un criterio claro de parada.</p>
+<p>Se puede elegir diferentes resoluciones como resultado final, pero no sabemos cual es la óptima, cual es la que refleja la verdadera estructura en forma de comunidades en la red.</p>
+<p>Para solucionar este problema Germin y Newman introdujeron una medida de modularidad que medía, para una partición concreta en comunidades, cual era la diferencia en la distribución de aristas de la partición real con respecto a una red aleatoria.</p>
+</div><div id="medida-de-modularidad-1" class="slide section level3">
+<h1><span class="header-section-number">0.4.22</span> Medida de modularidad</h1>
+<p>La modularidad Q es una función que mide la calidad de una partición concreta de una red de comunidades.</p>
+<p>Se define como la diferencia entre el número de enlaces existentes entre los grupos de nodos que forman una comunidad y el número de enlaces esperado en una red aleatoria equivalente.</p>
+<p><span class="math">\[Q=\frac{1}{2L}\sum_{ij}[A_{ij}-\frac{k_ik_j}{2L}]\delta(c_i,c_j)\]</span></p>
+<p>donde</p>
+<ul>
+<li>El vértice <span class="math">\(i\)</span> pertenece a la comunidad <span class="math">\(c_i\)</span> y el vértice <span class="math">\(j\)</span> pertenece a la comunidad <span class="math">\(c_j\)</span>.</li>
+<li>L es el número de enlaces de la red.</li>
+<li><span class="math">\(A_{ij}\)</span> es la matriz de adyacencia.</li>
+<li>La probabilidad de un enlace entre 2 nodos es proporcional a sus grados. <span class="math">\(\frac{k_{i}k_{j}}{2L}\)</span></li>
+<li><span class="math">\(\delta(c_i,c_j)\)</span> vale 1 si los nodos son de la misma comunidad y 0 en caso contrario.</li>
+<li><span class="math">\(Q\epsilon[-1,1]\)</span></li>
+</ul>
+<p>Fuente: Clauset, Newman, Moore. Finding community structure in very large networks. Phys Rev E 70: 066111 (2004)</p>
+</div><div id="medida-de-modularidad-2" class="slide section level3">
+<h1><span class="header-section-number">0.4.23</span> Medida de modularidad</h1>
+<p><span class="math">\[Q=\frac{1}{2L}\sum_{ij}[A_{ij}-\frac{k_ik_j}{2L}]\delta(c_i,c_j)\]</span></p>
+<p>La idea básica es que una red muestra una estructura modular coherente si el número de enlaces entre comunidades es menor que el esperado en una red aleatoria.</p>
+<p>Cuanto mayor es el valor de Q, mejor es la partición, es decir, las comunidades encontradas están densamente conectadas internamente (hay más enlaces de los que cabría esperar aleatoriamente) y dispersamente conectadas entre sí.</p>
+<p>En una red aleatoria, Q=0. En la práctica, una modularidad de 0.3 es un buen valor.</p>
+<p>Esta medida se usa tanto para comparar la calidad de distintas particiones como para diseñar métodos de descubrimiento de comunidades que traten de maximizar su valor.</p>
+<p>La medida es independiente del algoritmo empleado, se puede usar con clustering jerárquico o con el clustering divisivo de Girvan-Newman.</p>
+</div><div id="clustering-jerárquico-basado-en-la-optimización-de-la-modularidad" class="slide section level3">
+<h1><span class="header-section-number">0.4.24</span> Clustering jerárquico basado en la optimización de la modularidad</h1>
+<p>Algoritmo</p>
+<p>En vez de tener en cuenta ninguna medida de similitud o cercanía lo que hace el algoritmo es tener en cuenta que agrupamiento produce un mayor aumento de la modularidad.</p>
+<ol style="list-style-type: decimal">
+<li>Empezar con todos los vértices sin conexiones.</li>
+<li>Seguir la siguiente estrategia voraz.
+<ul>
+<li>unir clusters que impliquen un mayor incremento en modularidad</li>
+<li>parar cuando no se produzca un aumento de modularidad, es decir, cuando dicho incremento sea menor que 0.</li>
+</ul></li>
+</ol>
+<p>Este algoritmo es escalable y se puede utilizar para grafos muy grandes. Se ha utilizado para encontrar comunidades en grafos con más de 400000 nodos y más de 2 millones de aristas.</p>
+<p>Este el algoritmo que usa Gephi para detectar comunidades.</p>
+<p>Fuente: Blondel y otros. Fast unfolding of communities in large networks. J Stat Mech: Theory Exp: P10008 (2008)</p>
+<p>Existen mejoras de este algoritmo basadas en técnicas de enfriamento simulado.</p>
+<p>Fuente: Guimera y Amaral. Functional cartography of complex metabolic networks. Nature 433:895–900 (2005)</p>
+<p>Ambos algoritmos se utilizan en Amazon.</p>
+</div><div id="ejemplo-de-detección-de-comunidades" class="slide section level3">
+<h1><span class="header-section-number">0.4.25</span> Ejemplo de detección de comunidades</h1>
+<div class="figure">
+<img src="../images/tema06/SantaFeExample.png" alt="Ejemplo redes de colaboración entre investigadores." /><p class="caption">Ejemplo redes de colaboración entre investigadores.</p>
+</div>
+<p>En esta figura se muestran distintas visualizaciones de las colaboraciones científicas en el instituto de Santa Fe.</p>
+<p>La red a) muestra colaboraciones entre investigadores, una gran red con gente trabajando y colaborando. La red b) muestra los grupos de investigadores que trabajan en el mismo tema. La red c) muestra metanodos que agrupan a toda la gente de la misma comunidad y se puede observar cuando colaboran investigadores de distintas comunidades.</p>
+</div><div id="métodos-que-consideran-solapamiento-de-comunidades" class="slide section level3">
+<h1><span class="header-section-number">0.4.26</span> Métodos que consideran solapamiento de comunidades</h1>
+<p>Los algoritmos que hemos visto hasta ahora sólo permiten que un nodo pertenezca a una única comunidad. Esta limitación en demasiado restrictiva en muchos casos.</p>
+<p>Investigaciones recientes han mostrado que en redes muy grandes es prácticamente imposible encontrar comunidades con esta restricción. Por ejemplo, en comunidades virtuales como Orkut y FlickR los métodos de descubrimiento de comunidades no son capaces de determinar grupos de más de 100 nodos.</p>
+<p>Fuente: Leskovec, Lang, Dasgupta, Mahoney. Statistical Properties of Community Structure in Large Social and Information Networks. Intl World Wide Web Conference, 2008.</p>
+</div><div id="métodos-que-consideran-solapamiento-de-comunidades-1" class="slide section level3">
+<h1><span class="header-section-number">0.4.27</span> Métodos que consideran solapamiento de comunidades</h1>
+<p>Para evitar esta limitación se han desarrollado algoritmos de detección de comunidades que permiten solapamiento.</p>
+<p>Un software que implementa este algoritmo es <a href="http://www.cfinder.org">Clique Finder: http://www.cfinder.org</a></p>
+<p>Fuente: Palla y otros. Uncovering the overlapping community structure of complex networks in nature and society. Nature 435:814–818 (2005)</p>
+<div class="figure">
+<img src="../images/tema06/CliquePercolationExample.png" alt="Ejemplo de filtrado de cliques (clique percolation)." /><p class="caption">Ejemplo de filtrado de cliques (clique percolation).</p>
+</div>
+<p>La imagen muestra comunidades identificadas por 4-cliques adyacentes. Los nodos solapados están marcados en rojo.</p>
+</div><div id="métodos-que-consideran-solapamiento-de-comunidades.-ejemplo" class="slide section level3">
+<h1><span class="header-section-number">0.4.28</span> Métodos que consideran solapamiento de comunidades. Ejemplo</h1>
+<p>Estructura de comunidades en una red de interacción entre proteínas.</p>
+<p>Interacciones entre las proteínas de las células cancerosas de una rata Detectadas con el método Clique Percolation.</p>
+<div class="figure">
+<img src="../images/tema06/CliquePercolationRatas.jpg" alt="Ejemplo de filtrado de cliques (clique percolation)." /><p class="caption">Ejemplo de filtrado de cliques (clique percolation).</p>
+</div>
+<p>Cada comunidad se representa de un color diferente. Los nodos y aristas que pertenecen a varias comunidades aparecen en rojo. El tamaño de cada nodo (y arista) es proporcional al número de comunidades al que pertenece.</p>
+<p>Fuente: Jonsson y otros. Cluster analysis of networks generated through homology: automatic identification of important protein communities involved in cancer metastasis. BMC Bioinf. 7: 2 (2006)</p>
+</div><div id="referencias" class="slide section level3">
+<h1><span class="header-section-number">0.4.29</span> Referencias</h1>
+<p>Clauset, Newman, Moore. Finding community structure in very large networks. Phys Rev E 70: 066111 (2004)</p>
+<p>Zachary. An information flow model for conflict and fission in small groups. J. Anthropol. Res. 33: 452-473 (1977)</p>
+<p>Exploratory Social Network Analysis with Pajek</p>
+<p>Rosvall y Bergstrom. Maps of random walks on complex networks reveal community structure. Proc. Natl. Acad. Sci. USA 105: 1118-1123 (2008)</p>
+<p>Girvan y Newman. Community structure in social and biological networks.Proc Natl Acad Sci USA 99:7821–7826 (2002).</p>
+<p>Palla y otros. Uncovering the overlapping community structure of complex networks in nature and society. Nature 435:814–818 (2005)</p>
+<p>Wasserman y Faust. Social Network Analysis. Cambridge University Press; 1994</p>
+<p>Blondel y otros. Fast unfolding of communities in large networks. J Stat Mech: Theory Exp: P10008 (2008)</p>
+<p>Guimera y Amaral. Functional cartography of complex metabolic networks. Nature 433:895–900 (2005)</p>
+<p>Jonsson y otros. Cluster analysis of networks generated through homology: automatic identification of important protein communities involved in cancer metastasis. BMC Bioinf. 7: 2 (2006)</p>
+<p>Leskovec, Lang, Dasgupta, Mahoney. Statistical Properties of Community Structure in Large Social and Information Networks. Intl World Wide Web Conference, 2008. <a href="http://videolectures.net/ilpmlgsrl09_leskovec_lnckp/">Video</a></p>
+</div>
+</body>
+</html>
