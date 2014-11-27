@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Guillermo Jiménez Díaz (gjimenez@ucm.es)" />
+  <meta name="author" content="Alberto Díaz (albertodiaz@fdi.ucm.es)" />
+  <title>Análisis de Redes Sociales</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+   href="../pandownTemplates/slidy/styles/slidy.css" />
+   
+
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+   href="../pandownTemplates/soc.css" />
+
+  <script src="../pandownTemplates/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+  <script src="../pandownTemplates/slidy/scripts/slidy.js"
+    charset="utf-8" type="text/javascript"></script>
+</head>
+<body>
+<div class="slide titlepage">
+  <h1 class="title">Análisis de Redes Sociales</h1>
+  <p class="author">
+Guillermo Jiménez Díaz (gjimenez@ucm.es)<br/>Alberto Díaz (albertodiaz@fdi.ucm.es)
+  </p>
+  <p class="date">28 de noviembre de 2014</p>
+</div>
+<div id="tema-7-mundos-pequeños" class="titleslide slide section level1 unnumbered"><h1>Tema 7: Mundos Pequeños</h1></div><div id="mundos-pequeños" class="titleslide slide section level2"><h1><span class="header-section-number">0.1</span> Mundos pequeños</h1></div><div id="mundos-pequeños-1" class="slide section level3">
+<h1><span class="header-section-number">0.1.1</span> Mundos pequeños</h1>
+<blockquote>
+<p>La propiedad de <strong>los pequeños mundos</strong> o <em>small worlds</em>: la distancia entre dos nodos cualquiera de la red es sorprendentemente corta.</p>
+</blockquote>
+</div><div id="mundos-pequeños-2" class="slide section level3">
+<h1><span class="header-section-number">0.1.2</span> Mundos pequeños</h1>
+<blockquote>
+<p><strong>Observado en las prácticas con vuestras propias redes sociales</strong>: en general, las redes sociales reales tienen un coeficiente de agrupamiento mucho mayor que las redes aleatorias (y que las libres de escala) a pesar de que la distancia media sigue siendo especialmente corta.</p>
+</blockquote>
+<blockquote>
+<p>Tendemos a agruparnos (los amigos de mis amigos son también mis amigos).</p>
+</blockquote>
+</div><div id="mundos-pequeños-3" class="slide section level3">
+<h1><span class="header-section-number">0.1.3</span> Mundos pequeños</h1>
+<div class="figure">
+<img src="../images/tema07/redesReales.png" alt="Coeficiente de agrupamiento y distancia media en redes reales frente a las redes aleatorias equivalente" /><p class="caption">Coeficiente de agrupamiento y distancia media en redes reales frente a las redes aleatorias equivalente</p>
+</div>
+</div><div id="estructura-y-aleatoriedad" class="titleslide slide section level2"><h1><span class="header-section-number">0.2</span> Estructura y aleatoriedad</h1></div><div id="experimento-de-milgram" class="slide section level3">
+<h1><span class="header-section-number">0.2.1</span> Experimento de Milgram</h1>
+<p>Recordemos</p>
+<ul>
+<li>Stanley Milgram (1967) propuso un experimento para demostrarlo</li>
+<li>Experimento: hacer llegar una carta a un par de personas de Boston y Sharon, a base de que una persona cualquiera (desde cualquier punto de Estado Unidos) fuese enviando la carta a aquellos familiares, amigos o conocidos que más se “acercaran” a la persona objetivo.</li>
+</ul>
+</div><div id="experimento-de-milgram-1" class="slide section level3">
+<h1><span class="header-section-number">0.2.2</span> Experimento de Milgram</h1>
+<ul>
+<li>Resultado final: 64 cartas con un máximo de 12 intermediarios.</li>
+<li>La mediana de intermediarios fueron entre 5,5 y 6</li>
+</ul>
+<blockquote>
+<p>¿Es 6 un resultado sorprendente?<br/> ¿En los 60? ¿Hoy en día? ¿Por qué?</p>
+</blockquote>
+</div><div id="red-estructurada-exponencial" class="slide section level3">
+<h1><span class="header-section-number">0.2.3</span> Red estructurada exponencial</h1>
+<div class="figure">
+<img src="../images/tema07/exponencial.png" alt="Estructura pura exponencial (Fuente: Networks, Crowds and Markets)" /><p class="caption">Estructura pura exponencial (Fuente: Networks, Crowds and Markets)</p>
+</div>
+</div><div id="red-estructurada-exponencial-1" class="slide section level3">
+<h1><span class="header-section-number">0.2.4</span> Red estructurada exponencial</h1>
+<ul>
+<li>Suponer que tenemos una red en el que el número de conocidos de cada individuo es constante</li>
+<li>Según Pool y Kochen este número puede variar entre 500 y 1500. Si seleccionamos 500:
+<ul>
+<li>Un individuo tiene 500 vecinos potenciales de primer grado</li>
+<li><span class="math">\(500^2\)</span> = 250.000 vecinos potenciales para el segundo grado</li>
+<li><span class="math">\(500^3\)</span> = 125.000.000 vecinos potenciales para el tercer grado</li>
+</ul></li>
+</ul>
+</div><div id="red-estructurada-exponencial-2" class="slide section level3">
+<h1><span class="header-section-number">0.2.5</span> Red estructurada exponencial</h1>
+<ul>
+<li>Existe un <strong>crecimiento exponencial</strong> de la red</li>
+<li>El número de vecinos que tendríamos a distancia <span class="math">\(d\)</span></li>
+</ul>
+<p><span class="math">\[N(d) =1+\langle k \rangle+\langle k \rangle^2+\dots=\frac{\langle k \rangle^{d+1}-1}{\langle k \rangle-1} \sim \langle k \rangle^d\]</span></p>
+<blockquote>
+<p>Alcanzaríamos a toda la población mundial con menos de 4 pasos.</p>
+</blockquote>
+</div><div id="red-estructurada-exponencial-3" class="slide section level3">
+<h1><span class="header-section-number">0.2.6</span> Red estructurada exponencial</h1>
+<ul>
+<li>Distancia media <span class="math">\(\langle k \rangle\)</span> es la predicha por una red aleatoria</li>
+</ul>
+<p><span class="math">\[d_{max} \propto \frac{log N}{log \langle k \rangle}\]</span></p>
+</div><div id="red-localmente-conexa" class="slide section level3">
+<h1><span class="header-section-number">0.2.7</span> Red localmente conexa</h1>
+<ul>
+<li>En las redes reales abundan los triángulos o <strong>tripletes conectados</strong> (<em>tradic closure</em>)</li>
+<li>algunos de los enlaces no conectan con nuevas personas sino que conectan con amigos de mis amigos</li>
+<li>Reducen el número de personas a las que se puede alcanzar en cada paso, alargando los caminos mínimos.</li>
+</ul>
+</div><div id="red-localmente-conexa-1" class="slide section level3">
+<h1><span class="header-section-number">0.2.8</span> Red localmente conexa</h1>
+<div class="figure">
+<img src="../images/tema07/triadicClosure.png" alt="Aproximación más real del crecimiento exponencial (Fuente: Networks, Crowds and Markets)" /><p class="caption">Aproximación más real del crecimiento exponencial (Fuente: Networks, Crowds and Markets)</p>
+</div>
+</div><div id="red-localmente-conexa-extrema" class="slide section level3">
+<h1><span class="header-section-number">0.2.9</span> Red localmente conexa extrema</h1>
+<ul>
+<li>El caso extremo sería una red completamente <em>cliquish</em></li>
+<li>Todos los subgrafos completamente conectados</li>
+<li>Todos los amigos de mis amigos serían mis amigos y la distancia con ellos sería 1</li>
+<li>Como no se permite ningún enlace fuera del clique la distancia con cualquier otro individuo de la red sería infinito.</li>
+</ul>
+</div><div id="red-localmente-conexa-2" class="slide section level3">
+<h1><span class="header-section-number">0.2.10</span> Red localmente conexa</h1>
+<div class="figure">
+<img src="../images/tema07/cuadricula.png" alt="Una cuadrícula: red con un coeficiente de agrupamiento alto" /><p class="caption">Una cuadrícula: red con un coeficiente de agrupamiento alto</p>
+</div>
+</div><div id="red-localmente-conexa-3" class="slide section level3">
+<h1><span class="header-section-number">0.2.11</span> Red localmente conexa</h1>
+<ul>
+<li>Cuadrícula bidimensional: coeficiente de agrupamiento alto</li>
+<li>El número de nodos a distancia <span class="math">\(d\)</span> es polinomial:</li>
+</ul>
+<p><span class="math">\[N(d) = \sum_{x=1}^{d}4x = 2d(d+1)\sim d^2\]</span></p>
+<ul>
+<li>Distancias entre nodos sería, en general, muy grande.</li>
+</ul>
+</div><div id="pregunta" class="slide section level3">
+<h1><span class="header-section-number">0.2.12</span> Pregunta</h1>
+<blockquote>
+<p>¿Puede una red con una estructura local muy fuerte ser a la vez un mundo pequeño?</p>
+</blockquote>
+<ul>
+<li><strong>La respuesta es claramente sí</strong>: es la forma en la que se comportan las redes sociales.</li>
+<li>Las redes reales están en un punto intermedio entre una red aleatoria y una red localmente estructurada.</li>
+</ul>
+</div><div id="modelo-de-watts-strogatz" class="titleslide slide section level2"><h1><span class="header-section-number">0.3</span> Modelo de Watts-Strogatz</h1></div><div id="modelo-de-watts-strogatz-1" class="slide section level3">
+<h1><span class="header-section-number">0.3.1</span> Modelo de Watts-Strogatz</h1>
+<ul>
+<li>Duncan Watts y Steve Strogatz (1998) proponen un modelo basado en dos ideas básicas de las redes sociales:</li>
+<li>La <strong>homofilia</strong> o tendencia a conectarnos con otros que son como nosotros.
+<ul>
+<li>Si dos personas en una red social tienen una persona en común, es muy probable que estas dos personas se conviertan en comunes o amigos (cerramos el triángulo).</li>
+</ul></li>
+<li>Los <strong>lazos débiles</strong> o <em>weak ties</em>
+<ul>
+<li>Los enlaces a conocidos que nos conectan con partes de la red que, de otra forma, estarían muy lejos para nosotros.</li>
+</ul></li>
+</ul>
+</div><div id="modelo-de-watts-strogatz-2" class="slide section level3">
+<h1><span class="header-section-number">0.3.2</span> Modelo de Watts-Strogatz</h1>
+<ol class="incremental" style="list-style-type: decimal">
+<li>Construimos una red en forma de retículo en anillo con <span class="math">\(N\)</span> nodos, cada uno con <span class="math">\(\langle k \rangle\)</span> vecinos y con <span class="math">\(L=N \cdot \langle k \rangle /2\)</span> enlaces.</li>
+<li>Reasignamos cada uno de los enlaces con probabilidad <span class="math">\(p\)</span> de modo que no se pueden crear auntoenlaces ni enlaces múltiples.</li>
+</ol>
+<p><a href="http://www.ladamic.com/netlearn/NetLogo4/SmallWorldWS.html" class="uri">http://www.ladamic.com/netlearn/NetLogo4/SmallWorldWS.html</a>.</p>
+</div><div id="modelo-de-watts-strogatz-3" class="slide section level3">
+<h1><span class="header-section-number">0.3.3</span> Modelo de Watts-Strogatz</h1>
+<ul>
+<li>Paso 2: Siguiendo el sentido horario, reasignar los <span class="math">\(\langle k \rangle /2\)</span> enlaces que hay a la derecha de cada nodo para los <span class="math">\(N\)</span> nodos.</li>
+</ul>
+<div class="figure">
+<img src="../images/tema07/watts.png" alt="Modelo de Watts-Strogatz" /><p class="caption">Modelo de Watts-Strogatz</p>
+</div>
+</div><div id="modelo-de-watts-strogatz-4" class="slide section level3">
+<h1><span class="header-section-number">0.3.4</span> Modelo de Watts-Strogatz</h1>
+<ul>
+<li><strong>Variación</strong>: añadir enlaces aleatorios con probabilidad p, manteniendo el retículo inicial</li>
+<li>Los resultados que describiremos a continuación son similares para ambas variantes.</li>
+</ul>
+</div><div id="modelo-de-watts-strogatz-5" class="slide section level3">
+<h1><span class="header-section-number">0.3.5</span> Modelo de Watts-Strogatz</h1>
+<blockquote>
+<p><span class="math">\(p\)</span> afecta a la estructura de la red</p>
+</blockquote>
+<ul>
+<li><p>Redes localmente estructuradas <strong>(p=0)</strong>: Un mundo fuertemente agrupado y con distancias largas. <span class="math">\[ \langle d \rangle =\frac{N}{2 \langle k \rangle}\text{;  } \langle C \rangle = \frac{3}{4}\]</span></p></li>
+<li><p>Redes completamente aleatorias <strong>(p=1)</strong>. Mundo pequeño (distancias cortas) y con débil agrupamiento.</p></li>
+</ul>
+<p><span class="math">\[ \langle d \rangle =\frac{lnN}{ln \langle k \rangle}\text{;  } \langle C \rangle = \frac{\langle k \rangle}{N}\]</span></p>
+<blockquote>
+<p>¿Qué pasa en medio?</p>
+</blockquote>
+</div><div id="estudio-del-modelo" class="slide section level3">
+<h1><span class="header-section-number">0.3.6</span> Estudio del modelo</h1>
+<div class="figure">
+<img src="../images/tema07/cdp.png" alt="Evolución del coeficiente de agrupamiento y de la distancia media para distintos valores de p" /><p class="caption">Evolución del coeficiente de agrupamiento y de la distancia media para distintos valores de <span class="math">\(p\)</span></p>
+</div>
+</div><div id="estudio-del-modelo-1" class="slide section level3">
+<h1><span class="header-section-number">0.3.7</span> Estudio del modelo</h1>
+<ul>
+<li>Reducción muy rápida de la distancia media debida a la aparición de esos enlaces aleatorios, que hacen de atajos dentro de la red.</li>
+<li>El coeficiente de agrupamiento se reduce mucho más suavemente a medida que aparecen estos enlaces aleatorios.</li>
+</ul>
+</div><div id="estudio-del-modelo-2" class="slide section level3">
+<h1><span class="header-section-number">0.3.8</span> Estudio del modelo</h1>
+<blockquote>
+<p><strong>Conclusión</strong>: solo unos pocos enlaces aleatorios bastan para reducir la distancia media, conservando la estructura local prácticamente intacta.</p>
+</blockquote>
+<ul>
+<li>p=0.01 es suficiente para reducir drásticamente la distancia media</li>
+<li>El coeficiente de agrupamiento comienza a decrecer en torno a p=0.1</li>
+</ul>
+</div><div id="debilidades-del-modelo" class="slide section level3">
+<h1><span class="header-section-number">0.3.9</span> Debilidades del modelo</h1>
+<ul>
+<li>No presenta una distribución realista de los grados ya que, como las redes aleatorias, no tiene en cuenta la existencia de hubs.</li>
+<li>Los enlaces largos (los atajos) son menos frecuentes que los cortos. En el mundo real esto no tiene por qué ser así. Podemos pensar, por ejemplo, en las redes aeroportuarias.</li>
+<li>No se tiene en cuenta otras propiedades de las redes reales como las estructuras jerárquicas o los grupos.</li>
+</ul>
+</div><div id="modelos-alternativos" class="slide section level3">
+<h1><span class="header-section-number">0.3.10</span> Modelos alternativos</h1>
+<ul>
+<li>Probabilidad por la que se unen dos nodos dependen de la distancia entre dichos nodos</li>
+<li>Probabilidad dependiente de la estructura organizativa</li>
+<li>Enlaces como resultado de la optimización de características de la red (como la distancia media frente a la distancia física entre los nodos)</li>
+<li>Estos modelos generan redes que siguen cumpliendo la propiedad de los pequeños mundos y de la estructura local y, en algunos casos, generan redes más parecidas a las reales ya que presentan hubs.</li>
+</ul>
+</div><div id="modelos-alternativos-1" class="slide section level3">
+<h1><span class="header-section-number">0.3.11</span> Modelos alternativos</h1>
+<ul>
+<li>Kleinberg, J. (2000, May). <a href="http://www.google.es/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=1&amp;cad=rja&amp;uact=8&amp;ved=0CDYQFjAA&amp;url=http%3A%2F%2Fwww.cs.cornell.edu%2Fhome%2Fkleinber%2Fswn.pdf&amp;ei=K0h3VMjlC8rZas2egegC&amp;usg=AFQjCNFUVXfxJsFEFh-rpDV9cklRbm6UiA&amp;sig2=2J5Tjfps_piM9y5OOFdSeA&amp;bvm=bv.80642063,d.d2s">The small-world phenomenon: An algorithmic perspective</a>. In Proceedings of the thirty-second annual ACM symposium on Theory of computing (pp. 163-170). ACM.</li>
+<li>Kleinberg, J. (2002). <a href="https://www.google.es/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=1&amp;cad=rja&amp;uact=8&amp;ved=0CCgQFjAA&amp;url=https%3A%2F%2Fwww.cs.cornell.edu%2Fhome%2Fkleinber%2Fnips14.pdf&amp;ei=VUh3VPXqCsrZas2egegC&amp;usg=AFQjCNFmiN7cLoDO7gS3OIKGlCZ-wTbpPg&amp;sig2=t4rmeLjx3yB2LclF0PVN-g&amp;bvm=bv.80642063,d.d2s">Small-world phenomena and the dynamics of information</a>. Advances in neural information processing systems, 1, 431-438.</li>
+<li>Watts, D. J., Dodds, P. S., &amp; Newman, M. E. (2002). Identity and search in social networks. science, 296(5571), 1302-1305.</li>
+<li>Mathias, N., &amp; Gopal, V. (2001). <a href="http://journals.aps.org/pre/abstract/10.1103/PhysRevE.63.021117">Small worlds: How and why</a>. Physical Review E, 63(2), 021117.</li>
+<li>Gastner, M. T., &amp; Newman, M. E. (2006). <a href="http://www.google.es/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=1&amp;cad=rja&amp;uact=8&amp;ved=0CCgQFjAA&amp;url=http%3A%2F%2Fwww.stat.berkeley.edu%2F~aldous%2F206-SNET%2FPapers%2Fgaster_newman_2004.pdf&amp;ei=i0l3VPv5Fc_TaMr7gogB&amp;usg=AFQjCNHAD90sancHiM4m8sitHIS0anA0bg&amp;sig2=7cDXRbyaL2UqHStnlymtXw&amp;bvm=bv.80642063,d.d2s">The spatial structure of networks</a>. The European Physical Journal B-Condensed Matter and Complex Systems, 49(2), 247-252.</li>
+</ul>
+</div>
+</body>
+</html>
