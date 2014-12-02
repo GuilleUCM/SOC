@@ -111,7 +111,7 @@ Este modelo fue usado para modelar la distribución de los nodos de la WWW. En e
     
     $$ \pi (k) = \frac{k_i}{\sum_{j}k_j}$$
 
-    Donde el denominador representa la suma de los grados de todos los demás nodos que están presentes en la red en ese momento.
+    Donde el denominador representa la suma de los grados de todos los nodos que están presentes en la red en ese momento.
 
 De acuerdo a este modelo, tras $t$ pasos tenemos que la red se compone de $N=m_0+t$ nodos y de $L=m_0+mt$ enlaces.
 
