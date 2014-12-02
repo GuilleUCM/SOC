@@ -95,15 +95,15 @@ En este estado endémico, la proporción de infectados no varía con el tiempo y
 
 El ritmo reproductivo básico ($R_0$) representa el número promedio de individuos susceptibles que serán infectados por un individuo infectado:
 
-$$R_0 = \frac{\beta}{\mu}
+$$R_0 = \frac{\beta}{\mu}$$
 
-Tal y como hemos visto antes, si $R_0 < 1$ entonces la enfermedad termina desapareciendo de la población. Si $R_0>0$ entonces la enfermedad se propagará. Cuanto mayor sea $R_0$, más rápido es el proceso de propagación de la enfermedad. Por ejemplo, el sarampión (que se contagia por el aire) tiene un $R_0= 12-18$ mientras que la gripe tiene un $R_0 = 2-3$.
+Tal y como hemos visto antes, si $R_0<1$ entonces la enfermedad termina desapareciendo de la población. Si $R_0>0$ entonces la enfermedad se propagará. Cuanto mayor sea $R_0$, más rápido es el proceso de propagación de la enfermedad. Por ejemplo, el sarampión (que se contagia por el aire) tiene un $R_0= 12-18$ mientras que la gripe tiene un $R_0 = 2-3$.
 
 ### Modelo SIR
 
 En este modelo, los individuos infectados no vuelven a ser susceptibles sino que desarrollan una inmunidad a la enfermedad (o mueren) y pasan a un estado recuperado[^1] en el que no afectan al modelo de propagación: no pueden ser infectados ni pueden infectar a otros. 
 
-![Esquema del Modelo SI](../images/tema08/modeloSI.png)
+![Esquema del Modelo SIR](../images/tema08/modeloSIR.png)
 
 [^1]: En inglés, el estado es _removed_, que es más adecuado para describir el proceso.
 
@@ -113,6 +113,44 @@ Las ecuaciones diferenciales de este modelo son las siguientes:
 
 $$\frac{di}{dt} = \beta \cdot i \cdot s - \mu \cdot i \text{;  }frac{ds}{dt} = -\beta \cdot i \cdot s\text{;  }frac{dr}{dt} = \mu \cdot i$$
 
+En este caso el cálculo es más complejo pero podemos llegar a la siguiente representación gráfica de las tres funciones:
 
+![Representación de la proporción de infectados, susceptibles y recuperados en el Modelo SIR](../images/tema08/graficaSIR.png)
 
+- Cuando $\beta>\mu$ la proporción de infectados crece hasta un pico máximo y luego decrece hasta valer 0.
+- La proporción de susceptibles decrece de forma monótona. Aunque satura, no llega nunca a 0 ya que cuando $i \to 0$ ya no hay individuos que puedan infectar. Esto implica que los individuos que se mantienen susceptibles hasta fases avanzadas pueden no llegar a infectarse nunca.
+- La proporción de recuperados crece de manera monótona. De manera similar a los susceptibles, la proporción de recuperados nunca llega a valer 1. Su valor asintótico representa el número de individuos afectados y se calcula como:
 
+$$r = 1- s_0 \cdot e^{-\beta \frac{r}{\mu}}$$
+
+Las condiciones iniciales más habituales son:
+
+$$i_0 = \frac{c}{N}\text{;  }s_0 = 1- \frac{c}{N}\text{;  }r_0 = 0$$
+
+### Comportamientos importantes de los modelos epidemiológicos
+
+Existen principalmente dos comportamientos destacables en estos modelos:
+
+#### Comportamiento temprano.{-}
+
+Es el patrón de comportamiento en las fases iniciales. Es importante para saber cuánto tiempo tenemos para el desarrollo de vacunas e intervenciones médicas. La mejor forma de detener o contener la epidemia en esta fase es mediante vacunación temprana o la cuarentena.
+
+En todos los modelos el número de infectados en la fase temprana es bajo pero crece exponencialmente. Generalmente, el modelo SI es el más relevante para describir este comportamiento.
+
+#### Comportamiento tardío. {-}
+
+Es el patrón de comportamiento en las fases más avanzadas de la epidemia (cuando $t \to \infty$). Permite predecir el alcance, número de infectados, etc.
+
+En este caso, cada modelo realiza una predicción distinta:
+
+- En el modelo SI todos terminan infectados.
+- En el modelo SIS se alcanza un estado endémico en el que una proporción de la población queda infectada ($R_0>1$) o en el que la enfermedad desaparece ($R_0<1$)
+- En el modelo SIR todos terminan recuperados (en el estado susceptible o recuperado, pero no infectados)
+
+En resumen, las características básicas de los modelos epidemiológicos son los siguientes:
+
+![Características básicas de los modelos epidemiológicos](../images/tema08/resumenModelos.png)
+
+Tal y como hemos indicado, estos modelos no tienen en cuenta la red de contactos ya que suponen que hay una mezcla homogénea. Tal y como veremos a continuación, para predecir con mayor precisión las dinámicas de la propagación tendremos que tener en cuenta la estructura de la red ya que ésta modificará el comportamiento de estos modelos simples.
+
+## Modelos de contagio basados en redes
