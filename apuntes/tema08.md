@@ -98,3 +98,21 @@ El ritmo reproductivo básico ($R_0$) representa el número promedio de individu
 $$R_0 = \frac{\beta}{\mu}
 
 Tal y como hemos visto antes, si $R_0 < 1$ entonces la enfermedad termina desapareciendo de la población. Si $R_0>0$ entonces la enfermedad se propagará. Cuanto mayor sea $R_0$, más rápido es el proceso de propagación de la enfermedad. Por ejemplo, el sarampión (que se contagia por el aire) tiene un $R_0= 12-18$ mientras que la gripe tiene un $R_0 = 2-3$.
+
+### Modelo SIR
+
+En este modelo, los individuos infectados no vuelven a ser susceptibles sino que desarrollan una inmunidad a la enfermedad (o mueren) y pasan a un estado recuperado[^1] en el que no afectan al modelo de propagación: no pueden ser infectados ni pueden infectar a otros. 
+
+![Esquema del Modelo SI](../images/tema08/modeloSI.png)
+
+[^1]: En inglés, el estado es _removed_, que es más adecuado para describir el proceso.
+
+En este modelo $\mu$ representa la tasa de recuperación que, a diferencia del anterior, es la tasa de individuos infectados que pasan al estado recuperado. Para este modelo, la población es la suma de los infectados, susceptibles y recuperados($R(t)$), por lo que la proporción de infectados es $i = 1-s-r$.
+
+Las ecuaciones diferenciales de este modelo son las siguientes:
+
+$$\frac{di}{dt} = \beta \cdot i \cdot s - \mu \cdot i \text{;  }frac{ds}{dt} = -\beta \cdot i \cdot s\text{;  }frac{dr}{dt} = \mu \cdot i$$
+
+
+
+
