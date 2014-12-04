@@ -154,3 +154,24 @@ En resumen, las características básicas de los modelos epidemiológicos son lo
 Tal y como hemos indicado, estos modelos no tienen en cuenta la red de contactos ya que suponen que hay una mezcla homogénea. Tal y como veremos a continuación, para predecir con mayor precisión las dinámicas de la propagación tendremos que tener en cuenta la estructura de la red ya que ésta modificará el comportamiento de estos modelos simples.
 
 ## Modelos de contagio basados en redes
+
+Antes de entrar en los detalles más técnicos vamos a utilizar los modelos que conocemos hasta ahora y las simulaciones en NetLogo para observar el comportamiento de las epidemias teniendo en cuenta la estructura de la red.
+
+### Redes aleatorias
+
+Vamos a simular un modelo SI en una red aleatoria. Si utilizamos el simulador de [Difusión en una red aleatoria](http://www.ladamic.com/netlearn/NetLogo501/ERDiffusion.html)[^2] podemos ver la influencia de la densidad de la red en los procesos de contagio.
+
+![Influencia de la densidad de la red aleatoria en los procesos de contagio](../images/tema08/contagioER.png)
+
+Como se puede ver en la simulación, la densidad de la red afecta a la velocidad de infección y al número de individuos infectados: a mayor densidad, mayor es el número de individuos infectados y mayor es la velocidad de propagación.
+
+[^2]: Todos los modelos de NetLogo que se ven en este tema están disponibles en el Campus Virtual.
+
+### Redes libres de escala
+
+A continuación simularemos un modelo SI en una red libre de escala creada siguiendo el modelo de Barabasi-Albert. Si recordamos, para que se presente la propiedad de ser libre de escala es necesario que exista enlace preferencial. Por este motivo vamos a ver el efecto de la existencia de enlace preferencial en estas redes. Para ello usaremos el simulador de [Difusión en una red libre de escala](http://www.ladamic.com/netlearn/NetLogo501/BADiffusion.html).
+
+![Influencia del enlace preferencial (redes libres de escala) en los procesos de contagio](../images/tema08/contagioBA.png)
+
+En este caso podemos observar que el enlace preferencial favorece el contagio. Esto se debe a que el enlace preferencial posibilita la existencia de Hubs, que son los responsables de ayudar a difundir más rápidamente la infección. 
+
