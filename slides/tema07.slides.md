@@ -45,10 +45,10 @@ Recordemos
 ### Red estructurada exponencial
 
 * Suponer que tenemos una red en el que el número de conocidos de cada individuo es constante
-* Según Pool y Kochen este número puede variar entre 500 y 1500. Si seleccionamos 500:
-    - Un individuo tiene 500 vecinos potenciales de primer grado
-    - $500^2$ = 250.000 vecinos potenciales para el segundo grado
-    - $500^3$ = 125.000.000 vecinos potenciales para el tercer grado
+* Según Pool y Kochen este número puede variar entre 500 y 1500. Si seleccionamos 500, un individuo tiene:
+    - $500$ vecinos potenciales de primer grado
+    - $500^2 = 250.000$ vecinos potenciales para el segundo grado
+    - $500^3 = 125.000.000$ vecinos potenciales para el tercer grado
 
 ### Red estructurada exponencial
 
@@ -67,31 +67,35 @@ $$d_{max} \propto \frac{log N}{log \langle k \rangle}$$
 
 ### Red localmente conexa
 
-* En las redes reales abundan los triángulos o **tripletes conectados** (_tradic closure_)
-* algunos de los enlaces no conectan con nuevas personas sino que conectan con amigos de mis amigos
-* Reducen el número de personas a las que se puede alcanzar en cada paso,  alargando los caminos mínimos.
+![Aproximación más real del crecimiento exponencial (Fuente: Networks, Crowds and Markets)](../images/tema07/triadicClosure.png)
 
 ### Red localmente conexa
 
-![Aproximación más real del crecimiento exponencial (Fuente: Networks, Crowds and Markets)](../images/tema07/triadicClosure.png)
+* En las redes reales abundan los triángulos o **tripletes conectados** (_tradic closure_)
+* Algunos de los enlaces no conectan con nuevas personas sino que conectan con amigos de mis amigos
+* Reducen el número de personas a las que se puede alcanzar en cada paso,  alargando los caminos mínimos.
+* Recordemos:
+
+$$C_i = \frac{2 \cdot L_i}{k_i (k_{i-1})} \;\;\; C_i \in [0,1]$$ 
+
 
 ### Red localmente conexa extrema
 
 * El caso extremo sería una red completamente _cliquish_
-* Todos los subgrafos completamente conectados
-* Todos los amigos de mis amigos serían mis amigos y la distancia con ellos sería 1
+    * Todos los subgrafos completamente conectados
+    * Todos los amigos de mis amigos serían mis amigos y la distancia con ellos sería 1
 * Como no se permite ningún enlace fuera del clique la distancia con cualquier otro individuo de la red sería infinito.
 
 ### Red localmente conexa 
 
-![Una cuadrícula: red con un coeficiente de agrupamiento alto](../images/tema07/cuadricula.png)
+![Una cuadrícula: red con un coeficiente de agrupamiento alto](../images/tema07/cuadricula2.png)
 
 ### Red localmente conexa 
 
 * Cuadrícula bidimensional: coeficiente de agrupamiento alto 
 * El número de nodos a distancia $d$ es polinomial:
 
-$$N(d) = \sum_{x=1}^{d}4x = 2d(d+1)\sim d^2$$
+$$N(d) = \sum_{x=1}^{d}8x = 4d(d+1)\sim d^2$$
 
 * Distancias entre nodos sería, en general, muy grande.
 
@@ -107,7 +111,7 @@ $$N(d) = \sum_{x=1}^{d}4x = 2d(d+1)\sim d^2$$
 ### Modelo de Watts-Strogatz
 
 - Duncan Watts y Steve Strogatz (1998) proponen un modelo basado en dos ideas básicas de las redes sociales:
-- La **homofilia** o tendencia a conectarnos con otros que son como nosotros. 
+- La **homofilia**, _strong ties_ o tendencia a conectarnos con otros que son como nosotros. 
     - Si dos personas en una red social tienen una persona en común, es muy probable que estas dos personas se conviertan en comunes o amigos (cerramos el triángulo).
 - Los **lazos débiles** o _weak ties_
     - Los enlaces a conocidos que nos conectan con partes de la red que, de otra forma, estarían muy lejos para nosotros.

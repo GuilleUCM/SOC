@@ -72,11 +72,11 @@ Guillermo Jiménez Díaz (gjimenez@ucm.es)<br/>Alberto Díaz (albertodiaz@fdi.uc
 <h1><span class="header-section-number">0.2.4</span> Red estructurada exponencial</h1>
 <ul>
 <li>Suponer que tenemos una red en el que el número de conocidos de cada individuo es constante</li>
-<li>Según Pool y Kochen este número puede variar entre 500 y 1500. Si seleccionamos 500:
+<li>Según Pool y Kochen este número puede variar entre 500 y 1500. Si seleccionamos 500, un individuo tiene:
 <ul>
-<li>Un individuo tiene 500 vecinos potenciales de primer grado</li>
-<li><span class="math">\(500^2\)</span> = 250.000 vecinos potenciales para el segundo grado</li>
-<li><span class="math">\(500^3\)</span> = 125.000.000 vecinos potenciales para el tercer grado</li>
+<li><span class="math">\(500\)</span> vecinos potenciales de primer grado</li>
+<li><span class="math">\(500^2 = 250.000\)</span> vecinos potenciales para el segundo grado</li>
+<li><span class="math">\(500^3 = 125.000.000\)</span> vecinos potenciales para el tercer grado</li>
 </ul></li>
 </ul>
 </div><div id="red-estructurada-exponencial-2" class="slide section level3">
@@ -97,28 +97,32 @@ Guillermo Jiménez Díaz (gjimenez@ucm.es)<br/>Alberto Díaz (albertodiaz@fdi.uc
 <p><span class="math">\[d_{max} \propto \frac{log N}{log \langle k \rangle}\]</span></p>
 </div><div id="red-localmente-conexa" class="slide section level3">
 <h1><span class="header-section-number">0.2.7</span> Red localmente conexa</h1>
-<ul>
-<li>En las redes reales abundan los triángulos o <strong>tripletes conectados</strong> (<em>tradic closure</em>)</li>
-<li>algunos de los enlaces no conectan con nuevas personas sino que conectan con amigos de mis amigos</li>
-<li>Reducen el número de personas a las que se puede alcanzar en cada paso, alargando los caminos mínimos.</li>
-</ul>
-</div><div id="red-localmente-conexa-1" class="slide section level3">
-<h1><span class="header-section-number">0.2.8</span> Red localmente conexa</h1>
 <div class="figure">
 <img src="../images/tema07/triadicClosure.png" alt="Aproximación más real del crecimiento exponencial (Fuente: Networks, Crowds and Markets)" /><p class="caption">Aproximación más real del crecimiento exponencial (Fuente: Networks, Crowds and Markets)</p>
 </div>
+</div><div id="red-localmente-conexa-1" class="slide section level3">
+<h1><span class="header-section-number">0.2.8</span> Red localmente conexa</h1>
+<ul>
+<li>En las redes reales abundan los triángulos o <strong>tripletes conectados</strong> (<em>tradic closure</em>)</li>
+<li>Algunos de los enlaces no conectan con nuevas personas sino que conectan con amigos de mis amigos</li>
+<li>Reducen el número de personas a las que se puede alcanzar en cada paso, alargando los caminos mínimos.</li>
+<li>Recordemos:</li>
+</ul>
+<p><span class="math">\[C_i = \frac{2 \cdot L_i}{k_i (k_{i-1})} \;\;\; C_i \in [0,1]\]</span></p>
 </div><div id="red-localmente-conexa-extrema" class="slide section level3">
 <h1><span class="header-section-number">0.2.9</span> Red localmente conexa extrema</h1>
 <ul>
-<li>El caso extremo sería una red completamente <em>cliquish</em></li>
+<li>El caso extremo sería una red completamente <em>cliquish</em>
+<ul>
 <li>Todos los subgrafos completamente conectados</li>
 <li>Todos los amigos de mis amigos serían mis amigos y la distancia con ellos sería 1</li>
+</ul></li>
 <li>Como no se permite ningún enlace fuera del clique la distancia con cualquier otro individuo de la red sería infinito.</li>
 </ul>
 </div><div id="red-localmente-conexa-2" class="slide section level3">
 <h1><span class="header-section-number">0.2.10</span> Red localmente conexa</h1>
 <div class="figure">
-<img src="../images/tema07/cuadricula.png" alt="Una cuadrícula: red con un coeficiente de agrupamiento alto" /><p class="caption">Una cuadrícula: red con un coeficiente de agrupamiento alto</p>
+<img src="../images/tema07/cuadricula2.png" alt="Una cuadrícula: red con un coeficiente de agrupamiento alto" /><p class="caption">Una cuadrícula: red con un coeficiente de agrupamiento alto</p>
 </div>
 </div><div id="red-localmente-conexa-3" class="slide section level3">
 <h1><span class="header-section-number">0.2.11</span> Red localmente conexa</h1>
@@ -126,7 +130,7 @@ Guillermo Jiménez Díaz (gjimenez@ucm.es)<br/>Alberto Díaz (albertodiaz@fdi.uc
 <li>Cuadrícula bidimensional: coeficiente de agrupamiento alto</li>
 <li>El número de nodos a distancia <span class="math">\(d\)</span> es polinomial:</li>
 </ul>
-<p><span class="math">\[N(d) = \sum_{x=1}^{d}4x = 2d(d+1)\sim d^2\]</span></p>
+<p><span class="math">\[N(d) = \sum_{x=1}^{d}8x = 4d(d+1)\sim d^2\]</span></p>
 <ul>
 <li>Distancias entre nodos sería, en general, muy grande.</li>
 </ul>
@@ -143,7 +147,7 @@ Guillermo Jiménez Díaz (gjimenez@ucm.es)<br/>Alberto Díaz (albertodiaz@fdi.uc
 <h1><span class="header-section-number">0.3.1</span> Modelo de Watts-Strogatz</h1>
 <ul>
 <li>Duncan Watts y Steve Strogatz (1998) proponen un modelo basado en dos ideas básicas de las redes sociales:</li>
-<li>La <strong>homofilia</strong> o tendencia a conectarnos con otros que son como nosotros.
+<li>La <strong>homofilia</strong>, <em>strong ties</em> o tendencia a conectarnos con otros que son como nosotros.
 <ul>
 <li>Si dos personas en una red social tienen una persona en común, es muy probable que estas dos personas se conviertan en comunes o amigos (cerramos el triángulo).</li>
 </ul></li>

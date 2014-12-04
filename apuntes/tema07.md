@@ -55,11 +55,11 @@ El caso extremo sería una red completamente _cliquish_, en la que todos los sub
 
 Una forma de representar una red donde el coeficiente de agrupamiento es alto es mediante una cuadrícula bidimensional en la que unos nodos están conectados con otros como en la imagen:
 
-![Una cuadrícula: red con un coeficiente de agrupamiento alto](../images/tema07/cuadricula.png)
+![Una cuadrícula: red con un coeficiente de agrupamiento alto](../images/tema07/cuadricula2.png)
 
 En este caso, el número de nodos a distancia $d$ es polinomial:
 
-$$N(d) = \sum_{x=1}^{d}4x = 2d(d+1)\sim d^2$$
+$$N(d) = \sum_{x=1}^{d}8x = 4d(d+1)\sim d^2$$
 
 Lo que implicaría que las distancias entre nodos sería, en general, muy grande.
 
