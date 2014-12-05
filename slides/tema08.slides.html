@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Guillermo Jiménez Díaz (gjimenez@ucm.es)" />
+  <meta name="author" content="Alberto Díaz (albertodiaz@fdi.ucm.es)" />
+  <title>Análisis de Redes Sociales</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+   href="../pandownTemplates/slidy/styles/slidy.css" />
+   
+
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+   href="../pandownTemplates/soc.css" />
+
+  <script src="../pandownTemplates/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+  <script src="../pandownTemplates/slidy/scripts/slidy.js"
+    charset="utf-8" type="text/javascript"></script>
+</head>
+<body>
+<div class="slide titlepage">
+  <h1 class="title">Análisis de Redes Sociales</h1>
+  <p class="author">
+Guillermo Jiménez Díaz (gjimenez@ucm.es)<br/>Alberto Díaz (albertodiaz@fdi.ucm.es)
+  </p>
+  <p class="date">5 de diciembre de 2014</p>
+</div>
+<div id="tema-8-propagación-y-difusión-en-redes" class="titleslide slide section level1 unnumbered"><h1>Tema 8: Propagación y Difusión en Redes</h1></div><div id="propagación-y-difusión" class="slide section level3">
+<h1><span class="header-section-number">0.0.1</span> Propagación y Difusión</h1>
+<p>Modelar la propagación de elementos:</p>
+<ul>
+<li>Enfermedades</li>
+<li>Vídeos virales</li>
+<li>Rumores</li>
+<li>Virus informáticos</li>
+<li>Compra de productos</li>
+<li>Anuncios</li>
+<li>Información e innovación…</li>
+</ul>
+</div><div id="propagación-y-difusión-1" class="slide section level3">
+<h1><span class="header-section-number">0.0.2</span> Propagación y Difusión</h1>
+<blockquote>
+<p>Modelos similares independientemente de lo que queramos propagar</p>
+</blockquote>
+<ul>
+<li>Basados en modelos de propagación clásicos de epidemias (1927)</li>
+<li>Aplicados a redes (2001)</li>
+<li>Estructura de la red influye en la propagación</li>
+</ul>
+</div><div id="propagación-y-difusión-2" class="slide section level3">
+<h1><span class="header-section-number">0.0.3</span> Propagación y Difusión</h1>
+<ul>
+<li>Modelos de contagio simple</li>
+<li>Modelos de contagio aplicados a redes</li>
+<li>Modelos de contagio complejos</li>
+<li>Difusión de opiniones e innovación</li>
+<li>Aplicaciones</li>
+</ul>
+</div><div id="modelos-de-contagio-simple" class="titleslide slide section level2"><h1><span class="header-section-number">0.1</span> Modelos de contagio simple</h1></div><div id="modelos-de-contagio-simple-1" class="slide section level3">
+<h1><span class="header-section-number">0.1.1</span> Modelos de contagio simple</h1>
+<blockquote>
+<p>La <strong>epidemiología</strong> es la ciencia que estudia la salud y control de enfermedades en una población, así como la predicción de expansión de dichas enfermedades.</p>
+</blockquote>
+<p>El modelo general se basa en dos hipótesis:</p>
+<ul>
+<li><strong>Modelo compartimental</strong></li>
+<li><strong>Mezcla homogénea</strong></li>
+</ul>
+</div><div id="modelo-compartimental" class="slide section level3">
+<h1><span class="header-section-number">0.1.2</span> Modelo compartimental</h1>
+<blockquote>
+<p>Cada individuo puede estar en un determinado estado dependiendo de en qué fase se la enfermedad se encuentra.</p>
+</blockquote>
+<ul>
+<li><strong>Susceptible (S)</strong>: El individuo está sano y puede ser infectado.</li>
+<li><strong>Infectado (I)</strong>: El individuo está infectado y puede contagiar a otros individuos.</li>
+<li><strong>Recuperado (R)</strong>: El individuo estuvo contagiado pero se ha recuperado y no puede volver a ser contagiado. También se utiliza para modelar los individuos que no han superado la enfermedad y que han muerto a causa de ella.</li>
+</ul>
+</div><div id="mezcla-homogénea" class="slide section level3">
+<h1><span class="header-section-number">0.1.3</span> Mezcla homogénea</h1>
+<blockquote>
+<p>Cualquier individuo tiene la misma probabilidad de estar en contacto con un individuo infectado.</p>
+</blockquote>
+<ul>
+<li>Elimina la necesidad de conocer los contactos (la red) de individuos</li>
+<li>Se asume que cualquiera puede infectar a cualquiera.</li>
+</ul>
+</div><div id="modelos-de-contagio-simple-2" class="slide section level3">
+<h1><span class="header-section-number">0.1.4</span> Modelos de contagio simple</h1>
+<blockquote>
+<p>Los modelos observan los cambios de estado de los individuos a lo largo del tiempo para predecir el alcance y la velocidad de propagación de la enfermedad.</p>
+</blockquote>
+<p>Estudiaremos la dinámica de los modelos de propagación clásicos, que combinan las letras del modelo compartimental:</p>
+<ul>
+<li>Modelo SI</li>
+<li>Modelo SIS</li>
+<li>Modelo SIR</li>
+</ul>
+</div><div id="modelo-si" class="titleslide slide section level2"><h1><span class="header-section-number">0.2</span> Modelo SI</h1></div><div id="modelo-si-1" class="slide section level3">
+<h1><span class="header-section-number">0.2.1</span> Modelo SI</h1>
+<div class="figure">
+<img src="../images/tema08/modeloSI.png" />
+</div>
+<ul>
+<li>Virus del VIH</li>
+<li>Zombies</li>
+</ul>
+</div><div id="modelo-si-2" class="slide section level3">
+<h1><span class="header-section-number">0.2.2</span> Modelo SI</h1>
+<ul>
+<li>Cada individuo tiene <span class="math">\(\langle k \rangle\)</span> contactos</li>
+<li>Tasa de contagio <span class="math">\(\delta\)</span>: Probabilidad de que un individuo infectado transmita la enfermedad a uno susceptible.</li>
+<li><span class="math">\(N\)</span> es el tamaño de la población: <span class="math">\(N = S(t) + I(t)\)</span></li>
+<li><span class="math">\(S(t)\)</span>: número de individuos que están en el estado susceptible en <span class="math">\(t\)</span></li>
+<li><span class="math">\(I(t)\)</span>: número de individuos que están en el estado infectado en <span class="math">\(t\)</span></li>
+<li><span class="math">\(s(t) = s = \frac{S(t)}{N}\)</span>: Proporción de susceptibles</li>
+<li><span class="math">\(i(t) = i = \frac{I(t)}{N}\)</span>: Proporción de infectados.</li>
+<li><span class="math">\(s+i=1\)</span></li>
+<li><span class="math">\(\beta = \delta \cdot \langle k \rangle\)</span>: Tasa de transmisión</li>
+</ul>
+</div><div id="modelo-si-3" class="slide section level3">
+<h1><span class="header-section-number">0.2.3</span> Modelo SI</h1>
+<p>Tasa a la que varía el número de infectados</p>
+<p><span class="math">\[\frac{di}{dt} = i \cdot \beta  \cdot s = i \cdot \beta \cdot (1-i)\]</span></p>
+<p>Resolviendo la ecuación:</p>
+<p><span class="math">\[i = \frac{i_0exp(\beta t)}{1-i_0+i_0exp(\beta t)}\]</span></p>
+</div><div id="modelo-si-4" class="slide section level3">
+<h1><span class="header-section-number">0.2.4</span> Modelo SI</h1>
+<div class="figure">
+<img src="../images/tema08/graficaSI.png" />
+</div>
+</div><div id="conclusiones-del-modelo-si" class="slide section level3">
+<h1><span class="header-section-number">0.2.5</span> Conclusiones del modelo SI</h1>
+<blockquote>
+<p>Inicialmente el número de infectados crece exponencialmente</p>
+</blockquote>
+<blockquote>
+<p>A medida que el número de infectados se hace mayor, hay menos individuos susceptibles por lo que el crecimiento de infectados se ralentiza</p>
+</blockquote>
+<blockquote>
+<p>La infección termina cuando todos están infectados <br/><span class="math">\(i(t \to \infty)= 1\)</span></p>
+</blockquote>
+</div><div id="modelo-sis" class="titleslide slide section level2"><h1><span class="header-section-number">0.3</span> Modelo SIS</h1></div><div id="modelo-sis-1" class="slide section level3">
+<h1><span class="header-section-number">0.3.1</span> Modelo SIS</h1>
+<div class="figure">
+<img src="../images/tema08/modeloSIS.png" />
+</div>
+<ul>
+<li>Resfriado común</li>
+</ul>
+</div><div id="modelo-sis-2" class="slide section level3">
+<h1><span class="header-section-number">0.3.2</span> Modelo SIS</h1>
+<ul>
+<li>Parámetros anteriores</li>
+<li>Tasa de recuperación <span class="math">\(\mu\)</span>: Proporción de infectados que se recuperan y pasan al estado susceptible en cada instante de tiempo.</li>
+</ul>
+</div><div id="modelo-sis-3" class="slide section level3">
+<h1><span class="header-section-number">0.3.3</span> Modelo SIS</h1>
+<p>Tasa a la que varía el número de infectados:</p>
+<p><span class="math">\[\frac{di}{dt} =  i \cdot \beta  \cdot s - \mu \cdot i=  i \cdot \beta \cdot (1-i) - \mu \cdot i\]</span></p>
+<p>La resolución de esta ecuación:</p>
+<p><span class="math">\[i = \Big(1- \frac{\mu}{\beta}\Big) \frac{C \cdot e^{(\beta - \mu)t}}{1 + C \cdot e ^{(\beta -\mu)t}}\]</span></p>
+<p><span class="math">\[C= \frac{\beta \cdot i_0}{\beta - \mu - \beta \cdot i_0}\]</span></p>
+</div><div id="modelo-sis-4" class="slide section level3">
+<h1><span class="header-section-number">0.3.4</span> Modelo SIS</h1>
+<div class="figure">
+<img src="../images/tema08/graficaSIS.png" alt="Representación de la proporción de infectados en el Modelo SIS" /><p class="caption">Representación de la proporción de infectados en el Modelo SIS</p>
+</div>
+</div><div id="conclusiones-del-modelo-sis" class="slide section level3">
+<h1><span class="header-section-number">0.3.5</span> Conclusiones del Modelo SIS</h1>
+<ul>
+<li>Como la recuperación es posible, el sistema alcanza un <strong>estado endémico</strong> en el que la tasa de infectados es constante:</li>
+</ul>
+<p><span class="math">\[i(\infty) = 1 - \frac{\beta}{\mu}\]</span></p>
+<ul>
+<li><p>Sólo se produce cuando la tasa de recuperación es inferior a la tasa de transmisión (<span class="math">\(\mu &lt; \beta\)</span>)</p></li>
+<li><p>Si <span class="math">\(\mu &gt; \beta\)</span> entonces, llegado a un determinado punto, la proporción de infectados comienza a decrecer exponencialmente, alcanzado un estado libre de enfermedad en la que todos los individuos se han recuperado y no hay infectados.</p></li>
+</ul>
+</div><div id="ritmo-reproductivo-básico" class="slide section level3">
+<h1><span class="header-section-number">0.3.6</span> Ritmo reproductivo básico</h1>
+<blockquote>
+<p>El ritmo reproductivo básico (<span class="math">\(R_0\)</span>) representa el número promedio de individuos susceptibles que serán infectados por un individuo infectado</p>
+</blockquote>
+<p><span class="math">\[R_0 = \frac{\beta}{\mu}\]</span></p>
+<ul>
+<li>Si <span class="math">\(R_0&lt;1\)</span> entonces la enfermedad termina desapareciendo de la población</li>
+<li>Si <span class="math">\(R_0&gt;0\)</span> entonces la enfermedad se propagará</li>
+</ul>
+</div><div id="ritmo-reproductivo-básico-1" class="slide section level3">
+<h1><span class="header-section-number">0.3.7</span> Ritmo reproductivo básico</h1>
+<ul>
+<li>Cuanto mayor sea <span class="math">\(R_0\)</span>, más rápido es el proceso de propagación de la enfermedad</li>
+</ul>
+<blockquote>
+<p>Sarampión: <span class="math">\(R_0= 12-18\)</span></p>
+<p>Gripe: <span class="math">\(R_0 = 2-3\)</span></p>
+</blockquote>
+</div><div id="modelo-sir" class="titleslide slide section level2"><h1><span class="header-section-number">0.4</span> Modelo SIR</h1></div><div id="modelo-sir-1" class="slide section level3">
+<h1><span class="header-section-number">0.4.1</span> Modelo SIR</h1>
+<div class="figure">
+<img src="../images/tema08/modeloSIR.png" alt="Esquema del Modelo SIR" /><p class="caption">Esquema del Modelo SIR</p>
+</div>
+</div><div id="modelo-sir-2" class="slide section level3">
+<h1><span class="header-section-number">0.4.2</span> Modelo SIR</h1>
+<ul>
+<li><span class="math">\(\mu\)</span> representa la tasa de recuperación: es la tasa de individuos infectados que pasan al estado <strong>recuperado</strong>.</li>
+<li><span class="math">\(N = S(t) + I(t) + R(t)\)</span></li>
+<li><span class="math">\(i = 1-s-r\)</span>.</li>
+<li>Condiciones iniciales habituales</li>
+</ul>
+<p><span class="math">\[i_0 = \frac{c}{N}\text{;  }s_0 = 1- \frac{c}{N}\text{;  }r_0 = 0\]</span></p>
+</div><div id="modelo-sir-3" class="slide section level3">
+<h1><span class="header-section-number">0.4.3</span> Modelo SIR</h1>
+<p><span class="math">\[\frac{di}{dt} = i \cdot \beta \cdot s - \mu \cdot i\]</span> <span class="math">\[\frac{ds}{dt} = -i \cdot \beta \cdot s\]</span> <span class="math">\[\frac{dr}{dt} = \mu \cdot i\]</span></p>
+</div><div id="modelo-sir-4" class="slide section level3">
+<h1><span class="header-section-number">0.4.4</span> Modelo SIR</h1>
+<div class="figure">
+<img src="../images/tema08/graficaSIR.png" alt="Representación de la proporción de infectados, susceptibles y recuperados en el Modelo SIR" /><p class="caption">Representación de la proporción de infectados, susceptibles y recuperados en el Modelo SIR</p>
+</div>
+</div><div id="conclusiones-del-modelo-sir" class="slide section level3">
+<h1><span class="header-section-number">0.4.5</span> Conclusiones del Modelo SIR</h1>
+<ul>
+<li><span class="math">\(\beta&gt;\mu\)</span>: la proporción de infectados crece hasta un pico máximo y luego decrece hasta valer 0.</li>
+<li><span class="math">\(s\)</span> decrece de forma monótona pero no llega nunca a 0</li>
+<li>Los individuos que se mantienen susceptibles hasta fases avanzadas pueden no llegar a infectarse nunca.</li>
+</ul>
+</div><div id="conclusiones-del-modelo-sir-1" class="slide section level3">
+<h1><span class="header-section-number">0.4.6</span> Conclusiones del Modelo SIR</h1>
+<ul>
+<li><span class="math">\(r\)</span> crece de manera monótona.</li>
+<li>Nunca llega a valer 1</li>
+<li>Su valor asintótico <strong>representa el número de individuos afectados</strong></li>
+</ul>
+<p><span class="math">\[r = 1- s_0 \cdot e^{-\beta \frac{r}{\mu}}\]</span></p>
+</div><div id="comportamientos-importantes-de-los-modelos-epidemiológicos" class="titleslide slide section level2"><h1><span class="header-section-number">0.5</span> Comportamientos importantes de los modelos epidemiológicos</h1></div><div id="comportamientos-importantes" class="slide section level3">
+<h1><span class="header-section-number">0.5.1</span> Comportamientos importantes</h1>
+<ul>
+<li><strong>Comportamiento temprano</strong>: patrón de comportamiento en las fases iniciales
+<ul>
+<li>Es importante para saber cuánto tiempo tenemos para el desarrollo de vacunas e intervenciones médica</li>
+</ul></li>
+<li><strong>Comportamiento tardío</strong>: patrón de comportamiento en las fases más avanzadas de la epidemia (cuando <span class="math">\(t \to \infty\)</span>)
+<ul>
+<li>Permite predecir el alcance, número de infectados, etc.</li>
+</ul></li>
+</ul>
+</div><div id="comportamiento-temprano" class="slide section level3">
+<h1><span class="header-section-number">0.5.2</span> Comportamiento temprano</h1>
+<blockquote>
+<p>En todos los modelos el número de infectados en la fase temprana es bajo pero crece exponencialmente.</p>
+</blockquote>
+<blockquote>
+<p>El modelo SI es el más relevante para describir este comportamiento</p>
+</blockquote>
+</div><div id="comportamiento-tardío" class="slide section level3">
+<h1><span class="header-section-number">0.5.3</span> Comportamiento tardío</h1>
+<blockquote>
+<p>Cada modelo realiza una predicción distinta</p>
+</blockquote>
+<ul>
+<li>En el modelo SI todos terminan infectados</li>
+<li>En el modelo SIS (<span class="math">\(R_0&gt;1\)</span>) se alcanza un estado endémico en el que una proporción de la población queda infectada</li>
+<li>En el modelo SIS (<span class="math">\(R_0&lt;1\)</span>) la enfermedad desaparece</li>
+<li>En el modelo SIR todos terminan recuperados (en el estado susceptible o recuperado, pero no infectados)</li>
+</ul>
+</div><div id="comportamientos-de-los-modelos" class="slide section level3">
+<h1><span class="header-section-number">0.5.4</span> Comportamientos de los modelos</h1>
+<div class="figure">
+<img src="../images/tema08/resumenModelos.png" alt="Características básicas de los modelos epidemiológicos" /><p class="caption">Características básicas de los modelos epidemiológicos</p>
+</div>
+</div><div id="modelos-de-contagio-simple-3" class="slide section level3">
+<h1><span class="header-section-number">0.5.5</span> Modelos de contagio simple</h1>
+<blockquote>
+<p>Estos modelos no tienen en cuenta la red de contactos ya que suponen que hay una mezcla homogénea</p>
+</blockquote>
+<blockquote>
+<p>Realmente, las epidemias se propagan a través de los contactos de las personas, es decir, a través de los enlaces de su red social</p>
+</blockquote>
+<blockquote>
+<p>La estructura de la red modificará el comportamiento de estos modelos simples</p>
+</blockquote>
+</div>
+</body>
+</html>

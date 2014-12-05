@@ -50,7 +50,9 @@ Para entender la dinámica del modelo vamos a definir los siguientes parámetros
 
 La ecuación diferencial que modela la tasa a la que varía el número de infectados es:
 
-$$\frac{di}{dt} = \beta \cdot i \cdot s = \beta \cdot i \cdot (1-i)$$
+$$\frac{di}{dt} = i \cdot \beta  \cdot s = i \cdot \beta \cdot (1-i)$$
+
+En cada momento de tiempo, la proporción de infectados es la cantidad de infectados $i$ más la proporción de individuos susceptibles que pueden ser infectados $\beta \cdot s$.
 
 Si resolvemos esta ecuación nos queda que:
 
@@ -67,13 +69,15 @@ donde $i_0$ representa a la tasa de infectados en el instante $t=0$. De la repre
 
 Es similar al anterior salvo en que, en este modelo, los individuos infectados se pueden recuperar, volviendo al estado susceptible. Un ejemplo de este modelo es el resfriado común.
 
-![Esquema del Modelo SI](../images/tema08/modeloSI.png)
+![Esquema del Modelo SIS](../images/tema08/modeloSIS.png)
 
 Para este modelo necesitamos, además de los parámetros del anterior, la tasa de recuperación $\mu$, que representa la proporción de infectados que se recuperan y pasan al estado susceptible en cada instante de tiempo.
 
 En este caso, la ecuación diferencial que modela la tasa a la que varía el número de infectados es:
 
-$$\frac{di}{dt} = \beta \cdot i \cdot s - \mu \cdot i= \beta \cdot i \cdot (1-i) - \mu \cdot i$$
+$$\frac{di}{dt} = i \cdot \beta  \cdot s - \mu \cdot i=  i \cdot \beta \cdot (1-i) - \mu \cdot i$$
+
+En cada momento de tiempo, la proporción de infectados es la cantidad de infectados $i$ más la proporción de individuos susceptibles que pueden ser infectados $\beta \cdot s$ menos la proporción de individuos infectados que se pueden recuperar $\mu \cdot i$.
 
 La resolución de esta ecuación nos da el siguiente resultado:
 
@@ -111,7 +115,7 @@ En este modelo $\mu$ representa la tasa de recuperación que, a diferencia del a
 
 Las ecuaciones diferenciales de este modelo son las siguientes:
 
-$$\frac{di}{dt} = \beta \cdot i \cdot s - \mu \cdot i \text{;  }frac{ds}{dt} = -\beta \cdot i \cdot s\text{;  }frac{dr}{dt} = \mu \cdot i$$
+$$\frac{di}{dt} = \beta \cdot i \cdot s - \mu \cdot i \text{;  }\frac{ds}{dt} = -\beta \cdot i \cdot s\text{;  }\frac{dr}{dt} = \mu \cdot i$$
 
 En este caso el cálculo es más complejo pero podemos llegar a la siguiente representación gráfica de las tres funciones:
 

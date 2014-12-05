@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Guillermo Jiménez Díaz (gjimenez@ucm.es)" />
+  <meta name="author" content="Alberto Díaz (albertodiaz@fdi.ucm.es)" />
+  <title>Análisis de Redes Sociales</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+   href="../pandownTemplates/slidy/styles/slidy.css" />
+   
+
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+   href="../pandownTemplates/soc.css" />
+
+  <script src="../pandownTemplates/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+  <script src="../pandownTemplates/slidy/scripts/slidy.js"
+    charset="utf-8" type="text/javascript"></script>
+</head>
+<body>
+<div class="slide titlepage">
+  <h1 class="title">Análisis de Redes Sociales</h1>
+  <p class="author">
+Guillermo Jiménez Díaz (gjimenez@ucm.es)<br/>Alberto Díaz (albertodiaz@fdi.ucm.es)
+  </p>
+  <p class="date">5 de diciembre de 2014</p>
+</div>
+<div id="prefacio" class="titleslide slide section level1 unnumbered"><h1>Prefacio</h1></div>
+<div id="tema-8-propagación-y-difusión-en-redes" class="titleslide slide section level1 unnumbered"><h1>Tema 8: Propagación y Difusión en redes</h1></div><div id="modelos-de-contagio-simple" class="titleslide slide section level2"><h1><span class="header-section-number">0.1</span> Modelos de contagio simple</h1></div><div id="modelo-si" class="slide section level3">
+<h1><span class="header-section-number">0.1.1</span> Modelo SI</h1>
+<p>Es el modelo más sencillo, en el que un individuo susceptible puede quedar infectado pero, una vez infectado, no se puede recuperar. Un ejemplo de este tipo es el virus del VIH (o los zombies).</p>
+<div class="figure">
+<img src="../images/tema08/modeloSI.png" alt="Esquema del Modelo SI" /><p class="caption">Esquema del Modelo SI</p>
+</div>
+<p>En este modelo suponemos que cada individuo tiene <span class="math">\(\langle k \rangle\)</span> contactos (enlaces) y que en cada instante de tiempo la enfermedad se propaga con una tasa de contagio <span class="math">\(\delta\)</span>, que representa la probabilidad de que un individuo infectado transmita la enfermedad a uno susceptible.</p>
+<p>Para entender la dinámica del modelo vamos a definir los siguientes parámetros.</p>
+<ul>
+<li><span class="math">\(N\)</span> es el tamaño de la población y es <span class="math">\(N = S(t) + I(t)\)</span>, donde <span class="math">\(S(t)\)</span> (número de individuos que están en el estado susceptible en el tiempo <span class="math">\(t\)</span>) e <span class="math">\(I(t)\)</span> (número de individuos que están en el estado infectado en el tiempo <span class="math">\(t\)</span>).</li>
+<li>En lugar de manejar valores absolutos vamos a manejar las proporciones o ratios de susceptibles e infectados. De este modo <span class="math">\(s(t) = s = \frac{S(t)}{N}\)</span> representa la proporción de individuos susceptibles de la población mientras que <span class="math">\(i(t) = i = \frac{I(t)}{N}\)</span>.</li>
+<li><span class="math">\(\beta\)</span> es la tasa de transmisión que incluye el grado medio de cada individuo, esto es, <span class="math">\(\beta = \delta \cdot \langle k \rangle\)</span>.</li>
+</ul>
+<p>La ecuación diferencial que modela la tasa a la que varía el número de infectados es:</p>
+<p><span class="math">\[\frac{di}{dt} = \beta \cdot i \cdot s = \beta \cdot i \cdot (1-i)\]</span></p>
+<p>Si resolvemos esta ecuación nos queda que:</p>
+<p><span class="math">\[i = \frac{i_0exp(\beta t)}{1-i_0+i_0exp(\beta t)}\]</span></p>
+<p>donde <span class="math">\(i_0\)</span> representa a la tasa de infectados en el instante <span class="math">\(t=0\)</span>. De la representación gráfica de esta función extraemos las siguientes conclusiones:</p>
+<ul>
+<li>Inicialmente el número de infectados crece exponencialmente.</li>
+<li>A medida que el número de infectados se hace mayor, hay menos individuos susceptibles por lo que el crecimiento de infectados se ralentiza y la infección termina cuando todos están infectados (<span class="math">\(i(t \to \infty)= 1\)</span>).</li>
+</ul>
+<div class="figure">
+<img src="../images/tema08/graficaSI.png" alt="Representación de la proporción de infectados en el Modelo SI" /><p class="caption">Representación de la proporción de infectados en el Modelo SI</p>
+</div>
+</div><div id="modelo-sis" class="slide section level3">
+<h1><span class="header-section-number">0.1.2</span> Modelo SIS</h1>
+<p>Es similar al anterior salvo en que, en este modelo, los individuos infectados se pueden recuperar, volviendo al estado susceptible. Un ejemplo de este modelo es el resfriado común.</p>
+<div class="figure">
+<img src="../images/tema08/modeloSIS.png" alt="Esquema del Modelo SIS" /><p class="caption">Esquema del Modelo SIS</p>
+</div>
+<p>Para este modelo necesitamos, además de los parámetros del anterior, la tasa de recuperación <span class="math">\(\mu\)</span>, que representa la proporción de infectados que se recuperan y pasan al estado susceptible en cada instante de tiempo.</p>
+<p>En este caso, la ecuación diferencial que modela la tasa a la que varía el número de infectados es:</p>
+<p><span class="math">\[\frac{di}{dt} = \beta \cdot i \cdot s - \mu \cdot i= \beta \cdot i \cdot (1-i) - \mu \cdot i\]</span></p>
+<p>La resolución de esta ecuación nos da el siguiente resultado:</p>
+<p><span class="math">\[i = \Big(1- \frac{\mu}{\beta}\Big) \frac{C \cdot e^{(\beta - \mu)t}}{1 + C \cdot e ^{(\beta -\mu)t}}\]</span></p>
+<p><span class="math">\[C= \frac{\beta \cdot i_0}{\beta - \mu - \beta \cdot i_0}\]</span></p>
+<p>En este caso, las conclusiones que podemos extraer de la representación gráfica de la función son las siguientes:</p>
+<ul>
+<li>Como la recuperación es posible, el sistema alcanza un <em>estado endémico</em> en el que la tasa de infectados es constante:</li>
+</ul>
+<p><span class="math">\[i(\infty) = 1 - \frac{\beta}{\mu}\]</span></p>
+<p>En este estado endémico, la proporción de infectados no varía con el tiempo y sólo se produce cuando la tasa de recuperación es inferior a la tasa de transmisión (<span class="math">\(\mu &lt; \beta\)</span>)</p>
+<div class="figure">
+<img src="../images/tema08/graficaSIS.png" alt="Representación de la proporción de infectados en el Modelo SIS" /><p class="caption">Representación de la proporción de infectados en el Modelo SIS</p>
+</div>
+<ul>
+<li>En caso de que la tasa de recuperación sea mayor que la tasa de transmisión (<span class="math">\(\mu &gt; \beta\)</span>) entonces llegado a un determinado punto la proporción de infectados comienza a decrecer exponencialmente, alcanzado un estado libre de enfermedad, en la que todos los individuos se han recuperado y no hay infectados.</li>
+</ul>
+<p>El ritmo reproductivo básico (<span class="math">\(R_0\)</span>) representa el número promedio de individuos susceptibles que serán infectados por un individuo infectado:</p>
+<p><span class="math">\[R_0 = \frac{\beta}{\mu}\]</span></p>
+<p>Tal y como hemos visto antes, si <span class="math">\(R_0&lt;1\)</span> entonces la enfermedad termina desapareciendo de la población. Si <span class="math">\(R_0&gt;0\)</span> entonces la enfermedad se propagará. Cuanto mayor sea <span class="math">\(R_0\)</span>, más rápido es el proceso de propagación de la enfermedad. Por ejemplo, el sarampión (que se contagia por el aire) tiene un <span class="math">\(R_0= 12-18\)</span> mientras que la gripe tiene un <span class="math">\(R_0 = 2-3\)</span>.</p>
+</div><div id="modelo-sir" class="slide section level3">
+<h1><span class="header-section-number">0.1.3</span> Modelo SIR</h1>
+<p>En este modelo, los individuos infectados no vuelven a ser susceptibles sino que desarrollan una inmunidad a la enfermedad (o mueren) y pasan a un estado recuperado<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a> en el que no afectan al modelo de propagación: no pueden ser infectados ni pueden infectar a otros.</p>
+<div class="figure">
+<img src="../images/tema08/modeloSIR.png" alt="Esquema del Modelo SIR" /><p class="caption">Esquema del Modelo SIR</p>
+</div>
+<p>En este modelo <span class="math">\(\mu\)</span> representa la tasa de recuperación que, a diferencia del anterior, es la tasa de individuos infectados que pasan al estado recuperado. Para este modelo, la población es la suma de los infectados, susceptibles y recuperados(<span class="math">\(R(t)\)</span>), por lo que la proporción de infectados es <span class="math">\(i = 1-s-r\)</span>.</p>
+<p>Las ecuaciones diferenciales de este modelo son las siguientes:</p>
+<p><span class="math">\[\frac{di}{dt} = \beta \cdot i \cdot s - \mu \cdot i \text{;  }\frac{ds}{dt} = -\beta \cdot i \cdot s\text{;  }\frac{dr}{dt} = \mu \cdot i\]</span></p>
+<p>En este caso el cálculo es más complejo pero podemos llegar a la siguiente representación gráfica de las tres funciones:</p>
+<div class="figure">
+<img src="../images/tema08/graficaSIR.png" alt="Representación de la proporción de infectados, susceptibles y recuperados en el Modelo SIR" /><p class="caption">Representación de la proporción de infectados, susceptibles y recuperados en el Modelo SIR</p>
+</div>
+<ul>
+<li>Cuando <span class="math">\(\beta&gt;\mu\)</span> la proporción de infectados crece hasta un pico máximo y luego decrece hasta valer 0.</li>
+<li>La proporción de susceptibles decrece de forma monótona. Aunque satura, no llega nunca a 0 ya que cuando <span class="math">\(i \to 0\)</span> ya no hay individuos que puedan infectar. Esto implica que los individuos que se mantienen susceptibles hasta fases avanzadas pueden no llegar a infectarse nunca.</li>
+<li>La proporción de recuperados crece de manera monótona. De manera similar a los susceptibles, la proporción de recuperados nunca llega a valer 1. Su valor asintótico representa el número de individuos afectados y se calcula como:</li>
+</ul>
+<p><span class="math">\[r = 1- s_0 \cdot e^{-\beta \frac{r}{\mu}}\]</span></p>
+<p>Las condiciones iniciales más habituales son:</p>
+<p><span class="math">\[i_0 = \frac{c}{N}\text{;  }s_0 = 1- \frac{c}{N}\text{;  }r_0 = 0\]</span></p>
+</div><div id="comportamientos-importantes-de-los-modelos-epidemiológicos" class="slide section level3">
+<h1><span class="header-section-number">0.1.4</span> Comportamientos importantes de los modelos epidemiológicos</h1>
+<p>Existen principalmente dos comportamientos destacables en estos modelos:</p>
+<h4 id="comportamiento-temprano." class="unnumbered">Comportamiento temprano.</h4>
+<p>Es el patrón de comportamiento en las fases iniciales. Es importante para saber cuánto tiempo tenemos para el desarrollo de vacunas e intervenciones médicas. La mejor forma de detener o contener la epidemia en esta fase es mediante vacunación temprana o la cuarentena.</p>
+<p>En todos los modelos el número de infectados en la fase temprana es bajo pero crece exponencialmente. Generalmente, el modelo SI es el más relevante para describir este comportamiento.</p>
+<h4 id="comportamiento-tardío." class="unnumbered">Comportamiento tardío.</h4>
+<p>Es el patrón de comportamiento en las fases más avanzadas de la epidemia (cuando <span class="math">\(t \to \infty\)</span>). Permite predecir el alcance, número de infectados, etc.</p>
+<p>En este caso, cada modelo realiza una predicción distinta:</p>
+<ul>
+<li>En el modelo SI todos terminan infectados.</li>
+<li>En el modelo SIS se alcanza un estado endémico en el que una proporción de la población queda infectada (<span class="math">\(R_0&gt;1\)</span>) o en el que la enfermedad desaparece (<span class="math">\(R_0&lt;1\)</span>)</li>
+<li>En el modelo SIR todos terminan recuperados (en el estado susceptible o recuperado, pero no infectados)</li>
+</ul>
+<p>En resumen, las características básicas de los modelos epidemiológicos son los siguientes:</p>
+<div class="figure">
+<img src="../images/tema08/resumenModelos.png" alt="Características básicas de los modelos epidemiológicos" /><p class="caption">Características básicas de los modelos epidemiológicos</p>
+</div>
+<p>Tal y como hemos indicado, estos modelos no tienen en cuenta la red de contactos ya que suponen que hay una mezcla homogénea. Realmente, las epidemias se propagan a través de los contactos de las personas, es decir, a través de los enlaces de su red social. Por tanto, hay que tener en cuenta el papel de la red en el proceso epidémico. Tal y como veremos a continuación, la estructura de la red modificará el comportamiento de estos modelos simples.</p>
+</div><div id="modelos-de-contagio-basados-en-redes" class="titleslide slide section level2"><h1><span class="header-section-number">0.2</span> Modelos de contagio basados en redes</h1></div><div id="redes-aleatorias" class="slide section level3">
+<h1><span class="header-section-number">0.2.1</span> Redes aleatorias</h1>
+<p>Vamos a simular un modelo SI en una red aleatoria. Si utilizamos el simulador de <a href="http://www.ladamic.com/netlearn/NetLogo501/ERDiffusion.html">Difusión en una red aleatoria</a><a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a> podemos ver la influencia de la densidad de la red en los procesos de contagio.</p>
+<div class="figure">
+<img src="../images/tema08/contagioER.png" alt="Influencia de la densidad de la red aleatoria en los procesos de contagio" /><p class="caption">Influencia de la densidad de la red aleatoria en los procesos de contagio</p>
+</div>
+<p>Como se puede ver en la simulación, la densidad de la red afecta a la velocidad de infección y al número de individuos infectados: a mayor densidad, mayor es el número de individuos infectados y mayor es la velocidad de propagación.</p>
+<p>Además, se puede ver que si partimos de un único nodo, sólo se infectarán los nodos que pertenecen a la misma componente conexa. Recordemos algunas redes reales tienen una componente gigante y muchas componentes pequeñas por lo que la epidemia se extiende en mayor o menor medida dependiendo de la localización del nodo inicial. La probabilidad de que un nodo pertenezca a la componente gigante se <span class="math">\(\frac{N_G}{N}\)</span>.</p>
+</div><div id="redes-libres-de-escala" class="slide section level3">
+<h1><span class="header-section-number">0.2.2</span> Redes libres de escala</h1>
+<p>A continuación simularemos un modelo SI en una red libre de escala creada siguiendo el modelo de Barabasi-Albert. Si recordamos, para que se presente la propiedad de ser libre de escala es necesario que exista enlace preferencial. Por este motivo vamos a ver el efecto de la existencia de enlace preferencial en estas redes. Para ello usaremos el simulador de <a href="http://www.ladamic.com/netlearn/NetLogo501/BADiffusion.html">Difusión en una red libre de escala</a>.</p>
+<div class="figure">
+<img src="../images/tema08/contagioBA.png" alt="Influencia del enlace preferencial (redes libres de escala) en los procesos de contagio" /><p class="caption">Influencia del enlace preferencial (redes libres de escala) en los procesos de contagio</p>
+</div>
+<p>En este caso podemos observar que el enlace preferencial favorece el contagio. Esto se debe a que el enlace preferencial posibilita la existencia de Hubs, que son los responsables de ayudar a difundir más rápidamente la infección.</p>
+</div><div id="redes-de-watts-strogatz" class="slide section level3">
+<h1><span class="header-section-number">0.2.3</span> Redes de Watts-Strogatz</h1>
+<p>En este caso simularemos un modelo SI en una red creada siguiendo el modelo de Watts-Strogatz para estudiar la influencia de los “atajos” o enlaces débiles en el contagio sobre esta red. Para ello vamos a usar el simulador <a href="http://www.ladamic.com/netlearn/NetLogo4/SmallWorldDiffusionSIS.html">Difusión en un mundo pequeño</a> y modificaremos la probabilidad de reasignación de enlaces <span class="math">\(p\)</span> para ver su efecto en la propagación.</p>
+<div class="figure">
+<img src="../images/tema08/contagioSW.png" alt="Influencia de los enlaces débiles en los procesos de contagio" /><p class="caption">Influencia de los enlaces débiles en los procesos de contagio</p>
+</div>
+<p>Podemos observar que los enlaces débiles provocan que aumente la velocidad de la infección ya que, en el mismo tiempo, se aprecia un mayor número de nodos infectados.</p>
+</div><div id="soluciones-analíticas" class="slide section level3">
+<h1><span class="header-section-number">0.2.4</span> Soluciones analíticas</h1>
+<p>Podemos estudiar de manera analítica el comportamiento temprano y tardío de los modelos de contagio SI y SIR en redes complejas. Para ello es necesario hacer una aproximación conocida como la <strong>aproximación por bloques de grados</strong>: distinguimos distintos bloques de nodos basados en el grado que tienen y asumimos que todos los nodos en el mismo bloque (y, por tanto, con el mismo grado) son estadísticamente equivalentes. Podemos representarlo gráficamente con la siguiente figura:</p>
+<div class="figure">
+<img src="../images/tema08/bloqueGrado.png" alt="Aproximación por bloques de grados" /><p class="caption">Aproximación por bloques de grados</p>
+</div>
+<p>De esta forma definimos la fracción de nodos con grado <span class="math">\(k\)</span> infectados como:</p>
+<p><span class="math">\[i_k  = \frac{I_k}{N_k}\]</span></p>
+<p>La suma de los diferentes <span class="math">\(i_k\)</span> para todos los grados dan la fracción total de nodos infectados <span class="math">\(i\)</span>.</p>
+<h4 id="modelo-si-1" class="unnumbered">Modelo SI</h4>
+<p>De acuerdo a lo anterior, definimos la ecuación diferencial para el modelo SI que modela la tasa de infectados para cada grado <span class="math">\(k\)</span> por separado:</p>
+<p><span class="math">\[\frac{di_k}{dt} = \beta (1-i_k(t))k \Theta_k(t)\]</span></p>
+<p>En este caso:</p>
+<ul>
+<li>El grado medio ha sido sustituido por el grado real <span class="math">\(k\)</span></li>
+<li><span class="math">\(\Theta_k(t)\)</span> es una función de densidad que representa la fracción de vecinos que están infectados para un nodo de grado <span class="math">\(k\)</span>.</li>
+<li>Necesitaremos definir <span class="math">\(k_{max}\)</span> ecuaciones.</li>
+</ul>
+<p>La función de densidad podemos aproximarla de la siguiente forma:</p>
+<p><span class="math">\[\Theta_k(t) \approx \Theta(t) = \frac{\sum_{k&#39;}(k&#39;-1)\cdot P(k&#39;) \cdot i_{k&#39;}(t)}{\langle k \rangle}\]</span></p>
+<p>Durante el comportamiento temprano, es decir, cuando <span class="math">\(i\)</span> es pequeño podemos aproximarlo de la siguiente forma:</p>
+<p><span class="math">\[\frac{di_k}{dt} = \beta k i_0 \frac{\langle k \rangle-1}{\langle k \rangle} e^{t/\tau}\]</span></p>
+<p>Y podemos obtener la fracción de nodos infectados de grado <span class="math">\(k\)</span> y el total de nodos infectados:</p>
+<p><span class="math">\[i_k = i_0 (1+ \frac{k \langle k \rangle -1}{\langle k^2 \rangle - \langle k \rangle}(e^{t/\tau}-1))\]</span></p>
+<p><span class="math">\[i = i_0 (1+ \frac{\langle k \rangle^2 - \langle k \rangle}{\langle k^2 \rangle - \langle k \rangle}(e^{t/\tau}-1))\]</span></p>
+<p><span class="math">\(\tau\)</span> representa el periodo de incubación, que es la cantidad de tiempo que requiere la epidemia para crecer. Cuando menor es <span class="math">\(\tau\)</span>, más rápido se propaga la enfermedad. Según las ecuaciones anteriores se puede calcular de la siguiente forma:</p>
+<p><span class="math">\[\tau = \frac{\langle k \rangle}{\beta(\langle k^2 \rangle - \langle k \rangle)}\]</span></p>
+<p>De estas ecuaciones podemos obtener las siguientes conclusiones:</p>
+<ul>
+<li>Cuanto mayor sea el grado de un nodo mayor es la probabilidad de que ese nodo sea infectado.</li>
+<li>El periodo de incubación depende de la estructura de la red y de los momentos de primer y segundo orden de la distribución de grados (<span class="math">\(\langle k \rangle\)</span> y <span class="math">\(\langle k^2 \rangle\)</span>), respectivamente.</li>
+<li>En una red aleatoria el periodo de incubación depende de la densidad de la red, de modo que la epidemia se propaga más rápido cuanto más densa sea ésta (mayor <span class="math">\(\langle k \rangle\)</span>).</li>
+</ul>
+<p><span class="math">\[\tau_{ER} = \frac{1}{\beta(\langle k \rangle)} \text{ ya que } \langle k^2 \rangle = \langle k \rangle (\langle k \rangle - 1)\]</span></p>
+<ul>
+<li>En una red libre de escala los momentos dependen de <span class="math">\(\gamma\)</span>, de modo que si <span class="math">\(\gamma \geq 3\)</span> ambos momentos son finitos y el contagio se comporta de manera similar a la red aleatoria.</li>
+<li>Sin embargo, si <span class="math">\(\gamma &lt; 3\)</span> en una red libre de escala entonces <span class="math">\(\langle k^2 \rangle\)</span> diverge y <span class="math">\(\tau \to 0\)</span>, lo que implica que el periodo de incubación característico desaparece y la epidemia es instantánea. Esto se debe a que los hubs son los primeros nodos en infectarse y, dada su alta conectividad, infectan más rápidamente a la mayoría de los nodos.</li>
+</ul>
+<h4 id="modelos-sis" class="unnumbered">Modelos SIS</h4>
+<p>En los modelos con recuperación la ecuación diferencial de la tasa de infectados de grado <span class="math">\(k\)</span> es algo distinta:</p>
+<p><span class="math">\[\frac{di_k}{dt} = \beta (1-i_k(t))k \Theta_k(t) _ \mu \cdot i_k(t)\]</span></p>
+<p>Donde vemos que aparece la tasa de recuperación <span class="math">\(\mu\)</span>. Esto hace que el periodo de incubación <span class="math">\(\tau\)</span> sea algo distinto:</p>
+<p><span class="math">\[\tau^{SIS} = \frac{\langle k \rangle}{\beta \langle k^2 \rangle - \mu \langle k \rangle}\]</span></p>
+<p>Para un tamaño suficientemente grande de <span class="math">\(\mu\)</span> el tiempo característico se hace negativo e <span class="math">\(i_k\)</span> decrece exponencialmente. Sin embargo, depende de la topología de la red. En lugar de solo <span class="math">\(\mu\)</span> vamos a tener en cuenta el ritmo reproductivo básico <span class="math">\(\lambda = \frac{\beta}{\mu}\)</span>, que es representativo de la enfermedad (o de lo que queremos difundir) y que cuanto mayor sea más probable es que la enfermedad se propague. Sin embargo, ¿cuál es el mínimo valor necesario para que se propague la enfermedad? Esto es lo que se conoce como el <strong>umbral epidemiológico</strong> (<span class="math">\(\lambda_C\)</span>)y también dependerá de la estructura de la red.</p>
+<ul>
+<li>Para una red aleatoria tenemos que el umbral epidemiológico es:</li>
+</ul>
+<p><span class="math">\[\lambda_C = \frac{1}{\langle k \rangle +1}\]</span></p>
+<p>Esto implica que siempre va a ser distinto de cero y que, dependiendo del valor de <span class="math">\(\lambda\)</span>, podemos conseguir que la epidemia alcance un estado endémico (si <span class="math">\(\lambda &gt; \lambda_C\)</span>) o que la epidemia desaparezca (si <span class="math">\(\lambda &lt; \lambda_C\)</span>).</p>
+<ul>
+<li>Para una red libre de escala tenemos que el umbral epidemiológico es:</li>
+</ul>
+<p><span class="math">\[\lambda_C = \frac{\langle k \rangle}{\langle k^2 \rangle}\]</span></p>
+<p>Esto implica que para <span class="math">\(\gamma &lt; 3\)</span> el segundo momento diverge y, por tanto, el umbral epidemiológico desaparece. Esto implica que incluso las enfermedades que son difíciles de transmitir se pueden propagar en una red libre de escala. De nuevo, esto es consecuencia de los hubs: en el momento en el que la enfermedad infecta un hub puede pasar a un número muy grande de nodos, de modo que persiste en la población.</p>
+<p>Para el modelo SIR los resultados son similares. En la siguiente tabla se resumen las principales conclusiones extraídas:</p>
+<div class="figure">
+<img src="../images/tema08/resumenModelosRedes.png" alt="Resumen de los modelos epidémicos en redes (Network Science, cap. 10)" /><p class="caption">Resumen de los modelos epidémicos en redes (Network Science, cap. 10)</p>
+</div>
+</div>
+<div class="footnotes slide">
+<hr />
+<ol>
+<li id="fn1"><p>En inglés, el estado es <em>removed</em>, que es más adecuado para describir el proceso.<a href="#fnref1">↩</a></p></li>
+<li id="fn2"><p>Todos los modelos de NetLogo que se ven en este tema están disponibles en el Campus Virtual.<a href="#fnref2">↩</a></p></li>
+</ol>
+</div>
+</body>
+</html>
