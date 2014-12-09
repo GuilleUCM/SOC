@@ -371,3 +371,31 @@ Así mismo, este modelo nos permite comprobar que la estructura de la red tambi�
 - Las comunidades sirven de barrera para la difusión, de modo que crean "bolsas aisladas" que no permiten la adopción de ideas externas a la comunidad. Cuando una cascada alcanza una comunidad (un agrupamiento de nodos de alta densidad) ésta se detendrá ya que no podrá entrar dentro de dicha comunidad.
 - Lo anterior permite que distintas opiniones puedan convivir en la misma red, debido a la existencia de comunidades con distintas opiniones en distintos lugares de dicha red.
 
+### Otros modelos complejos de difusión
+
+
+#### Nodos bilingües. {-}
+
+Existen modelos de adopción de opiniones más complejos. Uno de ellos es el que permite la existencia de __nodos bilingües__, es decir, nodos que pueden adoptar la opción A y B simultáneamente pero con una penalización $c$. 
+
+En este caso, estos nodos pueden conseguir que la opinión minoritaria persista en la red a pesar en condiciones en las que la opinión minoritaria desaparecería. A modo de ejemplo podemos utilizar una red lineal y observar el comportamiento de la misma con y sin nodos bilingües. Sin ellos, la opción con menor beneficio siempre termina por desaparecer de la red. Sin embargo, la presencia de nodos bilingües permite que dicha opción "sobreviva" entre pares de estos nodos. Podemos observar este comportamiento utilizando la simulación del "Modelo de cascasda" disponible en el Campus Virtual.
+
+#### Umbrales heterogéneos. {-}
+
+Este modelo considera que cada nodo de la red valora de una manera diferente las distintas opiniones. De este modo, cada nodo $v$ de la red tiene un determinado umbral creado a partir de su beneficio por adoptar la opción A ($a_v$) y su beneficio por adoptar la opción B ($b_v$). La simulación de este modelo funciona de manera similar al anterior salvo porque cada nodo posee su propio umbral.
+
+En este caso, la diversidad de los umbrales juega un papel muy importante ya que interactúa de manera compleja con la estructura de la red. Por ejemplo, en la siguiente figura podemos ver que el nodo 1 tiene una posición muy central en la red pero que no hubiera tenido éxito en la propagación de no ser por el bajo umbral del nodo 3. Esto indica que para comprender la forma en la que se produce la difusión en una red social no solo hay que tener en cuenta el poder de los influenciadores sino que también hay que tener en cuenta cómo de influenciables son los nodos que lo rodean.
+
+![Modelo basado en umbrales heterogéneos](../images/tema08/umbralHeterogeneo.png)
+
+#### Acciones colectivas. {-}
+
+En esta ocasión lo que se desea es modelar la manera en la que se coordinan ciertas acciones colectivas como acudir a una manifestación contra un gobierno represivo. En este caso no tenemos información de las intenciones del resto de la población (ese gobierno se ha encargado de controlar los medios de comunicación y hay una "recompensa" negativa por asistir a la manifestación) sino que solo se tiene información de los individuos más cercanos, lo que dificulta enormemente la toma de esta decisión. Se produce el fenómeno de lo que se conoce como _ignorancia pluralista_, en el que no se tiene conocimiento de la voluntad del resto (aunque realmente haya una verdadera voluntad a favor o en contra). Este mismo problema de coordinación se puede aplicar en otras situaciones como los vetos y votaciones de un consejo de administración o dirección. 
+
+La particularidad de este modelo es que pretende predecir el comportamiento coordinado de una red en el que cada individuo toma la decisión basándose solo en hablar con las personas más cercanas, es decir, teniendo un horizonte muy limitado. En general, estas acciones pueden modelarse mediante un modelo basado en umbrales heterogéneos, donde el umbral de cada persona significa "me manifestaré en caso de que haya al menos $k$ vecinos en la manifestación (incluyéndome a mí)". Así mismo, cada nodo también conoce los umbrales de sus vecinos, pero no del resto, por lo que es difícil predecir qué ocurrirá. La decisión se deberá tomar solo usando la información conocida (la suya y la de sus vecinos).
+
+Por ejemplo, en la siguiente figura se pueden ver tres redes distintas donde, para cada nodo hemos indicado su umbral. En la primera red no se producirá la acción colectiva ya que hay un nodo ($w$) que tiene un umbral de 4 y solo hay 3 nodos en la red. En la segunda red, aunque si todos conociesen la información globalmente se produciría la acción colectiva, no se producirá dicha acción ya que cada nodo carece de información suficiente _localmente_ para tomar la decisión con seguridad. En la tercera red existe un conocimiento común: los nodos $u$, $v$ y $w$ conocen su información y saben que sus vecinos conocen su información, produciendo una cadena de conocimiento que permite que los tres nodos realicen la acción colectiva y permitiendo que también $x$ la realice.
+
+![Modelado de acciones colectivas. Las dos primeras no ocurrirán mientras que la tercera sí ocurrirá](/path/to/img.jpg "Optional title")
+
+
