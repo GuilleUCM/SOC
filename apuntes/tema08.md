@@ -295,5 +295,28 @@ Para el modelo SIR los resultados son similares. En la siguiente tabla se resume
 
 ![Resumen de los modelos epidémicos en redes (Network Science, cap. 10)](../images/tema08/resumenModelosRedes.png)
 
+## Modelos de contagio complejo
 
+Hasta ahora hemos estudiado modelos de contagio simple, en los que el contagio se produce uno a uno, es decir, basta con que un vecino de un determinado nodo esté infectado para que se pueda quedar infectado. Sin embargo, en algunos procesos como el contagio social o inducir a comprar un producto, no basta con que uno de mis vecinos tenga una determinada "opinión" para cambiar la mía sino que es necesario sea una fracción de mis vecinos. Esto es lo que se conoce como contagio complejo o **contagio basado en umbrales**.
+
+Existen principalmente dos formas de definir el contagio basado en umbrales:
+
+- Mediante un umbral $k$ que define el número de vecinos que han de estar infectados para que un nodo quede infectado. El modelo de contagio simple es un modelo basado en este tipo de umbral con $k=1$.
+- Mediante una proporción $p$ que define el porcentaje de vecinos que han de estar infectados para que un nodo quede infectado.
+
+En este caso, la propagación se comporta de una manera bastante distinta que depende principalmente de:
+
+- La estructura de la red.
+- El valor del umbral utilizado.
+- La elección de los nodos inicialmente infectados.
+
+A modo de ejemplo podemos ver la diferencia entre un contagio simple y uno complejo en un solo paso de simulación en la figura que aparece a continuación. Como se puede ver, el contagio simple se propaga de una manera mucho más rápida. Además, el contagio simple permite llegar a toda la red (en la Figura, en $t=2$ todos los nodos estarían contagiados). Sin embargo, el contagio complejo es mucho más lento y puede verse detenido rápidamente debido a la falta de conexiones (en la Figura, en $t=2$ solo J sería infectado y la infección se detendría).
+
+![Contagio simple vs. Contagio complejo](../images/tema08/contagioComplejo.png)
+
+Podemos ver también que los modelos de contagio complejos se comportan de manera distinta en los modelos de redes vistos:
+
+- En una red de mundo pequeño (Watts-Strogatz) los enlaces débiles o atajos ya no funcionan como medio para aumentar la velocidad de propagación. Podemos ver este comportamiento en la simulación del modelo de contagio complejo en una red de mundo pequeño que hemos dejado en el Campus Virtual.
+- En una red libre de escala, los hubs pierden importancia en la velocidad de propagación ya que, aunque llegan a muchos nodos, solo ellos no son capaces de propagar la enfermedad.
+- En una red aleatoria la propagación depende muy decisivamente de los nodos inicialmente infectados.
 
