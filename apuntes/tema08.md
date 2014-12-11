@@ -396,6 +396,42 @@ La particularidad de este modelo es que pretende predecir el comportamiento coor
 
 Por ejemplo, en la siguiente figura se pueden ver tres redes distintas donde, para cada nodo hemos indicado su umbral. En la primera red no se producirá la acción colectiva ya que hay un nodo ($w$) que tiene un umbral de 4 y solo hay 3 nodos en la red. En la segunda red, aunque si todos conociesen la información globalmente se produciría la acción colectiva, no se producirá dicha acción ya que cada nodo carece de información suficiente _localmente_ para tomar la decisión con seguridad. En la tercera red existe un conocimiento común: los nodos $u$, $v$ y $w$ conocen su información y saben que sus vecinos conocen su información, produciendo una cadena de conocimiento que permite que los tres nodos realicen la acción colectiva y permitiendo que también $x$ la realice.
 
-![Modelado de acciones colectivas. Las dos primeras no ocurrirán mientras que la tercera sí ocurrirá](/path/to/img.jpg "Optional title")
+![Modelado de acciones colectivas. Las dos primeras no ocurrirán mientras que la tercera sí ocurrirá](../images/tema08/accionColectiva.png)
 
+### Difusión de la innovación
+
+Para concluir con el tema vamos a estudiar un caso muy concreto de difusión, relacionado con la compartición de información entre personas para la resolución de problemas y la difusión de la innovación.
+
+Si pretendemos dar solución a un determinado problema podemos pensar en dos extremos opuestos desde el punto de vista de la comunicación entre las personas que buscan una solución a dicho problema:
+
+- Cada persona trabaja de manera aislada, sin comunicarse con otras personas que también trabajan en la resolución del problema. En este caso, cualquier solución parcial a la que llegue una de las personas no llega al resto de ellas, lo que hace que el avance en la solución sea más lento. Sin embargo, esta independencia permite que surjan ideas "frescas" que no estén sesgadas por el resto de personas que trabajan en la búsqueda de una solución.
+- Un _brainstorming_ o lluvia de ideas es una sesión en la que un grupo de personas exponen sus ideas para resolver un problema. En este caso, surgen muchas ideas a la vez y unas ideas pueden ayudar a mejorar las soluciones propuestas por otros, de modo que se puede llegar a una solución de una manera mucho más rápida que de manera aislada. Sin embargo, esta interrelación tan fuerte entre estas personas puede hacer que todas terminen convergiendo a una idea común (_groupthinking_) que no tiene por qué ser la mejor solución al problema.
+
+Estas dos formas de comunicación las podemos representar en forma de red tal y como se observa en la siguiente figura.
+
+![Redes que representan las dos formas extremas de atacar un problema](../images/tema08/redInnovacion.png)
+
+Por otro lado, un problema complejo puede quedar representado mediante su espacio de soluciones, es decir, el conjunto de todas las soluciones posibles a las que se puede llegar para resolver este problema. De entre todas las soluciones habrá soluciones mejores y soluciones peores. La bondad de la solución es calculada mediante una _función de fitness_, de modo que podemos representar el espacio de soluciones gráficamente de acuerdo a esta función. Este espacio de soluciones puede ser más o menos "rugoso" dependiendo del problema, es decir, podemos tener un espacio de soluciones con una única solución buena (la solución que maximiza la función de fitness) o un espacio donde existan múltiples máximos locales (soluciones que maximizan la función de fitness en relación con las soluciones más cercanas). El problema de este segundo tipo de espacios es que nos podemos quedar en una de estas soluciones locales sin llegar a conocer que pueden existir soluciones mejores que la que hemos alcanzado.
+
+Lazer y Friedman usaron el modelo NK de Kauffman[^4] para simular el proceso de difusión de innovación para la resolución de problemas y cómo las red de comunicación entre las personas implicadas en la resolución del problema afecta a la velocidad y a la bondad de las soluciones alcanzadas. En este modelo, $N$ representa la dimensionalidad del espacio de soluciones, el número de bits necesarios para representar la solución. Por ejemplo, en el problema de la mochila[^5], $N$ representa cada uno de los objetos que podemos meter en la mochila, siendo la solución un vector de bits donde 0 representa que no lo hemos metido en la mochila, mientras 1 representa que sí lo llevamos en la misma. Por otro lado, $K$ es un parámetro que mide la rugosidad del espacio de soluciones. Podemos entender el significado de este parámetro con la siguiente figura:
+
+![Representación del espacio de soluciones de acuerdo al valor de $K$](../images/tema08/NK.png)
+
+[^4]: Lazer, D., & Friedman, A. (2007). [The network structure of exploration and exploitation](http://www.ksg.harvard.edu/davidlazer/files/papers/Lazer_Friedman_ASQ.pdf). Administrative Science Quarterly, 52(4), 667-694.
+
+[^5]: [http://es.wikipedia.org/wiki/Problema_de_la_mochila](http://es.wikipedia.org/wiki/Problema_de_la_mochila)
+
+La simulación del proceso de difusión de innovación consiste en lo siguiente:
+
+1. Tenemos una red en la que cada nodo almacena una cadena de $N$ bits que representa la solución que tiene un determinado individuo de ese problema. 
+2. En cada paso de simulación, cada nodo evalúa si alguno de sus vecinos tiene una solución mejor que la suya.
+    1. En caso afirmativo, "imita" a su vecino (copia la solución de su vecino).
+    2. En caso negativo, "innova", modificando aleatoriamente uno de los bits de su solución.
+3. La simulación termina cuando todos los nodos convergen a la misma solución.
+
+La estructura de la red tiene un fuerte impacto en la velocidad de difusión de la innovación y cuál es la bondad de la solución alcanzada. Vamos a probar con una red de mundo pequeño para comprender cómo se comporta el modelo de difusión. Podemos utilizar el modelo [SmallWorld Innovation](http://spark-public.s3.amazonaws.com/sna/netlearn/NetLogo502/SmallWorldInnovation.html), disponible en el Campus Virtual.
+
+Las conclusiones que se obtienen de esta simulación es que cuanto mayor es la comunicación entre los nodos más rápido se converge a una solución mejor que la media inicial. Sin embargo, esta solución no es tan buena como la que se alcanza en una red con menos conexiones ya que no ha habido suficiente tiempo como para que la innovación se propague por la red. La red con menos conexiones alcanza una solución mejor pero, por contra, tarda más en converger.
+
+![Solucioones finales que alcanza la simulación. La red de la izquierda converge a una solución mejor pero tarda mucho más tiempo.](../images/tema08/solSimulacion.png)
 

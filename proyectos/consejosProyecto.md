@@ -4,6 +4,16 @@
 
 # Proyectos: Consejos sobre la realización del proyecto {-}
 
+
+
+## Consejos adicionales
+
+- Reproducibilidad
+- Decirles sitios de datasets
+- Hablarles de otras herramientas de visualización
+- API Gephi
+- Bibliografía
+
 Para la realización del proyecto es necesario seguir el proceso de Diseño Guiado por Objetivos. Se recomienda realizar los siguientes pasos
 
 ## Fase de Investigación o Conocer al usuario
