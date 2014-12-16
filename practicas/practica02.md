@@ -20,7 +20,7 @@ Desarrollar una pequeña aplicación que genere una red aleatoria dados los valo
 
 ## Parte B: Desarrollo de un modelo de Barabasi-Albert
 
-Desarrollar una pequeña aplicación que genere una red libre de escala siguiendo el modelo de Barabasi-Albert dados los valores $m$(>0) --el número de enlaces con los que entra un nodo nuevo a la red-- y $t$ (>0)) --el número de pasos del modelo. Puedes suponer que $m_0 = m+1$ y que en la configuración inicial todos los nodos están unidos con todos. Recuerda que en estas redes el número de nodos es dependiente del número de pasos dados en el modelo: $N(t) = m_0 + t$.
+Desarrollar una pequeña aplicación que genere una red libre de escala siguiendo el modelo de Barabasi-Albert dados los valores $m$(>0) --el número de enlaces con los que entra un nodo nuevo a la red-- y $t$ (>0)) --el número de pasos del modelo. Puedes suponer que $m_0 = m+1$ y que en la configuración inicial todos los nodos están unidos con todos. Recuerda que en estas redes el número de nodos es dependiente del número de pasos dados en el modelo: $N(t) = m_0 + m \cdot t$.
 
 Al igual que antes, no es necesaria ninguna simulación como las que se han visto en clase sino que lo que queremos es que la aplicación genere un un fichero en [uno de los formatos que es capaz de importar Gephi](http://gephi.github.io/users/supported-graph-formats/) (por ejemplo, CSV para nodos y aristas por separado). 
 

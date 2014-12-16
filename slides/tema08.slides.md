@@ -34,7 +34,6 @@ Modelar la propagación de elementos:
 
 ## Modelos de contagio simple
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates asperiores nihil atque impedit, iusto quis neque eius aut quod. Eveniet asperiores blanditiis ex fugit deserunt, aliquam odio sequi laboriosam qui!
 
 ### Modelos de contagio simple
 
