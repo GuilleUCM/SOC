@@ -433,5 +433,5 @@ La estructura de la red tiene un fuerte impacto en la velocidad de difusión de 
 
 Las conclusiones que se obtienen de esta simulación es que cuanto mayor es la comunicación entre los nodos más rápido se converge a una solución mejor que la media inicial. Sin embargo, esta solución no es tan buena como la que se alcanza en una red con menos conexiones ya que no ha habido suficiente tiempo como para que la innovación se propague por la red. La red con menos conexiones alcanza una solución mejor pero, por contra, tarda más en converger.
 
-![Solucioones finales que alcanza la simulación. La red de la izquierda converge a una solución mejor pero tarda mucho más tiempo.](../images/tema08/solSimulacion.png)
+![Soluciones finales que alcanza la simulación. La red de la izquierda converge a una solución mejor pero tarda mucho más tiempo.](../images/tema08/solSimulacion.png)
 
