@@ -131,6 +131,8 @@ Se puede ver que el umbral $f_c$ cae drásticamente en el caso de producirse ata
 
 ![Probabilidad de pertenecer al componente gigante a medida que variamos la probabilidad de que los nodos sean eliminados. La línea verde representa la evolución debida a fallos aleatorios mientras que la roja muestra como el umbral cae debido a ataques](../images/tema09/fragAtaque-ba.png)
 
+Desde el punto de vista del diámetro de la red, vemos que el ataque a los nodos con mayor grado produce un gran incremento en las distancias. En la gráfica que aparece en la sección anterior podemos observar que un ataque sobre solo un 5% de los nodos de la red hace que el diámetro de la misma se duplique. Esto demuestra la importancia de los hubs en la reducción de distancias dentro de este tipo de red.
+
 
 
 
