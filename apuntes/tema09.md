@@ -217,7 +217,7 @@ R. Kinney, P. Crucitti, R. Albert, and V. Latora, Eur. Phys. B, 2005.
 
 ![Resultados de las simulaciones del modelo de sobrecarga. A la izquierda, el número medio de nodos que fallan bajo distintos valores de carga inicial. A la derecha, la distribución del tamaño de las cascadas](../images/tema09/modeloSobrecarga.png)
 
-### Modelo ramificado
+### Modelo ramificado {-}
 
 El modelo ramificado o _branching model_ es un modelo muy simple que sirve para resolver analíticamente la distribución del tamaño de la cascada. Representa en forma de árbol las características básicas de un fenómeno en cascada a partir de los datos históricos de dicha cascada. En la raíz se coloca el nodo cuyo fallo ocasiona la posible cascada. Posteriormente, en las ramas colocamos los nodos cuyo fallo se produjo como consecuencia del fallo de su nodo padre.
 
@@ -246,3 +246,37 @@ Como se puede ver, sea cual sea el modelo se puede observar que existe un expone
 
 - Una subcrítica en la que todas las perturbaciones mueren rápidamente.
 - Una supercrítica en la que la mayoría de las perturbaciones se propagan a todo el sistema.
+
+## Mejorar la robustez de una red
+
+Para terminar vamos a estudiar cómo se puede mejorar la robustez de una red como medida para prevenir fallos y ataques. En este tema vamos a hablar de dos posibles alternativas:
+
+- Diseñar redes robustas: Si tenemos la oportunidad de hacerlo podemos añadir nodos y/o enlaces de modo que la red sea más robusta que la inicial.
+- Detener fallos en cascada: La primera alternativa suele ser costosa y, en ocasiones, no suele ser factible. Como alternativa podemos implementar protocolos con los que detener un fallo en cascada de la red mediante la supresión temporal de algunos nodos y enlaces.
+
+Vamos a hablar un poco más de cada uno de estas alternativas.
+
+### Diseño de redes robustas
+
+Hemos visto que la topología de la red es clave en la robustez de una red. Aunque las redes libres de escala son especialmente seguras ante errores son más vulnerables a ataques que las redes aleatorias. Por este motivo, se ha hecho un gran esfuerzo en buscar topologías que sean simultáneamente robustas a ataques y a errores.
+
+La topología más robusta a errores aleatorios es la topología en estrella (también conocida como _hub-and-spoke_). Para un gran número de nodos la red es extremadamente segura (ya que la probabilidad de que el error afecte al nodo central es de $\frac{1}{N-1}$). Sin embargo, el fallo (o ataque) del nodo central deja la red completamente aislada. 
+
+Esta red puede ser mejorada conectando los nodos periféricos entre sí. Sin embargo, si estimamos que el coste de construir y mantener la red es proporcional al grado medio $\langle k \rangle$ de la red entonces esta alternativa duplica este coste (ya que hemos duplicado el grado medio de la red).
+
+![Configuración en estrella y configuración mejorada. El grado medio se duplica](../images/tema09/estrella.png)
+
+
+¿Existe entonces alguna alternativa de mejorar la robustez manteniendo el coste, es decir, $\langle k \rangle$ constante? La respuesta es sí. Recordemos que $f_c$ es el umbral a partir del cual la red queda fragmentada y que éste depende de $\langle k \rangle$ y $\langle k^2 \rangle$. Por tanto, podemos mejorarla si maximizamos $\langle k^2 \rangle$ dejando fija $\langle k \rangle$. Esto se consigue haciendo que la distribución de grados siga una distribución bimodal, donde los nodos solo tengan grados $k_{min}$ o $k_{max}$ (los dos valores extremos de la red).
+
+Estudios analíticos han demostrado que la mejor alternativa es una red en la que hay una fracción de $r$ nodos con grado $k_{max}$ y $(1-r)$ nodos con grado $k_{min}$. De hecho, la mejor topología es aquella en la que $r=\frac{1}{N}$, es decir, un solo nodo de grado $k_{max}$ y el resto de grado $k_{min}$. El valor de $k_{max}$ depende del tamaño de la red.
+
+En este configuración, la probabilidad de eliminar el nodo central es baja. Sin embargo, el ataque del nodo central mantiene el componente gigante intacto gracias a que el resto de los nodos tienen un $k_{min}>1$ que los mantiene unidos. Una buena forma de conocer la vulnerabilidad de la red es representar las curvas de errores y ataques, tal y como se muestra a continuación para el caso estudiado.
+
+![Curvas de tolerancia a fallos y ataques en distintas configuraciones de redes bimodales](../images/tema09/fallo-ataque.png)
+
+### Detención de fallos en cascada
+
+Hemos visto que añadir nuevos enlaces puede mejorar la robustez de la red. Sin embargo, esta alternativa suele ser inviable en redes como la eléctrica, en el que el coste en tiempo y dinero de añadir un nuevo enlace es muy alto. Aunque la creación de nuevos enlaces para redistribuir la carga de la red cuando se produzca un fallo en cascada puede parecer una buena alternativa, ésta es completamente inviable en el caso de que se produzca un error y comience un fallo en cascada ya que, mientras que el fallo en cascada puede producirse en cuestión de minutos, la creación de nuevos enlaces puede tardar meses o años.
+
+Al igual que los bomberos eliminan árboles (a veces incendiándolos ellos mismos) para evitar que un fuego se propague, podemos eliminar nodos y enlaces de la red para evitar que una cascada se propague una vez que se ha iniciado un fallo. Esta eliminación ha de ser selectiva y depende de los mecanismos de propagación y fallo de la red en sí misma por lo que se recomienda la realización de simulaciones para conocer cómo minimizar el tamaño de la cascada sin provocar nuevos fallos en el sistema. Generalmente, estas simulaciones demuestran que lo más conveniente es eliminar nodos con baja carga y enlaces con un exceso de carga en la vecindad del fallo inicial.
