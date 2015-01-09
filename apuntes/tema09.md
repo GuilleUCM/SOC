@@ -231,7 +231,7 @@ Si no se usa un histórico se puede modelar de la siguiente forma:
 El tamaño de la cascada será el número de nodos del árbol cuando no quede ningún nodo activo. Este modelo también predice tres regímenes dependientes del valor de $\langle k \rangle$ para la función de distribución $p_k$:
 
 * __Regimen Subcrítico__: Si $\langle k \rangle<1$ en media cada nodo tendrá menos de un hijo por lo que el árbol morirá rápidamente. El tamaño del árbol sigue una distribución exponencial.
-* __Regimen Supercrítico__: Si $\langle k \rangle>1$ entonces en media cada nodo tendrá más de un elemento y el árbol crecerá indefinidamente, lo que se interpreta como una cascada global.
+* __Regimen Supercrítico__: Si $\langle k \rangle>1$ entonces en media cada nodo tendrá más de un hijo y el árbol crecerá indefinidamente, lo que se interpreta como una cascada global.
 * __Regimen Crítico__: Si $\langle k \rangle=1$ entonces cada nodo tiene en media un hijo, lo que implica que algunos árboles serán muy grandes pero otros morirán rápidamente. Las simulaciones muestran que, al igual que en el modelo anterior, el tamaño de la cascada sigue una distribución de ley potencial. 
 
 En este caso, el modelo sí se puede resolver analíticamente para predecir el tamaño de la cascada en función de la distribución $p_k$:

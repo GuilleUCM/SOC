@@ -201,6 +201,399 @@ Guillermo Jiménez Díaz (gjimenez@ucm.es)<br/>Alberto Díaz (albertodiaz@fdi.uc
 <blockquote>
 <p><strong>Conclusión</strong>: Su resistencia es similar para errores aleatorios que para ataques</p>
 </blockquote>
+</div><div id="robustez-en-redes-libres-de-escala" class="titleslide slide section level2"><h1><span class="header-section-number">0.4</span> Robustez en redes libres de escala</h1></div><div id="fragmentación-de-la-red" class="slide section level3">
+<h1><span class="header-section-number">0.4.1</span> Fragmentación de la red</h1>
+<p>Las simulaciones con datos reales (Internet) y con redes creadas a partir del modelo de Barabasi-Albert demuestran que la teoría de la percolación no es aplicable a este tipo de redes.</p>
+<div class="figure">
+<img src="../images/tema09/fc-ba.png" alt="Probabilidad de que un nodo pertenezca al componente gigante a medida que aumentamos la probabilidad f con la que eliminamos nodos de la red. Resultados de la simulación con (a) datos de Internet y (b) una red creada siguiendo el modelo de Barabasi-Albert" /><p class="caption">Probabilidad de que un nodo pertenezca al componente gigante a medida que aumentamos la probabilidad <span class="math">\(f\)</span> con la que eliminamos nodos de la red. Resultados de la simulación con (a) datos de Internet y (b) una red creada siguiendo el modelo de Barabasi-Albert</p>
+</div>
+</div><div id="fragmentación-de-la-red-1" class="slide section level3">
+<h1><span class="header-section-number">0.4.2</span> Fragmentación de la red</h1>
+<blockquote>
+<p><strong>Conclusión:</strong> las redes libres de escala son extremadamente robustas a errores aleatorios</p>
+</blockquote>
+<ul>
+<li>El umbral <span class="math">\(f_c\)</span> a partir del cual se rompe el componente gigante y la red queda rota en pequeños clusters es cercano a 1</li>
+<li>Desde el punto de vista de Internet, esta conclusión nos dice que sería necesario que prácticamente todos los routers existentes fallasen para que esta gran red quedase fragmentada.</li>
+</ul>
+</div><div id="fragmentación-de-la-red-2" class="slide section level3">
+<h1><span class="header-section-number">0.4.3</span> Fragmentación de la red</h1>
+<p><span class="math">\[f_c = 1- \frac{1}{\frac{\langle k^2 \rangle}{\langle k \rangle}-1}\]</span></p>
+<ul>
+<li>Redes libres de escala con <span class="math">\(\gamma&lt;3\)</span> y <span class="math">\(N\to \infty\)</span> el segundo momento diverge por lo que <span class="math">\(f_c\)</span> converge a 1</li>
+<li>Confirma que es necesario eliminar casi todos los nodos de este tipo de red para que se produzca una ruptura en la red.</li>
+</ul>
+</div><div id="fragmentación-de-la-red-3" class="slide section level3">
+<h1><span class="header-section-number">0.4.4</span> Fragmentación de la red</h1>
+<blockquote>
+<p>Ejemplo: Internet (<span class="math">\(\langle k \rangle = 6,34\)</span>, <span class="math">\(\sigma=14,14\)</span>)</p>
+</blockquote>
+<p><span class="math">\[\langle k^2 \rangle = \sigma^2 + \langle k \rangle^2 = 240,1296\]</span></p>
+<p><span class="math">\[\frac{\langle k^2 \rangle}{\langle k \rangle} = 37,8753\]</span></p>
+<p><span class="math">\[f_c = 1-\frac{1}{\frac{\langle k^2 \rangle}{\langle k \rangle}-1} = 0,9728\]</span></p>
+<p>Esto implica que deberían fallar unos 220000 routers (que son aproximadamente el 97% de esta red de <span class="math">\(N=228263\)</span>).</p>
+</div><div id="fragmentación-de-la-red-4" class="slide section level3">
+<h1><span class="header-section-number">0.4.5</span> Fragmentación de la red</h1>
+<ul>
+<li>Los hubs son mucho menos abundantes que los nodos con menor grado</li>
+<li>Los errores aleatorios eliminarán, con mayor probabilidad, uno de estos nodos con grado pequeño antes que un hub</li>
+<li>Estos pequeños nodos contribuyen poco en mantener la integridad de la red</li>
+</ul>
+</div><div id="tolerancia-a-errores-3" class="slide section level3">
+<h1><span class="header-section-number">0.4.6</span> Tolerancia a errores</h1>
+<div class="figure">
+<img src="../images/tema09/diametro.png" alt="Diámetro de la red a medida que aumentamos el número de nodos que eliminamos de la red. Aquí se muestra solo para una pequeña fracción de nodos eliminados (E=Red aleatoria; SF=Red libre de escala). Se observa que, ante fallos, la SF permanece prácticamente inalterable" /><p class="caption">Diámetro de la red a medida que aumentamos el número de nodos que eliminamos de la red. Aquí se muestra solo para una pequeña fracción de nodos eliminados (E=Red aleatoria; SF=Red libre de escala). Se observa que, ante fallos, la SF permanece prácticamente inalterable</p>
+</div>
+</div><div id="tolerancia-a-errores-4" class="slide section level3">
+<h1><span class="header-section-number">0.4.7</span> Tolerancia a errores</h1>
+<blockquote>
+<p><strong>Conclusión</strong>: el diámetro permanece prácticamente inalterable ante errores aleatorios en la red</p>
+</blockquote>
+<ul>
+<li>Los hubs son los grandes responsables de que las distancias dentro de la red sean cortas</li>
+<li>Un error aleatorio tiene una baja probabilidad de afecta a estos hubs, lo que mantiene las distancias prácticamente inalterables</li>
+</ul>
+</div><div id="comportamiento-frente-a-ataques-6" class="slide section level3">
+<h1><span class="header-section-number">0.4.8</span> Comportamiento frente a ataques</h1>
+<p>Desde el punto de vista de la fragmentación:</p>
+<div class="figure">
+<img src="../images/tema09/fragAtaque-ba.png" />
+</div>
+</div><div id="comportamiento-frente-a-ataques-7" class="slide section level3">
+<h1><span class="header-section-number">0.4.9</span> Comportamiento frente a ataques</h1>
+<blockquote>
+<p><strong>Conclusión</strong>: es suficiente atacar solo una pequeña fracción de nodos para romper la red en pequeños grupos</p>
+</blockquote>
+<ul>
+<li>El umbral <span class="math">\(f_c\)</span> cae drásticamente en el caso de producirse ataques, siendo extremadamente bajo</li>
+<li>Los primeros nodos eliminados en un ataque a una red libre de escala son los hubs, haciendo que la red se fragmente rápidamente con unos pocos nodos eliminados</li>
+<li>Malo: Internet es vulnerable a ataques</li>
+<li>Bueno: algunas bacterias son vulnerables si eliminamos algunas de sus proteínas “hub”</li>
+</ul>
+</div><div id="comportamiento-frente-a-ataques-8" class="slide section level3">
+<h1><span class="header-section-number">0.4.10</span> Comportamiento frente a ataques</h1>
+<p><img  width="70%" src="../images/tema09/errorAtaqueRedesReales.png"></p>
+</div><div id="fallos-en-cascada" class="titleslide slide section level2"><h1><span class="header-section-number">0.5</span> Fallos en cascada</h1></div><div id="fallos-en-cascada-1" class="slide section level3">
+<h1><span class="header-section-number">0.5.1</span> Fallos en cascada</h1>
+<ul>
+<li>Hemos asumido que cada nodo puede ser eliminado de manera independiente sin afectar a otros nodos</li>
+<li>Suele ocurrir que la eliminación de un nodo provoca una sobrecarga en sus vecinos, lo que puede inducir al fallo de éstos</li>
+<li>Esto es lo que se conoce como <strong>fallos en cascada</strong>.</li>
+</ul>
+</div><div id="fallos-en-cascada-2" class="slide section level3">
+<h1><span class="header-section-number">0.5.2</span> Fallos en cascada</h1>
+<blockquote>
+<p>Ejemplo: <strong>red eléctrica</strong>, formada por generadores, subestaciones y cableado. El fallo de una línea con una alta carga de electricidad hace que dicha electricidad se distribuya a líneas y subestaciones vecinas que, si no son capaces de aceptar dicha carga, caerán y redistribuirán su carga entre las vecinas… produciendo un efecto dominó o fallo en cascada</p>
+</blockquote>
+</div><div id="fallos-en-cascada-3" class="slide section level3">
+<h1><span class="header-section-number">0.5.3</span> Fallos en cascada</h1>
+<blockquote>
+<p>Ejemplo: <strong>sistema financiero</strong>, en el que el estallido de la burbuja inmobiliaria en 2008 provocó la caída de algunas entidades financieras como Lehman Brothers, que hicieron caer a aseguradoras como AIG o a compañías hipotecarias como Fannie Mae o Freddie Mac, que hicieron caer a otras empresas… produciendo una crisis financiera a escala mundial</p>
+</blockquote>
+</div><div id="fallos-en-cascada-4" class="slide section level3">
+<h1><span class="header-section-number">0.5.4</span> Fallos en cascada</h1>
+<p>Todos estos ejemplos tienen una serie de características comunes:</p>
+<ul>
+<li>Comienzan con un fallo de impacto limitado y local dentro de la red</li>
+<li>Este fallo se propaga a través de los enlaces, provocando fallos adicionales</li>
+</ul>
+</div><div id="fallos-en-cascada-5" class="slide section level3">
+<h1><span class="header-section-number">0.5.5</span> Fallos en cascada</h1>
+<p>Modelos y simulaciones de fallos en cascada:</p>
+<ul>
+<li>Red eléctrica</li>
+<li>Cascadas de información en Twitter</li>
+<li>Terremotos</li>
+</ul>
+<blockquote>
+<p>El impacto del fallo suele ser relativamente bajo, siguiendo una distribución de ley potencial</p>
+</blockquote>
+</div><div id="fallos-en-cascada-6" class="slide section level3">
+<h1><span class="header-section-number">0.5.6</span> Fallos en cascada</h1>
+<p><span class="math">\[p(s) \sim s^{-\alpha}\]</span></p>
+<ul>
+<li><span class="math">\(s\)</span> el tamaño del fallo</li>
+<li><span class="math">\(\alpha \in [1.6, 2]\)</span> en la red eléctrica</li>
+<li><span class="math">\(\alpha \simeq 1,75\)</span> en las cascadas de información en Twitter</li>
+<li><span class="math">\(\alpha \simeq 1,67\)</span> para el impacto de los terremotos</li>
+</ul>
+<blockquote>
+<p>Los impactos de estos fallos en cascada suelen ser generalmente bajos pero que existe la posibilidad de que algunos de estos fallos tengan un impacto a nivel global dentro de la red</p>
+</blockquote>
+</div><div id="modelos-de-fallo-en-cascada" class="titleslide slide section level2"><h1><span class="header-section-number">0.6</span> Modelos de fallo en cascada</h1></div><div id="modelos-de-fallo-en-cascada-1" class="slide section level3">
+<h1><span class="header-section-number">0.6.1</span> Modelos de fallo en cascada</h1>
+<ul>
+<li>Para predecir el comportamiento de una red ante un fallo se suelen utilizar modelos y simulaciones</li>
+<li>Existen múltiples modelos, cada uno de ellos con mayor nivel de fidelidad de acuerdo a la red concreta que quieren modelar</li>
+</ul>
+</div><div id="modelos-de-fallo-en-cascada-2" class="slide section level3">
+<h1><span class="header-section-number">0.6.2</span> Modelos de fallo en cascada</h1>
+<p>Elementos comunes:</p>
+<ul>
+<li>Los sistemas se caracterizan como redes por lo que <strong>existe un flujo entre nodos</strong> (de información en Twitter, de electricidad en la red eléctrica…).</li>
+<li>Cada componente tiene una <strong>regla local de fallo</strong> que determina cuándo va a intervenir en la propagación de la cascada.</li>
+<li>Cada sistema tiene un <strong>mecanismo para redistribuir el flujo a otros nodos</strong> cuando se produce el fallo de un componente.</li>
+</ul>
+</div><div id="modelo-de-propagación-de-fallos" class="titleslide slide section level2"><h1><span class="header-section-number">0.7</span> Modelo de propagación de fallos</h1></div><div id="modelo-de-propagación-de-fallos-1" class="slide section level3">
+<h1><span class="header-section-number">0.7.1</span> Modelo de propagación de fallos</h1>
+<ul>
+<li>Modelo sencillo, propuesto por Duncan Watts</li>
+<li>Cada nodo se representa como un agente que puede estar en dos estados: <strong>0 (activo) o 1 (inactivo o fallo)</strong></li>
+<li>Cada agente se caracteriza por un umbral de fallo <span class="math">\(\phi\)</span> que indica la fracción de vecinos que han de fallar para que él falle.</li>
+</ul>
+</div><div id="modelo-de-propagación-de-fallos-2" class="slide section level3">
+<h1><span class="header-section-number">0.7.2</span> Modelo de propagación de fallos</h1>
+<p>La simulación consiste en lo siguiente:</p>
+<ol style="list-style-type: decimal">
+<li>Inicialmente todos los nodos empiezan en el estado 0.</li>
+<li>En t=0 hacemos que una pequeña fracción de agentes cambien su estado a 1.</li>
+<li><p>En los siguientes pasos de tiempo, se selecciona aleatoriamente un agente y actualizamos su estado:</p>
+<ol style="list-style-type: decimal">
+<li>Si este agente está en el estado 0 y si al menos un fracción <span class="math">\(\phi\)</span> de vecinos está en el estado 1 entonces este nodo falla (cambia al estado 1).</li>
+<li>En otro caso, el agente permanece en su estado.</li>
+</ol></li>
+</ol>
+</div><div id="modelo-de-propagación-de-fallos-3" class="slide section level3">
+<h1><span class="header-section-number">0.7.3</span> Modelo de propagación de fallos</h1>
+<p>Estudiado en redes aleatorias de acuerdo a dos métricas:</p>
+<ul>
+<li>La probabilidad de que una cascada global surja a partir del fallo de un nodo.</li>
+<li>La distribución del tamaño esperado de la cascada.</li>
+</ul>
+<blockquote>
+<p>Ambas dependen del grado medio <span class="math">\(\langle k \rangle\)</span> y del umbral de fallo <span class="math">\(\phi\)</span> de los nodos.</p>
+</blockquote>
+</div><div id="modelo-de-propagación-de-fallos-4" class="slide section level3">
+<h1><span class="header-section-number">0.7.4</span> Modelo de propagación de fallos</h1>
+<p>Las simulaciones muestran 3 etapas o regímenes:</p>
+<p><strong>Regimen Subcrítico</strong></p>
+<ul>
+<li>Si <span class="math">\(\langle k \rangle\)</span> es alto, el cambio en el estado de un nodo prácticamente no afecta a otros nodos, independientemente del umbral de fallo que presenten</li>
+<li>La cascada suele morir rápidamente</li>
+<li>El tamaño de la cascada sigue una distribución exponencial</li>
+</ul>
+</div><div id="modelo-de-propagación-de-fallos-5" class="slide section level3">
+<h1><span class="header-section-number">0.7.5</span> Modelo de propagación de fallos</h1>
+<p>Las simulaciones muestran 3 etapas o regímenes:</p>
+<p><strong>Regimen Supercrítico</strong></p>
+<ul>
+<li>Si <span class="math">\(\langle k \rangle\)</span> es bajo entonces es probable que sus vecinos sobrepasen el umbral, produciendo una cascada global</li>
+<li>La más mínima perturbación puede generar un fallo en cascada</li>
+</ul>
+</div><div id="modelo-de-propagación-de-fallos-6" class="slide section level3">
+<h1><span class="header-section-number">0.7.6</span> Modelo de propagación de fallos</h1>
+<p>Las simulaciones muestran 3 etapas o regímenes:</p>
+<p><strong>Regimen Crítico</strong></p>
+<ul>
+<li>En el límite entre los regímenes anteriores nos encontramos con que los fallos en cascada pueden tener un tamaño diferente</li>
+<li>Las simulaciones muestran que el tamaño de la cascada en una red aleatoria sigue una distribución de ley potencial con <span class="math">\(\alpha = \frac{3}{2}\)</span></li>
+</ul>
+</div><div id="modelo-de-propagación-de-fallos-7" class="slide section level3">
+<h1><span class="header-section-number">0.7.7</span> Modelo de propagación de fallos</h1>
+<div class="figure">
+<img src="../images/tema09/modeloSimple.png" alt="Resultados de las simulaciones del modelo simple en cascada. A la izquierda, el diagrama de fase (el área contenida bajo la línea indica la probabilidad de que se produzca una cascada global). A la derecha, la distribución del tamaño de las cascadas" /><p class="caption">Resultados de las simulaciones del modelo simple en cascada. A la izquierda, el diagrama de fase (el área contenida bajo la línea indica la probabilidad de que se produzca una cascada global). A la derecha, la distribución del tamaño de las cascadas</p>
+</div>
+</div><div id="modelo-de-sobrecarga" class="titleslide slide section level2 unnumbered"><h1>Modelo de sobrecarga</h1></div><div id="modelo-de-sobrecarga-1" class="slide section level3 unnumbered">
+<h1>Modelo de sobrecarga</h1>
+<ul>
+<li>Simular los fallos en las redes eléctricas</li>
+<li>Asume que cada nodo tiene una capacidad inicial y que cada fallo afecta a la capacidad de cada uno de los nodos de la red</li>
+<li>Un fallo <strong>no solo afecta de manera local (a sus vecinos)</strong> sino que afecta de una manera mucho más global.</li>
+<li>Este modelo es independiente de la estructura de la red</li>
+</ul>
+</div><div id="modelo-de-sobrecarga-2" class="slide section level3 unnumbered">
+<h1>Modelo de sobrecarga</h1>
+<ol style="list-style-type: decimal">
+<li>Partimos de una red de <span class="math">\(N\)</span> nodos en los que cada uno tiene un límite de carga <span class="math">\(L^{fail}\)</span>. Cada nodo <span class="math">\(i\)</span> comienza con una carga inicial <span class="math">\(L_i\)</span> asignada aleatoriamente en el intervalo <span class="math">\([L_{min}, L_{max}]\)</span>.</li>
+<li>En <span class="math">\(t=0\)</span> añadimos una carga <span class="math">\(D\)</span> a cada uno de los nodos.</li>
+<li>Si algún nodo falla, éste distribuye a todos los nodos una carga adicional <span class="math">\(P&gt;0\)</span>. Esto puede provocar que, nuevamente, otros nodos fallen y distribuyan una nueva carga adicional <span class="math">\(P\)</span>.</li>
+</ol>
+</div><div id="modelo-de-sobrecarga-3" class="slide section level3 unnumbered">
+<h1>Modelo de sobrecarga</h1>
+<p>En este modelo también se pueden distinguir tres regímenes:</p>
+<p><strong>Regimen Subcrítico</strong></p>
+<ul>
+<li>Si la carga inicial media <span class="math">\(L\)</span> está por debajo de un determinado umbral entonces la perturbación no afecta a la red</li>
+<li>No se detectan cascadas globales.</li>
+</ul>
+</div><div id="modelo-de-sobrecarga-4" class="slide section level3 unnumbered">
+<h1>Modelo de sobrecarga</h1>
+<p>En este modelo también se pueden distinguir tres regímenes:</p>
+<p><strong>Regimen Supercrítico</strong></p>
+<ul>
+<li>Si la carga inicial media <span class="math">\(L\)</span> está por encima de un determinado umbral entonces la perturbación se propagará</li>
+<li>La distribución del tamaño de la cascada sigue una bimodal que muestra la coexistencia de cascadas muy pequeñas o muy grandes.</li>
+</ul>
+</div><div id="modelo-de-sobrecarga-5" class="slide section level3 unnumbered">
+<h1>Modelo de sobrecarga</h1>
+<p>En este modelo también se pueden distinguir tres regímenes:</p>
+<p><strong>Regimen Crítico</strong></p>
+<ul>
+<li>En el límite entre los regímenes anteriores nos encontramos con que los fallos en cascada pueden tener un tamaño diferente</li>
+<li>Las simulaciones muestran que el tamaño de la cascada sigue una distribución de ley potencial con <span class="math">\(\alpha = \frac{3}{2}\)</span>.</li>
+</ul>
+</div><div id="modelo-de-sobrecarga-6" class="slide section level3 unnumbered">
+<h1>Modelo de sobrecarga</h1>
+<div class="figure">
+<img src="../images/tema09/modeloSobrecarga.png" alt="Resultados de las simulaciones del modelo de sobrecarga. A la izquierda, el número medio de nodos que fallan bajo distintos valores de carga inicial. A la derecha, la distribución del tamaño de las cascadas" /><p class="caption">Resultados de las simulaciones del modelo de sobrecarga. A la izquierda, el número medio de nodos que fallan bajo distintos valores de carga inicial. A la derecha, la distribución del tamaño de las cascadas</p>
+</div>
+</div><div id="modelo-ramificado" class="titleslide slide section level2 unnumbered"><h1>Modelo ramificado</h1></div><div id="modelo-ramificado-1" class="slide section level3 unnumbered">
+<h1>Modelo ramificado</h1>
+<ul>
+<li>El modelo ramificado o <em>branching model</em> es un modelo muy simple que sirve para resolver analíticamente la distribución del tamaño de la cascada</li>
+<li>Representa en forma de árbol las características básicas de un fenómeno en cascada a partir de los datos históricos de dicha cascada</li>
+<li>En la raíz se coloca el nodo cuyo fallo ocasiona la posible cascada.</li>
+<li>En las ramas colocamos los nodos cuyo fallo se produjo como consecuencia del fallo de su nodo padre.</li>
+</ul>
+</div><div id="modelo-ramificado-2" class="slide section level3 unnumbered">
+<h1>Modelo ramificado</h1>
+<p>Si no se usa un histórico se puede modelar de la siguiente forma:</p>
+<ol style="list-style-type: decimal">
+<li>Partimos de un nodo activo.</li>
+<li>En cada paso <span class="math">\(t\)</span> cada nodo activo produce <span class="math">\(k\)</span> hijos, donde <span class="math">\(k\)</span> se selecciona aleatoriamente de una distribución <span class="math">\(p_k\)</span>.</li>
+<li>Si <span class="math">\(k=0\)</span> la rama muere y no se producirán nuevas propagaciones por dicha rama.</li>
+<li>Si <span class="math">\(k&gt;0\)</span> entonces se generarán <span class="math">\(k\)</span> nodos activos, representados como hijos del último nodo activo.</li>
+</ol>
+<p>El tamaño de la cascada será el número de nodos del árbol cuando no quede ningún nodo activo</p>
+</div><div id="modelo-ramificado-3" class="slide section level3 unnumbered">
+<h1>Modelo ramificado</h1>
+<p>Este modelo también predice tres regímenes dependientes del valor de <span class="math">\(\langle k \rangle\)</span> para la función de distribución <span class="math">\(p_k\)</span></p>
+<p><strong>Regimen Subcrítico</strong></p>
+<ul>
+<li>Si <span class="math">\(\langle k \rangle&lt;1\)</span> en media cada nodo tendrá menos de un hijo</li>
+<li>El árbol morirá rápidamente</li>
+<li>El tamaño del árbol sigue una distribución exponencial</li>
+</ul>
+</div><div id="modelo-ramificado-4" class="slide section level3 unnumbered">
+<h1>Modelo ramificado</h1>
+<p>Este modelo también predice tres regímenes</p>
+<p><strong>Regimen Supercrítico</strong></p>
+<ul>
+<li>Si <span class="math">\(\langle k \rangle&gt;1\)</span> entonces en media cada nodo tendrá más de un hijo</li>
+<li>El árbol crecerá indefinidamente, lo que se interpreta como una cascada global.</li>
+</ul>
+</div><div id="modelo-ramificado-5" class="slide section level3 unnumbered">
+<h1>Modelo ramificado</h1>
+<p>Este modelo también predice tres regímenes</p>
+<p><strong>Regimen Crítico</strong></p>
+<ul>
+<li>Si <span class="math">\(\langle k \rangle=1\)</span> entonces cada nodo tiene en media un hijo</li>
+<li>Algunos árboles serán muy grandes pero otros morirán rápidamente</li>
+<li>Las simulaciones muestran que el tamaño de la cascada sigue una distribución de ley potencial</li>
+</ul>
+</div><div id="modelo-ramificado-6" class="slide section level3 unnumbered">
+<h1>Modelo ramificado</h1>
+<p>Se puede resolver analíticamente el tamaño de la cascada en función de la distribución <span class="math">\(p_k\)</span>:</p>
+<ul>
+<li>Si <span class="math">\(p_k\)</span> está acotada, es decir, sigue una binomial o una exponencial, entonces <span class="math">\(\alpha = \frac{3}{2}\)</span> es el exponente de la distribución de ley potencial.</li>
+<li><p>Si <span class="math">\(p_k\)</span> es libre de escala entonces depende del exponente <span class="math">\(\gamma\)</span>:</p>
+<ol style="list-style-type: decimal">
+<li>Para <span class="math">\(\gamma \ge 3\)</span> se sigue cumpliendo que <span class="math">\(\alpha = \frac{3}{2}\)</span>.</li>
+<li>Para <span class="math">\(2&lt;\gamma&lt;3\)</span> entonces <span class="math">\(\alpha = \frac{\gamma}{\gamma-1}\)</span>.</li>
+</ol></li>
+</ul>
+</div><div id="conclusiones-de-los-modelos-de-propagación-de-fallos" class="slide section level3">
+<h1><span class="header-section-number">0.7.8</span> Conclusiones de los modelos de propagación de fallos</h1>
+<blockquote>
+<p><strong>Conclusión:</strong> se predice la existencia de un punto crítico en el que el tamaño de la cascada sigue una ley potencial</p>
+</blockquote>
+<p>Este punto separa dos regiones bien diferenciadas:</p>
+<ul>
+<li>Una <strong>subcrítica</strong> en la que todas las perturbaciones mueren rápidamente.</li>
+<li>Una <strong>supercrítica</strong> en la que la mayoría de las perturbaciones se propagan a todo el sistema.</li>
+</ul>
+</div><div id="mejorar-la-robustez-de-una-red" class="titleslide slide section level2"><h1><span class="header-section-number">0.8</span> Mejorar la robustez de una red</h1></div><div id="mejorar-la-robustez-de-una-red-1" class="slide section level3">
+<h1><span class="header-section-number">0.8.1</span> Mejorar la robustez de una red</h1>
+<p>Alternativas:</p>
+<ul>
+<li>Diseñar redes robustas: Si tenemos la oportunidad de hacerlo podemos añadir nodos y/o enlaces de modo que la red sea más robusta que la inicial.</li>
+<li>Detener fallos en cascada: Como alternativa podemos implementar protocolos con los que detener un fallo en cascada de la red mediante la supresión temporal de algunos nodos y enlaces.</li>
+</ul>
+</div><div id="diseño-de-redes-robustas" class="titleslide slide section level2"><h1><span class="header-section-number">0.9</span> Diseño de redes robustas</h1></div><div id="diseño-de-redes-robustas-1" class="slide section level3">
+<h1><span class="header-section-number">0.9.1</span> Diseño de redes robustas</h1>
+<ul>
+<li>La topología de la red es clave en la robustez de una red</li>
+<li>Redes libres de escala son especialmente seguras ante errores</li>
+<li>…pero son más vulnerables a ataques que las redes aleatorias</li>
+<li>Buscar topologías que sean simultáneamente robustas a ataques y a errores.</li>
+</ul>
+</div><div id="diseño-de-redes-robustas-2" class="slide section level3">
+<h1><span class="header-section-number">0.9.2</span> Diseño de redes robustas</h1>
+<ul>
+<li>La topología más robusta a errores aleatorios es la <strong>topología en estrella</strong> (también conocida como <em>hub-and-spoke</em>)</li>
+<li>Para un gran número de nodos la red es extremadamente segura (ya que la probabilidad de que el error afecte al nodo central es de <span class="math">\(\frac{1}{N-1}\)</span>)</li>
+<li>El fallo (o ataque) del nodo central deja la red completamente aislada.</li>
+</ul>
+</div><div id="diseño-de-redes-robustas-3" class="slide section level3">
+<h1><span class="header-section-number">0.9.3</span> Diseño de redes robustas</h1>
+<ul>
+<li>Red mejorada conectando los nodos periféricos entre sí</li>
+<li>Si el coste de construir y mantener la red es proporcional al grado medio <span class="math">\(\langle k \rangle\)</span> de la red entonces esta alternativa duplica este coste (ya que hemos duplicado el grado medio de la red).</li>
+</ul>
+<div class="figure">
+<img src="../images/tema09/estrella.png" alt="Configuración en estrella y configuración mejorada. El grado medio se duplica" /><p class="caption">Configuración en estrella y configuración mejorada. El grado medio se duplica</p>
+</div>
+</div><div id="diseño-de-redes-robustas-4" class="slide section level3">
+<h1><span class="header-section-number">0.9.4</span> Diseño de redes robustas</h1>
+<blockquote>
+<p>¿Existe entonces alguna alternativa de mejorar la robustez manteniendo el coste, es decir, <span class="math">\(\langle k \rangle\)</span> constante?</p>
+</blockquote>
+<ul>
+<li><span class="math">\(f_c\)</span> es el umbral a partir del cual la red queda fragmentada</li>
+<li>Depende de <span class="math">\(\langle k \rangle\)</span> y <span class="math">\(\langle k^2 \rangle\)</span></li>
+</ul>
+<blockquote>
+<p>Maximizar <span class="math">\(\langle k^2 \rangle\)</span> dejando fija <span class="math">\(\langle k \rangle\)</span></p>
+</blockquote>
+</div><div id="diseño-de-redes-robustas-5" class="slide section level3">
+<h1><span class="header-section-number">0.9.5</span> Diseño de redes robustas</h1>
+<ul>
+<li>Esto se consigue haciendo que la distribución de grados siga una distribución bimodal</li>
+<li>Los nodos solo tienen grados <span class="math">\(k_{min}\)</span> o <span class="math">\(k_{max}\)</span> (los dos valores extremos de la red).</li>
+<li>Estudios analíticos han demostrado que la mejor alternativa es una red en la que hay una fracción de <span class="math">\(r\)</span> nodos con grado <span class="math">\(k_{max}\)</span> y <span class="math">\((1-r)\)</span> nodos con grado <span class="math">\(k_{min}\)</span></li>
+<li>La mejor topología es aquella en la que <span class="math">\(r=\frac{1}{N}\)</span>: un solo nodo de grado <span class="math">\(k_{max}\)</span> y el resto de grado <span class="math">\(k_{min}\)</span></li>
+<li>El valor de <span class="math">\(k_{max}\)</span> depende del tamaño de la red.</li>
+</ul>
+</div><div id="diseño-de-redes-robustas-6" class="slide section level3">
+<h1><span class="header-section-number">0.9.6</span> Diseño de redes robustas</h1>
+<ul>
+<li>La probabilidad de eliminar el nodo central es baja</li>
+<li>Pero el ataque del nodo central mantiene el componente gigante intacto gracias a que el resto de los nodos tienen un <span class="math">\(k_{min}&gt;1\)</span> que los mantiene unidos</li>
+<li>Una buena forma de conocer la vulnerabilidad de la red es representar las curvas de errores y ataques</li>
+</ul>
+</div><div id="diseño-de-redes-robustas-7" class="slide section level3">
+<h1><span class="header-section-number">0.9.7</span> Diseño de redes robustas</h1>
+<div class="figure">
+<img src="../images/tema09/fa1.png" alt="Curvas de tolerancia a fallos y ataques en distintas configuraciones de redes bimodales" /><p class="caption">Curvas de tolerancia a fallos y ataques en distintas configuraciones de redes bimodales</p>
+</div>
+</div><div id="diseño-de-redes-robustas-8" class="slide section level3">
+<h1><span class="header-section-number">0.9.8</span> Diseño de redes robustas</h1>
+<div class="figure">
+<img src="../images/tema09/fa2.png" alt="Curvas de tolerancia a fallos y ataques en distintas configuraciones de redes bimodales" /><p class="caption">Curvas de tolerancia a fallos y ataques en distintas configuraciones de redes bimodales</p>
+</div>
+</div><div id="diseño-de-redes-robustas-9" class="slide section level3">
+<h1><span class="header-section-number">0.9.9</span> Diseño de redes robustas</h1>
+<div class="figure">
+<img src="../images/tema09/fa3.png" alt="Curvas de tolerancia a fallos y ataques en distintas configuraciones de redes bimodales" /><p class="caption">Curvas de tolerancia a fallos y ataques en distintas configuraciones de redes bimodales</p>
+</div>
+</div><div id="detención-de-fallos-en-cascada" class="titleslide slide section level2"><h1><span class="header-section-number">0.10</span> Detención de fallos en cascada</h1></div><div id="detención-de-fallos-en-cascada-1" class="slide section level3">
+<h1><span class="header-section-number">0.10.1</span> Detención de fallos en cascada</h1>
+<ul>
+<li>Añadir nuevos enlaces puede mejorar la robustez de la red</li>
+<li>Esta alternativa suele ser inviable en redes como la eléctrica, en el que el coste en tiempo y dinero de añadir un nuevo enlace es muy alto</li>
+<li>Es completamente inviable en el caso de que se produzca un error y comience un fallo en cascada ya que, mientras que el fallo en cascada puede producirse en cuestión de minutos, la creación de nuevos enlaces puede tardar meses o años.</li>
+</ul>
+</div><div id="detención-de-fallos-en-cascada-2" class="slide section level3">
+<h1><span class="header-section-number">0.10.2</span> Detención de fallos en cascada</h1>
+<ul>
+<li>Los bomberos eliminan árboles (a veces incendiándolos ellos mismos) para evitar que un fuego se propague</li>
+<li>Podemos eliminar nodos y enlaces de la red para evitar que una cascada se propague una vez que se ha iniciado un fallo</li>
+<li>Esta eliminación ha de ser selectiva y depende de los mecanismos de propagación y fallo de la red en sí misma</li>
+<li>Se recomienda la realización de simulaciones para conocer cómo minimizar el tamaño de la cascada sin provocar nuevos fallos en el sistema</li>
+</ul>
+<blockquote>
+<p>Generalmente, estas simulaciones demuestran que lo más conveniente es eliminar nodos con baja carga y enlaces con un exceso de carga en la vecindad del fallo inicial.</p>
+</blockquote>
 </div>
 </body>
 </html>
