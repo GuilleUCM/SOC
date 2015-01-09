@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Guillermo Jiménez Díaz (gjimenez@ucm.es)" />
+  <meta name="author" content="Alberto Díaz (albertodiaz@fdi.ucm.es)" />
+  <title>Análisis de Redes Sociales</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+   href="../pandownTemplates/slidy/styles/slidy.css" />
+   
+
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+   href="../pandownTemplates/soc.css" />
+
+  <script src="../pandownTemplates/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+  <script src="../pandownTemplates/slidy/scripts/slidy.js"
+    charset="utf-8" type="text/javascript"></script>
+</head>
+<body>
+<div class="slide titlepage">
+  <h1 class="title">Análisis de Redes Sociales</h1>
+  <p class="author">
+Guillermo Jiménez Díaz (gjimenez@ucm.es)<br/>Alberto Díaz (albertodiaz@fdi.ucm.es)
+  </p>
+  <p class="date">9 de enero de 2015</p>
+</div>
+<div id="tema-9-robustez-de-las-redes" class="titleslide slide section level1 unnumbered"><h1>Tema 9: Robustez de las redes</h1></div><div id="robustez" class="slide section level3">
+<h1><span class="header-section-number">0.0.1</span> Robustez</h1>
+<ul>
+<li>El fallo de un componente sencillo en un sistema complejo puede provocar un error o un fallo general de todo el sistema</li>
+<li>Muchos sistemas naturales y sociales tienen la capacidad de permanecer inmutables aunque varios de sus componentes fallen</li>
+<li>En la mayoría de estos sistemas, la robustez se consigue gracias a densas interconexiones entre los componentes.</li>
+</ul>
+</div><div id="robustez-1" class="slide section level3">
+<h1><span class="header-section-number">0.0.2</span> Robustez</h1>
+<blockquote>
+<p>En este tema veremos el rol de las redes con el fin de asegurar la robustez de un sistema complejo</p>
+</blockquote>
+<ul>
+<li>Conocer la robustez del sistema</li>
+<li>Conocer sus debilidades en caso de ataques premeditados</li>
+<li>Conocer los comportamientos de fallo en cascada</li>
+<li>Mejoras de la robustez</li>
+</ul>
+</div><div id="robustez-errores-y-ataques" class="titleslide slide section level2"><h1><span class="header-section-number">0.1</span> Robustez, Errores y Ataques</h1></div><div id="robustez-2" class="slide section level3">
+<h1><span class="header-section-number">0.1.1</span> Robustez</h1>
+<blockquote>
+<p>La <strong>robustez</strong> implica entender cómo se va a comportar una red en caso de que eliminemos nodos de la misma</p>
+</blockquote>
+<ul>
+<li><strong>Fragmentación de la red</strong>, es decir, cómo se rompe la red en comunidades aisladas a medida que eliminamos nodos.</li>
+<li><strong>Tolerancia a errores</strong>, es decir, cómo de largas pasan a ser las distancias en la red a medida que eliminamos nodos.</li>
+</ul>
+</div><div id="errores-y-ataques" class="slide section level3">
+<h1><span class="header-section-number">0.1.2</span> Errores y Ataques</h1>
+<blockquote>
+<p>Los <strong>errores</strong> consisten en la eliminación de nodos de manera aleatoria</p>
+</blockquote>
+<blockquote>
+<p>Los <strong>ataques</strong> consisten en la eliminación de nodos seleccionándolos de una manera deliberada.</p>
+</blockquote>
+<p>Simularemos los ataques eliminando los nodos en orden decreciente de grado</p>
+</div><div id="teoría-de-la-percolación" class="titleslide slide section level2"><h1><span class="header-section-number">0.2</span> Teoría de la percolación</h1></div><div id="teoría-de-la-percolación-1" class="slide section level3">
+<h1><span class="header-section-number">0.2.1</span> Teoría de la percolación</h1>
+<blockquote>
+<p>La teoría de la percolación describe el comportamiento universal de los clusters y componentes de una red aleatoria</p>
+</blockquote>
+<ul>
+<li>Suponemos que tenemos una cuadrícula</li>
+<li>En cada intersección podemos poner un nodo</li>
+<li>Dos nodos estarán conectados si están en intersecciones adyacentes</li>
+<li>Construimos una red aleatoria decidiendo si ponemos o no un nodo en cada intersección con probabilidad <span class="math">\(p\)</span>.</li>
+</ul>
+</div><div id="teoría-de-la-percolación-2" class="slide section level3">
+<h1><span class="header-section-number">0.2.2</span> Teoría de la percolación</h1>
+<div class="figure">
+<img src="../images/tema09/percolacion.png" alt="Redes creadas siguiendo la teoría de la percolación. En rojo están los nodos que pertenecen al cluster más grande" /><p class="caption">Redes creadas siguiendo la teoría de la percolación. En rojo están los nodos que pertenecen al cluster más grande</p>
+</div>
+</div><div id="teoría-de-la-percolación-3" class="slide section level3">
+<h1><span class="header-section-number">0.2.3</span> Teoría de la percolación</h1>
+<blockquote>
+<p>Predice el tamaño medio de los clusters y el tamaño del cluster mayor suponiendo que vamos añadiendo nodos de manera aleatoria</p>
+</blockquote>
+<blockquote>
+<p>Existe un valor crítico <span class="math">\(p_c\)</span> a partir del cual emerge un componente gigante al que pertenecerán la mayoría de los nodos.</p>
+</blockquote>
+<blockquote>
+<p>Importante para entender cuál es la robustez de una red aleatoria</p>
+</blockquote>
+</div><div id="teoría-de-la-percolación-4" class="slide section level3">
+<h1><span class="header-section-number">0.2.4</span> Teoría de la percolación</h1>
+<div class="figure">
+<img src="../images/tema09/pc-er.png" alt="Probabilidad de que un nodo pertenezca a un componente gigante a partir de la teoría de la percolación" /><p class="caption">Probabilidad de que un nodo pertenezca a un componente gigante a partir de la teoría de la percolación</p>
+</div>
+</div><div id="robustez-en-redes-aleatorias" class="titleslide slide section level2"><h1><span class="header-section-number">0.3</span> Robustez en redes aleatorias</h1></div><div id="fragmentación" class="slide section level3">
+<h1><span class="header-section-number">0.3.1</span> Fragmentación</h1>
+<blockquote>
+<p>Podemos estudiar la robustez de una red aleatoria usando, a la inversa, la teoría de la percolación</p>
+</blockquote>
+<ul>
+<li>Partimos de una cuadrícula en la que en todas las intersecciones hay nodos</li>
+<li>Eliminamos los nodos con una determinada probabilidad <span class="math">\(f\)</span></li>
+</ul>
+</div><div id="fragmentación-1" class="slide section level3">
+<h1><span class="header-section-number">0.3.2</span> Fragmentación</h1>
+<div class="figure">
+<img src="../images/tema09/fc-er.png" alt="Probabilidad de que un nodo pertenezca al componente gigante a medida que aumentamos la probabilidad f con la que eliminamos nodos de la red" /><p class="caption">Probabilidad de que un nodo pertenezca al componente gigante a medida que aumentamos la probabilidad <span class="math">\(f\)</span> con la que eliminamos nodos de la red</p>
+</div>
+</div><div id="fragmentación-2" class="slide section level3">
+<h1><span class="header-section-number">0.3.3</span> Fragmentación</h1>
+<p>Al igual que durante la creación, existe un umbral <span class="math">\(f_c\)</span>:</p>
+<ul>
+<li>Si <span class="math">\(0&lt;f&lt;f_c\)</span> entonces continuamos teniendo un componente gigante en la red.</li>
+<li>Si <span class="math">\(f=f_c\)</span> entonces el componente gigante comienza a desvanecerse y la red se empieza a fragmentar.</li>
+<li>Si <span class="math">\(f&gt;f_c\)</span> entonces la red queda completamente rota en muchos clusters pequeños.</li>
+</ul>
+</div><div id="fragmentación-3" class="slide section level3">
+<h1><span class="header-section-number">0.3.4</span> Fragmentación</h1>
+<p>Cálculo aproximado de este umbral crítico <span class="math">\(f_c\)</span>:</p>
+<p><span class="math">\[f_c = 1- \frac{1}{\frac{\langle k^2 \rangle}{\langle k \rangle}-1}\]</span></p>
+<p>Para una red aleatoria, en la que el segundo momento es conocido:</p>
+<p><span class="math">\[f_c^{ER} = 1- \frac{1}{\langle k \rangle}\]</span></p>
+<blockquote>
+<p><strong>Conclusión</strong>: cuanto más densa sea la red, mayor es el umbral <span class="math">\(f_c\)</span>.</p>
+</blockquote>
+</div><div id="fragmentación-4" class="slide section level3">
+<h1><span class="header-section-number">0.3.5</span> Fragmentación</h1>
+<blockquote>
+<p><strong>Conclusión</strong>: la fragmentación de la red debido a fallos <strong>no es un proceso gradual</strong></p>
+</blockquote>
+<ul>
+<li>Inicialmente, la eliminación de una pequeña fracción de nodos no afecta a la integridad de la red</li>
+<li>Existe un punto crítico a partir del cual la red se rompe abruptamente en pequeños grupos de nodos desconectados.</li>
+</ul>
+</div><div id="tolerancia-a-errores" class="slide section level3">
+<h1><span class="header-section-number">0.3.6</span> Tolerancia a errores</h1>
+<blockquote>
+<p>Cómo evoluciona el diámetro de la red a medida que eliminamos nodos de manera aleatoria a medida que aumentamos <span class="math">\(f\)</span>.</p>
+</blockquote>
+</div><div id="tolerancia-a-errores-1" class="slide section level3">
+<h1><span class="header-section-number">0.3.7</span> Tolerancia a errores</h1>
+<div class="figure">
+<img src="../images/tema09/diametro.png" alt="Diámetro de la red a medida que aumentamos el número de nodos que eliminamos de la red. Aquí se muestra solo para una pequeña fracción de nodos eliminados (E=Red aleatoria; SF=Red libre de escala)" /><p class="caption">Diámetro de la red a medida que aumentamos el número de nodos que eliminamos de la red. Aquí se muestra solo para una pequeña fracción de nodos eliminados (E=Red aleatoria; SF=Red libre de escala)</p>
+</div>
+</div><div id="tolerancia-a-errores-2" class="slide section level3">
+<h1><span class="header-section-number">0.3.8</span> Tolerancia a errores</h1>
+<blockquote>
+<p><strong>Conclusión:</strong> El diámetro de la red crece de manera monótona para valores muy pequeños de <span class="math">\(f\)</span></p>
+</blockquote>
+<ul>
+<li>La mayoría de los nodos tienen aproximadamente el mismo grado</li>
+<li>Todos contribuyen aproximadamente de la misma forma al diámetro de la red</li>
+<li>La desaparición de cualquiera de ellos hace que las distancias vayan creciendo.</li>
+<li>Cuando alcancemos <span class="math">\(f_c\)</span> el diámetro divergirá ya que romperemos el componente gigante.</li>
+</ul>
+</div><div id="comportamiento-frente-a-ataques" class="slide section level3">
+<h1><span class="header-section-number">0.3.9</span> Comportamiento frente a ataques</h1>
+<ul>
+<li>Se decide deliberadamente qué nodos de la red queremos eliminar en cada momento</li>
+<li>Simular un ataque eliminando los nodos en orden decreciente de su grado <span class="math">\(k\)</span></li>
+</ul>
+</div><div id="comportamiento-frente-a-ataques-1" class="slide section level3">
+<h1><span class="header-section-number">0.3.10</span> Comportamiento frente a ataques</h1>
+<p>Desde el punto de vista de la fragmentación</p>
+<div class="figure">
+<img src="../images/tema09/fragAtaque-er.png" />
+</div>
+</div><div id="comportamiento-frente-a-ataques-2" class="slide section level3">
+<h1><span class="header-section-number">0.3.11</span> Comportamiento frente a ataques</h1>
+<blockquote>
+<p><strong>Conclusión</strong>: la fragmentación de la red evoluciona de la misma forma ya sea por errores o por ataques</p>
+</blockquote>
+<ul>
+<li>Esto se debe a que todos los nodos tienen un grado similar</li>
+<li>Un ataque deliberado no es más efectivo que los errores aleatorios en una red aleatoria.</li>
+</ul>
+</div><div id="comportamiento-frente-a-ataques-3" class="slide section level3">
+<h1><span class="header-section-number">0.3.12</span> Comportamiento frente a ataques</h1>
+<div class="figure">
+<img src="../images/tema09/diametro.png" alt="Diámetro de la red a medida que aumentamos el número de nodos que eliminamos de la red. Aquí se muestra solo para una pequeña fracción de nodos eliminados (E=Red aleatoria; SF=Red libre de escala)" /><p class="caption">Diámetro de la red a medida que aumentamos el número de nodos que eliminamos de la red. Aquí se muestra solo para una pequeña fracción de nodos eliminados (E=Red aleatoria; SF=Red libre de escala)</p>
+</div>
+</div><div id="comportamiento-frente-a-ataques-4" class="slide section level3">
+<h1><span class="header-section-number">0.3.13</span> Comportamiento frente a ataques</h1>
+<blockquote>
+<p><strong>Conclusión</strong>: las distancias en la red evolucionan de la misma forma ya sea por errores o por ataque</p>
+</blockquote>
+<ul>
+<li>El ataque a los nodos de mayor grado sigue haciendo que la distancia crezca de manera monótona</li>
+<li>No se ve diferencia apreciable con respecto a la tolerancia a errores.</li>
+</ul>
+</div><div id="comportamiento-frente-a-ataques-5" class="slide section level3">
+<h1><span class="header-section-number">0.3.14</span> Comportamiento frente a ataques</h1>
+<blockquote>
+<p><strong>Conclusión</strong>: las redes aleatorias son resistentes a ataques</p>
+</blockquote>
+<blockquote>
+<p><strong>Conclusión</strong>: Su resistencia es similar para errores aleatorios que para ataques</p>
+</blockquote>
+</div>
+</body>
+</html>

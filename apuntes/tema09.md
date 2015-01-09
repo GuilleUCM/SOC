@@ -26,7 +26,7 @@ La robustez implica entender cómo se va a comportar una red en caso de que elim
 - **Fragmentación de la red**, es decir, cómo se rompe la red en comunidades aisladas a medida que eliminamos nodos.
 - **Tolerancia a errores**, es decir, cómo de largas pasan a ser las distancias en la red a medida que eliminamos nodos.
 
-Así mismo, estudiaremos la robustez con respecto a **errores** y **ataques**. Los _errores_ hacen que se eliminen nodos de manera aleatoria. Sin embargo, los _ataques_ consisten en la eliminación de nodos seleccionándolos de una manera deliberada.
+Así mismo, estudiaremos la robustez con respecto a **errores** y **ataques**. Los _errores_ consisten en la eliminación de nodos de manera aleatoria. Sin embargo, los _ataques_ consisten en la eliminación de nodos seleccionándolos de una manera deliberada.
 
 ## Robustez en redes aleatorias
 
@@ -34,7 +34,7 @@ Primeramente vamos a estudiar cómo se comporta la robustez en una red aleatoria
 
 ### Teoría de la percolación
 
-Suponemos que tenemos una cuadrícula y que en cada intersección podemos poner un nodo. Dos nodos estarán conectados si están en intersecciones adyacentes. Podemos construir una red aleatoria a partir de esta cuadrícula decidiendo si ponemos o no un nodo en cada intersección con probabilidad $p$.
+La teoría de la percolación describe el comportamiento universal de los grupos y componentes de una red aleatoria. Suponemos que tenemos una cuadrícula y que en cada intersección podemos poner un nodo. Dos nodos estarán conectados si están en intersecciones adyacentes. Podemos construir una red aleatoria a partir de esta cuadrícula decidiendo si ponemos o no un nodo en cada intersección con probabilidad $p$.
 
 ![Redes creadas siguiendo la teoría de la percolación. En rojo están los nodos que pertenecen al cluster más grande](../images/tema09/percolacion.png)
 
@@ -54,8 +54,6 @@ Podemos estudiar la robustez de esta red aleatoria usando, a la inversa, la teor
 
 ![Probabilidad de que un nodo pertenezca al componente gigante a medida que aumentamos la probabilidad $f$ con la que eliminamos nodos de la red](../images/tema09/fc-er.png)
 
-A modo de conclusión podemos afirmar que la fragmentación de la red debido a fallos no es un proceso gradual. Inicialmente, la eliminación de una pequeña fracción de nodos no afecta a la integridad de la red. Sin embargo, existe un punto crítico a partir del cual la red se rompe abruptamente en pequeños grupos de nodos desconectados.
-
 Se han hecho estudios que han hecho un cálculo aproximado de este umbral crítico $f_c$[^2] dando como resultado:
 
 $$f_c = 1- \frac{1}{\frac{\langle k^2 \rangle}{\langle k \rangle}-1}$$
@@ -67,6 +65,8 @@ $$f_c^{ER} = 1- \frac{1}{\langle k \rangle}$$
 Esto implica que cuanto más densa sea la red, mayor es el umbral $f_c$, por lo que más robusta es la red.
 
 [^2]: Para conocer más sobre cómo se calcula este umbral, revisar el Tema 8 (pp 10-11 y Temas avanzados B y C) del libro _Network Science_ de Barabasi.
+
+A modo de conclusión podemos afirmar que la fragmentación de la red debido a fallos no es un proceso gradual. Inicialmente, la eliminación de una pequeña fracción de nodos no afecta a la integridad de la red. Sin embargo, existe un punto crítico a partir del cual la red se rompe abruptamente en pequeños grupos de nodos desconectados.
 
 ### Tolerancia a errores
 
