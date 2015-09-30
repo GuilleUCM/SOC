@@ -1,6 +1,6 @@
 % Análisis de Redes Sociales
 % Guillermo Jiménez Díaz (gjimenez@ucm.es); Alberto Díaz (albertodiaz@fdi.ucm.es)
-% 1 de octubre de 2014
+% 30 de septiembre de 2015
 
 
 # Prefacio {-}
@@ -20,7 +20,7 @@ Este material ha sido desarrollado a partir de distintas fuertes, destacando com
 
 La captura de Saddam Hussein ilustra algunos de los aspectos claves de las redes que estudiaremos en esta asignatura:
 
-* Muestra el poder predictivo de las redes, que permite extraer información clave incluso a los no expertos (los soldados en este caso)
+* Muestra el poder predictivo de las redes, que permiten extraer información clave incluso a los no expertos (los soldados en este caso)
 * Resalta la necesidad de diseñar mapas precisos de las redes a estudiar (en muchos casos, el proceso de diseño es muy complicado y costoso)
 * Ejemplifica el hecho de que la elección de la red a emplear marca la diferencia (los militares americanos tardaron meses en darse cuenta que la red jerárquica que representaba la organización oficial iraquí era inútil para encontrar a Saddam)
 * Destaca la estabilidad de algunas redes de confianza (la captura de Hussein no se basó en las técnicas clásicas de Inteligencia sino en sus conexiones sociales antes de la invasión, extraídas de viejas fotos de su álbum familiar)
@@ -33,7 +33,7 @@ La gripe aviar de 2009 es la primera pandemia cuya evolución fue predicha meses
 
 * Haciendo uso de las redes de transporte a nivel mundial, se determinó correctamente que alcanzaría su pico en Octubre de 2009, en lugar de en Enero-Febrero (picos habituales de la gripe estándar).
 * Se demostró que la vacunación masiva realizada en Noviembre de 2009 fue inútil por ser demasiado tardía, hecho comprobado a posteriori.
-* El cambio fundamental consistió en considerar el rol de las redes en la propagación de los virus, en contraste con los modelos epidémicos clásicos.
+* El cambio fundamental consistió en considerar **el rol de las redes en la propagación de los virus**, en contraste con los modelos epidémicos clásicos.
 * Hoy en día, la predicción de epidemias es una de las aplicaciones más activas del Análisis de Redes. No sólo se centra en virus biológicos sino también electrónicos (ej: predicción de la infección de 300.000 teléfonos móviles en China en 2010).
 
 ### El apagón de la costa noroeste de EEUU el 14/08/2003
@@ -41,7 +41,7 @@ La gripe aviar de 2009 es la primera pandemia cuya evolución fue predicha meses
 ![Apagón de 2003 debido a una sobrecarga y un fallo en cascada](../images/tema00/blackout.jpg)
 
 
-* Este apagón es un ejemplo típico de un fallo en cascada: cuando una red actúa como sistema de transporte, un fallo local en un nodo provoca una transferencia de carga a otros nodos. Si la carga extra es excesiva para los nodos vecinos, éstos pueden fallar y redistribuirla a otros nodos a su vez (cayeron 256 plantas y 508 unidades generadoras).
+* Este apagón es un ejemplo típico de un **fallo en cascada**: cuando una red actúa como sistema de transporte, un fallo local en un nodo provoca una transferencia de carga a otros nodos. Si la carga extra es excesiva para los nodos vecinos, éstos pueden fallar y redistribuirla a otros nodos a su vez (cayeron 256 plantas y 508 unidades generadoras).
 * La magnitud del fallo depende de la posición en la red y la capacidad de los nodos afectados (eliminados) en el primer momento y en los siguientes.
 * Los fallos en cascada son habituales en los Sistemas Complejos (ej: tráfico en Internet). La actual crisis financiera mundial es un ejemplo provocado por la crisis de crédito en los EEUU.
 * También pueden tener efectos positivos. Ej: tratamientos del cáncer.
@@ -68,6 +68,10 @@ Ejemplos de sistemas complejos:
 
 Se puede decir que el análisis de las redes sociales es la ciencia del siglo XXI debido a su auge en investigación esto se debe a varios hechos:
 
+### Necesidad (urgente) de entender la complejidad
+
+Cada vez está más aceptado el hecho de que, a pesar de su dificultad, no podemos permitirnos no entender el comportamiento de los sistemas complejos. Varios de los avances más significativos para entender la complejidad obtenidos en la última década provienen de la Teoría de Redes.
+
 ### Disponibilidad de Datos
 
 * Red de Actores de Cine, 1998
@@ -83,10 +87,6 @@ Se puede decir que el análisis de las redes sociales es la ciencia del siglo XX
 La arquitectura de las distintas redes que están apareciendo en varios dominios de la ciencia, naturaleza y tecnología es más similar de lo que
 podría esperarse en principio.
 
-### Necesidad (urgente) de entender la complejidad
-
-Cada vez está más aceptado el hecho de que, a pesar de su dificultad, no podemos permitirnos no entender el comportamiento de los sistemas complejos. Varios de los avances más significativos para entender la complejidad obtenidos en la última década provienen de la Teoría de Redes.
-
 ## ¿Para qué sirve el Análisis de Redes Sociales?
 
 El Análisis de Redes Sociales (ARS), ciencia de redes (Network Science) o análisis de sistemas complejos es multidisciplinar, ya que usa herramientas propias de la teoría de grafos, la física, estadística, informática, biología y Teoría de redes sociales, entre otros. 
@@ -94,8 +94,8 @@ El Análisis de Redes Sociales (ARS), ciencia de redes (Network Science) o anál
 Entre otras cosas, el ARS sirve para:
 
 * Entender la estructura y el comportamiento de un sistema complejo.
-* Extracción de información y predicción.
-* Hacer mapas de una red.
+* Extraer información y realizar predicciones.
+* Visualización de información (en forma de red).
 * Detección de nodos de especial relevancia en la dinámica de la red (influenciadores y concentradores).
 * Detección de vulnerabilidades y posibles fallos en cascada debido a las interconexiones entre nodos (por ejemplo, en una red eléctrica por sobrecarga de una central o en internet, debido a un ataque por denegación de servicio en un router).
 * Entender cómo la estructura de la red afecta a la robustez de la misma.
@@ -116,24 +116,24 @@ Como veremos más adelante, el ARS hace uso de la teoría de grafos matemática,
 
 * **Salud**: Medicina y genómica, redes de enfermedades humanas y genes y proteínas implicados, investigación sobre el cerebro humano y redes neuronales, predicción de epidemias.
 * Lucha contra el **terrorismo**
-* **Economía**: predicción económica; recomendaciones y anuncios. Detección de influenciadores, personas con una importante conexión con otras personas, como foco para la propagación de campañas.
+* **Economía y Marketing**: predicción económica; recomendaciones y anuncios. Detección de influenciadores, personas con una importante conexión con otras personas, como foco para la propagación de campañas.
 * **Gestión**: estructura de organizaciones, identificación de líderes de opinión, grupos óptimos...
 
 
 # Objetivo general del curso {-}
 
-En esta asignatura se pretende enseñar a identificar las principales propiedades de una red, los métodos y modelos que se utilizan para identificarlas a partir de datos reales, la detección de grupos y comunidades  así como de nodos centralizadores, y los modelos relacionados con el flujo de información a través de una red social.
+En esta asignatura se pretende enseñar a identificar las principales propiedades de una red, los métodos y modelos que se utilizan para identificarlas y caracterizarlas a partir de datos reales, la detección de grupos y comunidades  así como de nodos centralizadores, y los modelos relacionados con el flujo de información a través de una red social.
 
 ## Contenidos del curso
 
 1. Introducción.
 2. Propiedades básicas de las redes
-3. Estudio de la estructura de las redes sociales.
-    1. Modelos de redes
-    2. Centralidad
-    3. Detección y estructura de comunidades
-4. Dinámica en las redes sociales.
-    1. Procesos de contagio, difusión y formación de opiniones.
+3. Centralidad
+4. Modularidad y detección de comunidades
+5. Visualización y poda de redes
+6. Modelos de redes: aleatorias, libres de escala y pequeños mundos.
+7. Dinámica de las redes: Propagación y difusión.
+8. Robustez.
 
 Las clases teóricas se impartirán en el aula 12 los viernes y las clases prácticas en el laboratorio 11 los miércoles. En algunas sesiones prácticas se impartirán seminarios para facilitar la realización de las prácticas.
 
@@ -141,7 +141,7 @@ Las clases teóricas se impartirán en el aula 12 los viernes y las clases prác
 
 La evaluación final del curso se compone de dos partes:
 
-### Prácticas (70%)
+### Prácticas (30%)
 
 Las prácticas son **obligatorias** y es necesario que estén **aprobadas** para que sean tenidas en cuenta en la nota final:
 
@@ -149,13 +149,20 @@ Las prácticas son **obligatorias** y es necesario que estén **aprobadas** para
 * Satisfaciendo los requisitos del enunciado
 * Obteniendo una nota entre 5 y 10
 
-Las prácticas se realizarán en grupos de 3 o 4 alumnos. Serán 3-4 prácticas que se irán ajustando a los conceptos teóricos que se vayan contando en clase.
+Las prácticas se realizarán en grupos de 3 o 4 alumnos. Serán 2-3 prácticas que se irán ajustando a los conceptos teóricos que se vayan contando en clase.
 
 Las prácticas no entregadas o suspensas se tendrán que volver a entregar en septiembre.
 
-### Proyecto (30%)
+### Proyecto (70%)
 
 El proyecto final consistirá en el análisis de un conjunto de datos real elegido por el grupo de alumnos. Se realizará con los mismos grupos que las prácticas y será presentado en defensa pública.
+
+Algunos proyectos realizados durante el curso pasado fueron los siguientes:
+
+- Análisis de la red de coautorías de profesores de la Facultad de Informática.
+- Estudio de los modelos de contagio sobre la red de trenes de ADIF
+- Análisis de la red de pases de la final de la Champions de 2014 (Real Madrid vs. Atlético de Madrid).
+- Simulador temporal del comportamiento de los nodos de una red. Podéis verlo en funcionamiento [en este Vídeo de Youtube](https://youtu.be/RNRWRmGFnyY)
 
 El proyecto es obligatorio y debe cumplir los mismos requisitos que las prácticas para poder aprobar la asignatura: entregado en plazo, cumpliendo los requisitos del enunciado y obteniendo una nota mayor o igual que 5.
 
@@ -172,6 +179,7 @@ En caso de no presentar el proyecto o no superar la defensa habrá un **examen f
 * [Network Science](http://barabasilab.neu.edu/networksciencebook/). Laszlo Barabasi.
 * [Networks, Crowds and Markets](http://www.cs.cornell.edu/home/kleinber/networks-book/). David Easley and Jon Kleinberg, Cambridge University Press. 2010.
 * Social and Economic Networks. Matthew O. Jackson. Princeton University Press. 2008.
+* [Apuntes del curso pasado en GitHub](https://github.com/GuilleUCM/SOC/releases)
 
 ### Complementaria
 

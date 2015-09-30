@@ -15,7 +15,7 @@
    
 
   <link rel="stylesheet" type="text/css" media="screen, projection, print"
-   href="../pandownTemplates/soc.css" />
+   href="../pandownTemplates/dsi.css" />
 
   <script src="../pandownTemplates/slidy/scripts/slidy.js"
     charset="utf-8" type="text/javascript"></script>
@@ -26,7 +26,7 @@
   <p class="author">
 Guillermo Jiménez Díaz (gjimenez@ucm.es)<br/>Alberto Díaz (albertodiaz@fdi.ucm.es)
   </p>
-  <p class="date">1 de octubre de 2014</p>
+  <p class="date">30 de septiembre de 2015</p>
 </div>
 <div id="tema-0-presentación-de-la-asignatura" class="titleslide slide section level1 unnumbered"><h1>Tema 0: Presentación de la asignatura</h1></div><div id="ejemplos-motivadores" class="titleslide slide section level2"><h1><span class="header-section-number">0.1</span> Ejemplos motivadores</h1></div><div id="las-redes-y-la-captura-de-sadam-husseim" class="slide section level3">
 <h1><span class="header-section-number">0.1.1</span> Las redes y la captura de Sadam Husseim</h1>
@@ -103,6 +103,14 @@ Guillermo Jiménez Díaz (gjimenez@ucm.es)<br/>Alberto Díaz (albertodiaz@fdi.uc
 </div><div id="la-ciencia-del-siglo-xxi-motivos" class="slide section level3">
 <h1><span class="header-section-number">0.3.2</span> La ciencia del siglo XXI: Motivos</h1>
 <ul>
+<li><strong>Necesidad (urgente) de entender la complejidad</strong></li>
+</ul>
+<blockquote>
+<p>No podemos permitirnos no entender el comportamiento de los sistemas complejos.</p>
+</blockquote>
+</div><div id="la-ciencia-del-siglo-xxi-motivos-1" class="slide section level3">
+<h1><span class="header-section-number">0.3.3</span> La ciencia del siglo XXI: Motivos</h1>
+<ul>
 <li><strong>Disponibilidad de Datos</strong>
 <ul>
 <li>Red de Actores de Cine, 1998</li>
@@ -111,29 +119,23 @@ Guillermo Jiménez Díaz (gjimenez@ucm.es)<br/>Alberto Díaz (albertodiaz@fdi.uc
 <li>Redes de Citas de Artículos Científicos, 1998</li>
 <li>Genoma Humano, 2001</li>
 <li>Red de Interacciones entre Proteínas, 2001</li>
-<li>Extracción de datos en principales redes sociales (Facebook, Twitter…), actualidad.</li>
+<li>APIS en redes sociales (Facebook, Twitter…), actualidad.</li>
 </ul></li>
 </ul>
-</div><div id="la-ciencia-del-siglo-xxi-motivos-1" class="slide section level3">
-<h1><span class="header-section-number">0.3.3</span> La ciencia del siglo XXI: Motivos</h1>
+</div><div id="la-ciencia-del-siglo-xxi-motivos-2" class="slide section level3">
+<h1><span class="header-section-number">0.3.4</span> La ciencia del siglo XXI: Motivos</h1>
 <ul>
 <li><strong>Universalidad</strong></li>
 </ul>
 <blockquote>
 <p>La arquitectura de las distintas redes que están apareciendo en distintos dominios es más similar de lo que podría esperarse.</p>
 </blockquote>
-<ul>
-<li><strong>Necesidad (urgente) de entender la complejidad</strong></li>
-</ul>
-<blockquote>
-<p>No podemos permitirnos no entender el comportamiento de los sistemas complejos.</p>
-</blockquote>
 </div><div id="para-qué-sirve-el-análisis-de-redes-sociales" class="titleslide slide section level2"><h1><span class="header-section-number">0.4</span> ¿Para qué sirve el Análisis de Redes Sociales?</h1></div><div id="usos" class="slide section level3">
 <h1><span class="header-section-number">0.4.1</span> Usos</h1>
 <ul>
 <li>Entender la estructura y el comportamiento de un sistema complejo.</li>
-<li>Extracción de información y predicción.</li>
-<li>Hacer mapas de una red.</li>
+<li>Extraer información y realizar predicciones.</li>
+<li>Visualización de información (en forma de red).</li>
 <li>Detección de nodos de especial relevancia en la dinámica de la red (influenciadores y concentradores).</li>
 <li>Detección de vulnerabilidades y posibles fallos en cascada debido a las interconexiones entre nodos (por ejemplo, en una red eléctrica por sobrecarga de una central o en internet, debido a un ataque por denegación de servicio en un router).</li>
 <li>Entender cómo la estructura de la red afecta a la robustez de la misma.</li>
@@ -166,29 +168,25 @@ Guillermo Jiménez Díaz (gjimenez@ucm.es)<br/>Alberto Díaz (albertodiaz@fdi.uc
 <ul>
 <li><strong>Salud</strong>: Medicina y genómica, redes de enfermedades humanas y genes y proteínas implicados, investigación sobre el cerebro humano y redes neuronales, predicción de epidemias.</li>
 <li>Lucha contra el <strong>terrorismo</strong></li>
-<li><strong>Economía</strong>: predicción económica; recomendaciones y anuncios. Detección de influenciadores, personas con una importante conexión con otras personas, como foco para la propagación de campañas.</li>
+<li><strong>Economía y Marketing</strong>: predicción económica; recomendaciones y anuncios. Detección de influenciadores, personas con una importante conexión con otras personas, como foco para la propagación de campañas.</li>
 <li><strong>Gestión</strong>: estructura de organizaciones, identificación de líderes de opinión, grupos óptimos…</li>
 </ul>
 </div><div id="objetivo-general-del-curso" class="titleslide slide section level2 unnumbered"><h1>Objetivo general del curso</h1></div><div id="objetivo" class="slide section level3">
 <h1><span class="header-section-number">0.4.5</span> Objetivo</h1>
 <blockquote>
-<p>En esta asignatura se pretende enseñar a identificar las principales <strong>propiedades</strong> de una red, los métodos y <strong>modelos</strong> que se utilizan para identificarlas a partir de datos reales, la <strong>detección de grupos y comunidades</strong> así como de <strong>nodos de especial relevancia</strong>, y los <strong>modelos de propagación</strong> relacionados con el flujo de información a través de una red social.</p>
+<p>En esta asignatura se pretende enseñar a identificar las principales <strong>propiedades</strong> de una red, los métodos y <strong>modelos</strong> que se utilizan para identificarlas y caracterizarlas a partir de datos reales, la <strong>detección de grupos y comunidades</strong> así como de <strong>nodos de especial relevancia</strong>, y los <strong>modelos de propagación</strong> relacionados con el flujo de información a través de una red social.</p>
 </blockquote>
 </div><div id="contenidos-del-curso" class="slide section level3">
 <h1><span class="header-section-number">0.4.6</span> Contenidos del curso</h1>
 <ol style="list-style-type: decimal">
 <li>Introducción.</li>
 <li>Propiedades básicas de las redes</li>
-<li>Estudio de la estructura de las redes sociales.
-<ol style="list-style-type: decimal">
-<li>Modelos de redes</li>
 <li>Centralidad</li>
-<li>Detección y estructura de comunidades</li>
-</ol></li>
-<li>Dinámica en las redes sociales.
-<ol style="list-style-type: decimal">
-<li>Procesos de contagio, difusión y formación de opiniones.</li>
-</ol></li>
+<li>Modularidad y detección de comunidades</li>
+<li>Visualización y poda de redes</li>
+<li>Modelos de redes: aleatorias, libres de escala y pequeños mundos.</li>
+<li>Dinámica de las redes: Propagación y difusión.</li>
+<li>Robustez.</li>
 </ol>
 </div><div id="organización" class="slide section level3">
 <h1><span class="header-section-number">0.4.7</span> Organización</h1>
@@ -198,10 +196,10 @@ Guillermo Jiménez Díaz (gjimenez@ucm.es)<br/>Alberto Díaz (albertodiaz@fdi.uc
 <li>En algunas sesiones prácticas se impartirán seminarios para facilitar la realización de las prácticas.</li>
 <li><strong>Asistencia obligatoria</strong>, tenida en cuenta a la hora de la evaluación</li>
 </ul>
-</div><div id="evaluación-de-la-asignatura" class="titleslide slide section level2"><h1><span class="header-section-number">0.5</span> Evaluación de la asignatura</h1></div><div id="prácticas-70" class="slide section level3">
-<h1><span class="header-section-number">0.5.1</span> Prácticas (70%)</h1>
+</div><div id="evaluación-de-la-asignatura" class="titleslide slide section level2"><h1><span class="header-section-number">0.5</span> Evaluación de la asignatura</h1></div><div id="prácticas-30" class="slide section level3">
+<h1><span class="header-section-number">0.5.1</span> Prácticas (30%)</h1>
 <blockquote>
-<p>Las prácticas son <strong>obligatorias</strong> y es necesario que estén <strong>aprobadas</strong> para que sean tenidas en cuenta en la nota final</p>
+<p>Las prácticas son <strong>obligatorias</strong> y han de estar <strong>aprobadas</strong></p>
 </blockquote>
 <ol style="list-style-type: decimal">
 <li>Entregadas en plazo</li>
@@ -209,12 +207,11 @@ Guillermo Jiménez Díaz (gjimenez@ucm.es)<br/>Alberto Díaz (albertodiaz@fdi.uc
 <li>Obteniendo una nota entre 5 y 10</li>
 </ol>
 <ul>
-<li>Grupos de 3 o 4 alumnos</li>
-<li>3-4 prácticas ajustando a los conceptos teóricos</li>
-<li>Las prácticas no entregadas o suspensas se tendrán que volver a entregar en septiembre.</li>
+<li>Grupos de 3 o 4 alumnos, 2-3 prácticas</li>
+<li>Las prácticas no entregadas o suspensas se tendrán que volver a entregar <strong>en septiembre</strong>.</li>
 </ul>
-</div><div id="proyecto-30" class="slide section level3">
-<h1><span class="header-section-number">0.5.2</span> Proyecto (30%)</h1>
+</div><div id="proyecto-70" class="slide section level3">
+<h1><span class="header-section-number">0.5.2</span> Proyecto (70%)</h1>
 <blockquote>
 <p>El proyecto final es <strong>obligatorio</strong> y consistirá en el análisis de un conjunto de datos real elegido por el grupo de alumnos.</p>
 </blockquote>
@@ -222,10 +219,50 @@ Guillermo Jiménez Díaz (gjimenez@ucm.es)<br/>Alberto Díaz (albertodiaz@fdi.uc
 <li>Mismos grupos que las prácticas</li>
 <li>Presentado en defensa pública</li>
 <li>Debe cumplir los mismos requisitos que las prácticas</li>
-<li>Los proyectos no entregados o suspensos se tendrán que volver a entregar en septiembre.</li>
+<li>Los proyectos no entregados o suspensos se tendrán que volver a entregar <strong>en septiembre</strong>.</li>
 </ul>
-</div><div id="bibliografía" class="titleslide slide section level2"><h1><span class="header-section-number">0.6</span> Bibliografía</h1></div><div id="bibliografía-1" class="slide section level3">
-<h1><span class="header-section-number">0.6.1</span> Bibliografía</h1>
+</div><div id="proyectos-del-curso-pasado" class="titleslide slide section level2"><h1><span class="header-section-number">0.6</span> Proyectos del curso pasado</h1></div><div id="análisis-de-la-red-de-coautorías-de-profesores-de-la-facultad-de-informática" class="slide section level3">
+<h1><span class="header-section-number">0.6.1</span> Análisis de la red de coautorías de profesores de la Facultad de Informática</h1>
+<div class="figure">
+<img src="../images/tema00/coauthor1.png" />
+</div>
+</div><div id="análisis-de-la-red-de-coautorías-de-profesores-de-la-facultad-de-informática-1" class="slide section level3">
+<h1><span class="header-section-number">0.6.2</span> Análisis de la red de coautorías de profesores de la Facultad de Informática</h1>
+<div class="figure">
+<img src="../images/tema00/coauthor2.png" />
+</div>
+</div><div id="estudio-de-los-modelos-de-contagio-sobre-la-red-de-trenes-de-adif" class="slide section level3">
+<h1><span class="header-section-number">0.6.3</span> Estudio de los modelos de contagio sobre la red de trenes de ADIF</h1>
+<div class="figure">
+<img src="../images/tema00/adif1.png" />
+</div>
+</div><div id="estudio-de-los-modelos-de-contagio-sobre-la-red-de-trenes-de-adif-1" class="slide section level3">
+<h1><span class="header-section-number">0.6.4</span> Estudio de los modelos de contagio sobre la red de trenes de ADIF</h1>
+<div class="figure">
+<img src="../images/tema00/adif2.png" />
+</div>
+</div><div id="análisis-de-la-red-de-pases-de-la-final-de-la-champions-de-2014" class="slide section level3">
+<h1><span class="header-section-number">0.6.5</span> Análisis de la red de pases de la final de la Champions de 2014</h1>
+<div class="figure">
+<img src="../images/tema00/champions1.png" />
+</div>
+</div><div id="análisis-de-la-red-de-pases-de-la-final-de-la-champions-de-2014-1" class="slide section level3">
+<h1><span class="header-section-number">0.6.6</span> Análisis de la red de pases de la final de la Champions de 2014</h1>
+<div class="figure">
+<img src="../images/tema00/champions2.png" />
+</div>
+</div><div id="análisis-de-la-red-de-pases-de-la-final-de-la-champions-de-2014-2" class="slide section level3">
+<h1><span class="header-section-number">0.6.7</span> Análisis de la red de pases de la final de la Champions de 2014</h1>
+<div class="figure">
+<img src="../images/tema00/champions3.png" />
+</div>
+</div><div id="simulador-temporal-del-comportamiento-de-los-nodos-de-una-red" class="slide section level3">
+<h1><span class="header-section-number">0.6.8</span> Simulador temporal del comportamiento de los nodos de una red</h1>
+<div class="figure">
+<video width="640" height="480" controls> <source src="../video/airport.mp4" type="video/mp4"> Your browser does not support the video tag. <a href="https://youtu.be/RNRWRmGFnyY" >Youtube link</a> </video>
+</div>
+</div><div id="bibliografía" class="titleslide slide section level2"><h1><span class="header-section-number">0.7</span> Bibliografía</h1></div><div id="bibliografía-1" class="slide section level3">
+<h1><span class="header-section-number">0.7.1</span> Bibliografía</h1>
 <blockquote>
 <p>Principal</p>
 </blockquote>
@@ -233,7 +270,10 @@ Guillermo Jiménez Díaz (gjimenez@ucm.es)<br/>Alberto Díaz (albertodiaz@fdi.uc
 <li><a href="http://barabasilab.neu.edu/networksciencebook/">Network Science</a>. Laszlo Barabasi.</li>
 <li><a href="http://www.cs.cornell.edu/home/kleinber/networks-book/">Networks, Crowds and Markets</a>. David Easley and Jon Kleinberg, Cambridge University Press. 2010.</li>
 <li>Social and Economic Networks. Matthew O. Jackson. Princeton University Press. 2008.</li>
+<li><a href="https://github.com/GuilleUCM/SOC/releases">Apuntes del curso pasado en GitHub</a></li>
 </ul>
+</div><div id="bibliografía-2" class="slide section level3">
+<h1><span class="header-section-number">0.7.2</span> Bibliografía</h1>
 <blockquote>
 <p>Complementaria</p>
 </blockquote>

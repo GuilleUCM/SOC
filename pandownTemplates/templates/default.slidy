@@ -24,7 +24,7 @@ $endif$
    
 
   <link rel="stylesheet" type="text/css" media="screen, projection, print"
-   href="../pandownTemplates/soc.css" />
+   href="../pandownTemplates/dsi.css" />
 
 $if(math)$
   $math$

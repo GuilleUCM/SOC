@@ -1,6 +1,6 @@
 % Análisis de Redes Sociales
 % Guillermo Jiménez Díaz (gjimenez@ucm.es); Alberto Díaz (albertodiaz@fdi.ucm.es)
-% 1 de octubre de 2014
+% 30 de septiembre de 2015
 
 # Tema 0: Presentación de la asignatura {-}
 
@@ -77,6 +77,12 @@ Ejemplos de sistemas complejos:
 
 ### La ciencia del siglo XXI: Motivos
 
+* **Necesidad (urgente) de entender la complejidad**
+
+> No podemos permitirnos no entender el comportamiento de los sistemas complejos.
+ 
+### La ciencia del siglo XXI: Motivos
+
 * **Disponibilidad de Datos**
     * Red de Actores de Cine, 1998
     * La World Wide Web, 1999
@@ -84,7 +90,7 @@ Ejemplos de sistemas complejos:
     * Redes de Citas de Artículos Científicos, 1998
     * Genoma Humano, 2001
     * Red de Interacciones entre Proteínas, 2001
-    * Extracción de datos en principales redes sociales (Facebook, Twitter...), actualidad.
+    * APIS en redes sociales (Facebook, Twitter...), actualidad.
 
 ### La ciencia del siglo XXI: Motivos
 
@@ -92,17 +98,15 @@ Ejemplos de sistemas complejos:
 
 > La arquitectura de las distintas redes que están apareciendo en distintos dominios es más similar de lo que podría esperarse.
 
-* **Necesidad (urgente) de entender la complejidad**
 
-> No podemos permitirnos no entender el comportamiento de los sistemas complejos.
 
 ## ¿Para qué sirve el Análisis de Redes Sociales?
 
 ### Usos
 
 * Entender la estructura y el comportamiento de un sistema complejo.
-* Extracción de información y predicción.
-* Hacer mapas de una red.
+* Extraer información y realizar predicciones.
+* Visualización de información (en forma de red).
 * Detección de nodos de especial relevancia en la dinámica de la red (influenciadores y concentradores).
 * Detección de vulnerabilidades y posibles fallos en cascada debido a las interconexiones entre nodos (por ejemplo, en una red eléctrica por sobrecarga de una central o en internet, debido a un ataque por denegación de servicio en un router).
 * Entender cómo la estructura de la red afecta a la robustez de la misma.
@@ -134,7 +138,7 @@ ARS y la teoría de grafos matemática:
 
 * **Salud**: Medicina y genómica, redes de enfermedades humanas y genes y proteínas implicados, investigación sobre el cerebro humano y redes neuronales, predicción de epidemias.
 * Lucha contra el **terrorismo**
-* **Economía**: predicción económica; recomendaciones y anuncios. Detección de influenciadores, personas con una importante conexión con otras personas, como foco para la propagación de campañas.
+* **Economía y Marketing**: predicción económica; recomendaciones y anuncios. Detección de influenciadores, personas con una importante conexión con otras personas, como foco para la propagación de campañas.
 * **Gestión**: estructura de organizaciones, identificación de líderes de opinión, grupos óptimos...
 
 
@@ -142,18 +146,18 @@ ARS y la teoría de grafos matemática:
 
 ### Objetivo
 
-> En esta asignatura se pretende enseñar a identificar las principales **propiedades** de una red, los métodos y **modelos** que se utilizan para identificarlas a partir de datos reales, la **detección de grupos y comunidades**  así como de **nodos de especial relevancia**, y los **modelos de propagación** relacionados con el flujo de información a través de una red social.
+> En esta asignatura se pretende enseñar a identificar las principales **propiedades** de una red, los métodos y **modelos** que se utilizan para identificarlas y caracterizarlas a partir de datos reales, la **detección de grupos y comunidades**  así como de **nodos de especial relevancia**, y los **modelos de propagación** relacionados con el flujo de información a través de una red social.
 
 ### Contenidos del curso
 
 1. Introducción.
 2. Propiedades básicas de las redes
-3. Estudio de la estructura de las redes sociales.
-    1. Modelos de redes
-    2. Centralidad
-    3. Detección y estructura de comunidades
-4. Dinámica en las redes sociales.
-    1. Procesos de contagio, difusión y formación de opiniones.
+3. Centralidad
+4. Modularidad y detección de comunidades
+5. Visualización y poda de redes
+6. Modelos de redes: aleatorias, libres de escala y pequeños mundos.
+7. Dinámica de las redes: Propagación y difusión.
+8. Robustez.
 
 ### Organización
 
@@ -166,26 +170,64 @@ ARS y la teoría de grafos matemática:
 
 La evaluación final del curso se compone de dos partes:
 
-### Prácticas (70%)
+### Prácticas (30%)
 
-> Las prácticas son **obligatorias** y es necesario que estén **aprobadas** para que sean tenidas en cuenta en la nota final
+> Las prácticas son **obligatorias** y han de estar **aprobadas** 
 
 1. Entregadas en plazo
 2. Satisfaciendo los requisitos del enunciado
 3. Obteniendo una nota entre 5 y 10
 
-* Grupos de 3 o 4 alumnos
-* 3-4 prácticas ajustando a los conceptos teóricos
-* Las prácticas no entregadas o suspensas se tendrán que volver a entregar en septiembre.
+* Grupos de 3 o 4 alumnos, 2-3 prácticas
+* Las prácticas no entregadas o suspensas se tendrán que volver a entregar **en septiembre**.
 
-### Proyecto (30%)
+### Proyecto (70%)
 
 > El proyecto final es **obligatorio** y consistirá en el análisis de un conjunto de datos real elegido por el grupo de alumnos.
 
 * Mismos grupos que las prácticas
 * Presentado en defensa pública
 * Debe cumplir los mismos requisitos que las prácticas
-* Los proyectos no entregados o suspensos se tendrán que volver a entregar en septiembre.
+* Los proyectos no entregados o suspensos se tendrán que volver a entregar **en septiembre**.
+
+## Proyectos del curso pasado
+
+### Análisis de la red de coautorías de profesores de la Facultad de Informática
+
+![](../images/tema00/coauthor1.png)
+
+### Análisis de la red de coautorías de profesores de la Facultad de Informática
+
+![](../images/tema00/coauthor2.png)
+
+### Estudio de los modelos de contagio sobre la red de trenes de ADIF
+
+![](../images/tema00/adif1.png)
+
+### Estudio de los modelos de contagio sobre la red de trenes de ADIF
+
+![](../images/tema00/adif2.png)
+
+### Análisis de la red de pases de la final de la Champions de 2014
+
+![](../images/tema00/champions1.png)
+
+### Análisis de la red de pases de la final de la Champions de 2014
+
+![](../images/tema00/champions2.png)
+
+### Análisis de la red de pases de la final de la Champions de 2014
+
+![](../images/tema00/champions3.png)
+
+### Simulador temporal del comportamiento de los nodos de una red
+
+<div class="figure">
+ <video width="640" height="480" controls>
+  <source src="../video/airport.mp4" type="video/mp4">
+Your browser does not support the video tag. <a href="https://youtu.be/RNRWRmGFnyY" >Youtube link</a>
+</video> 
+</div>
 
 ## Bibliografía
 
@@ -196,6 +238,9 @@ La evaluación final del curso se compone de dos partes:
 * [Network Science](http://barabasilab.neu.edu/networksciencebook/). Laszlo Barabasi.
 * [Networks, Crowds and Markets](http://www.cs.cornell.edu/home/kleinber/networks-book/). David Easley and Jon Kleinberg, Cambridge University Press. 2010.
 * Social and Economic Networks. Matthew O. Jackson. Princeton University Press. 2008.
+* [Apuntes del curso pasado en GitHub](https://github.com/GuilleUCM/SOC/releases)
+
+### Bibliografía 
 
 > Complementaria
 
