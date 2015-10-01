@@ -9,6 +9,7 @@ Estos son los apuntes de la asignatura Análisis de Redes Sociales, impartida en
 
 Este material ha sido desarrollado a partir de distintas fuertes, destacando como referencia principal el libro _Network Science_ de Laszlo Barabasi, el libro _Social and Economic Networks_ de Mathew O. Jackson y el material de la asignatura _Social Network Analysis_ impartido por Lada Adamic a través de Coursera.
 
+\setcounter{chapter}{0}
 
 # Tema 0: Presentación de la asignatura {-}
 
@@ -120,7 +121,7 @@ Como veremos más adelante, el ARS hace uso de la teoría de grafos matemática,
 * **Gestión**: estructura de organizaciones, identificación de líderes de opinión, grupos óptimos...
 
 
-# Objetivo general del curso {-}
+## Objetivo general del curso
 
 En esta asignatura se pretende enseñar a identificar las principales propiedades de una red, los métodos y modelos que se utilizan para identificarlas y caracterizarlas a partir de datos reales, la detección de grupos y comunidades  así como de nodos centralizadores, y los modelos relacionados con el flujo de información a través de una red social.
 
@@ -163,6 +164,7 @@ Algunos proyectos realizados durante el curso pasado fueron los siguientes:
 - Estudio de los modelos de contagio sobre la red de trenes de ADIF
 - Análisis de la red de pases de la final de la Champions de 2014 (Real Madrid vs. Atlético de Madrid).
 - Simulador temporal del comportamiento de los nodos de una red. Podéis verlo en funcionamiento [en este Vídeo de Youtube](https://youtu.be/RNRWRmGFnyY)
+- Análisis de enlaces y hashtags de Twitter.
 
 El proyecto es obligatorio y debe cumplir los mismos requisitos que las prácticas para poder aprobar la asignatura: entregado en plazo, cumpliendo los requisitos del enunciado y obteniendo una nota mayor o igual que 5.
 

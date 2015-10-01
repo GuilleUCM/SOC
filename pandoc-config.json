@@ -252,6 +252,9 @@
 			// if your template includes loops; see this plugin's README.
 			"variables":
 			{
+				"documentclass": "report",
+				"fontsize": "12pt",
+				"geometry": "left=3cm, right=3cm, top=2.5cm, bottom=2.5cm"
 			},
 
 			// By default, text is wrapped for the output format.

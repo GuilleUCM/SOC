@@ -229,6 +229,10 @@ Your browser does not support the video tag. <a href="https://youtu.be/RNRWRmGFn
 </video> 
 </div>
 
+### Análisis de enlaces y hashtags de Twitter
+
+![](../images/tema00/twitter.png)
+
 ## Bibliografía
 
 ### Bibliografía 
