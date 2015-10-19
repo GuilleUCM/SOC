@@ -1,6 +1,9 @@
 % Análisis de Redes Sociales
 % Guillermo Jiménez Díaz (gjimenez@ucm.es); Alberto Díaz (albertodiaz@fdi.ucm.es)
-% Curso 2014 - 2015
+% Curso 2015 - 2016
+
+
+\setcounter{chapter}{1}
 
 # Prefacio {-}
 
@@ -10,14 +13,36 @@ Este material ha sido desarrollado a partir de distintas fuertes, destacando com
 
 Este obra está bajo una [licencia de Creative Commons Reconocimiento-NoComercial-CompartirIgual 4.0 Internacional](http://creativecommons.org/licenses/by-nc-sa/4.0/).
 
-# Práctica 1: Análisis básico de una red con Gephi y Netvizz
+# Práctica 1: Análisis básico de una red con Gephi {-}
 
-Esta práctica tiene una parte de trabajo individual y otra de trabajo en grupo.En primer lugar cada alumno deberá analizar su propia red social de amigos en Facebook y posteriormente se deberán discutir las diferencias y similitudes entre las redes de cada uno de los alumnos del mismo grupo.
+La práctica se dividirá en dos partes bien diferenciadas:
 
-En primer lugar hay que usar la aplicación Netvizz de Facebook <https://apps.facebook.com/netvizz> para generar la propia red social de amigos del alumno en Facebook (personal friend network). Al crear la red no es necesario incluir ningún dato adicional como la contabilización de los "me gusta" de los amigos (no es necesario marcar el checkbox), aunque el alumno puede "jugar" con su red fuera del desarrollo de la práctica. 
+1. Procesado de datos: Se darán unos datos que no están en forma de grafo y que hay que procesar para que sean visualizables en Gephi.
+2. Visualización y extracción de información: Los datos procesados serán cargados en Gephi para poder visualizar la red y extraer información adicional sobre los nodos y la estructura de la red en sí misma.
 
-Una vez generada la red, se cargará en Gephi y se realizarán tareas básicas de
-análisis y visualización. Una vez cargada lo primero que deberéis hacer es **anonimizar** la red. Para ello, desde el `Laboratorio de datos` eliminad todas las columnas que no sean "nodes", "id" o "label" y borrad los datos de la columna "Label". 
+## Procesado de los datos
+
+<!-- Esta práctica tiene una parte de trabajo individual y otra de trabajo en grupo.En primer lugar cada alumno deberá analizar su propia red social de amigos en Facebook y posteriormente se deberán discutir las diferencias y similitudes entre las redes de cada uno de los alumnos del mismo grupo.
+
+En primer lugar hay que usar la aplicación Netvizz de Facebook <https://apps.facebook.com/netvizz> para generar la propia red social de amigos del alumno en Facebook (personal friend network). Al crear la red no es necesario incluir ningún dato adicional como la contabilización de los "me gusta" de los amigos (no es necesario marcar el checkbox), aunque el alumno puede "jugar" con su red fuera del desarrollo de la práctica.  -->
+
+Vamos a crear una red a partir de la información de películas y actores existente en la web <http://www.linkedmdb.org/>. Para evitar tener que hacer peticiones al servidor hemos creado un dataset formado por ficheros XML con información de unos 7700 actores y unas 5000 películas. La estructura del dataset (disponible en el Campus Virtual) es la siguiente:
+
+- Directorio `movies`: Contiene un archivo XML para cada una de las películas del dataset, con nombre `data.linkedmdb.org.data.film.<id>.xml`, donde id es un identificador único de la película. Cada archivo tiene información sobre el título de la película que representa (contenido textual de la etiqueta `dc:title`) y de los actores que la interpretan (valor del atributo `rdf:resource` de la etiqueta `movie:actor`). Los actores se identifican con un identificador único que aparece al final del valor de dicho atributo y que se corresponde con uno de los ficheros contenidos en el directorio `actors`.
+- Directorio `actors`: Contiene un archivo XML para cada uno de los actores del dataset, con nombre `data.linkedmdb.org.data.actor.<id>.xml`, donde id es un identificador único del actor. Cada archivo tiene información sobre el nombre del actor que representa (contenido textual de la etiqueta `movie:actor_name`), además de otra información adicional.
+
+Primeramente es necesario a convertir la información del grafo bipartito, cuyas aristas se define mediante la relación `actor X actúa en la película Y` en un grafo _no bipartito_. Para ello hay que procesar los archivos del directorio `movies` y crear un grafo no bipartito cuyas aristas representan que `actor X y actor Y actúan en la misma película`. Para ello analizaremos cada uno de los XML y crearemos la lista de aristas con esta información. Además, podemos crear una lista de nodos con el identificador y el nombre de cada actor (extraído de los ficheros contenidos en el directorio `actors`). Una vez procesados todos los ficheros, exportaremos las listas de nodos y aristas creadas a un archivo en [uno de los formatos que Gephi es capaz de cargar](http://gephi.github.io/users/supported-graph-formats/).
+
+
+
+
+<!-- y de las actuaciones que ha realizado (valor del atributo `rdf:resource` de la etiqueta `movie:performance`). Cada actuación se identifica mediante un identificador único contenido al final del valor de dicho atributo y que se corresponde con un archivo del directorio performance. -->
+
+
+## Visualización y extracción de información
+
+<!-- Una vez generada la red, se cargará en Gephi y se realizarán tareas básicas de
+análisis y visualización. Una vez cargada lo primero que deberéis hacer es **anonimizar** la red. Para ello, desde el `Laboratorio de datos` eliminad todas las columnas que no sean "nodes", "id" o "label" y borrad los datos de la columna "Label".  -->
 
 Para las tareas de visualización, si la red presenta más de una componente conexa, se recomienda usar `Force Atlas 2` como algoritmo de layout (Distribución). Para evitar que las componentes conexas queden fuera de la vista principal que muestra la componente gigante, fijad el valor del parámetro `Puesta a punto >> Gravedad` en torno a 20. Si todo queda demasiado amontonado, se puede probar a marcar la opción `Disuadir Hubs` y/o `Evitar el solapamiento`. Los aspectos estéticos de la visualización se dejan al parecer del propio alumno, que puede probar las distintas variantes de algoritmos de layout implementados en Gephi y de parámetros para determinar cuál le proporciona la distribución que más le guste
 
