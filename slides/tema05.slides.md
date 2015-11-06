@@ -203,7 +203,9 @@ $$p_k = P(k, \langle k \rangle) \to p_k = e^{-\langle k \rangle}\cdot \frac{\lan
 
     * cómo varía el grado medio de la red
     * cómo aparece un componente gigante cuyo tamaño va variando a medida que se modifica dicho grado medio.
-     
+
+<http://barabasi.com/networksciencebook/resources/chapter3.html>
+
 ### Evolución
 
 ![Evolución del tamaño del componente gigante ($\frac{N_G}{N}$) con respecto al grado medio de la red $\langle k \rangle$](../images/tema02/evolucion.png)

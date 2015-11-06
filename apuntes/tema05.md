@@ -133,9 +133,11 @@ Por ejemplo, en una red con $\langle k \rangle = 1000$ se puede calcular que $\s
 
 ## Evolución de una red aleatoria
 
-<!-- La creación de una red aleatoria parte de un conjunto de nodos aislados que se van uniendo aleatoriamente. Si simulamos el algoritmo de creación podemos ver cómo varía el grado medio de la red y cómo aparece un componente gigante cuyo tamaño va variando a medida que se modifica dicho grado medio. En la siguiente figura podemos ver la evolución del tamaño del componente gigante con respecto al grado medio de la red ($\langle k \rangle$). En lugar de observar solo el número de nodos del componente ($N_G$) vamos a tener en cuenta el porcentaje del mismo con respecto al número total de nodos de la red ($\frac{N_G}{N}$).
+La creación de una red aleatoria parte de un conjunto de nodos aislados que se van uniendo aleatoriamente. Si simulamos el algoritmo de creación podemos ver cómo varía el grado medio de la red y cómo aparece un componente gigante cuyo tamaño va variando a medida que se modifica dicho grado medio. En la siguiente figura podemos ver la evolución del tamaño del componente gigante con respecto al grado medio de la red ($\langle k \rangle$). En lugar de observar solo el número de nodos del componente ($N_G$) vamos a tener en cuenta la fracción que representa el componente más grande con respecto al número total de nodos de la red ($\frac{N_G}{N}$).
 
 ![Evolución del tamaño del componente gigante con respecto al grado medio de la red $\langle k \rangle$](../images/tema02/evolucion.png)
+
+Podemos ver un [vídeo de la evolución de una red aleatoria](http://barabasi.com/networksciencebook/resources/videos/ch03_06.m4v). También podemos utilizar Netlogo, viendo el modelo llamado `Giant Component`, que está en la Biblioteca de Modelos del propio Netlogo (Sample Models --> Networks).
 
 Se puede ver que partimos de nodos aislados y que a partir de $\langle k \rangle = 1$ el valor de $\frac{N_G}{N}$ comienza a crecer rápidamente, lo que implica que comienza la aparición de un componente gigante.
 
@@ -154,7 +156,7 @@ Observando la evolución de la red podemos diferenciar 4 etapas con sus caracter
 
 * **Punto crítico**
 
-    Se produce cuando $\langle k \rangle = 1 \to p= \frac{1}{N}$. En este momento hay un gran número de componentes de pequeño tamaño cuya distribución sigue una función de ley potencial o _power-law_, las cuales se caracterizan por tener una larga cola. En este momento aparece el componente gigante, cuyo tamaño es $N_G \sim N^{\frac{2}{3}}$.
+    Se produce cuando $\langle k \rangle = 1 \to p= \frac{1}{N}$. En este momento hay un gran número de componentes de pequeño tamaño. En este momento comienza a aparecer el componente gigante, cuyo tamaño es $N_G \sim N^{\frac{2}{3}}$.
 
 * **Etapa supercrítica**
 
@@ -169,19 +171,66 @@ Como resultados importantes podemos destacar que:
 * Si $\langle k \rangle > 1$ entonces la red puede comenzar a considerarse como tal (existe un componente gigante)
 * Si $\langle k \rangle \sim ln N$ entonces todos los componentes son absorbidos, creando una red global conectada.
 
-Podemos ver un [vídeo de la evolución de una red aleatoria](http://barabasi.com/networksciencebook/resources/videos/ch03_06.m4v)
+## Coeficiente de agrupamiento
 
-### Redes reales frente a redes aleatorias
+Para calcular el coeficiente local de agrupamiento $C_i$ necesitamos estimar cuál es el número de enlaces entre los vecinos de un nodo. Recordemos que la probabilidad de que haya un enlace entre dos nodos en una red aleatoria es $p$ y que, para un nodo $i$, hay $\frac{k_i(k_i-1)}{2}$ posibles enlaces entre sus $k_i$ vecinos. Según esto, el valor estimado de enlaces de los vecinos $L_i$ es:
+
+$$\langle L_i \rangle = p \cdot \frac{k_i(k_i-1)}{2}$$
+
+De acuerdo a esto, el coeficiente $C_i$ se calcula como:
+
+$$
+C_i = \langle C \rangle = \frac{2 \cdot \langle L_i \rangle }{k_i(k_i-1)} = p = \frac{\langle k \rangle}{N}
+$$
+
+De este cálculo se pueden extraer dos predicciones:
+
+* Para un $\langle k \rangle$ fijo, el coeficiente de agrupamiento decrece cuanto mayor es el tamaño de la red ($N$). Este coeficiente decrecerá a razón de $\frac{1}{N}$.
+* El coeficiente de agrupamiento de un nodo es independiente de su grado.
+
+## Propiedades de los caminos en redes aleatorias
+
+En una red aleatoria de grado $\langle k \rangle$ se cumple que cualquier nodo de la red tiene, _en media_:
+
+* $\langle k \rangle$ nodos a distancia 1 ($d=1$)
+* $\langle k \rangle^2$ nodos a distancia 2 ($d=2$)
+* ...
+* $\langle k \rangle^d$ nodos a distancia d 
+
+Según eso, el número de nodos a distancia $d$ ($N(d)$) se puede calcular como:
+
+$$N(d) =1+\langle k \rangle+\langle k \rangle^2+\dots=\frac{\langle k \rangle^{d+1}-1}{\langle k \rangle-1}$$
+
+Si suponemos que $\langle k \rangle \gg 1$ entonces podemos estimar que el diámetro ($d_{max}$) de la red es:
+
+$$d_{max} \propto \frac{log N}{log \langle k \rangle}$$
+
+En la mayoría de los casos se puede considerar que esta misma fórmula aproxima la _longitud media de los caminos_ de la red ($\langle d \rangle$) es:
+
+$$\langle d \rangle \propto \frac{log N}{log \langle k \rangle}$$
+
+Esto implica que:
+
+* La longitud media de los caminos de la red va a ser varios órdenes de magnitud más pequeño que $N$ (ya que $log N \ll N$).
+* Cuanto más densa sea la red (mayor $\langle k \rangle$), menor es la distancia entre los nodos.
+
+Estas conclusiones se resumen en lo que se conoce como la propiedad de **los pequeños mundos** o _small worlds_: la distancia entre dos nodos cualquiera de la red es sorprendentemente corta. Más adelante hablaremos de esta propiedad y de otros modelos que la tienen en cuenta.
+
+## Redes reales frente a redes aleatorias
 
 Si suponemos que las redes reales siguen el modelo de red aleatoria entonces se cumplirán las propiedades vistas anteriormente. Vamos a observar los datos de una serie de redes reales tomadas del libro de Barabasi (cap. 3, pág 60):
 
 ![Datos sobre algunas redes reales](../images/tema02/datosRedes.png)
 
-De acuerdo a estos datos todas estas redes cumplen que $\langle k \rangle > 1$ por lo que tienen un componente gigante. Sin embargo se aprecia que en la mayoría de ellas (salvo en la red de actores) no se cumple que $\langle k \rangle \sim ln N$ por lo que deberíamos suponer que se encuentran en la fase supercrítica y que, por tanto, existen nodos y componentes aislados. Si las redes reales se modelan de acuerdo al modelo de Erdös-Renyi entonces deberían existir nodos desconectados del componente gigante. Como ejemplo, en el caso de la red Internet, esto supondría que existen subredes que no están conectados a la red global. Si esto fuese así, ¿cómo los alcanzaríamos?. Estamos ante la evidencia de que tal vez este modelo no es del todo válido para muchas redes reales.
+### Etapa de las redes reales
+
+De acuerdo a estos datos todas estas redes cumplen que $\langle k \rangle > 1$ por lo que tienen un componente gigante. Sin embargo se aprecia que en la mayoría de ellas (salvo en la red de actores) no se cumple que $\langle k \rangle \sim ln N$ por lo que deberíamos suponer que se encuentran en la fase supercrítica y que, por tanto, existen nodos y componentes aislados.
+
+Si las redes reales se modelan de acuerdo al modelo de Erdös-Renyi entonces deberían existir nodos desconectados del componente gigante. Como ejemplo, en el caso de la red Internet, esto supondría que existen subredes que no están conectados a la red global. Si esto fuese así, ¿cómo los alcanzaríamos?. Estamos ante la evidencia de que tal vez este modelo no es del todo válido para muchas redes reales.
 
 ![La mayoría de las redes reales son supercríticas (Barabasi, Cap 3)](../images/tema02/redesRealesSupercriticas.png)
 
-## Propiedades de los caminos en redes aleatorias
+<!-- ## Propiedades de los caminos en redes aleatorias
 
 En una red aleatoria de grado $\langle k \rangle$ se cumple que cualquier nodo de la red tiene, _en media_:
 
@@ -226,19 +275,21 @@ El primer experimento que trataba de demostrar este fenómeno fue propuesto por 
 
 Se enviaron 296 cartas. La primera llegó en pocos días, pasando sólo por 2 enlaces. Al final llegaron 64 con un máximo de 12 intermediarios. La mediana de intermediarios fueron entre 5,5 y 6, por lo que de ahí viene la idea de los 6 grados de separación (aunque el nombre proviene de una obra de teatro).
 
-En posteriores temas hablaremos más de otros modelos que detallan este  fenómeno y de su importancia en el análisis de redes sociales.
+En posteriores temas hablaremos más de otros modelos que detallan este  fenómeno y de su importancia en el análisis de redes sociales. 
 
-En las redes reales este número "6" se reduce drásticamente. Por ejemplo, si calculamos la longitud media en Facebook que, de acuerdo a los datos de mayo de 2011, tenía 721 millones de usuarios y 68.000 millones de relaciones (simétricas) de amistad:
+En las redes reales este número "6" se reduce drásticamente.-->
 
-$$
-\langle d \rangle = \frac{log N}{log \langle k \rangle} \simeq 3.90
-$$
 
-La siguiente tabla resume el cálculo de las distancias medias de redes reales de acuerdo al modelo de redes aleatorias:
+### Coeficiente de agrupamiento
 
-![Distancia media y diámetro de algunas redes reales](../images/tema02/dmRedesReales.png) 
+Recordemos que las dos principales predicciones que podemos extraer del modelo de red aleatoria en cuanto al coeficiente de agrupamiento son: 
 
-## Coeficiente de agrupamiento
+* Para un $\langle k \rangle$ fijo, el coeficiente de agrupamiento decrece cuanto mayor es el tamaño de la red ($N$). Este coeficiente decrecerá a razón de $\frac{1}{N}$.
+* El coeficiente de agrupamiento de un nodo es independiente de su grado.
+
+
+
+<!-- ## Coeficiente de agrupamiento
 
 Para calcular el coeficiente local de agrupamiento $C_i$ necesitamos estimar cuál es el número de enlaces entre los vecinos de un nodo. Recordemos que la probabilidad de que haya un enlace entre dos nodos en una red aleatoria es $p$ y que, para un nodo $i$, hay $\frac{k_i(k_i-1)}{2}$ posibles enlaces entre sus $k_i$ vecinos. Según esto, el valor estimado de enlaces de los vecinos $L_i$ es:
 
@@ -253,13 +304,27 @@ $$
 De este cálculo se pueden extraer dos predicciones:
 
 * Para un $\langle k \rangle$ fijo, el coeficiente de agrupamiento decrece cuanto mayor es el tamaño de la red ($N$). Este coeficiente decrecerá a razón de $\frac{1}{N}$.
-* El coeficiente de agrupamiento de un nodo es independiente de su grado.
+* El coeficiente de agrupamiento de un nodo es independiente de su grado. -->
 
 Sin embargo, si usamos los datos conocidos de las redes reales nos encontramos con que para muchas de ellas no se cumplen ninguna de las dos predicciones, tal y como podemos ver en la siguiente Figura:
 
 ![Cálculos del coeficiente de agrupamiento para redes reales](../images/tema02/ci_reales.png)
 
 En la gráfica (a) se puede ver que, aunque tenemos redes con distinto tamaño, $C_i$ no decrece a razón de $\frac{1}{N}$ (línea punteada). Así mismo, las gráficas (b, c, d) muestran que $C_i$ _sí_ depende del grado de los nodos. De nuevo nos encontramos con propiedades que las redes reales incumplen, lo que nos hacen plantearnos si realmente son redes aleatorias.
+
+### Longitud de caminos
+
+En este caso, vemos que las redes reales se aproximan bastante a las predicciones realizadas por el modelo de red aleatoria.
+
+Por ejemplo, si calculamos la longitud media en Facebook que, de acuerdo a los datos de mayo de 2011, tenía 721 millones de usuarios y 68.000 millones de relaciones (simétricas) de amistad:
+
+$$
+\langle d \rangle = \frac{log N}{log \langle k \rangle} \simeq 3.90
+$$
+
+La siguiente tabla resume el cálculo de las distancias medias de redes reales de acuerdo al modelo de redes aleatorias:
+
+![Distancia media y diámetro de algunas redes reales](../images/tema02/dmRedesReales.png) 
 
 ## Resumen
 
@@ -284,4 +349,3 @@ Lo que sí que han demostrado que cumplen las redes reales de acuerdo a lo predi
 > En un sistema complejo hay un camino de longitud _corta_  entre cualquier par de nodos de la red que lo modela.
 
 ![Cuadro resumen (extraído de _Network Science_, pp. 70)](../images/tema02/resumen2.png)
- -->
