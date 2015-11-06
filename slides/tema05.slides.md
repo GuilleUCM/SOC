@@ -1,553 +1,451 @@
 % Análisis de Redes Sociales
 % Guillermo Jiménez Díaz (gjimenez@ucm.es); Alberto Díaz (albertodiaz@fdi.ucm.es)
-% 31 de octubre de 2014
+% 6 de noviembre de 2015
 
+# Tema 2: Modelos de redes: <br/>El modelo de red aleatoria
 
-# Tema 5: Centralidad {-}
+## Modelos
 
-### Concepto de centralidad
+### Modelos
 
-Los nodos con una "posición más central" (una mayor centralidad) tienen un acceso más fácil y rápido a los demás nodos de la red y una mayor capacidad para ejercer un control del flujo entre ellos.
+> Los datos relativos a una red nos permiten calcular todas las propiedades vistas hasta ahora.
+> 
+> Sin embargo, muchas de **las redes reales son demasiado complejas** como para tener todos los datos. En este caso es necesario aproximarlas mediante un modelo que las simplifique.
 
-### Ejemplos de grafos de actores en películas
+### Modelos
 
-En los siguientes grafos se representan relaciones entre los actores que aparecen en distintas películas analizando los guiones. Se incluye una arista entre dos actores si un actor interacciona con otro actor en un punto concreto de la película.
+* Un **modelo** es una _representación simple_ de un sistema complejo del que podemos _extraer y derivar propiedades_ matemáticamente.
+* Los modelos nos ayudan a entender cómo y por qué se han formado las redes tal y como son ahora.
+* Mediante un modelo que se aproxime a una red real podremos _predecir propiedades y resultados_ de la misma. 
 
-### Ejemplos de grafos de actores en películas
+> En este y en sucesivos capítulos estudiaremos algunos de los modelos más conocidos de redes sociales. El primero de ellos es el **modelo de red aleatoria**.
 
-<!-- PONER FIGURAS -->
-[Wikipedia: El Fugitivo (1993). Actores principales: Dr. Kimble, Gerard](http://es.wikipedia.org/wiki/El_fugitivo_(pel%C3%ADcula_de_1993))
+## Modelo de red aleatoria
 
-![The Fugitive (1993)](../images/tema05/elFugitivo.png)
+### Ejemplo motivante
 
-### Ejemplos de grafos de actores en películas
+![Primer día de clase en la Universidad. Charlas en grupos con encuentros aleatorios](../images/tema02/ejemplo.png)
 
-[Wikipedia: Memento (2000). Actor principal: Leonard](http://es.wikipedia.org/wiki/Memento)
+### Encuentros aleatorios
 
-![Memento (2000)](../images/tema05/Memento.png)
+> **Premisa:** Los enlaces entre los nodos de una red se generan de manera aleatoria
 
-### Ejemplos de grafos de actores en películas
+### Modelo de red aleatoria
 
-Han sido extraídas de la web [moviegalaxies.com](http://moviegalaxies.com)
+* Una __red aleatoria__ es una red en la que cada uno de los enlaces entre dos nodos se ha creado siguiendo un proceso completamente aleatorio.
+* Matemáticamente es una red que tiene __$N$ nodos__ donde cada nodo puede estar conectado con otro con una __probabilidad $p$__. Se representa como __$G(N,p)$__
 
-## Medidas
+### Modelo de red aleatoria
 
-### Medidas
+* Modelo de Erdös-Renyi (1960)
 
-Para analizar la estructura de las redes sociales existen 2 tipos de medidas: Medidas locales (a nivel de nodos) y medidas globales (a nivel de red).
+![Pal Erdös y Alfred Renyi, matemáticos hungaros principales investigadores del modelo de red aleatoria.](../images/tema02/erdosRenyi.png)
 
-### Medidas locales (a nivel de nodos).
 
-* Todas estas medidas están basadas en el concepto general de centralidad (redes no dirigidas) o prestigio (redes dirigidas).
-* La centralidad es una medida general de la posición de un nodo en la estructura global de la red social.
-* Estas medidas se usan para identificar los nodos claves de una red.
-* Muestran como las relaciones se concentran en unos pocos nodos (individuos), dando una idea de su poder social.
+### Construcción
 
-<!-- DUDA: Ejemplos Nada? -->
+> 1. Crear N nodos aislados
+> 2. Seleccionar un par de nodos y generar un número aleatorio entre 0 y 1. Si es menor o igual que $p$ entonces añadimos un enlace entre ellos. En otro caso, los dejamos desconectados.
+> 3. Repetir el paso 2 para los $\frac{N(N-1)}{2}$ pares de nodos de la red.
 
-### Medidas globales (a nivel de red)
+### Alternativa
 
-* Proporcionan información más compacta que permite evaluar la estructura global de la red.
-* Proporcionan información sobre propiedades importantes de los fenónemos sociales subyacentes.
-* Algunas de estas medidas las hemos utilizado en temas anteriores: diámetro, distancia media, grado medio, densidad.
+* El modelo de red aleatoria también puede caracterizarse como __$G(N, L)$__, donde $L$ es el número de enlaces de la red.
+* La red se forma seleccionando aleatoriamente 2 nodos y, si no existe un enlace entre ellos, se añade.
+* Este proceso se repite hasta conseguir un total de $L$ enlaces.
+* Forma menos usada.
 
-## Medidas locales de centralidad
+## Número de enlaces
 
-### Medidas locales de centralidad
+### Igual parámetros, distintas redes
 
-Existen varias medidas distintas de centralidad:
+![](../images/tema02/distintasRedes.png)
 
-* Grado
-* Intermediación (betweenness)
-* Cercanía (closeness)
-* Excentricidad
-* Centralidad de vector propio
-* Coeficiente local de clustering
+* Si la red se representa como $G(L,p)$ entonces ya sabemos el número exacto de enlaces.
 
-## Centralidad de grado
+### Número variable de enlaces
 
-### Centralidad de grado
+* Las redes aleatorias $G(N, p)$ tienen un número variable de enlaces ($L$). 
+* Podemos calcular la probabilidad de que la red tenga exactamente $L$ enlaces.
 
-Mide el número de enlaces con otros nodos.
-Hay que distinguir entre grafos dirigidos y no dirigidos.
+* __Distribución binomial__: el número de éxitos ($x$) que se pueden conseguir en la realización de $n$ experimentos independientes donde la probabilidad de acierto es $p$ y la de fracaso, $1-p$.
 
-### Grafos no dirigidos.
+$$ B(n, x, p) \to p_x = \binom{n}{x}p^x(1-p)^{n-x}$$ 
 
-Centralidad de grado de un nodo: número de enlaces que lo conectan con otros.
+### Distribución binomial
 
-$$C_D(N) = k_N$$
+![](../images/tema05/Binomial.png)
 
-$C_D(N)$ se define en el intervalo {0, g-1}, siendo g el número de nodos de la componenente conexa donde está el nodo N.
+### Propiedades de la distribución binomial
 
-<!-- PINTAR GRAFO CON EJEMPLO -->
+$$ B(n, x, p) \to p_x = \binom{n}{x}p^x(1-p)^{n-x}$$ 
 
-### Grafos no dirigidos.
+* Media de la distribución: $\langle x \rangle = \sum_{x=1}^{N}x \cdot p_x = n \cdot p$
+* Varianza de la distribución: $\sigma _x ^2= p \cdot (1-p) \cdot n$
+* Desviación estándar de la distribución: $\sigma _x = [p \cdot (1-p) \cdot n]^{\frac{1}{2}}$
 
-Interpretación:
+### Probabilidad de L
 
-* Los nodos con más enlaces son más centrales.
-* En una red social de personas con relaciones de amistad, los individuos con más amigos son más centrales.
-* Sin embargo, sólo mide la importancia con respecto a los vecinos más cercanos.
-* Se asume que las conexiones de los vecinos no importan, sólo importa lo que se pueda hacer directamente con los vecinos. 
+* La probabilidad de una red $G(N, p)$ de tener exactamente $L$ enlaces es:
 
-### Grafos dirigidos.
+$$ p_L = B(L_{max}, L, p) \to p_L = \binom{L_{max}}{L} p^L(1-p)^{L_{max}-L} $$
 
-En grafos dirigidos, se define el prestigio de entrada (in-degree), denominado Soporte, y el prestigio de salida (out-degree), denominado Influencia:
 
-$$Soporte = P_D^{in} = k_N^{in}$$
+* Número medio de enlaces esperados en $G(N,p)$ como:
 
-$$Influencia = P_D^{out} = k_N^{out}$$
+$$ \langle L \rangle = p \cdot L_{max} = p \cdot \binom{N}{2} = p \cdot \frac{N(N-1)}{2}$$
 
-Ambos se definen en el intervalo {0, g-1} 
+### Grado medio 
 
-<!-- PINTAR GRAFO CON EJEMPLO -->
+Si la red se representa como $G(L,p)$
 
-### Grafos dirigidos.
+$$\langle k \rangle = \frac{2L}{N}$$
 
-Interpretación Soporte:
+En otro caso:
 
-* Los nodos con muchos enlaces de entrada son prominentes.
-* La idea básica es que muchos nodos procuran tener enlaces directos a ellos, por lo que se puede considerar como una medida de su importancia.
+$$ \langle k \rangle = \frac{2 \langle L \rangle }{N}  = p \cdot (N-1)$$ 
 
-Interpretación Influencia:
+> __Conclusión__: cuanto mayor sea $p$, mayor es el grado medio y, por tanto, más densa se vuelve la red.
 
-* Los nodos que tienen muchas conexiones directas de salida con otros son influyentes.
-* Pueden transferir información rápidamente a muchos otros nodos.
 
-### Grafos dirigidos.
+## Distribución del grado de los nodos
 
-![Ejemplo de Soporte e Influencia. Comercio de petróleo y derivados, 1998. Fuente: NBER-United Nations Trade Data. Cada nodo es un país y hay un enlace entre el exportador y el importador. El grosor de la arista indica el volumen exportado.](../images/tema05/ImagenSoporte.png)
+### Distribución del grado de los nodos
 
-Preguntas sobre Figura 3:
+Podemos representarla como una binomial.
 
-Pregunta sobre Soporte: ¿Qué países importan de muchos otros?: ¿Arabía Saudí, Japón, Iraq, USA, Venezuela?
-<!-- Respuesta: Japan y USA -->
+$$ p_k = B(N-1, k, p) \to p_k = \binom{N-1}{k} p^k(1-p)^{N-1-k}$$
 
-Pregunta sobre Influencia: ¿Qué país exporta a pocos países pero lo hace en gran cantidad?: ¿Arabía Saudí, Japón, Iraq, USA, Venezuela?
-<!-- Respuesta: Venezuela -->
+* El **grado medio**: $\langle k \rangle = (N-1) \cdot p$
+* La **varianza** de $k$ será: $\sigma _k ^2 = p \cdot (1-p) \cdot (N-1)$
+* La **desviación estándar** de $k$ será: $\sigma _k = [p \cdot (1-p) \cdot (N-1)]^{\frac{1}{2}}$
 
+### Aproximación para redes reales
 
-### Normalización del grado
 
-Es habitual normalizar los valores de las centralidades de grado ($C_D(N)$, $P_D^{in}$, $P_D^{out}$) diviéndolas por su valor máximo g-1 (siendo g el número de nodos de la componente conexa donde está el nodo).
+* La mayoría de las redes reales son __dispersas: $\langle k \rangle \ll N$__
 
-<!-- PINTAR EJEMPLOS UGR O LADA -->
+* La distribución de grados de los nodos se aproxima mejor usando una _distribución de Poisson_:
 
-<!-- ¿FREEMAN FORMULA FOR CENTRALIZATION DE LADA? NO -->
+$$ P(x, \lambda) \to p_x = e^{-\lambda} \cdot \frac{\lambda ^x}{x!}$$
 
-### Problemas del grado como medida de centralidad
+### Propiedades de la distribución de Poisson
 
-El grado es una medida adecuada para evaluar la centralidad de un nodo en una red social pero desde una perspectiva muy local:
+$$ P(x, \lambda) \to p_x = e^{-\lambda} \cdot \frac{\lambda ^x}{x!}$$
 
-* mide la importancia y la influencia del nodo con respecto a sus vecinos más cercanos,
-* pero tiene una limitación importante: no tiene en cuenta la estructura global de la red.
+* Media de la distribución: $\langle x \rangle = \lambda$
+* Varianza de la distribución: $\sigma _x ^2= \lambda$
+* Desviación estándar: $\sigma _x = \lambda ^{\frac{1}{2}}$
 
-<!-- EXPLICAR SOBRE EJEMPLOS ANTERIORES -->
+### Comparativa entre la distribución binomial y la Poisson
 
-<!-- ¿DISCUSIÓN SOBRE INTERMEDIACIÓN DE LADA? NO -->
+![Representación gráfica de la distribución binomial y de la distribución de Poisson](../images/tema02/binomPoisson.png)
 
+### Comparativa entre la distribución binomial y la Poisson
 
-## Intermediación
+![Comparativa de distribuciones de grados (izq: Binomial; der: Poisson)](../images/tema02/binomPoisson2.png)
 
-### Intermediación
+### Comparativa entre la distribución binomial y la Poisson
 
-La intermediación es una medida pensada para capturar como de central es un nodo desde el punto de vista de cuantos caminos mínimos que conectan nodos lo atraviesan
+Propiedades comunes:
 
-$$C_B(i) = \sum_{j<k}\frac{g_{jk}(i)}{g_{jk}}$$
+* Tienen un pico en $\langle x \rangle$ de modo que si modificamos $p$ entonces el pico se desplaza hacia la derecha.
+* Cuanto más densa es la distribución entonces más ancha es la distribución.
 
-donde $g_{jk}$ es el número de caminos mínimos que conectan los nodos j y k (normalmente 1), y $g_{jk}(i)$ es el número de esos caminos que incluyen al nodo i en medio del camino.
+Ventaja de la Poisson frente a la binomial
 
-$C_B(i)$ se define en el intervalo {0, (g-1)(g-2)} en redes dirigidas y en {0, (g-1)(g-2)/2} en no dirigidas.
+* Las principales propiedades tienen una forma más simple
+* La Poisson no depende de $N$
 
-### Intermediación
+### Distribución de grados cuando $N\gg k$
 
-Interpretación:
+Aproximamos mediante una Poisson:
 
-* Un nodo tiene una posición más favorable (mayor intermediación) en la medida en que dicho nodo esté situado en los caminos geodésicos (caminos más cortos) de todos los demás.
-* En otras palabras, cuanto más caminos geodésicos pasen por un nodo más central será.
-* En la perspectiva de las redes sociales, las interacciones entre dos actores no adyacentes puede depender de otros actores del conjunto, especialmente de aquellos situados en los caminos entre ambos.
-* Los nodos con una intermediación alta ocupan roles críticos en la estructura de una red, puesto que suelen ocupar una posición que les permite trabajar como interfaces entre subgrupos de nodos fuertemente unidos.
-* Son elementos vitales en la conexión entre distintas regiones de una red.
+$$p_k = P(k, \langle k \rangle) \to p_k = e^{-\langle k \rangle}\cdot \frac{\langle k \rangle ^k}{k!}$$
 
-### Intermediación
+* Varianza de $k$: $\sigma _x ^2= \langle k \rangle$
+* Desviación estándar de $k$: $\sigma _x = \langle k \rangle ^{\frac{1}{2}}$
 
-Es habitual considerar la medida normalizada:
 
-$$C_B^{'}(i) = \frac{C_B(i)}{(g-1)(g-2)/2}$$
 
-donde el denominador representa el número de pares de nodos excluyendo el propio nodo i.
+### Propiedades derivables de la distribución de grados
 
-y cuando trabajamos con redes dirigidas:
+> __Conclusión: La distribución de grados<br/>no depende de $N$__ 
+> 
+> Dos redes con igual $\langle k \rangle$ y distinto tamaño $N$ tienen funciones de distribución de grado indistinguibles.
 
-$$C_B^{'}(i) = \frac{C_B(i)}{(g-1)(g-2)}$$
+### Propiedades derivables de la distribución de grados
 
-### Cercanía
+> __Conclusión: La mayoría de los nodos tienen un grado entorno a la media ($\langle k \rangle$)__ 
+> 
+> Los nodos de mayor grado tienen solo unos pocos más que la media
 
-Esta medida da importancia a la facilidad de acceso al resto de la red, a que se pueda llegar al resto de los nodos de la red con pocos saltos, o dicho de otra forma que la distancia al resto de los nodos de la red sea pequeña.
+### Propiedades derivables de la distribución de grados
 
-En esta medida no se tiene en cuenta ni tener muchos vecinos directos ni estar situado entre otros nodos. Se le da importancia a estar "en medio" de la red.
+> __Conclusión: Las redes aleatorias no tienen **concentradores o hubs**__
+> 
+>  Nodos con conectividad o grado muy alto: la probabilidad de tener nodos con grado muy alto es extremadamente baja
 
-La suma de las distancias geodésicas (distancias de los caminos mínimos) de un nodo de la red a todos los demás es la lejanía de un nodo al resto.
-La inversa de dicha suma es la medida de cercanía.
+### Ejemplo
 
-Centralidad de cercanía:
+* $\langle k \rangle = 1000$ 
+* $\sigma _x = 31,62$
+* Los nodos tienen entre 970 y 1030 enlaces.
+* $k_{max}=1185$ y $k_{min}=816$.
 
-$$C_C(i) = 1 / \sum_{j=1}^{g}d(i,j)$$
 
-### Centralidad de cercanía normalizada:
+## Evolución de una red aleatoria
 
-$$C_C^{'}(i) = 1 / (\frac{\sum_{j=1}^{g}d(i,j)}{g-1})$$
+### Evolución
 
-<!-- Si hay varias componentes conexas puede haber distancias infinitas, se puede calcular la centralidad de cercanía como la suma de las inversas de las distancias. -->
+* La creación de una red aleatoria parte de un conjunto de nodos aislados que se van uniendo aleatoriamente. 
+* Una simulación del algoritmo de creación permite ver:
 
-<!-- PINTAR EJEMPLOS NADA -->
+    * cómo varía el grado medio de la red
+    * cómo aparece un componente gigante cuyo tamaño va variando a medida que se modifica dicho grado medio.
+     
+### Evolución
 
-<!-- ![Ejercicio](../images/tema05/Imagen4.jpg)
+![Evolución del tamaño del componente gigante ($\frac{N_G}{N}$) con respecto al grado medio de la red $\langle k \rangle$](../images/tema02/evolucion.png)
 
-* Encontrar un nodo con grado relativamente alto pero con un valor de cercanía bajo -->
+### Evolución
 
-#### Cercanía en redes dirigidas
+* Partimos de nodos aislados
+* A partir de $\langle k \rangle = 1$ el valor de $\frac{N_G}{N}$ comienza a crecer rápidamente
+* Comienza la aparición de un componente gigante.
+* A partir de otro punto desaparecen los nodos aislados
 
-Se pueden definir dos medidas de cercanía distintas considerando sólo los enlaces de entrada o de salida:
+### Evolución
 
-* Cercanía de entrada (p.ej.: prestigio en redes de citación)
+Con respecto a la probabilidad $p$:
 
-* Cercanía de salida (alcance de la influencia de un nodo)
+* Si $p=0$ entonces $\langle k \rangle = 0$, $N_G = 1$ y $\frac{N_G}{N} \sim 0$.
+* Si $p=1$ entonces $\langle k \rangle = N-1$, $N_G = N$ y $\frac{N_G}{N} = 1$.
+* La aparición del componente gigante aparece cuando $\langle k \rangle=1$
+* Cuantos más nodos $N$ tenga la red, menor $p$ es necesario para crear un componente gigante.
 
-### Excentricidad
+### Etapas
 
-Otra medida local basada en distancias es la centralidad de excentricidad $C_E(i)$. Se define como la inversa de la excentricidad (la máxima distancia geodésica) entre un nodo y el resto de nodos de la red.
+* Etapa o regimen subcrítico
+* Regimen o punto crítico
+* Etapa o regimen supercrítico
+* Etapa o regimen conectado
 
-Los nodos con mayor valor de excentricidad se denominan nodos periféricos, los de menor valor forman el centro de la red. Inversamente, los nodos con mayor valor de centralidad de excentricidad forman el centro de la red, los de menor valor son periféricos.
+### Etapa subcrítica
 
-Excentricidad:
+* $0 < \langle k \rangle < 1 \to p < \frac{1}{N}$
+* Durante esta etapa se crean pares de enlaces
+* Según incrementa el grado medio se crean pequeños grupos (no componentes gigantes ya que $\frac{N_G}{N} \sim 0$)
+* El tamaño del grupo más grande es $N_G \sim ln N$.
 
-$$ E(i) = \max_{jinV(G)/i}d(i,j)$$
+### Punto crítico
 
-Centralidad de excentricidad:
+* $\langle k \rangle = 1 \to p= \frac{1}{N}$.
+* Hay un gran número de componentes de pequeño tamaño
+* Apaerce un componente gigante
+* El tamaño del componente más grande es $N_G \sim N^{\frac{2}{3}}$.
 
-$$C_E(i) = 1 / \max_{jinV(G)/i}d(i,j)$$
+### Etapa supercrítica
 
-También podémos definir medidas equivalentes para redes dirigidas teniendo en cuenta la dirección en la máxima distancia geodésica.
+* $\langle k \rangle > 1 \to p > \frac{1}{N}$.
+* El componente gigante crece según nos alejamos del punto crítico.
+* $\frac{N_G}{N} \sim \langle k \rangle -1 \to N_G \sim (p-p_c)\cdot N$, donde $p_c = \frac{1}{N}$.
+* Siguen existiendo componentes aislados que conviven con el componente gigante.
 
+### Etapa conectada
 
-### Centralidad de vector propio (eigenvector centrality)
+* $\langle k \rangle \ge ln N \to p \ge \frac{ln N}{N}$.
+* Cuando $p$ es lo suficientemente grande el componente gigante absorbe todos los nodos y componentes de la red
+* $N_G \sim N$. En este momento toda la red es conexa.
+* La rede sigue siendo relativamente dispersa
 
-<!-- ![Lada network. El tamaño de los nodos está asociado al grado. El color de los nodos está asociado a la centralidad de cercanía](../images/tema05/LadaNetwork.jpg)
+### Resultados
 
-En redes reales, los nodos con alta cercanía están cerca de otros nodos con alta cercanía. -->
+> __Conclusión:__ Si $\langle k \rangle > 1$ entonces la red puede comenzar a considerarse como tal (existe un componente gigante)
 
-La Centralidad de vector propio se basa en que la centralidad de un nodo concreto depende de cómo de centrales sean sus vecinos (prominencia). La idea básica es que el poder y el status de un actor (ego) se define recursivamente a partir del poder y el status de sus vecinos (alters).
+> __Conclusión:__ Si $\langle k \rangle \sim ln N$ entonces todos los componentes son absorbidos, creando una red global conectada.
 
-![Centralidad de vector propio. $w_{ij}$ corresponde a la entrada de la matriz de adyacencia  $A_{ij}$. Puede ser binaria {0,1} o un peso numérico.](../images/tema05/centralidadVectorPropio.jpg)
+### Redes reales frente a redes aleatorias
 
-La medida es válida para redes dirigidas(Prestigio de rango) y no dirigidas.
+Si suponemos que las redes reales siguen el modelo de red aleatoria entonces se cumplirán las propiedades vistas anteriormente. 
 
-### Centralidad de vector propio (eigenvector centrality)
+![Datos sobre algunas redes reales](../images/tema02/datosRedes.png)
 
-Es una versión más elaborada de la Centralidad de grado al asumir que no todas las conexiones tienen la misma importancia. No se tiene en cuenta la cantidad sino la calidad de las mismas.
+### Redes reales frente a redes aleatorias
 
-### Centralidad de vector propio (eigenvector centrality)
+* todas estas redes cumplen que $\langle k \rangle > 1$ por lo que tienen un componente gigante.
+* No se cumple que $\langle k \rangle \sim ln N$
 
-La medida de Centralidad de vector propio, CVP, se define como una combinación
-lineal (o una suma, si los enlaces ponderados no están ponderados) de los valores de todos los actores que apunten a i:
+    * Deberíamos suponer que se encuentran en la fase supercrítica
+    * Existen nodos y componentes aislados.
 
-$$C_{VP}(i) = a_{1i}C_{VP}(1) + a_{2i}C_{VP}(2) + ... + a_{ni}C_{VP}(n)$$
+> Si las redes reales se modelan de acuerdo al modelo de Erdös-Renyi entonces deberían existir nodos desconectados del componente gigante.
 
-Para calcular los valores de $C_{VP}$ para los n actores se construye un sistema de n ecuaciones con n incógnitas que se representa de forma matricial.
+### Redes reales frente a redes aleatorias
 
-Si $C=(C_{VP}(1), …, C_{VP}(n))^T$ es el vector transpuesto que almacena los n valores de $C_{VP}$ (C es un vector columna) y A es la matriz de adyacencia, entonces:
+> **Internet**
+> 
+> Existen subredes que no están conectados a la red global.
+> 
+> Si esto fuese así, ¿cómo los alcanzaríamos?. 
 
-$$C = A^TC$$
+> Estamos ante la evidencia de que tal vez este modelo no es del todo válido para algunas redes reales.
 
-Esta ecuación coincide con la ecuación característica para encontrar los vectores y valores propios de la matriz $A^T$. C es un vector propio de $A^T$.
+## Propiedades de los caminos en redes aleatorias
 
+### Distancia media en una red aleatoria
 
-Es habitual considerar la medida normalizada:
+En una red aleatoria de grado $\langle k \rangle$ se cumple que cualquier nodo de la red tiene, _en media_:
 
-$$c_i = \frac{1}{\lambda}\sum_{j=1}^na_{ij} \cdot c_j$$
-$$C = \frac{1}{\lambda}A^T \cdot C$$
-$$\lambda \cdot C = A^T \cdot C$$
+* $\langle k \rangle$ nodos a distancia 1 ($d=1$)
+* $\langle k \rangle^2$ nodos a distancia 2 ($d=2$)
+* ...
+* $\langle k \rangle^d$ nodos a distancia d 
 
-donde $\lambda$ es una constante que equivale al mayor valor absoulto del vector propio dominante en A.
 
-### Centralidad de vector propio (eigenvector centrality)
+$$N(d) =1+\langle k \rangle+\langle k \rangle^2+\dots=\frac{\langle k \rangle^{d+1}-1}{\langle k \rangle-1}$$
 
-Existen distintos algoritmos para calcular este vector propio C, como el método de las potencias, método iterativo que se basa en el cálculo del autovector del mayor autovalor. Sin embargo, se deben cumplir algunas condiciones específicas para poder aplicarlo.
+### Distancia media en una red aleatoria
 
-Referencias en Wikipedia: [Wikipedia: Método de las potencias](http://es.wikipedia.org/wiki/Método\_de\_las_potencias), [Wikipedia: Power iteration](http://en.wikipedia.org/wiki/Power_iteration)
+Si suponemos que $\langle k \rangle \gg 1$:
 
-Este método es el que sigue Gephi para calcular la Eigenvector Centrality.
+$$d_{max} \propto \frac{log N}{log \langle k \rangle}$$
 
-### Centralidad de vector propio (eigenvector centrality)
+Se puede considerar que la misma fórmula aproxima $\langle d \rangle$
 
-Otra medida de Centralidad de vector propio muy extendida es la
-Centralidad de Bonacich:
+$$\langle d \rangle \propto \frac{log N}{log \langle k \rangle}$$
 
-$$c_i(\beta) = \sum_j(\alpha + \beta c_j)A_{ij}$$
+### Distancia media en una red aleatoria
 
-$$C(\beta) = \alpha(I - \beta A)^{-1}A1$$
+> __Conclusión__: La longitud media de los caminos de la red va a ser varios órdenes de magnitud más pequeño que $N$.
 
+> __Conclusión__: Cuanto más densa sea la red, menor es la distancia entre los nodos.
 
-* $\alpha$ es una constante de normalización
-* $\beta$ determina la importancia de la centralidad de los vecinos de i para calcular la centralidad de dicho nodo
-* A es la matriz de adyacencia (binaria o ponderada)
-* I es la matriz identidad
-* 1 es una matriz con todas las componentes a 1
 
-### Centralidad de vector propio (eigenvector centrality)
+## Mundos pequeños o _small worlds_
 
-El parámetro $\beta$ es un factor de atenuación que determina qué actores
-de la red influyen en el cálculo de la centralidad del nodo i:
+### Definición
 
-* Si $\beta$ es pequeño -> atenuación alta: sólo los amigos cercanos
-influyen y su importancia es muy puntual
-* Si $\beta$ es grande -> atenuación baja: la estructura global de la red
-tiene importancia (tus amigos, los amigos de tus amigos, etc.)
-* Si $\beta=0$ -> la fórmula coincide directamente con la Centralidad de
-grado:
+> __Small worlds__: la distancia entre dos nodos cualquiera de la red es sorprendentemente corta.
 
-$$c_i(\beta) = \sum_j(\alpha)A_{ij}$$
+> __6 grados de separación__. Si eligiésemos al azar dos personas del planeta, por muy lejos que estuviesen, estarían a 6 "conocidos" de distancia entre sí. 
 
-### Centralidad de vector propio (eigenvector centrality)
+### Primeras referencias
 
-Además, el signo de $\beta$ determina el comportamiento de la medida:
+* Sugerido por Frigyes Karinthy, escritor y periodista húngaro, en 1929.
+* Cómo era capaz de unir a un premio Nobel con él mismo contando los "apretones de manos" (_handshake_) entre personas.
 
-* Si $\beta > 0$ -> los actores tienen una mayor centralidad cuando están
-conectados a otros actores centrales
-* Si $\beta < 0$ -> los actores tienen una mayor centralidad cuando están
-conectados a actores poco centrales
+### Primeras referencias
 
-### Page Rank.
+> Look, Selma Lagerlöf just won the Nobel Prize for Literature, thus she is bound to know King Gustav of Sweden. After all he is the one who handed her the Prize, as required by tradition. King Gustav, to be sure, is a passionate tennis player, who always participates in international tournaments. He is known to have played Mr. Kehrling, whom he must therefore know for sure, and as it happens I myself know Mr. Kehrling quite well.
 
-El algoritmo PageRank se basa en una variante del cálculo de centralidad propia. Brin & Page (fundadores de Google) lo introdujeron en 1998 en su buscador como un indicador de la relevancia de una página Web. 
+### Primeras referencias
 
-Page Rank ordena la web en el sentido de que tiene en cuenta no sólo las páginas que te apuntan a ti, sino que también tiene en cuenta cuantas páginas apuntan a esas páginas, etc. La idea es que es más difícil aumentar artificialmente una medida de centralidad con una definición recursiva.
+> The worker knows the manager in the shop, who knows Ford; Ford is on friendly terms with the general director of Hearst Publications, who last year became good friends with Arpad Pasztor, someone I not only know, but to the best of my knowledge a good friend of mine. So I could easily ask him to send a telegram via the general director telling Ford that he should talk to the manager and have the worker in the shop quickly hammer together a car for me, as I happen to need one.
 
-### Cálculo de Page Rank mediante un camino aleatorio
+### Experimentos
 
-Cuando se calcula el vector propio en PageRank se usa un camino aleatorio. Un caminante aleatorio siguiendo enlaces durante mucho tiempo pasará un tiempo en cada nodo. Y este tiempo se puede utilizar como una medida de la importancia de este nodo en la red donde se encuentra.
+* Stanley Milgram (1967) propuso un experimento para demostrarlo
+* Experimento: hacer llegar una carta a un par de personas de Boston y Sharon, a base de que una persona cualquiera (desde cualquier punto de Estado Unidos) fuese enviando la carta a aquellos familiares, amigos o conocidos que más se "acercaran" a la persona objetivo.
 
-Para evitar que un camino aleatorio quede atrapado en un ciclo se incluye una probabilidad de teletransporte a otra parte del grafo. Esto es, el camino aleatorio sigue uno de los enlaces posible con probabilidad p y puede teletransportarse a otro nodo aleatorio en el grafo con probabilidad 1-p.
+### Experimentos
 
-Este cambio evita los ciclos pero sigue teniendo en cuenta que las páginas importantes son las que están unidas a páginas importantes.
+> HOW TO TAKE PART IN THIS STUDY
+> 
+> 1. ADD YOUR NAME TO THE ROSTER AT THE BOTTOM OF THIS SHEET, so that the next person who receives this letter will know who it came from.
+> 2. DETACH ONE POSTCARD. FILL IT AND RETURN IT TO HARVARD UNIVERSITY. No stamp is needed. The postcard is very important. It allows us to keep track of the progress of the folder as it moves toward the target person.
+> 3. IF YOU KNOW THE TARGET PERSON ON A PERSONAL BASIS, MAIL THIS FOLDER DIRECTLY TO HIM (HER). Do this only if you have previously met the target person and know each other on a first name basis. 
+> 4. IF YOU DO NOT KNOW THE TARGET PERSON ON A PERSONAL BASIS, DO NOT TRY TO CONTACT HIM DIRECTLY. INSTEAD, MAIL THIS FOLDER (POST CARDS AND ALL) TO A PERSONAL ACQUAINTANCE WHO IS MORE LIKELY THAN YOU TO KNOW THE TARGET PERSON. You may send the folder to a friend, relative or acquaintance, but it must be someone you know on a first name basis.
 
-<!-- Ejemplo Lada. -->
+### Experimentos
 
-Este es el método que sigue Gephi para calcular el valor de PageRank asociado a cada nodo.
+* Se enviaron 296 cartas.
+* La primera llegó en pocos días, pasando sólo por 2 enlaces.
+* Resultado final: 64 cartas con un máximo de 12 intermediarios.
+* La mediana de intermediarios fueron entre 5,5 y 6
+* De ahí viene la idea de los _6 grados de separación_ (aunque el nombre proviene de una obra de teatro).
 
-![Ejemplo Wikipedia(http://en.wikipedia.org/wiki/PageRank)](../images/tema05/PageRanks-Example.png)
+### Mundos pequeños en redes reales
 
-### Comparativa medidas locales de centralidad
+* En las redes reales este número "6" se reduce drásticamente. 
+* Ejemplo: Facebook
+    
+    Datos de mayo de 2011: $721\cdot 10^6$ usuarios y $68\cdot 10^9$ relaciones (simétricas) de amistad
 
-![Comparativa medidas locales de centralidad. A) centralidad de grado. B) cercanía. C) intermediación. D) centralidad de vector propio. (azul=menor valor, rojo=mayor valor)](../images/tema05/comparativaMedidasCentralidad.jpg)
+$$
+\langle d \rangle = \frac{log N}{log \langle k \rangle} \simeq 3.90
+$$
 
+> En posteriores lecciones entenderemos por qué ocurre eso
 
-### HITS
+## Coeficiente de agrupamiento
 
+### Coeficiente de agrupamiento
 
-El algoritmo HITS (acrónimo del inglés Hypertext Induced Topic Selection) es un algoritmo diseñado por Jon Kleinberg EN 1998 para valorar, y de paso clasificar, la importancia de una página web. Esta  medida se puede aplicar a grafos generalizando la idea de la web como grafo.
+* Para calcular $C_i$ necesitamos estimar cuál es el número de enlaces entre los vecinos de un nodo.
+* La probabilidad de que haya un enlace entre dos nodos en una red aleatoria es $p$ 
+* Un nodo $i$ puede tener $\frac{k_i(k_i-1)}{2}$ posibles enlaces entre sus $k_i$ vecinos.
 
-HITS usa dos indicadores para cada nodo del grafo para hacer esta valoración (hub y authority), definiendo recursivamente cada uno a partir del otro. 
+$$ \langle L_i \rangle = p \cdot \frac{k_i(k_i-1)}{2}$$
 
-* el authority, que valora cuán buena es la página como recurso de información; para su cálculo se usa una suma ponderada de valores hub de los enlaces que apuntan hacia esta página.
-* el hub, que dice cuán buena es la información que se consigue siguiendo los enlaces que tiene a otras páginas; se calcula como una suma ponderada de valores authority de las páginas a las que apunta ésta.
-*  Algunas implementaciones del algoritmo también consideran cuánta es la relevancia de las páginas enlazadas.
+$$
+C_i = \langle C \rangle = \frac{2 \cdot \langle L_i \rangle }{k_i(k_i-1)} = p = \frac{\langle k \rangle}{N}
+$$
 
-Entonces un buen hub apunta a buenas authorities y una buena authority es apuntada por buenos hubs.
+### Coeficiente agrupamiento
 
-### HITS
+> __Conclusión__: Para un $\langle k \rangle$ fijo, el coeficiente de agrupamiento decrece cuanto mayor es el tamaño de la red ($N$).
+> 
+> Este coeficiente decrecerá a razón de $\frac{1}{N}$. 
 
-Matricialmente se pueden representar los valores de hub y authority 
+> __Conclusión__: El coeficiente de agrupamiento de un nodo es independiente de su grado.
 
-$$h=A \cdot a$$
-$$a=A^T \cdot h$$
+### Coeficiente agrupamiento en redes reales
 
-siendo A la matriz de adyacencia del grafo.
+![Cálculos del coeficiente de agrupamiento para redes reales](../images/tema02/ci_reales.png)
 
-Si reemplazamos en ambas ecuaciones para obtener definiciones recursivas:
+### Coeficiente agrupamiento en redes reales
 
-$$h=A \cdot A^T \cdot h$$
-$$h=A^T \cdot A \cdot a$$
+* $C_i$ no decrece a razón de $\frac{1}{N}$ (línea punteada)
+* $C_i$ _sí_ depende del grado de los nodos.
 
-Las relaciones anteriores se parecen a las relaciones de vectores propios usadas en Pagerank, pero para poder utilizar el método de las potencias hay que normalizar los vectores h y a tal que la suma de sus elementos sume 1 en cada iteración.
+> De nuevo nos encontramos que las redes reales incumplen propiedades de las redes aleatorias
 
+## Resumen
 
-### Coeficiente Local de clustering
+### Resumen
+* Una __red aleatoria__ es una red en la que cada uno de los enlaces entre dos nodos se ha creado siguiendo un proceso completamente aleatorio.
 
-Transitividad: Las redes sociales son transitivas por naturaleza, es decir, los
-amigos de un actor dado también suelen ser amigos entre sí.
+![Cuadro resumen (extraído de _Network Science_, pp. 70)](../images/tema02/resumen.png)
 
-La propiedad de transitividad de una red se cuantifica por el Coeficiente de
-Clustering que puede ser global, a nivel de toda la red, o local, a nivel de cada nodo individual:
+### Resumen
 
-$$ C_{CLC}(i) = \frac{2L_i}{k_i(k_i-1)}$$
+* Las redes reales **incumplen** algunas de las propiedades de las redes aleatorias.
 
-* Nodo $i$ con grado $k_i$
-* $L_i$ = número de enlaces entre los vecinos del nodo i
-* $C_i \epsilon [0,1]$. $C_i=0$ indica que ninguno de los vecinos de i están conectados entre sí, $C_i = 1$ indica que todos están conectados.
-* A mayor valor, más central se considera el nodo.
+* **Distribución de grados** <span style="color: #e74c3c;">(Incumplida)</span>
 
+> La distribución de grados se puede aproximar a una función de Poisson pero esta distribución no explica la existencia del gran número de nodos altamente conectados que aparecen en las redes reales.
 
+### Resumen
 
-## Medidas globales de centralización
+* **Conectividad** <span style="color: #e74c3c;">(Incumplida)</span>
+    
+> El modelo de redes aleatorias predice que si $1 < \langle k \rangle < ln N$ entonces la red presenta grupos aislados.
 
-Existen varias medidas globales en SNA. La mayoría son las mismas empleadas para analizar cualquier otro tipo de red, que ya hemos estudiado: distancia media, densidad, grado medio, coeficiente de clustering global
+> Redes como Internet no cumplen que $\langle k \rangle > ln N$ y, sin embargo, no están fragmentadas.
+ 
+### Resumen
 
-### Diámetro
+* **Coeficiente de agrupamiento** <span style="color: #e74c3c;">(Incumplida)</span>
 
-Longitud del camino mínimo más largo de la red.
+> Según el modelo de red aleatoria, el coeficiente de agrupamiento es independiente del grado del nodo sobre el que se calcula
 
-En redes grandes, se puede determinar con el algoritmo de búsqueda primero en
-anchura.
+> Según el modelo de red aleatoria, el coeficiente de agrupamiento depende del tamaño de la red en relación $\frac{1}{N}$.
 
-Equivale al valor máximo de excentricidad para todos los nodos de la red:
+> Las redes reales no cumplen ninguna de estas dos propiedades.
 
-$$ d_{max} = \max \{E(i):i \epsilon V(G)\}$$
+### Resumen
 
-Esta métrica da una idea de la proximidad entre pares de nodos en la red, indicando cómo de lejos están en el peor de los casos.
+* **Propiedad de los pequeños mundo** <span style="color: #2ecc71;">(Cumplida)</span>
 
-Las redes más dispersas suelen tener un mayor diámetro que las más densas al
-existir menos caminos entre cada par de nodos.
-
-### Radio
-
-Valor mínimo de excentricidad para toda la red:
-
-$$ r = \min \{E(i):i \epsilon V(G)\}$$
-
-### Medidas de centralización
-
-Indican la variabilidad de los valores de centralidad entre los nodos de la red.
-Miden el grado en que un nodo tiene una centralidad alta mientras que el resto la tiene baja.
-
-Existen distintas formas de construir una medida de este tipo, como la
-formulación de Freeman (1979):
-
-$$C_A = \frac{\sum_{i=1}^g[C_A(n^*)-C_A(i)]}{max \sum_{i=1}^g[C_A(n^*)-C_A(i)]}$$
-
-* $C_A$ es una medida de centralidad y $C_A(i)$ su valor para el nodo i.
-* $C_A(n^*)$ es el valor máximo de esa medida para los g nodos de la red
-$(C_A(n^*) = max_j C_A(j))$
-* $max \sum_{i=1}^g[C_A(n^*)-C_A(i)]$ es el máximo teórico del numerador.
-
-El índice $C_A$ se define en [0,1]. Toma valor 0 cuando todos los nodos tienen
-exactamente el mismo valor de Centralidad $(C_A(n^*))$ y 1 cuando un nodo
-domina totalmente (eclipsa) al resto.
-
-### Medidas de centralización
-
-Un ejemplo sería la medida de Centralización de grado $C_D$ donde el máximo teórico es $(g-1)(g-2)$:
-
-$$C_D = \frac{\sum_{i=1}^g[C_D(n^*)-C_D(i)]}{(g-1)(g-2)}$$
-
-$C_D$ toma valor máximo 1 cuando un solo nodo está conectado al resto que no
-tienen conexiones entre sí (grafo en estrella). El valor mínimo 0 corresponde
-a un grafo regular donde todos los nodos tienen el mismo grado.
-
-<!-- Ejemplo Grafos -->
-
-
-En redes dirigidas, una red con alta centralización de soporte (grado de entrada) sería aquella en la cual hay un nodo con un grado de entrada muy alto mientras que el resto la tiene baja. Por otro lado, una red con baja centralización de soporte sería aquella en la que todos los nodos tuvieran un grado de entrada similar.
-
-### Medidas de centralización
-
-La medida de Centralización de intermediación $C_B$ sería:
-
-$$C_B = \frac{\sum_{i=1}^g[C_{B}^{'}(n^*) - C_{B}^{'}(i)]}{(g-1)}$$
-
-Se calcula a partir de la intermediación normalizada $C^'_B$. Toma el valor máximo 1 en un grafo en estrella y el valor mínimo 0 en un grafo en el que todos los valores de intermediación sean iguales.
-
-### Medidas de centralización
-
-La medida de Centralización de intermediación $C_C$ sería:
-
-$$C_C = \frac{\sum_{i=1}^g[C_C(n^*)-C_C(i)]}{[(g-1)(g-2)/(2g-3)]}$$
-
-$C_C$ toma valor 1 en un grafo en estrella y el valor mínimo 0 en un grafo en el
-que todas las distancias sean iguales (p.ej. un grafo completo o circular).
-
-El problema de estas medidas es el máximo teórico, que no es calculable
-para algunas Centralidades de prestigio en redes dirigidas (aunque si para la
-Centralidad de grado).
-
-
-## Algunas aplicaciones del análisis de redes sociales
-
-### Análisis de juego en equipos de fútbol
-
-Una posible aplicación es el análisis del juego de un equipo de fútbol en un partido. En la figura se pueden observar los pases realizados por los jugadores del equipo de fútbol Rapid de Viena en los últimos 15 minutos del partido que jugaron contra el equipo Sturm Graz el 7 de Diciembre de 2003. Los colores de los nodos indican la posición dej jugador (rojo=atacante, verde=centrocampista, amarillo=defensa). 
-
-![Grafo con los pases realizados por los jugadores del equipo de fútbol Rapid de Viena.](../images/tema05/RapidViena1.jpg)
-
-Posibles factores de análisis del grafo con los pases realizados:
-
-* ¿Qué jugador ha iniciado más pases (grado ponderado de salida)? Jazic
-* ¿Qué jugador ha recibido más pases (grado ponderado de entrada)? Jazic
-* ¿Quién ha controlado el juego del Rapid (centralidad)? Jazic y Hoffman
-* ¿Qué jugadores han estado implicados en jugadas con el mayor número de pases (caminos)? Jazic, Hofmann, Feldhofer, Martinez y Carics
-* ¿Quién ha jugado con quién y quién no (análisis de los enlaces)? Ni un solo pase de Ivanschitz a Wagner
-* ¿Qué jugadores han tenido un rol similar (análisis de enlaces)? Por ejemplo, Ivanschitz / Martinez
-
-### Análisis de juego en equipos de fútbol
-
-A partir de los [datos de los pases realizados en los partidos de la Eurocopa](http://revista-redes.rediris.es/webredes/eurocopa/datos.htm) de Portugal 2004 se pueden obtener grafos con los pases realizados en los distintos partidos y estudiar las redes asociadas.
-
-J.J. Merelo. Redes contra redes: el fútbol es así. [(http://atalaya.blogalia.com/historias/19642)](http://atalaya.blogalia.com/historias/19642)]
-
-### Análisis de juego en equipos de fútbol
-
-![España 1 - Rusia 0](../images/tema05/Espana-Rusia.png)
-
-El jugador con más centralidad es Iker Casillas, cuando debería haber sido Baraja.
-
-### Análisis de juego en equipos de fútbol
-
-![Grecia 1 - España 1](../images/tema05/Grecia-Espana.png)
-
-La situación no cambió mucho en el segundo partido (Grecia 1 – España 1) salvo que, en este caso, Albelda, Baraja y Helguera organizaron un poco más el juego.
-Es curioso ver también que la "autoridad" de la red es Vicente, un extremo. Lo lógico sería que las autoridades fueran los delanteros, pero Morientes y Raúl se hallan ahí perdidos, en la maraña de la red.
-
-### Análisis de juego en equipos de fútbol
-
-![Interesección de los pases en los partidos contra Grecia y Rusia](../images/tema05/intereseccionGreciaRusia.png)
-
-![Diferencia de pases en los partidos contra Grecia y Rusia](../images/tema05/diferenciaGreciaRusia.png)
-
-Casi el 90% de los pases fueron los mismos.
-
-
-### Hospitales
-
-Infecciones en hospitales de EEUU por transferencia de pacientes
-
-También se han utilizado las medidas de centralidad en el control de infecciones con organismos resistentes teniendo en cuenta la red de traslados de pacientes en Estados Unidos. La conclusión es que es más eficiente concentrar recursos en los hospitales estratégicamente situados en la red, donde la estrategia de selección está relacionada con las medidas de centralidad de la red.
-
-### Hospitales
-
-U.H. Karkada, L.A. Adamic LA, J.M. Kahn, T.J. Iwashyna. Limiting the spread of highly resistant hospital-acquired microorganisms via critical care transfers: a simulation study. Intensive Care Med. 2011 37(10): 1633-40
-
-PURPOSE:
-Hospital-acquired infections with highly resistant organisms are an important problem among critically ill patients. Control of these organisms has largely focused within individual hospitals. We examine the extent to which transfers of critically ill patients could be a vector for the wide spread of highly resistant organisms, and compare the efficiency of different approaches to targeting infection control resources
-
-METHODS:
-We analyzed the network of interhospital transfers of intensive care unit patients in 2005 US Medicare data and 2004-2006 Pennsylvania all-payer data. We simulated the spread of highly resistant hospital-acquired infections by randomly choosing a single hospital to develop a highly resistant organism and following the spread of infection or colonization throughout the network under varying strategies of infection control and varying levels of infectivity.
-
-RESULTS:
-Critical care transfers could spread a highly resistant organism between any two US hospitals in a median of 3 years. Hospitals varied substantially in their importance to limiting potential spread. Targeting resources to a small subset of hospitals on the basis of their position in the transfer network was 16 times more efficient than distributing infection control resources uniformly. Within any set of targeted hospitals, the best strategy for infection control heavily concentrated resources at a few particularly important hospitals, regardless of level of infectivity.
-
-CONCLUSIONS:
-Critical care transfers provide a plausible vector for widespread dissemination of highly resistant hospital-acquired microorganisms. Infection control efforts can be made more efficient by selectively targeting hospitals most important for transmission.
-
-### Hospitales
-
-![Hospital Patient Transfer Network](../images/tema05/Hospital1.jpg)
-
-### Hospitales
-
-![Infection prevention strategies in a hospital patient transfer network](../images/tema05/Hospital2.jpg)
-
-### Hospitales
-
-![Budget allocation strategies to avoid spread of infections](../images/tema05/Hospital3.jpg)
-
+> En un sistema complejo hay un camino de longitud _corta_  entre cualquier par de nodos de la red que lo modela.
