@@ -244,7 +244,7 @@ Con respecto a la probabilidad $p$:
 
 * $\langle k \rangle = 1 \to p= \frac{1}{N}$.
 * Hay un gran número de componentes de pequeño tamaño
-* Apaerce un componente gigante
+* Aparece un componente gigante
 * El tamaño del componente más grande es $N_G \sim N^{\frac{2}{3}}$.
 
 ### Etapa supercrítica
@@ -267,33 +267,7 @@ Con respecto a la probabilidad $p$:
 
 > __Conclusión:__ Si $\langle k \rangle \sim ln N$ entonces todos los componentes son absorbidos, creando una red global conectada.
 
-### Redes reales frente a redes aleatorias
-
-Si suponemos que las redes reales siguen el modelo de red aleatoria entonces se cumplirán las propiedades vistas anteriormente. 
-
-![Datos sobre algunas redes reales](../images/tema02/datosRedes.png)
-
-### Redes reales frente a redes aleatorias
-
-* todas estas redes cumplen que $\langle k \rangle > 1$ por lo que tienen un componente gigante.
-* No se cumple que $\langle k \rangle \sim ln N$
-
-    * Deberíamos suponer que se encuentran en la fase supercrítica
-    * Existen nodos y componentes aislados.
-
-> Si las redes reales se modelan de acuerdo al modelo de Erdös-Renyi entonces deberían existir nodos desconectados del componente gigante.
-
-### Redes reales frente a redes aleatorias
-
-> **Internet**
-> 
-> Existen subredes que no están conectados a la red global.
-> 
-> Si esto fuese así, ¿cómo los alcanzaríamos?. 
-
-> Estamos ante la evidencia de que tal vez este modelo no es del todo válido para algunas redes reales.
-
-## Propiedades de los caminos en redes aleatorias
+## Distancia en redes aleatorias
 
 ### Distancia media en una red aleatoria
 
@@ -323,62 +297,9 @@ $$\langle d \rangle \propto \frac{log N}{log \langle k \rangle}$$
 
 > __Conclusión__: Cuanto más densa sea la red, menor es la distancia entre los nodos.
 
-
-## Mundos pequeños o _small worlds_
-
-### Definición
+### Pequeños mundos
 
 > __Small worlds__: la distancia entre dos nodos cualquiera de la red es sorprendentemente corta.
-
-> __6 grados de separación__. Si eligiésemos al azar dos personas del planeta, por muy lejos que estuviesen, estarían a 6 "conocidos" de distancia entre sí. 
-
-### Primeras referencias
-
-* Sugerido por Frigyes Karinthy, escritor y periodista húngaro, en 1929.
-* Cómo era capaz de unir a un premio Nobel con él mismo contando los "apretones de manos" (_handshake_) entre personas.
-
-### Primeras referencias
-
-> Look, Selma Lagerlöf just won the Nobel Prize for Literature, thus she is bound to know King Gustav of Sweden. After all he is the one who handed her the Prize, as required by tradition. King Gustav, to be sure, is a passionate tennis player, who always participates in international tournaments. He is known to have played Mr. Kehrling, whom he must therefore know for sure, and as it happens I myself know Mr. Kehrling quite well.
-
-### Primeras referencias
-
-> The worker knows the manager in the shop, who knows Ford; Ford is on friendly terms with the general director of Hearst Publications, who last year became good friends with Arpad Pasztor, someone I not only know, but to the best of my knowledge a good friend of mine. So I could easily ask him to send a telegram via the general director telling Ford that he should talk to the manager and have the worker in the shop quickly hammer together a car for me, as I happen to need one.
-
-### Experimentos
-
-* Stanley Milgram (1967) propuso un experimento para demostrarlo
-* Experimento: hacer llegar una carta a un par de personas de Boston y Sharon, a base de que una persona cualquiera (desde cualquier punto de Estado Unidos) fuese enviando la carta a aquellos familiares, amigos o conocidos que más se "acercaran" a la persona objetivo.
-
-### Experimentos
-
-> HOW TO TAKE PART IN THIS STUDY
-> 
-> 1. ADD YOUR NAME TO THE ROSTER AT THE BOTTOM OF THIS SHEET, so that the next person who receives this letter will know who it came from.
-> 2. DETACH ONE POSTCARD. FILL IT AND RETURN IT TO HARVARD UNIVERSITY. No stamp is needed. The postcard is very important. It allows us to keep track of the progress of the folder as it moves toward the target person.
-> 3. IF YOU KNOW THE TARGET PERSON ON A PERSONAL BASIS, MAIL THIS FOLDER DIRECTLY TO HIM (HER). Do this only if you have previously met the target person and know each other on a first name basis. 
-> 4. IF YOU DO NOT KNOW THE TARGET PERSON ON A PERSONAL BASIS, DO NOT TRY TO CONTACT HIM DIRECTLY. INSTEAD, MAIL THIS FOLDER (POST CARDS AND ALL) TO A PERSONAL ACQUAINTANCE WHO IS MORE LIKELY THAN YOU TO KNOW THE TARGET PERSON. You may send the folder to a friend, relative or acquaintance, but it must be someone you know on a first name basis.
-
-### Experimentos
-
-* Se enviaron 296 cartas.
-* La primera llegó en pocos días, pasando sólo por 2 enlaces.
-* Resultado final: 64 cartas con un máximo de 12 intermediarios.
-* La mediana de intermediarios fueron entre 5,5 y 6
-* De ahí viene la idea de los _6 grados de separación_ (aunque el nombre proviene de una obra de teatro).
-
-### Mundos pequeños en redes reales
-
-* En las redes reales este número "6" se reduce drásticamente. 
-* Ejemplo: Facebook
-    
-    Datos de mayo de 2011: $721\cdot 10^6$ usuarios y $68\cdot 10^9$ relaciones (simétricas) de amistad
-
-$$
-\langle d \rangle = \frac{log N}{log \langle k \rangle} \simeq 3.90
-$$
-
-> En posteriores lecciones entenderemos por qué ocurre eso
 
 ## Coeficiente de agrupamiento
 
@@ -401,6 +322,57 @@ $$
 > Este coeficiente decrecerá a razón de $\frac{1}{N}$. 
 
 > __Conclusión__: El coeficiente de agrupamiento de un nodo es independiente de su grado.
+
+
+## Redes reales frente a redes aleatorias
+
+### Redes reales frente a redes aleatorias
+
+Si suponemos que las redes reales siguen el modelo de red aleatoria entonces se cumplirán las propiedades vistas anteriormente. 
+
+![Datos sobre algunas redes reales](../images/tema02/datosRedes.png)
+
+### Etapas de evolución
+
+* todas estas redes cumplen que $\langle k \rangle > 1$ por lo que tienen un componente gigante.
+* No se cumple que $\langle k \rangle \sim ln N$
+
+    * Deberíamos suponer que se encuentran en la fase supercrítica
+    * Existen nodos y componentes aislados.
+
+> Si las redes reales se modelan de acuerdo al modelo de Erdös-Renyi entonces deberían existir nodos desconectados del componente gigante.
+
+### Etapas de evolución
+
+> **Internet**
+> 
+> Existen subredes que no están conectados a la red global.
+> 
+> Si esto fuese así, ¿cómo los alcanzaríamos?. 
+
+> Estamos ante la evidencia de que tal vez este modelo no es del todo válido para algunas redes reales.
+
+
+
+### Mundos pequeños en redes reales
+
+* Ejemplo: Facebook
+    
+    Datos de mayo de 2011: $721\cdot 10^6$ usuarios y $68\cdot 10^9$ relaciones (simétricas) de amistad
+
+$$
+\langle d \rangle = \frac{log N}{log \langle k \rangle} \simeq 3.90
+$$
+
+### Mundos pequeños en redes reales
+
+![Distancia media y diámetro de algunas redes reales](../images/tema02/dmRedesReales.png) 
+
+### Mundos pequeños en redes reales
+
+> En general, se cumplen la ley de los mundos pequeños
+
+
 
 ### Coeficiente agrupamiento en redes reales
 
