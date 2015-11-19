@@ -1,6 +1,6 @@
 % Análisis de Redes Sociales
 % Guillermo Jiménez Díaz (gjimenez@ucm.es); Alberto Díaz (albertodiaz@fdi.ucm.es)
-% 28 de noviembre de 2014
+% 20 de noviembre de 2015
 
 
 # Prefacio {-}
@@ -11,114 +11,274 @@ Este material ha sido desarrollado a partir de distintas fuertes, destacando com
 
 Este obra está bajo una [licencia de Creative Commons Reconocimiento-NoComercial-CompartirIgual 4.0 Internacional](http://creativecommons.org/licenses/by-nc-sa/4.0/).
 
-\setcounter{section}{7}
+\setcounter{chapter}{7}
 
-# Tema 7: Mundos Pequeños {-}
+# Tema 7: Modelos de crecimiento {-}
 
-Hemos visto que tanto el modelo de red aleatoria como los modelos de redes libres de escala cumplen la propiedad de **los pequeños mundos** o _small worlds_: la distancia entre dos nodos cualquiera de la red es sorprendentemente corta.
+Tras haber visto los dos temas anteriores en los que hablábamos del modelo de red aleatoria y las redes libres de escala nos pueden surgir estas preguntas:
 
-Sin embargo hay un hecho que se nos escapa y que habéis podido observar en la realización de las prácticas con vuestras propias redes sociales: en general, las redes sociales reales tienen un coeficiente de agrupamiento mucho mayor que las redes aleatorias (y que las libres de escala) a pesar de que la distancia media sigue siendo especialmente corta. Esto se debe al hecho de que en estas redes tendemos a agruparnos (los amigos de mis amigos son también mis amigos). Este hecho también se ha observado en otras redes reales, tal y como se puede ver en la siguiente tabla[^1].
+* ¿Por qué el modelo aleatorio no reproduce hubs ni sigue una distribución de ley potencial?
+* ¿Por qué la mayoría de los sistema reales complejos convergen a una topología de red libre de escala?
 
-![Coeficiente de agrupamiento y distancia media en redes reales frente a las redes aleatorias equivalente](../images/tema07/redesReales.png)
+Para entender esta información estructural es necesario entender el mecanismo responsable de que aparezca la propiedad libre de escala. Por tanto, en este tema dejaremos un poco de lado los modelos de la topología de la red para centrarnos en algunos **modelos de crecimiento y evolución de los sistemas complejos**.
 
-[^1]: Puedes ver una tabla más completa en Albert, R., & Barabási, A. L. (2002). Statistical mechanics of complex networks. [Reviews of modern physics](http://journals.aps.org/rmp/abstract/10.1103/RevModPhys.74.47), 74(1), 47.
+## Los modelos de evolución influyen en la topología de la red
 
-En este tema vamos a analizar este fenómeno y estudiaremos el modelo de Watts-Strogatz, el cual da una posible solución a este problema.
+El modelo de evolución de una red aleatoria es muy sencillo:
 
-## Estructura y aleatoriedad
+* Partimos de un conjunto fijo de nodos $N$.
+* Creamos aleatoriamente enlaces entre los nodos.
 
-Recordemos que la el experimento de Milgram, descrito en el tema 2, fue la primera prueba de la propiedad de los pequeños mundos. Aunque se realizó en los años 60 y el número de 6 era extremadamente pequeño hubo estudios que se preguntaron si este número era, en verdad, tan pequeño como cabía suponer.
+Este modelo de evolución crea una red con una determinada topología (ya estudiada en el tema 2).
 
-Como primera aproximación vamos a suponer que tenemos una red en el que el número de conocidos de cada individuo es constante. Según Pool y Kochen[^2] este número puede variar entre 500 y 1500. Si suponemos una estructura en forma de árbol tenemos que:
+![Topología de una red aleatoria](../images/tema04/topAleatoria.png)
 
-- Un individuo tiene 500 vecinos potenciales de primer grado
-- $500^2$ = 250.000 vecinos potenciales para el segundo grado
-- $500^3$ = 125.000.000 vecinos potenciales para el tercer grado
+La intuición nos puede hacer pensar que si modificamos el modelo de evolución la red generada puede ser diferente. Para ello vamos a comenzar con unos modelos simples de evolución[^1] a partir del modelo aleatorio:
 
-![Estructura pura exponencial (Fuente: Networks, Crowds and Markets)](../images/tema07/exponencial.png)
+[^1]: Estos modelos simples pueden verse en NetLogo usando el archivo `Modelos de Evolución Simples` que está en el Campus Virtual.
 
-Es decir, existe un **crecimiento exponencial** de la red. El número de vecinos que tendríamos a distancia $d$ sería:
+### Modelo de presentación
 
-$$N(d) =1+\langle k \rangle+\langle k \rangle^2+\dots=\frac{\langle k \rangle^{d+1}-1}{\langle k \rangle-1} \sim \langle k \rangle^d$$
+Es un modelo similar al modelo aleatorio pero en el que aumentamos la probabilidad de los nodos que están enlazados al nodo al que se quiere añadir un nuevo enlace. A modo de ejemplo, si suponemos que estamos en una red social, este modelo dice que la probabilidad de que me presenten (y me enlace) a un amigo de un amigo es mayor que la probabilidad de que me presenten a un desconocido.
 
-Esto implicaría que podríamos alcanzar a toda la población mundial como mucho en 4 pasos. En este caso, la distancia media $\langle k \rangle$ sería la predicha por una red aleatoria:
+![Topología de una red generada según el modelo de presentación](../images/tema04/topPresentacion.png)
 
-$$d_{max} \propto \frac{log N}{log \langle k \rangle}$$
+En este caso vemos que, en lugar de un único componente conexo, aparecen distintas componentes conexas, grupos de "amigos".
 
-[^2]: de Sola Pool, I., & Kochen, M. (1979). Contacts and influence. [Social networks](http://deepblue.lib.umich.edu/handle/2027.42/23764), 1(1), 5-51.
+### Modelo geográfico estático
 
-Sin embargo, tal y como hemos dicho al principio, tenemos que tener en cuenta que en las redes reales abundan los triángulos o **tripletes conectados** (_tradic closure_), es decir, que algunos de los enlaces no conectan con nuevas personas sino que conectan con amigos de mis amigos, reduciendo el número de personas a las que se puede alcanzar en cada paso y, por tanto, alargando los caminos mínimos. Gráficamente lo podríamos representar como en esta figura.
+Este modelo tiene en cuenta la distancia a la que se encuentran los nodos. Cada nodo se conectará directamente a los $k$ nodos más cercanos.
 
-![Aproximación más real del crecimiento exponencial (Fuente: Networks, Crowds and Markets)](../images/tema07/triadicClosure.png)
+![Dos redes distintas siguiendo el modelo estático geográfico](../images/tema04/topStaticGeo.png)
 
-El caso extremo sería una red completamente _cliquish_, en la que todos los subgrafos estuviesen completamente conectados. En este caso, todos los amigos de mis amigos serían mis amigos y la distancia con ellos sería 1. Sin embargo, como no se permitiría ningún enlace fuera del clique la distancia con cualquier otro individuo de la red sería infinito.
+En este caso, la topología de la red depende de la configuración espacial inicial de los nodos. Dependiendo de ésta, podemos conseguir redes muy distintas.
 
-Una forma de representar una red donde el coeficiente de agrupamiento es alto es mediante una cuadrícula bidimensional en la que unos nodos están conectados con otros como en la imagen:
+### Modelo de encuentros aleatorios
 
-![Una cuadrícula: red con un coeficiente de agrupamiento alto](../images/tema07/cuadricula2.png)
+Es un modelo similar al anterior pero, en este caso, los nodos se mueven aleatoriamente y dos nodos se unen si chocan. Cada nodo tiene un número máximo de enlaces.
 
-En este caso, el número de nodos a distancia $d$ es polinomial:
+![Dos redes distintas siguiendo el modelo de encuentros aleatorios](../images/tema04/topDynamicGeo.png)
 
-$$N(d) = \sum_{x=1}^{d}8x = 4d(d+1)\sim d^2$$
+Al igual que antes, la topología de la red depende de la configuración espacial inicial de los nodos. Sin embargo, este modelo permite que nodos alejados entre sí puedan llegar a unirse si se mueven lo suficiente. Al igual que antes, la topología de la red es muy variable.
 
-Lo que implicaría que las distancias entre nodos sería, en general, muy grande.
+En resumen, vemos que la forma en la que se crea una red tiene cierta influencia en la topología final de la misma.
 
-Si nos preguntamos si puede una red con una estructura local muy fuerte ser a la vez un mundo pequeño, la respuesta es claramente sí, ya que esta es la forma en la que se comportan las redes sociales. Esta claro que, entonces, las redes reales están en un punto intermedio entre una red aleatoria y una red localmente estructurada. El modelo de Watts-Strogatz intenta precisamente modelar este hecho.
+## Ingredientes para la creación de una red libre de escala
 
-## Modelo de Watts-Strogatz
+En 1999, los investigadores Barabasi y Albert destacaron dos supuestos que no eran tenidos en cuenta en el modelo de red aleatoria pero que existían en las redes reales:
 
-En 1998, los investigadores Duncan Watts y Steve Strogatz proponen un modelo basado en dos ideas básicas de las redes sociales:
+* **La red crece a lo largo del tiempo.**
+    
+    Las redes reales se expanden mediante la adición de nuevos nodos y nuevos enlaces. Recordemos que el modelo de red aleatoria supone un número fijo de nodos $N$ inicial y que este modelo crea enlaces nuevos pero no modifica el número de nodos existentes. En las redes reales, el número de nodos no es fijo sino que crece con el tiempo. Por ejemplo, en 2001, la WWW tenía un nodo (la página inicialmente creada por Tim Berners-Lee) mientras que en la actualidad está en torno a los 1000 millones.
 
-- La homofilia o tendencia a conectarnos con otros que son como nosotros. Está directamente relacionado con los tripletes conectados ya que si dos personas en una red social tienen una persona en común, es muy probable que estas dos personas se conviertan en comunes o amigos (cerramos el triángulo).
-- Los lazos débiles o _weak ties_, que son los enlaces a conocidos que nos conectan con partes de la red que, de otra forma, estarían muy lejos para nosotros.
+![Las redes reales crecen (red de Internet y red de citas en artículos científicos)](../images/tema04/crecimiento.png)
 
-La homofilia crea triángulos mientras que los lazos débiles producen "atajos" dentro de la estructura localmente fuerte.
+* **Los nodos nuevos prefieren conectarse a los nodos más conectados.**
+    
+    Cuando un nuevo nodo llega a la red en ella ya existen enlaces por lo que cada nodo puede decidir a quién conectarse en función del número de enlaces que otro nodo ya tiene. Sin embargo, el modelo de red aleatoria asume que la probabilidad de conectarse a otro nodo es la misma para todos los nodos (es completamente aleatoria). Esta preferencia existente en las redes reales de conectarse con los nodos con más conexiones se conoce como **conexión preferencial** o _preferential attachment_. Por ejemplo, en la WWW solemos tener más información de las páginas con más enlaces (Facebook, Google...) por lo si creamos nuestra propia web es muy probable que nos conectemos a una de ellas en lugar de a otra menos conocida.
 
-El modelo de Watts- Strogatz permite generar redes con esta estructura de la siguiente manera:
+La conexión preferencial es un concepto antiguo y conocido por muy distintos nombres:
 
-1. Construimos una red en forma de retículo en anillo con $N$ nodos, cada uno con $\langle k \rangle$ vecinos y con $L=N \cdot \langle k \rangle /2$ enlaces.
-2. Reasignamos cada uno de los enlaces con probabilidad $p$ de modo que no se pueden crear auntoenlaces ni enlaces múltiples. Una posible forma de hacerlo es, siguiendo el sentido horario, reasignar los $\langle k \rangle /2$ enlaces que hay a la derecha de cada nodo para los $N$ nodos.
+* Un matemático húngaro lo referencia por primera vez en 1923 y lo llama el _proceso Polya_.
+* En estadística es conocido como el _proceso Yule_.
+* En 1923, Gibrart lo denomina _crecimiento proporcional_.
+* En 1955, Simon lo usa para demostrar la naturaleza de la cola ancha de algunas distribuciones como el tamaño de las ciudades o el número de citas.
+* En 1965, Price, basándose en el anterior trabajo, lo denomina _ventaja acumulativa_ (lo veremos más adelante).
+* En sociología se conoce como el _efecto Matthew_.
+* El término de _conexión preferencial_ es acuñado por Barabasi y Albert en 1999.
 
-Tienes una simulación del modelo en <http://www.ladamic.com/netlearn/NetLogo4/SmallWorldWS.html>.
+## Modelo de Price
 
-Una variación a este modelo consiste en añadir enlaces aleatorios con probabilidad p, manteniendo el retículo inicial. Los resultados que describiremos a continuación son similares para ambas variantes.
+El primer modelo que tiene en cuenta estos dos ingredientes para modelar su evolución es el modelo de Price (1965). Este modelo fue usado por este investigador para explicar la cola ancha que presenta la distribución de citas de los artículos de investigación. Un artículo de investigación (también conocido como _paper_) es un documento publicado que siempre ha de tener un mínimo número de citas bibliográficas o referencias a otros artículos que ya han sido publicados anteriormente y que sirven como soporte a ciertas ideas que se presentan en dicho artículo.
 
-Podemos ver que $p$ afecta a la estructura de la red. Dependiendo de $p$ (que, como siempre, toma valores entre 0 y 1) tendremos:
+Este modelo es el siguiente:
 
-- Redes localmente estructuradas (p=0): Un mundo fuertemente agrupado y con distancias largas.
-$$ \langle d \rangle =\frac{N}{2 \langle k \rangle}\text{;  } \langle C \rangle = \frac{3}{4}$$
+- Cada artículo nuevo tiene $m$ citas. En términos de una red esto implica que cada vez que añadamos un nodo al modelo, este tendrá $m$ enlaces a otros nodos ya existentes en la red.
+- Un artículo nuevo cita a otro ya publicado con un probabilidad proporcional al número de citas que este último tiene. En términos de una red, la probabilidad de enlazarse a un nodo depende del grado de este nodo.
+- El modelo necesita hacer una suposición y es que todos los artículos tienen al menos una cita. Por tanto, la probabilidad de enlazarse a un nodo no va a ser proporcional a $k$ sino a $k+1$.
 
-- Redes completamente aleatorias (p=1). Mundo pequeño (distancias cortas) y con débil agrupamiento.
+El estudio y la simulación de este modelo demostró que las redes generadas siguiendo este modelo tienen una distribución de grados que sigue una ley potencial con exponente $\gamma = 2 + \frac{1}{m}$.
 
-$$ \langle d \rangle =\frac{lnN}{ln \langle k \rangle}\text{;  } \langle C \rangle = \frac{\langle k \rangle}{N}$$
+## Modelo de Barabasi-Albert
 
-Lo que más nos interesa es entender qué pasa en medio de ambos extremos.
+Este modelo fue usado para modelar la distribución de los nodos de la WWW. En este caso, el modelo de Barabasi-Albert sigue las siguientes etapas:
 
-![Modelo de Watts-Strogatz](../images/tema07/watts.png)
+* Partimos de una distribución inicial aleatoria de $m_0$ nodos y todos los nodos tienen al menos un enlace.
+* La red evoluciona realizando los dos siguientes pasos.
 
-### Estudio del modelo
+    1. En cada momento de tiempo $t$ se añade un nuevo nodo a la red con $m \leq m_0$ enlaces que se conectarán a $m$ nodos ya existentes en la red.
+    2. La probabilidad de que uno de los enlaces del nuevo nodo se conecte a un nodo ya existente $i$ depende del grado de dicho nodo $k_i$. Esta probabilidad se puede representar como:
+    
+    $$ \pi (k) = \frac{k_i}{\sum_{j}k_j}$$
 
-Para analizar el modelo se realizó un estudio de la evolución del coeficiente de agrupamiento y de la distancia media para distintos valores de $p$, comparándolos con los valores iniciales. El resultado conseguido se puede ver en la siguiente gráfica:
+    Donde el denominador representa la suma de los grados de todos los nodos que están presentes en la red en ese momento.
 
-![Evolución del coeficiente de agrupamiento y de la distancia media para distintos valores de $p$](../images/tema07/cdp.png)
+De acuerdo a este modelo, tras $t$ pasos tenemos que la red se compone de $N=m_0+t$ nodos y de $L=m_0+mt$ enlaces.
 
-* Como se puede ver, hay una reducción muy rápida de la distancia media debida a la aparición de esos enlaces aleatorios, que hacen de atajos dentro de la red.
-* El coeficiente de agrupamiento, sin embargo, se reduce mucho más suavemente a medida que aparecen estos enlaces aleatorios.
+A este modelo se le conoce también como modelo libre de escala ya que genera redes cuya distribución de grados sigue una ley potencial con exponente $\gamma = 3$.
 
-Lo más llamativo de este resultado es que solo unos pocos enlaces aleatorios bastan para reducir la distancia media, conservando la estructura local prácticamente intacta. En el gráfico se puede ver que una aleatoriedad del 1% (p=0.01) es suficiente para reducir drásticamente la distancia media. Sin embargo, el coeficiente de agrupamiento comienza a decrecer en torno a una aleatoriedad del 10% (p=0.1).
+![Distribución de los grados en una red generadas por el modelo de Barabasi-Albert](../images/tema04/distGrados.png)
 
-### Debilidades del modelo
+### Limitaciones del modelo
 
-Aunque este modelo cumple el comportamiento previsto ya que tiene en cuenta el alto coeficiente de agrupamiento observado en las redes reales junto con la propiedad de mundos pequeños, tiene también algunas debilidades:
+Este modelo no especifica:
 
-- No presenta una distribución realista de los grados ya que, como las redes aleatorias, no tiene en cuenta la existencia de hubs.
-- Los enlaces largos (los atajos) son menos frecuentes que los cortos. En el mundo real esto no tiene por qué ser así. Podemos pensar, por ejemplo, en las redes aeroportuarias.
-- No se tiene en cuenta otras propiedades de las redes reales como las estructuras jerárquicas o los grupos.
+- Cuál es la configuración inicial de los $m_0$ nodos.
+- Si los $m$ enlaces se unen uno a uno (procesos independientes) o simultáneamente.
+- No contempla la existencia de ciclos (enlaces sobre sí mismo).
 
-Existen otros modelos más complejos en los que la probabilidad por la que se unen dos nodos dependen de la distancia entre dichos nodos, de la estructura organizativa o usando funciones que pretenden optimizar unas determinadas características de la red (como la distancia media frente a la distancia física entre los nodos). Sea como fuere, estos modelos generan redes que siguen cumpliendo la propiedad de los pequeños mundos y de la estructura local y, en algunos casos, generan redes más parecidas a las reales ya que presentan hubs. El estudio de estos modelos queda fuera del temario de la asignatura pero si se desea conocer algo más al respecto es conveniente leer los siguientes artículos:
+Por tanto hay variantes de este modelo (como el _linearized chord diagram_) que intentan tener en cuenta algunas de estas limitaciones.
 
-- Kleinberg, J. (2000, May). [The small-world phenomenon: An algorithmic perspective](http://www.google.es/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&cad=rja&uact=8&ved=0CDYQFjAA&url=http%3A%2F%2Fwww.cs.cornell.edu%2Fhome%2Fkleinber%2Fswn.pdf&ei=K0h3VMjlC8rZas2egegC&usg=AFQjCNFUVXfxJsFEFh-rpDV9cklRbm6UiA&sig2=2J5Tjfps_piM9y5OOFdSeA&bvm=bv.80642063,d.d2s). In Proceedings of the thirty-second annual ACM symposium on Theory of computing (pp. 163-170). ACM.
-- Kleinberg, J. (2002). [Small-world phenomena and the dynamics of information](https://www.google.es/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&cad=rja&uact=8&ved=0CCgQFjAA&url=https%3A%2F%2Fwww.cs.cornell.edu%2Fhome%2Fkleinber%2Fnips14.pdf&ei=VUh3VPXqCsrZas2egegC&usg=AFQjCNFmiN7cLoDO7gS3OIKGlCZ-wTbpPg&sig2=t4rmeLjx3yB2LclF0PVN-g&bvm=bv.80642063,d.d2s). Advances in neural information processing systems, 1, 431-438.
-- Watts, D. J., Dodds, P. S., & Newman, M. E. (2002). Identity and search in social networks. science, 296(5571), 1302-1305.
-- Mathias, N., & Gopal, V. (2001). [Small worlds: How and why](http://journals.aps.org/pre/abstract/10.1103/PhysRevE.63.021117). Physical Review E, 63(2), 021117.
-- Gastner, M. T., & Newman, M. E. (2006). [The spatial structure of networks](http://www.google.es/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&cad=rja&uact=8&ved=0CCgQFjAA&url=http%3A%2F%2Fwww.stat.berkeley.edu%2F~aldous%2F206-SNET%2FPapers%2Fgaster_newman_2004.pdf&ei=i0l3VPv5Fc_TaMr7gogB&usg=AFQjCNHAD90sancHiM4m8sitHIS0anA0bg&sig2=7cDXRbyaL2UqHStnlymtXw&bvm=bv.80642063,d.d2s). The European Physical Journal B-Condensed Matter and Complex Systems, 49(2), 247-252.
+Por otro lado, este modelo presenta otras limitaciones:
+
+* El modelo de Barabasi-Albert estima un exponente $\gamma = 3$. Sin embargo hemos visto que en la mayoría de las redes reales este exponente oscila entre 2 y 5.
+* El modelo genera redes no dirigidas aunque algunas de las redes reales que modelo son dirigidas (como la de citas de artículos o la WWW)
+* El modelo no permite enlaces entre nodos ya presentes en la red (solo los permite en el momento en el que el nodo entra en la red).
+* El modelo no tiene en cuenta la desaparición de nodos.
+* El modelo no tiene en cuenta que algunas características intrínsecas de algunos nodos pueden hacer que la conexión preferencial varíe. Esto se debe a que el modelo es una simplificación que considera a todos los nodos por igual (sin ninguna característica adicional).
+
+A lo largo de los últimos años se han desarrollado otros modelos que intentan abordar estas limitaciones. Sin embargo, no los vamos a tratar en este tema[^2].
+
+[^2]: Para más información sobre estos modelos se puede consultar el capítulo 6 del libro de Barabasi.
+
+
+A partir de ahora vamos a estudiar en detalle este modelo para entender y justificar por qué genera una red libre de escala.
+
+## Evolución de los grados de los nodos
+
+Para estudiar la distribución de grados generada por este tipo de redes hay que tener en cuenta que el grado $k_i$ de un nodo $i$ es dependiente del tiempo, es decir, depende del momento en el que $i$ entró en la red. También hay que tener en cuenta que el número de nodos también es dependiente del tiempo por lo que el número de nodos que hay en un momento $t$ lo definiremos como $N(t)$.
+
+De acuerdo a esto podemos definir la tasa a la que un nodo adquiere nuevos enlaces (velocidad a la que aumenta su grado) como:
+
+$$\frac{dk_i}{dt}=m \cdot \pi (k_i) = m \cdot \frac{k_i}{\sum_{j}^{k_j}}$$
+
+Se puede calcular que $\sum_{j}^{k_j} = 2mt - m$ por lo que la velocidad a la que aumenta el grado de un nodo es:
+
+$$\frac{dk_i}{dt}=m \cdot \pi (k_i) = m \cdot \frac{k_i}{2mt - m} = \frac{k_i}{2t-1}$$
+
+Para valores de $t$ muy grandes podemos obviar el término $-1$ del denominador, por lo que:
+
+$$\frac{dk_i}{dt} = \frac{1}{2} \cdot \frac{k_i}{t}$$
+
+Para conocer cuál es el número de enlaces que tiene un nodo desde su nacimiento hasta el tiempo $t$ entonces tenemos que hacer la integral de la anterior función (teniendo en cuenta que $k_i (t_i) = m$):
+
+$$k_i(t) = m \cdot \Big( \frac{t}{t_i}\Big)^\beta \text{  donde }\beta = \frac{1}{2}$$
+
+El exponente $\beta$ se conoce como el exponente de la dinámica de la red. Las conclusiones que podemos sacar de esta fórmula son las siguientes:
+
+* El grado de cada nodo de la red crece siguiendo una ley potencial de acuerdo al exponente de la dinámica de la red.
+* El crecimiento del grado de los nodos es sublineal ya que cada nuevo nodo tiene un mayor número de nodos a los que conectarse y, por lo tanto, cada nodo tiene que competir con un mayor número de nodos para conseguir enlaces.
+* Los hubs aparecen debido al efecto _"rich get richer"_: los nuevos nodos prefieren a los nodos con mayor grado. Pero los hubs no son más grandes porque crezcan más rápidamente sino porque aparecieron antes. Esto en marketing se conoce como el fenómeno _"first-mover advantage"_.
+* La tasa de crecimiento de un nodo es:
+
+    $$k_i(t) =\frac{m}{2} \cdot \frac{1}{\sqrt{t_i t}}$$
+
+    Esto implica que los nodos más viejos adquieren más enlaces que los más jóvenes (ya que tienen menor $t_i$), es decir, tienen ventaja sobre los nodos nuevos. Además, la tasa con la que un nodo adquiere enlaces decrece con el tiempo a razón de $\sqrt{t}$. Este hecho se ve claramente en la siguiente gráfica:
+
+![Grado de los nodos dependiente del tiempo en el que aparecieron.](../images/tema04/gradot.png)
+
+## Distribución de grados
+
+A partir de la tasa de crecimiento podemos extraer cuál es la distribución de grados de estas redes. Según el formalismo continuo, la probabilidad de que un nodo tenga un grado menor que $k$ es:
+
+$$P(k_i(t) < k) = P(t_i > \frac{m^{\frac{t}{\beta}}\cdot t}{k^{\frac{1}{\beta}}})$$
+
+La probabilidad de que un nodo llegue en el tiempo $t_i$:
+
+$$p(t_i) = \frac{1}{m_0+t}$$
+
+Si sustituimos en la primera:
+
+$$P(k) = P(t_ \leq \frac{m^{\frac{t}{\beta}}}{k^{\frac{1}{\beta}}}) = 1 - \frac{m^{\frac{t}{\beta}}\cdot t}{k^{\frac{1}{\beta}}(m_0+t)}$$
+
+Esto es una distribución acumulada por lo que si hacemos la derivada de la función obtenemos que:
+
+$$p(k) = \frac{\partial P(k_i(t)<k)}{\partial k} = \frac{2m^{\frac{1}{\beta}\cdot t}}{m_0 + t} \cdot \frac{1}{k^{\frac{t}{\beta}+1}}$$
+
+Cuando $t \gg m_0$ entonces:
+
+$$p(k) \sim 2\cdot m^{\frac{1}{\beta}}\cdot k^{-\frac{1}{\beta} +1}$$
+
+O lo que es equivalente:
+ 
+$$p(k)\sim 2\cdot m^{\frac{1}{\beta}}\cdot k^{-\gamma} \text{   donde } \gamma = \frac{1}{\beta} +1$$
+
+Con esto queda de mostrado que **las redes creadas siguiendo el modelo de Barabasi-Albert tienen una distribución de grados que siguen una ley potencial** con un exponente $\gamma =3$
+
+Mediante otros formalismos y técnicas que quedan fuera de las explicaciones de este capítulo (pero que se pueden consultar en el capítulo 5 del libro de Barabasi) podemos calcular el valor de probabilidad exacto:
+
+$$p_k = \frac{2m(m+1)}{k(k+1)(k+2)}$$
+
+De esta fórmula destacamos las siguientes conclusiones:
+
+* La distribución de grados es independiente del tiempo. Esta conclusión es muy importante ya que nos ayuda a entender por qué redes reales de distinta antigüedad y distinto tamaño compartan la misma propiedad de ser libres de escala.
+* El modelo de Barabasi-Albert genera una distribución de grados de ley potencial prediciendo $\gamma =3$. Además este exponente es independiente de $m$ y de $m_0$, lo que da una idea de la universalidad del modelo.
+
+## ¿Son los dos ingredientes imprescindibles?
+
+Hemos dicho que para generar una red libre de escala necesitamos que la red esté en crecimiento ($N(t)$) y que haya conexión preferencial. Vamos a probar que es necesario ambos y que no podemos prescindir de ninguno de los dos.
+
+### Sin enlace preferencial
+
+El modelo de Barabasi-Albert sin enlace preferencial quedaría como sigue:
+
+* Comenzamos con $m_0$ nodos
+* Añadimos un nuevo nodo a la red con $m$ enlaces.
+* La probabilidad de que el nuevo nodo se una otro es aleatoria:
+
+$$\pi(k_i) = \frac{1}{m_0 +t-1}$$
+
+Para este modelo se cumple que:
+
+$$k(t) = m \cdot ln \Big( e \frac{m_0+t+1}{m_0+t_i+1}\Big)$$
+
+$$p_k = \frac{e}{m}\cdot exp \Big(-\frac{k}{m}\Big)$$
+
+Como se puede ver, $k(t)$ crece de manera logarítmica, mucho más lenta que una ley potencial y $p_k$ sigue una exponencial por lo que no permite la existencia de hubs, algo que, como ya vimos, es esperable en una red libre de escala.
+
+### Sin crecimiento
+
+Si eliminamos el crecimiento el modelo de Barabasi-Albert queda como sigue:
+
+* Empezamos con $N$ nodos.
+* En cada momento $t$ seleccionamos un nodo aleatoriamente y decidimos que se conecta al nodo $i$ presente en la red con probabilidad:
+
+    $$ \pi (k) = \frac{k_i}{\sum_{j}k_j}$$
+
+Aunque $N$ permanece constante, $L$ crece linealmente por lo que:
+
+$$k_i(t) \approx \frac{2}{N}t$$
+
+Al principio la red se parece a la generada por el modelo de Barabasi-Albert. Sin embargo, a medida que crece, el grado $k_i(t)$ converge a $\langle k \rangle$. Con el tiempo, la red se satura y se convierte en un grafo completo con $\langle k \rangle = N-1$
+
+## Diámetro
+
+El diámetro de una red creada usando el modelo de Barabasi-Albert tiene la siguiente forma:
+
+$$d_{max} = \frac{logN}{log\;log N}$$
+
+Como ya hemos visto en otras ocasiones, podemos estimar la misma fórmula para la distancia media ($\langle d \rangle$) de la red.
+
+Como conclusión a esto podemos destacar que las distancias en el modelo de Barabasi-Albert crecen más lentamente que $logN$ por lo que crecen más lentamente que en el modelo aleatorio. Esto es especialmente notable en redes grandes ($N\gg10^4$).
+
+![Distancia media en una red que sigue el modelo de Barabasi-Albert](../images/tema04/distmedia.png)
+
+## Coeficiente de agrupamiento
+
+El coeficiente de agrupamiento de una red creada siguiendo el modelo de Barabasi-Albert es:
+
+$$C = \frac{m-1}{8}\cdot \frac{(lnN)^2}{N}$$
+
+Aquí se ve que el coeficiente de agrupamiento tiene una dependencia del tamaño de la red muy diferente al $\frac{1}{N}$ obtenido con el modelo de red aleatoria. En este caso, el coeficiente de agrupamiento decae más lentamente por lo que la red obtenida siguiendo el modelo tiene un mayor agrupamiento local que la red aleatoria equivalente.
+
+![Coeficiente de agrupamiento en una red que sigue el modelo de Barabasi-Albert](../images/tema04/coefagr.png)
+
+## Resumen de los modelos de crecimiento
+
+En este tema hemos podido ver que para entender la topología de la red es necesario describir cómo se ha formado la red. Hemos descrito un par de modelos de crecimiento, el de Price y del modelo de Barabasi-Albert, los cuales generan redes que cumplen la propiedad de ser libres de escala.
+
+Hemos visto que estos modelos se caracterizan por tener crecimiento (el número de nodos crece con el tiempo) y por tener conexiones preferenciales (los nodos con mayor grado son preferidos a los nodos de menor grado). De acuerdo a esto podemos definir la siguiente ley:
+
+> Las redes cuya distribución de grados sigue una ley potencial y que presentan hubs son consecuencia de un proceso de crecimiento y de conexión preferencial
+
+![Cuadro resumen (extraído de _Network Science_, cap 5, pp. 32)](../images/tema04/resumen.png)
