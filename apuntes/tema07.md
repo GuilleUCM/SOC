@@ -12,7 +12,6 @@ Este material ha sido desarrollado a partir de distintas fuertes, destacando com
 Este obra está bajo una [licencia de Creative Commons Reconocimiento-NoComercial-CompartirIgual 4.0 Internacional](http://creativecommons.org/licenses/by-nc-sa/4.0/).
 
 \setcounter{chapter}{7}
-
 # Tema 7: Modelos de crecimiento {-}
 
 Tras haber visto los dos temas anteriores en los que hablábamos del modelo de red aleatoria y las redes libres de escala nos pueden surgir estas preguntas:
@@ -33,13 +32,13 @@ Este modelo de evolución crea una red con una determinada topología (ya estudi
 
 ![Topología de una red aleatoria](../images/tema04/topAleatoria.png)
 
-La intuición nos puede hacer pensar que si modificamos el modelo de evolución la red generada puede ser diferente. Para ello vamos a comenzar con unos modelos simples de evolución[^1] a partir del modelo aleatorio:
+La intuición nos puede hacer pensar que si modificamos el modelo de evolución, la red generada puede ser diferente. Para ello vamos a comenzar con unos modelos simples de evolución[^1] a partir del modelo aleatorio:
 
 [^1]: Estos modelos simples pueden verse en NetLogo usando el archivo `Modelos de Evolución Simples` que está en el Campus Virtual.
 
 ### Modelo de presentación
 
-Es un modelo similar al modelo aleatorio pero en el que aumentamos la probabilidad de los nodos que están enlazados al nodo al que se quiere añadir un nuevo enlace. A modo de ejemplo, si suponemos que estamos en una red social, este modelo dice que la probabilidad de que me presenten (y me enlace) a un amigo de un amigo es mayor que la probabilidad de que me presenten a un desconocido.
+Es un modelo similar al modelo aleatorio pero en el que aumentamos la probabilidad de los nodos que están enlazados al nodo al que se quiere añadir un nuevo enlace. A modo de ejemplo, si suponemos que estamos en una red social, este modelo dice que la probabilidad de que me presenten a (y me enlace con) un amigo de un amigo es mayor que la probabilidad de que me presenten a un desconocido.
 
 ![Topología de una red generada según el modelo de presentación](../images/tema04/topPresentacion.png)
 
@@ -55,7 +54,7 @@ En este caso, la topología de la red depende de la configuración espacial inic
 
 ### Modelo de encuentros aleatorios
 
-Es un modelo similar al anterior pero, en este caso, los nodos se mueven aleatoriamente y dos nodos se unen si chocan. Cada nodo tiene un número máximo de enlaces.
+Es un modelo similar al anterior pero, en este caso, los nodos se mueven aleatoriamente y dos nodos se unen si chocan. Cada nodo tiene un número máximo de enlaces que puede crear en esas colisiones.
 
 ![Dos redes distintas siguiendo el modelo de encuentros aleatorios](../images/tema04/topDynamicGeo.png)
 
@@ -69,13 +68,13 @@ En 1999, los investigadores Barabasi y Albert destacaron dos supuestos que no er
 
 * **La red crece a lo largo del tiempo.**
     
-    Las redes reales se expanden mediante la adición de nuevos nodos y nuevos enlaces. Recordemos que el modelo de red aleatoria supone un número fijo de nodos $N$ inicial y que este modelo crea enlaces nuevos pero no modifica el número de nodos existentes. En las redes reales, el número de nodos no es fijo sino que crece con el tiempo. Por ejemplo, en 2001, la WWW tenía un nodo (la página inicialmente creada por Tim Berners-Lee) mientras que en la actualidad está en torno a los 1000 millones.
+    Las redes reales se expanden incorporando nuevos nodos y nuevos enlaces. Recordemos que el modelo de red aleatoria supone un número fijo de nodos $N$ inicial y que este modelo crea enlaces nuevos pero no modifica el número de nodos existentes. En las redes reales, el número de nodos no es fijo sino que crece con el tiempo. Por ejemplo, en 2001, la WWW tenía un nodo (la página inicialmente creada por Tim Berners-Lee) mientras que en la actualidad está en torno a los 1000 millones.
 
 ![Las redes reales crecen (red de Internet y red de citas en artículos científicos)](../images/tema04/crecimiento.png)
 
 * **Los nodos nuevos prefieren conectarse a los nodos más conectados.**
     
-    Cuando un nuevo nodo llega a la red en ella ya existen enlaces por lo que cada nodo puede decidir a quién conectarse en función del número de enlaces que otro nodo ya tiene. Sin embargo, el modelo de red aleatoria asume que la probabilidad de conectarse a otro nodo es la misma para todos los nodos (es completamente aleatoria). Esta preferencia existente en las redes reales de conectarse con los nodos con más conexiones se conoce como **conexión preferencial** o _preferential attachment_. Por ejemplo, en la WWW solemos tener más información de las páginas con más enlaces (Facebook, Google...) por lo si creamos nuestra propia web es muy probable que nos conectemos a una de ellas en lugar de a otra menos conocida.
+    Cuando un nuevo nodo llega a la red, en ella ya existen enlaces, por lo que cada nodo puede decidir a quién conectarse en función del número de enlaces que otro nodo ya tiene. Sin embargo, el modelo de red aleatoria asume que la probabilidad de conectarse a otro nodo es la misma para todos los nodos (es decir, es completamente aleatoria). Esta preferencia por conectarse con los nodos con más conexiones se conoce como **conexión preferencial** o _preferential attachment_. Por ejemplo, en la WWW solemos tener más información de las páginas con más enlaces (Facebook, Google...) por lo que si creamos nuestra propia web es muy probable que nos conectemos a una de ellas en lugar de a otra menos conocida.
 
 La conexión preferencial es un concepto antiguo y conocido por muy distintos nombres:
 
@@ -89,7 +88,7 @@ La conexión preferencial es un concepto antiguo y conocido por muy distintos no
 
 ## Modelo de Price
 
-El primer modelo que tiene en cuenta estos dos ingredientes para modelar su evolución es el modelo de Price (1965). Este modelo fue usado por este investigador para explicar la cola ancha que presenta la distribución de citas de los artículos de investigación. Un artículo de investigación (también conocido como _paper_) es un documento publicado que siempre ha de tener un mínimo número de citas bibliográficas o referencias a otros artículos que ya han sido publicados anteriormente y que sirven como soporte a ciertas ideas que se presentan en dicho artículo.
+El primer modelo que tiene en cuenta estos dos ingredientes para modelar su evolución es el modelo de Price (1965). Este modelo fue usado por este investigador para explicar la cola ancha que presenta la distribución de citas de los artículos de investigación. Un artículo de investigación (también conocido como _paper_) es un documento publicado que siempre ha de tener un mínimo número de citas bibliográficas o referencias a otros artículos que ya han sido publicados anteriormente y que sirven como soporte a ciertas ideas que se presentan en dicho artículo. Por tanto, el modelo simula la creación de una red en la que los nodos representan artículos y los enlaces representan que un artículo ha sido citado por otro artículo.
 
 Este modelo es el siguiente:
 
@@ -113,9 +112,9 @@ Este modelo fue usado para modelar la distribución de los nodos de la WWW. En e
 
     Donde el denominador representa la suma de los grados de todos los nodos que están presentes en la red en ese momento.
 
-De acuerdo a este modelo, tras $t$ pasos tenemos que la red se compone de $N=m_0+t$ nodos y de $L=m_0+mt$ enlaces.
+De acuerdo a este modelo, tras $t$ pasos tenemos que la red se compone de $N=m_0+t$ nodos y de $L=m_0+m\cdot t$ enlaces.
 
-A este modelo se le conoce también como modelo libre de escala ya que genera redes cuya distribución de grados sigue una ley potencial con exponente $\gamma = 3$.
+A este modelo se le conoce también como **modelo libre de escala** ya que genera redes cuya distribución de grados sigue una ley potencial con exponente $\gamma = 3$.
 
 ![Distribución de los grados en una red generadas por el modelo de Barabasi-Albert](../images/tema04/distGrados.png)
 
@@ -127,7 +126,7 @@ Este modelo no especifica:
 - Si los $m$ enlaces se unen uno a uno (procesos independientes) o simultáneamente.
 - No contempla la existencia de ciclos (enlaces sobre sí mismo).
 
-Por tanto hay variantes de este modelo (como el _linearized chord diagram_) que intentan tener en cuenta algunas de estas limitaciones.
+Existen variantes de este modelo (como el _linearized chord diagram_) que han tenido en cuenta algunas de estas limitaciones.
 
 Por otro lado, este modelo presenta otras limitaciones:
 
@@ -144,7 +143,7 @@ A lo largo de los últimos años se han desarrollado otros modelos que intentan 
 
 A partir de ahora vamos a estudiar en detalle este modelo para entender y justificar por qué genera una red libre de escala.
 
-## Evolución de los grados de los nodos
+## Evolución de los grados de los nodos en el modelo libre de escala
 
 Para estudiar la distribución de grados generada por este tipo de redes hay que tener en cuenta que el grado $k_i$ de un nodo $i$ es dependiente del tiempo, es decir, depende del momento en el que $i$ entró en la red. También hay que tener en cuenta que el número de nodos también es dependiente del tiempo por lo que el número de nodos que hay en un momento $t$ lo definiremos como $N(t)$.
 
