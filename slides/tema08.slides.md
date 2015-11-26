@@ -11,7 +11,7 @@
 
 ### Mundos pequeños
 
-> **Observado en las prácticas con vuestras propias redes sociales**: en general, las redes sociales reales tienen un coeficiente de agrupamiento mucho mayor que las redes aleatorias (y que las libres de escala) a pesar de que la distancia media sigue siendo especialmente corta. 
+> En general, las redes sociales reales tienen un **coeficiente de agrupamiento mucho mayor que las redes aleatorias** (y que las libres de escala) a pesar de que la distancia media sigue siendo especialmente corta. 
 
 
 > Tendemos a agruparnos (los amigos de mis amigos son también mis amigos). 
@@ -20,19 +20,51 @@
 
 ![Coeficiente de agrupamiento y distancia media en redes reales frente a las redes aleatorias equivalente](../images/tema07/redesReales.png)
 
+## Los 6 grados de separación
+
+### Los 6 grados de separación
+
+> Los mundos pequeños se sugirió por primera vez en una historia de un escritor y periodista húngaro, Frigyes Karinthy, en 1929, en el que explicaba cómo era capaz de unir a un premio Nobel con él mismo contando los "apretones de manos" (_handshakes_) entre personas
+
+### Los 6 grados de separación
+
+> Look, Selma Lagerlöf just won the Nobel Prize for Literature, thus she is bound to know King Gustav of Sweden. After all he is the one who handed her the Prize, as required by tradition. King Gustav, to be sure, is a passionate tennis player, who always participates in international tournaments. He is known to have played Mr. Kehrling, whom he must therefore know for sure, and as it happens I myself know Mr. Kehrling quite well.
+
+### Los 6 grados de separación
+
+> The worker knows the manager in the shop, who knows Ford; Ford is on friendly terms with the general director of Hearst Publications, who last year became good friends with Arpad Pasztor, someone I not only know, but to the best of my knowledge a good friend of mine. So I could easily ask him to send a telegram via the general director telling Ford that he should talk to the manager and have the worker in the shop quickly hammer together a car for me, as I happen to need one.
+
+### Los 6 grados de separación
+
+> __Los 6 grados de separación__: si eligiésemos al azar dos personas del planeta, por muy lejos que estuviesen, estarían a 6 "conocidos" de distancia entre sí
+ 
+* Estudio realizado por Stanley Milgram (1967).
+* Hacer llegar una carta a un par de personas de Boston y Sharon (Massachusetts)
+* Una persona cualquiera (desde cualquier punto de Estado Unidos) va enviando la carta a aquellos familiares, amigos o conocidos que más se "acercaran" a la persona objetivo. 
+
+### Experimento de Milgram
+
+> HOW TO TAKE PART IN THIS STUDY
+> 
+> 1. ADD YOUR NAME TO THE ROSTER AT THE BOTTOM OF THIS SHEET, so that the next person who receives this letter will know who it came from.
+> 2. DETACH ONE POSTCARD. FILL IT AND RETURN IT TO HARVARD UNIVERSITY. No stamp is needed. The postcard is very important. It allows us to keep track of the progress of the folder as it moves toward the target person.
+> 3. IF YOU KNOW THE TARGET PERSON ON A PERSONAL BASIS, MAIL THIS FOLDER DIRECTLY TO HIM (HER). Do this only if you have previously met the target person and know each other on a first name basis. 
+> 4. IF YOU DO NOT KNOW THE TARGET PERSON ON A PERSONAL BASIS, DO NOT TRY TO CONTACT HIM DIRECTLY. INSTEAD, MAIL THIS FOLDER (POST CARDS AND ALL) TO A PERSONAL ACQUAINTANCE WHO IS MORE LIKELY THAN YOU TO KNOW THE TARGET PERSON. You may send the folder to a friend, relative or acquaintance, but it must be someone you know on a first name basis.
+
+### Experimento de Milgram
+
+* Se enviaron 296 cartas
+* La primera llegó en pocos días, pasando sólo por 2 enlaces
+* 64 cartas con un máximo de 12 intermediarios
+* La mediana de intermediarios fueron entre 5,5 y 6
+
+### Experimento de Milgram
+
+![Distribución del número de intermediarios necesarios en el experimento de Milgram. La mediana se encuentra entre 5,5 y 6](../images/tema08/milgram.png)
+
 ## Estructura y aleatoriedad
 
 ### Experimento de Milgram
-
-Recordemos
-
-* Stanley Milgram (1967) propuso un experimento para demostrarlo
-* Experimento: hacer llegar una carta a un par de personas de Boston y Sharon, a base de que una persona cualquiera (desde cualquier punto de Estado Unidos) fuese enviando la carta a aquellos familiares, amigos o conocidos que más se "acercaran" a la persona objetivo.
-
-### Experimento de Milgram
-
-* Resultado final: 64 cartas con un máximo de 12 intermediarios.
-* La mediana de intermediarios fueron entre 5,5 y 6
 
 > ¿Es 6 un resultado sorprendente?<br/>
 > ¿En los 60? ¿Hoy en día? ¿Por qué?
@@ -73,14 +105,11 @@ $$d_{max} \propto \frac{log N}{log \langle k \rangle}$$
 * En las redes reales abundan los triángulos o **tripletes conectados** (_tradic closure_)
 * Algunos de los enlaces no conectan con nuevas personas sino que conectan con amigos de mis amigos
 * Reducen el número de personas a las que se puede alcanzar en cada paso,  alargando los caminos mínimos.
-* Recordemos:
-
-$$C_i = \frac{2 \cdot L_i}{k_i (k_{i-1})} \;\;\; C_i \in [0,1]$$ 
 
 
 ### Red localmente conexa extrema
 
-* El caso extremo sería una red completamente _cliquish_
+* El caso extremo sería una red completamente _cliquish_ o _localmente estructurada_
     * Todos los subgrafos completamente conectados
     * Todos los amigos de mis amigos serían mis amigos y la distancia con ellos sería 1
 * Como no se permite ningún enlace fuera del clique la distancia con cualquier otro individuo de la red sería infinito.
@@ -110,27 +139,34 @@ $$N(d) = \sum_{x=1}^{d}8x = 4d(d+1)\sim d^2$$
 ### Modelo de Watts-Strogatz
 
 - Duncan Watts y Steve Strogatz (1998) proponen un modelo basado en dos ideas básicas de las redes sociales:
+- La homofilia
+- Los enlaces débiles
+
+### Modelo de Watts-Strogatz
+
 - La **homofilia**, _strong ties_ o tendencia a conectarnos con otros que son como nosotros. 
     - Si dos personas en una red social tienen una persona en común, es muy probable que estas dos personas se conviertan en comunes o amigos (cerramos el triángulo).
+
+### Modelo de Watts-Strogatz
+
 - Los **lazos débiles** o _weak ties_
     - Los enlaces a conocidos que nos conectan con partes de la red que, de otra forma, estarían muy lejos para nosotros.
 
 ### Modelo de Watts-Strogatz
 
 > 1. Construimos una red en forma de retículo en anillo con $N$ nodos, cada uno con $\langle k \rangle$ vecinos y con $L=N \cdot \langle k \rangle /2$ enlaces.
-> 2. Reasignamos cada uno de los enlaces con probabilidad $p$ de modo que no se pueden crear auntoenlaces ni enlaces múltiples.
+> 2. Reasignamos cada uno de los enlaces con probabilidad $p$ de modo que no se pueden crear autoenlaces ni enlaces múltiples.
 
-<http://www.ladamic.com/netlearn/NetLogo4/SmallWorldWS.html>.
 
 ### Modelo de Watts-Strogatz
 
-* Paso 2: Siguiendo el sentido horario, reasignar los $\langle k \rangle /2$ enlaces que hay a la derecha de cada nodo para los $N$ nodos.
+* **Paso 2**: Siguiendo el sentido horario, reasignar los $\langle k \rangle /2$ enlaces que hay a la derecha de cada nodo para los $N$ nodos.
 
 ![Modelo de Watts-Strogatz](../images/tema07/watts.png)
 
 ### Modelo de Watts-Strogatz
 
-* **Variación**: añadir enlaces aleatorios con probabilidad p, manteniendo el retículo inicial
+* **Variación Paso 2**: añadir enlaces aleatorios con probabilidad p, manteniendo el retículo inicial
 * Los resultados que describiremos a continuación son similares para ambas variantes.
 
 ### Modelo de Watts-Strogatz
