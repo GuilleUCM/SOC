@@ -12,6 +12,7 @@ Este material ha sido desarrollado a partir de distintas fuertes, destacando com
 Este obra está bajo una [licencia de Creative Commons Reconocimiento-NoComercial-CompartirIgual 4.0 Internacional](http://creativecommons.org/licenses/by-nc-sa/4.0/).
 
 \setcounter{chapter}{7}
+
 # Tema 7: Modelos de crecimiento {-}
 
 Tras haber visto los dos temas anteriores en los que hablábamos del modelo de red aleatoria y las redes libres de escala nos pueden surgir estas preguntas:
@@ -147,11 +148,11 @@ A partir de ahora vamos a estudiar en detalle este modelo para entender y justif
 
 Para estudiar la distribución de grados generada por este tipo de redes hay que tener en cuenta que el grado $k_i$ de un nodo $i$ es dependiente del tiempo, es decir, depende del momento en el que $i$ entró en la red. También hay que tener en cuenta que el número de nodos también es dependiente del tiempo por lo que el número de nodos que hay en un momento $t$ lo definiremos como $N(t)$.
 
-De acuerdo a esto podemos definir la tasa a la que un nodo adquiere nuevos enlaces (velocidad a la que aumenta su grado) como:
+De acuerdo a esto podemos definir la tasa a la que un nodo de grado $k_i$ adquiere nuevos enlaces (velocidad a la que aumenta su grado) como:
 
-$$\frac{dk_i}{dt}=m \cdot \pi (k_i) = m \cdot \frac{k_i}{\sum_{j}^{k_j}}$$
+$$\frac{dk_i}{dt}=m \cdot \pi (k_i) = m \cdot \frac{k_i}{\sum_{j=1}^{N-1}{k_j}}$$
 
-Se puede calcular que $\sum_{j}^{k_j} = 2mt - m$ por lo que la velocidad a la que aumenta el grado de un nodo es:
+Se puede calcular que $\sum_{j=1}^{N-1}{k_j} = 2mt - m$ por lo que la velocidad a la que aumenta el grado de un nodo es:
 
 $$\frac{dk_i}{dt}=m \cdot \pi (k_i) = m \cdot \frac{k_i}{2mt - m} = \frac{k_i}{2t-1}$$
 
@@ -166,15 +167,15 @@ $$k_i(t) = m \cdot \Big( \frac{t}{t_i}\Big)^\beta \text{  donde }\beta = \frac{1
 El exponente $\beta$ se conoce como el exponente de la dinámica de la red. Las conclusiones que podemos sacar de esta fórmula son las siguientes:
 
 * El grado de cada nodo de la red crece siguiendo una ley potencial de acuerdo al exponente de la dinámica de la red.
-* El crecimiento del grado de los nodos es sublineal ya que cada nuevo nodo tiene un mayor número de nodos a los que conectarse y, por lo tanto, cada nodo tiene que competir con un mayor número de nodos para conseguir enlaces.
+* El crecimiento del grado de los nodos es sublineal (es decir, $\beta < 1$) ya que cada nuevo nodo tiene un mayor número de nodos a los que conectarse y, por lo tanto, cada nodo existente en la red tiene que competir con un mayor número de nodos para conseguir enlaces.
 * Los hubs aparecen debido al efecto _"rich get richer"_: los nuevos nodos prefieren a los nodos con mayor grado. Pero los hubs no son más grandes porque crezcan más rápidamente sino porque aparecieron antes. Esto en marketing se conoce como el fenómeno _"first-mover advantage"_.
 * La tasa de crecimiento de un nodo es:
 
-    $$k_i(t) =\frac{m}{2} \cdot \frac{1}{\sqrt{t_i t}}$$
+    $$ \frac{d k_i(t)}{dt} =\frac{m}{2} \cdot \frac{1}{\sqrt{t_i t}}$$
 
-    Esto implica que los nodos más viejos adquieren más enlaces que los más jóvenes (ya que tienen menor $t_i$), es decir, tienen ventaja sobre los nodos nuevos. Además, la tasa con la que un nodo adquiere enlaces decrece con el tiempo a razón de $\sqrt{t}$. Este hecho se ve claramente en la siguiente gráfica:
+    Esto implica que los nodos más viejos adquieren más enlaces que los más jóvenes (ya que tienen menor $t_i$), es decir, tienen ventaja sobre los nodos nuevos. Además, la tasa con la que un nodo adquiere enlaces decrece con el tiempo a razón de $\sqrt{t}$. Este hecho se ve claramente en la  gráfica de la Figura \ref{fig:tasaCrecimiento}.
 
-![Grado de los nodos dependiente del tiempo en el que aparecieron.](../images/tema04/gradot.png)
+![Grado de los nodos dependiente del tiempo en el que aparecieron.\label{fig:tasaCrecimiento}](../images/tema04/gradot.png)
 
 ## Distribución de grados
 
@@ -210,8 +211,30 @@ $$p_k = \frac{2m(m+1)}{k(k+1)(k+2)}$$
 
 De esta fórmula destacamos las siguientes conclusiones:
 
-* La distribución de grados es independiente del tiempo. Esta conclusión es muy importante ya que nos ayuda a entender por qué redes reales de distinta antigüedad y distinto tamaño compartan la misma propiedad de ser libres de escala.
+* La distribución de grados es independiente del tiempo. Esta conclusión es muy importante ya que nos ayuda a entender por qué redes reales de distinta antigüedad y distinto tamaño comparten la misma propiedad de ser libres de escala.
 * El modelo de Barabasi-Albert genera una distribución de grados de ley potencial prediciendo $\gamma =3$. Además este exponente es independiente de $m$ y de $m_0$, lo que da una idea de la universalidad del modelo.
+
+## Distancia media
+
+El diámetro de una red creada usando el modelo de Barabasi-Albert tiene la siguiente forma:
+
+$$d_{max} = \frac{logN}{ln\;ln N}$$
+
+Como ya hemos visto en otras ocasiones, podemos utilizar la misma fórmula para estimar la distancia media ($\langle d \rangle$) de la red.
+
+Como conclusión a esto podemos destacar que las distancias en el modelo de Barabasi-Albert crecen más lentamente que $logN$ por lo que crecen más lentamente que en el modelo aleatorio. Esto es especialmente notable en redes grandes ($N\gg10^4$).
+
+![Distancia media en una red que sigue el modelo de Barabasi-Albert](../images/tema04/distmedia.png)
+
+## Coeficiente de agrupamiento
+
+El coeficiente de agrupamiento de una red creada siguiendo el modelo de Barabasi-Albert es:
+
+$$C = \frac{m-1}{8}\cdot \frac{(lnN)^2}{N}$$
+
+Aquí se ve que el coeficiente de agrupamiento tiene una dependencia del tamaño de la red muy diferente al $\frac{1}{N}$ obtenido con el modelo de red aleatoria. En este caso, el coeficiente de agrupamiento decae más lentamente por lo que la red obtenida siguiendo el modelo de Barabasi-Albert tiene un mayor agrupamiento local que la red aleatoria equivalente.
+
+![Coeficiente de agrupamiento en una red que sigue el modelo de Barabasi-Albert](../images/tema04/coefagr.png)
 
 ## ¿Son los dos ingredientes imprescindibles?
 
@@ -249,28 +272,6 @@ Aunque $N$ permanece constante, $L$ crece linealmente por lo que:
 $$k_i(t) \approx \frac{2}{N}t$$
 
 Al principio la red se parece a la generada por el modelo de Barabasi-Albert. Sin embargo, a medida que crece, el grado $k_i(t)$ converge a $\langle k \rangle$. Con el tiempo, la red se satura y se convierte en un grafo completo con $\langle k \rangle = N-1$
-
-## Diámetro
-
-El diámetro de una red creada usando el modelo de Barabasi-Albert tiene la siguiente forma:
-
-$$d_{max} = \frac{logN}{log\;log N}$$
-
-Como ya hemos visto en otras ocasiones, podemos estimar la misma fórmula para la distancia media ($\langle d \rangle$) de la red.
-
-Como conclusión a esto podemos destacar que las distancias en el modelo de Barabasi-Albert crecen más lentamente que $logN$ por lo que crecen más lentamente que en el modelo aleatorio. Esto es especialmente notable en redes grandes ($N\gg10^4$).
-
-![Distancia media en una red que sigue el modelo de Barabasi-Albert](../images/tema04/distmedia.png)
-
-## Coeficiente de agrupamiento
-
-El coeficiente de agrupamiento de una red creada siguiendo el modelo de Barabasi-Albert es:
-
-$$C = \frac{m-1}{8}\cdot \frac{(lnN)^2}{N}$$
-
-Aquí se ve que el coeficiente de agrupamiento tiene una dependencia del tamaño de la red muy diferente al $\frac{1}{N}$ obtenido con el modelo de red aleatoria. En este caso, el coeficiente de agrupamiento decae más lentamente por lo que la red obtenida siguiendo el modelo tiene un mayor agrupamiento local que la red aleatoria equivalente.
-
-![Coeficiente de agrupamiento en una red que sigue el modelo de Barabasi-Albert](../images/tema04/coefagr.png)
 
 ## Resumen de los modelos de crecimiento
 

@@ -1,0 +1,618 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Guillermo Jiménez Díaz (gjimenez@ucm.es)" />
+  <meta name="author" content="Alberto Díaz (albertodiaz@fdi.ucm.es)" />
+  <title>Análisis de Redes Sociales</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+   href="../pandownTemplates/slidy/styles/slidy.css" />
+   
+
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+   href="../pandownTemplates/dsi.css" />
+
+  <script src="../pandownTemplates/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+  <script src="../pandownTemplates/slidy/scripts/slidy.js"
+    charset="utf-8" type="text/javascript"></script>
+</head>
+<body>
+<div class="slide titlepage">
+  <h1 class="title">Análisis de Redes Sociales</h1>
+  <p class="author">
+Guillermo Jiménez Díaz (gjimenez@ucm.es)<br/>Alberto Díaz (albertodiaz@fdi.ucm.es)
+  </p>
+  <p class="date">20 de noviembre de 2015</p>
+</div>
+<div id="tema-6-redes-libres-de-escala" class="titleslide slide section level1"><h1><span class="header-section-number">1</span> Tema 6: Redes libres de escala</h1></div><div id="www" class="titleslide slide section level2"><h1><span class="header-section-number">1.1</span> WWW</h1></div><div id="mapa-de-la-www" class="slide section level3">
+<h1><span class="header-section-number">1.1.1</span> Mapa de la WWW</h1>
+<ul>
+<li>Primer mapa de una porción de la WWW (1999)</li>
+<li><strong>Objetivo</strong>: Verificar las propiedades de los modelos de red aleatoria en este sistema complejo de páginas y enlaces</li>
+<li>Suponían que esta red seguía el modelo de red aleatoria</li>
+<li><p>Mapa del dominio <code>nd.edu</code></p>
+<ul>
+<li>300000 documentos</li>
+<li>1,5 millones de enlaces.</li>
+</ul></li>
+</ul>
+</div><div id="mapa-de-la-www-1" class="slide section level3">
+<h1><span class="header-section-number">1.1.2</span> Mapa de la WWW</h1>
+<div class="figure">
+<img src="../images/tema03/www.png" alt="Mapa de la WWW: se puede ver la existencia de hubs." /><p class="caption">Mapa de la WWW: se puede ver la existencia de hubs.</p>
+</div>
+</div><div id="mapa-de-la-www-2" class="slide section level3">
+<h1><span class="header-section-number">1.1.3</span> Mapa de la WWW</h1>
+<ul>
+<li>A primera vista cumple la aleatoriedad predicha por el modelo</li>
+<li>Si nos detenemos a observar hay un gran número de nodos de grado pequeño…</li>
+<li>… y existen nodos con un número excepcional de enlaces: los hubs o concentradores.</li>
+<li>Estos nodos son extremadamente improbables en las redes aleatorias</li>
+</ul>
+<blockquote>
+<p><strong>Conclusión:</strong> ¿sirve una red aleatoria para modelar la WWW?</p>
+</blockquote>
+</div><div id="análisis-de-datos-de-la-www" class="slide section level3">
+<h1><span class="header-section-number">1.1.4</span> Análisis de datos de la WWW</h1>
+<ul>
+<li>Distribución de grados</li>
+</ul>
+<div class="figure">
+<img src="../images/tema03/distkinkot.png" alt="Distribución de grados de entrada y de salida de la WWW frente a la Poisson (en escala logarítmica)" /><p class="caption">Distribución de grados de entrada y de salida de la WWW frente a la Poisson (en escala logarítmica)</p>
+</div>
+</div><div id="análisis-de-datos-de-la-www-1" class="slide section level3">
+<h1><span class="header-section-number">1.1.5</span> Análisis de datos de la WWW</h1>
+<ul>
+<li>La distribución de grados no se asemeja a la Poisson</li>
+<li><p>La distribución de grados se asemeja a una <strong>ley potencial</strong> o <em>power law</em>.</p>
+<ul>
+<li>Se caracteriza por tener una cola mucho más ancha que una exponencial.</li>
+<li>La diferencia mucho más clara si las representamos en una escala logarítmica.</li>
+</ul></li>
+</ul>
+</div><div id="ley-potencial" class="slide section level3">
+<h1><span class="header-section-number">1.1.6</span> Ley potencial</h1>
+<div class="figure">
+<img src="../images/tema03/powerlawExp2.png" alt="Comparativa de una función exponencial (negro) frente a funciones de ley potencial (azul y rojo). A la izquierda se presenta en escala lineal mientras que a la derecha se ve en escala logarítmica" /><p class="caption">Comparativa de una función exponencial (negro) frente a funciones de ley potencial (azul y rojo). A la izquierda se presenta en escala lineal mientras que a la derecha se ve en escala logarítmica</p>
+</div>
+</div><div id="ley-potencial-1" class="slide section level3">
+<h1><span class="header-section-number">1.1.7</span> Ley potencial</h1>
+<p>Distribución de grados en la WWW</p>
+<p><span class="math">\[p_k \sim k^{-\gamma}\]</span></p>
+<p><span class="math">\[log\: p_k \sim -\gamma \cdot log\: k\]</span></p>
+<p>Como la WWW es una red dirigida:</p>
+<p><span class="math">\[p_{k_{in}} \sim k^{-\gamma_{in}}\]</span></p>
+<p><span class="math">\[p_{k_{out}} \sim k^{-\gamma_{out}}\]</span></p>
+</div><div id="conclusiones-del-estudio-de-la-www" class="slide section level3">
+<h1><span class="header-section-number">1.1.8</span> Conclusiones del estudio de la WWW</h1>
+<ul>
+<li>Se pudo estimar que <span class="math">\(\gamma_{in} \approx 2,1\)</span> mientras que <span class="math">\(\gamma_{in} \approx 2,45\)</span>.</li>
+<li>Lo realmente interesante fue la gran diferencia entre la distribución esperada (una Poisson) y la distribución final obtenida (una ley potencial).</li>
+</ul>
+<blockquote>
+<p>La WWW no se comportaba de acuerdo al modelo de red aleatoria sino que era “otro tipo de red”</p>
+</blockquote>
+</div><div id="redes-libres-de-escala" class="titleslide slide section level2"><h1><span class="header-section-number">1.2</span> Redes libres de escala</h1></div><div id="redes-libres-de-escala-1" class="slide section level3">
+<h1><span class="header-section-number">1.2.1</span> Redes libres de escala</h1>
+<blockquote>
+<p>Una <strong>red libre de escala</strong> es una red cuya distribución de grados sigue una ley potencial.</p>
+</blockquote>
+<blockquote>
+<p>Esta distribución se caracteriza por tener una larga cola.</p>
+</blockquote>
+<ul>
+<li><p>El primer informe relacionado con una función de ley potencial fue realizado por Pareto (s. XIX)</p>
+<ul>
+<li>El 80% del dinero en Italia estaba en manos de solo un 20% de la población.</li>
+</ul></li>
+</ul>
+</div><div id="formalismo-discreto" class="slide section level3">
+<h1><span class="header-section-number">1.2.2</span> Formalismo discreto</h1>
+<ul>
+<li>El grado de un nodo es siempre un entero positivo (<span class="math">\(K=0,1,2\dots\)</span>).</li>
+</ul>
+<p><span class="math">\[p_k = C \cdot k^{-\gamma}\]</span></p>
+<ul>
+<li>La constante C se calcula teniendo en cuenta que <span class="math">\(\sum_{k=1}^{\infty}{p_k} = 1\)</span></li>
+</ul>
+<p><span class="math">\[C = \frac{1}{\sum_{k=1}^{\infty}{k^{-\gamma}}} = \frac{1}{\varsigma(\gamma)}\]</span></p>
+<p>donde <span class="math">\(\varsigma(\gamma)\)</span> es la función Zeta de Riemann.</p>
+</div><div id="formalismo-discreto-1" class="slide section level3">
+<h1><span class="header-section-number">1.2.3</span> Formalismo discreto</h1>
+<ul>
+<li>Para valores de <span class="math">\(k&gt;0\)</span>, la función de distribución es:</li>
+</ul>
+<p><span class="math">\[p_k = \frac{k^{-\gamma}}{\varsigma(\gamma)}\]</span></p>
+<ul>
+<li>Los nodos aislado (<span class="math">\(k=0\)</span>) tienen que tratarse de manera independiente.</li>
+</ul>
+</div><div id="formalismo-continuo" class="slide section level3">
+<h1><span class="header-section-number">1.2.4</span> Formalismo continuo</h1>
+<ul>
+<li>Consideramos que <span class="math">\(k\)</span> puede tomar cualquier valor real positivo.</li>
+</ul>
+<p><span class="math">\[p(k) = C \cdot k^{-\gamma}\]</span></p>
+<ul>
+<li>La constante C se calcula teniendo en cuenta que <span class="math">\(\int_{k_{min}}^{\infty}{p(k)dk} = 1\)</span>:</li>
+</ul>
+<p><span class="math">\[C = \frac{1}{\int_{k_{min}}^{\infty}{k^{-\gamma}dk}} = (\gamma -1)\cdot k_{min}^{\gamma -1}\]</span></p>
+</div><div id="formalismo-contínuo" class="slide section level3">
+<h1><span class="header-section-number">1.2.5</span> Formalismo contínuo</h1>
+<ul>
+<li>La función de distribución según el formalismo continuo es:</li>
+</ul>
+<p><span class="math">\[p(k)= (\gamma -1)\cdot k_{min}^{\gamma -1}\cdot k^{\gamma -1}\]</span></p>
+<p>Donde <span class="math">\(k_{min}\)</span> es el menor grado de la red (o función de distribución)</p>
+<p>La función de distribución se ha de interpretar como la probabilidad de que un nodo tenga un grado entre dos valores <span class="math">\(k_1\)</span> y <span class="math">\(k_2\)</span>:</p>
+<p><span class="math">\[\int_{k_1}^{k_2}{p(k)dk}\]</span></p>
+</div><div id="hubs-en-las-redes-libres-de-escala" class="titleslide slide section level2"><h1><span class="header-section-number">1.3</span> Hubs en las redes libres de escala</h1></div><div id="distribuciones-de-grados-en-redes-aleatorias-frente-a-libres-de-escala" class="slide section level3">
+<h1><span class="header-section-number">1.3.1</span> Distribuciones de grados en redes aleatorias frente a libres de escala</h1>
+<div class="figure">
+<img src="../images/tema03/aleatoriavslibre.png" alt="Distribuciones para redes aleatorias y redes libres de escala ((a) en escala lineal; (b) en escala logarítmica y representación gráfica de una (c)red aleatoria frente a una (d)red libre de escala (\langle k \rangle=3 \text{; }N=50)" /><p class="caption">Distribuciones para redes aleatorias y redes libres de escala ((a) en escala lineal; (b) en escala logarítmica y representación gráfica de una (c)red aleatoria frente a una (d)red libre de escala (<span class="math">\(\langle k \rangle=3 \text{; }N=50\)</span>)</p>
+</div>
+</div><div id="distribuciones-de-grados-en-redes-aleatorias-frente-a-libres-de-escala-1" class="slide section level3">
+<h1><span class="header-section-number">1.3.2</span> Distribuciones de grados en redes aleatorias frente a libres de escala</h1>
+<ul>
+<li>La red libre de escala presenta una probabilidad de nodos con <span class="math">\(k\)</span> pequeño mayor que en una red aleatoria</li>
+<li>La red aleatoria tiene una mayor probabilidad de tener nodos con un grado <span class="math">\(k \sim \langle k \rangle\)</span> que la red libre de escala</li>
+<li>La red libre de escala presenta una mayor probabilidad de que existan nodos con <span class="math">\(k\)</span> muy alto.</li>
+<li>La probabilidad de que existan hubs en una red libre de escala es varios órdenes de magnitud mayor que en una red aleatoria</li>
+</ul>
+</div><div id="distribuciones-de-grados-en-redes-aleatorias-frente-a-libres-de-escala-2" class="slide section level3">
+<h1><span class="header-section-number">1.3.3</span> Distribuciones de grados en redes aleatorias frente a libres de escala</h1>
+<blockquote>
+<p>Ejemplo: Datos de la WWW (<span class="math">\(\langle k \rangle = 4,6\)</span>)</p>
+</blockquote>
+<ul>
+<li><strong>Red aleatoria</strong>: <span class="math">\(p_{aleatoria}(100)=10^{-30}\)</span>.</li>
+<li><strong>Red libre de escala</strong>: <span class="math">\(p_{libre-escala}(100)=10^{-4}\)</span>.</li>
+</ul>
+</div><div id="grado-del-mayor-hub" class="slide section level3">
+<h1><span class="header-section-number">1.3.4</span> Grado del mayor hub</h1>
+<ul>
+<li><p><span class="math">\(k_{max}\)</span>: grado del mayor hub existente en la red</p></li>
+<li><p>Red aleatoria con una distribución de grados <span class="math">\(p_k\)</span> exponencial:</p></li>
+</ul>
+<p><span class="math">\[p_k = C \cdot e^{-\lambda k}: \;\; k_{max}= k_{min} + \frac{lnN}{\lambda}\]</span></p>
+<blockquote>
+<p><span class="math">\(k_{max}\)</span> depende de <span class="math">\(lnN\)</span></p>
+<p>Muy poca diferencia entre <span class="math">\(k_{min}\)</span> y <span class="math">\(k_{max}\)</span></p>
+<p>No hay hubs.</p>
+</blockquote>
+</div><div id="grado-del-mayor-hub-1" class="slide section level3">
+<h1><span class="header-section-number">1.3.5</span> Grado del mayor hub</h1>
+<ul>
+<li>Red aleatoria con una distribución de grados <span class="math">\(p_k\)</span> Poisson</li>
+</ul>
+<blockquote>
+<p><span class="math">\(k_{max}\)</span> depende más suavemente de <span class="math">\(lnN\)</span></p>
+<p>Aún menor diferencia entre <span class="math">\(k_{min}\)</span> y <span class="math">\(k_{max}\)</span></p>
+<p>No hay hubs.</p>
+</blockquote>
+</div><div id="grado-del-mayor-hub-2" class="slide section level3">
+<h1><span class="header-section-number">1.3.6</span> Grado del mayor hub</h1>
+<ul>
+<li>Red libre de escala con una distribución de grados <span class="math">\(p_k\)</span> de ley potencial</li>
+</ul>
+<p><span class="math">\[p(k) = C \cdot k^{-\gamma}:\;\; k_{max}\sim k_{min} \cdot N^{\frac{1}{\gamma -1}}\]</span></p>
+<blockquote>
+<p><span class="math">\(k_{max}\)</span> depende de <span class="math">\(N\)</span></p>
+<p>Puede haber (y se espera que haya) hubs.</p>
+<p><strong>Conclusión</strong>: Cuanto mayor es la red, mayor es el grado del hub más grande.</p>
+</blockquote>
+</div><div id="grado-del-mayor-hub-3" class="slide section level3">
+<h1><span class="header-section-number">1.3.7</span> Grado del mayor hub</h1>
+<div class="figure">
+<img src="../images/tema03/kmax-n.png" alt="Relación entre el grado del mayor hub (k_{max}) y el tamaño de la red (N)" /><p class="caption">Relación entre el grado del mayor hub (<span class="math">\(k_{max}\)</span>) y el tamaño de la red (<span class="math">\(N\)</span>)</p>
+</div>
+</div><div id="grado-del-mayor-hub-4" class="slide section level3">
+<h1><span class="header-section-number">1.3.8</span> Grado del mayor hub</h1>
+<blockquote>
+<p>Ejemplo: Datos de la WWW (<span class="math">\(N=3\cdot10^5\)</span>)</p>
+</blockquote>
+<ul>
+<li><p><strong>Red aleatoria</strong>: <span class="math">\[k_{max}\approx 13\]</span></p></li>
+<li><p><strong>Red libre de escala</strong>: <span class="math">\[k_{max}\approx 85000\]</span></p></li>
+</ul>
+</div><div id="resumen-gráfico" class="slide section level3">
+<h1><span class="header-section-number">1.3.9</span> Resumen gráfico</h1>
+<div class="figure">
+<img src="../images/tema03/transporte.png" alt="Red de carreteras de EEUU (una red aleatoria) frente a la red de tráfico aéreo del mismo país (red libre de escala)" /><p class="caption">Red de carreteras de EEUU (una red aleatoria) frente a la red de tráfico aéreo del mismo país (red libre de escala)</p>
+</div>
+<!-- ## ¿Qué significa "libre de escala"?
+
+### Momentos de la distribución de grados
+
+$$\langle k^n \rangle = \sum_{k_{min}}^{\infty}{k^np_k}=\int_{k_{min}}^{\infty}{k^np(k)dk}$$
+
+* n=1: Grado medio ($\langle k \rangle$).
+
+* n=2: Varianza ($\sigma^2 = \langle k^2 \rangle - \langle k \rangle^2$)
+
+    Mide la dispersión de los grados. Su raíz cuadrada es la desviación típica ($\sigma$)
+
+* n=3: Asimetría ($\langle k^3 \rangle$)
+
+    Cómo de simétrica es p_k alrededor de la  media (si la función es simétrica entonces $\langle k^3 \rangle=0$)
+
+### Momento de la distribución de grados
+
+* Momento n-ésimo en una red libre de escala
+
+$$\langle k^n \rangle = \int_{k_{min}}^{k_{max}}{k^np(k)dk} = C \frac{k_{max}^{n-\gamma+1} - k_{min}^{n-\gamma+1}}{n-\gamma + 1}$$
+
+* Como $k_{max}$ crece con el tamaño de la red  analizamos $k_{max} \to \infty$:
+
+$$\langle k^n \rangle = \frac{(\gamma -1)}{(n-\gamma- 1)} k_{min}^{\gamma-1} \Big[ k^{n-\gamma+1}\Big]_{k_{min}}^\infty$$
+
+### Momento de la distribución de grados
+
+* $n-\gamma+1 \leq 0$
+
+    * El momento está acotado
+    * Todos los momentos en los que $n \leq \gamma+1$ son finitos
+
+* $n-\gamma+1 > 0$
+
+    * El momento tiende a infinito según la red crece
+    * Todos los momentos en los que $n > \gamma+1$ divergen 
+
+
+### Libre de escala
+
+* El exponente del grado $\gamma$ tiene un valor entre 2 y 3
+* El primer momento ($\langle k \rangle$) es finito
+* La varianza (segundo momento o $\langle k^2 \rangle$) y el resto de momentos tienden a infinito
+
+> Si esto es así entonces resulta que los valores medios no tienen realmente sentido ya que hay fluctuaciones demasiado grandes.<br/>**La escala interna (la media) no tiene sentido por lo que es una red "libre de escala"**
+-->
+</div><div id="universalidad" class="titleslide slide section level2"><h1><span class="header-section-number">1.4</span> Universalidad</h1></div><div id="universalidad-1" class="slide section level3">
+<h1><span class="header-section-number">1.4.1</span> Universalidad</h1>
+<blockquote>
+<p>¿Son, en general, las redes reales libres de escala?</p>
+</blockquote>
+<ul>
+<li><p>Estudios de redes libres de escala</p>
+<ul>
+<li>Price (1965): Redes científicas (el término aún no se conoce)</li>
+<li>Barabasi (1999): WWW (acuña el término)</li>
+<li>1999: Internet (la red física de routers) y red de actores de Hollywood</li>
+<li>…: estudio en múltiples redes biológicas, tecnológicas y sociales: redes de interacción entre proteínas, comunidades virtuales, redes metabólicas, circuitos eléctricos, etc.</li>
+<li>2010: Twitter</li>
+<li>2011: Facebook</li>
+</ul></li>
+</ul>
+</div><div id="universalidad-2" class="slide section level3">
+<h1><span class="header-section-number">1.4.2</span> Universalidad</h1>
+<div class="figure">
+<img src="../images/tema03/historia.png" />
+</div>
+</div><div id="universalidad-3" class="slide section level3">
+<h1><span class="header-section-number">1.4.3</span> Universalidad</h1>
+<div class="figure">
+<img src="../images/tema03/datosRedesReales.png" alt="Datos de redes reales. Podemos ver que la mayoría de los exponentes \gamma tienen un valor entre 2 y 3" /><p class="caption">Datos de redes reales. Podemos ver que la mayoría de los exponentes <span class="math">\(\gamma\)</span> tienen un valor entre 2 y 3</p>
+</div>
+</div><div id="universalidad-4" class="slide section level3">
+<h1><span class="header-section-number">1.4.4</span> Universalidad</h1>
+<ul>
+<li>En todas hay diferencias de varios órdenes de magnitud entre los nodos con menor y mayor grado.</li>
+<li>Los exponentes <span class="math">\(\gamma\)</span> de las funciones de distribución de grados son similares independientemente del dominio de la red.</li>
+<li>La mayoría de los exponentes varían entre 2 y 3.</li>
+<li>Las redes estudiadas muestran características comunes</li>
+</ul>
+</div><div id="no-todas-las-redes-reales-son-libres-de-escala" class="slide section level3">
+<h1><span class="header-section-number">1.4.5</span> No todas las redes reales son libres de escala</h1>
+<ul>
+<li><strong>No todas las redes son libres de escala</strong></li>
+<li>Contraejemplo: la red eléctrica (<em>Power grid</em>) no cumplen la propiedad de ser libre de escala.</li>
+<li>Contraejemplo: las redes existentes en materiales (enlaces atómicos que conforman estructuras cristalinas y amorfas)</li>
+<li>Contraejemplo: red neuronal del gusano <em>C.elegans</em>.</li>
+<li>Generalmente no aparece en redes en las que existe una limitación en el número de enlaces que un nodo puede tener (como la red eléctrica o la estructura atómica).</li>
+</ul>
+</div><div id="identificación-de-las-redes-libres-de-escala" class="titleslide slide section level2"><h1><span class="header-section-number">1.5</span> Identificación de las redes libres de escala</h1></div><div id="identificación-de-las-redes-libres-de-escala-1" class="slide section level3">
+<h1><span class="header-section-number">1.5.1</span> Identificación de las redes libres de escala</h1>
+<ul>
+<li>No podemos suponer que todas las redes reales son libres de escala</li>
+<li>Se proponen unas pautas para detectar la propiedad de ser libre de escala</li>
+</ul>
+<ol style="list-style-type: decimal">
+<li>Representar gráficamente la distribución de grados</li>
+<li>Comprobar que la distribución sigue realmente una ley potencial</li>
+<li>Estimar el valor del exponente de la función</li>
+</ol>
+</div><div id="representar-gráficamente-la-distribución-de-grados" class="slide section level3">
+<h1><span class="header-section-number">1.5.2</span> Representar gráficamente la distribución de grados</h1>
+<ul>
+<li>Dada una red real de <span class="math">\(N\)</span> nodos tendremos que calcular el grado de cada nodo</li>
+<li>Calcular <span class="math">\(p_k = \frac{N_k}{N}\)</span> para todos los valores de <span class="math">\(k\)</span> que encontremos en la red (<span class="math">\(N_k\)</span> es el número de nodos con grado <span class="math">\(k\)</span>)</li>
+<li>Representar gráficamente <span class="math">\(p_k\)</span>/<span class="math">\(k\)</span></li>
+</ul>
+<div class="figure">
+<img src="../images/tema03/detectarLineal.png" alt="Representación gráfica en escala lineal de p_k/k" /><p class="caption">Representación gráfica en escala lineal de <span class="math">\(p_k\)</span>/<span class="math">\(k\)</span></p>
+</div>
+</div><div id="representar-gráficamente-la-distribución-de-grados-1" class="slide section level3">
+<h1><span class="header-section-number">1.5.3</span> Representar gráficamente la distribución de grados</h1>
+<ul>
+<li>La representación lineal puede que comprima el grafo</li>
+<li>Usar escala logarítmica: log <span class="math">\(p_k\)</span> en función de log <span class="math">\(k\)</span></li>
+<li><p>Difícil de entender: Usar escala logarítmico-aritmética con potencias de 10</p>
+<ul>
+<li>Si <span class="math">\(log(1000)=3\)</span> entonces en el eje escribimos <span class="math">\(10^3\)</span>.</li>
+</ul></li>
+</ul>
+<div class="figure">
+<img src="../images/tema03/detectarLog.png" alt="Representación gráfica en escala logarítmica de p_k/k" /><p class="caption">Representación gráfica en escala logarítmica de <span class="math">\(p_k\)</span>/<span class="math">\(k\)</span></p>
+</div>
+</div><div id="representar-gráficamente-la-distribución-de-grados-2" class="slide section level3">
+<h1><span class="header-section-number">1.5.4</span> Representar gráficamente la distribución de grados</h1>
+<ul>
+<li><em>Linear binning</em></li>
+<li>Problema: aparecen mesetas (<em>plateau</em>) para los valores de <span class="math">\(k\)</span> grandes.</li>
+<li><span class="math">\(N_k=0 \to p_k=0\)</span>: No se representan.</li>
+<li><span class="math">\(N_k=1 \to p_k = \frac{1}{N}\)</span>: Meseta</li>
+<li>Esto puede hacer que no se pueda estimar correctamente el exponente.</li>
+</ul>
+<div class="figure">
+<img src="../images/tema03/detectarProbLinealBinning.png" alt="Problema: aparición de mesetas" /><p class="caption">Problema: aparición de mesetas</p>
+</div>
+</div><div id="representar-gráficamente-la-distribución-de-grados-3" class="slide section level3">
+<h1><span class="header-section-number">1.5.5</span> Representar gráficamente la distribución de grados</h1>
+<ul>
+<li><em>Logarithmic binning</em></li>
+<li><p>Agrupamos <span class="math">\(k\)</span> por cubos (o <em>bins</em>) de tamaño variable:</p>
+<ul>
+<li><span class="math">\(b_0 = 1\)</span>: contiene los nodos con <span class="math">\(k=1\)</span></li>
+<li><span class="math">\(b_1 = 2\)</span>: contiene los nodos con <span class="math">\(k \in \{2, 3\}\)</span></li>
+<li><span class="math">\(b_2 = 4\)</span>: contiene los nodos con <span class="math">\(k \in \{4, 5, 6, 7\}\)</span></li>
+<li>En general, <span class="math">\(b_n = 2^n\)</span> y contiene los nodos con <span class="math">\(k \in \{2^n, 2^n+1, \dots, 2^{n+1}-1\}\)</span></li>
+</ul></li>
+<li><p>Representaremos <span class="math">\(p_{\langle k_n \rangle} = \frac{N_n}{b_n}\)</span></p>
+<ul>
+<li><span class="math">\(\langle k_n \rangle\)</span> es el grado medio del cubo n-ésimo</li>
+<li><span class="math">\(N_n\)</span> es el número de nodos en el cubo n-ésimo</li>
+<li><span class="math">\(b_n\)</span> es el tamaño del cubo.</li>
+</ul></li>
+</ul>
+</div><div id="representar-gráficamente-la-distribución-de-grados-4" class="slide section level3">
+<h1><span class="header-section-number">1.5.6</span> Representar gráficamente la distribución de grados</h1>
+<ul>
+<li>Suaviza las mesetas</li>
+<li>Perdemos información</li>
+</ul>
+<div class="figure">
+<img src="../images/tema03/detectarLogBinning.png" alt="Representación mediante log binning" /><p class="caption">Representación mediante log binning</p>
+</div>
+</div><div id="representar-gráficamente-la-distribución-de-grados-5" class="slide section level3">
+<h1><span class="header-section-number">1.5.7</span> Representar gráficamente la distribución de grados</h1>
+<ul>
+<li>Distribución acumulada: cuántos nodos tienen al menos grado k</li>
+</ul>
+<p><span class="math">\[p_x = \sum_{q=k}^{\infty}P_q\]</span></p>
+<ul>
+<li>Distribución acumulada sigue siendo un ley potencial</li>
+</ul>
+<p><span class="math">\[p_x \sim k^{-\gamma+1}\]</span></p>
+<ul>
+<li>No existen mesetas</li>
+</ul>
+<div class="figure">
+<img src="../images/tema03/detectarAcumulada.png" alt="Representación mediante distribución acumulada" /><p class="caption">Representación mediante distribución acumulada</p>
+</div>
+</div><div id="representar-gráficamente-la-distribución-de-grados-6" class="slide section level3">
+<h1><span class="header-section-number">1.5.8</span> Representar gráficamente la distribución de grados</h1>
+<div class="figure">
+<img src="../images/tema03/graficas.png" alt="Representación de la función de distribución utilizando distintas escalas" /><p class="caption">Representación de la función de distribución utilizando distintas escalas</p>
+</div>
+</div><div id="comprobar-que-la-distribución-sigue-realmente-una-ley-potencial" class="slide section level3">
+<h1><span class="header-section-number">1.5.9</span> Comprobar que la distribución sigue realmente una ley potencial</h1>
+<ul>
+<li>Comprobar que realmente sigue una ley potencial</li>
+<li>Dibujar distribuciones de Poisson o exponenciales equivalentes (usando el valor <span class="math">\(\langle k \rangle\)</span> de la red) para ver que realmente son distintas.</li>
+</ul>
+<div class="figure">
+<img src="../images/tema03/poissonYpowerlaw.png" alt="Distribución de grado en escala logarítmica de Internet y de la red de interacción de proteínas. En cada gráfica se ha presentado punteada la distribución de Poisson usando el grado medio \langle k \rangle calculado para cada una de las redes." /><p class="caption">Distribución de grado en escala logarítmica de Internet y de la red de interacción de proteínas. En cada gráfica se ha presentado punteada la distribución de Poisson usando el grado medio <span class="math">\(\langle k \rangle\)</span> calculado para cada una de las redes.</p>
+</div>
+</div><div id="comprobar-que-la-distribución-sigue-realmente-una-ley-potencial-1" class="slide section level3">
+<h1><span class="header-section-number">1.5.10</span> Comprobar que la distribución sigue realmente una ley potencial</h1>
+<ul>
+<li>Algunas distribuciones solo presentan la propiedad de ley potencial en la cola</li>
+<li>Estimar <span class="math">\(k_{min}\)</span> a partir del cual se exhibe ley potencial</li>
+<li><span class="math">\(k_{min}&gt;0\)</span> ya que <span class="math">\(k^{-\gamma} = \infty\)</span> para <span class="math">\(k=0\)</span></li>
+</ul>
+<div class="figure">
+<img src="../images/tema03/estimarKmin.png" alt="Red de citas en artículos científicos: la ley potencial aparece solo a partir de k_{min}" /><p class="caption">Red de citas en artículos científicos: la ley potencial aparece solo a partir de <span class="math">\(k_{min}\)</span></p>
+</div>
+</div><div id="calcular-el-valor-del-exponente-de-la-función" class="slide section level3">
+<h1><span class="header-section-number">1.5.11</span> Calcular el valor del exponente de la función</h1>
+<ul>
+<li>Aproximar el valor del exponente es buscando la línea recta que se ajusta al gráfico logarítmico</li>
+<li>Puede introducir cierto error</li>
+<li>Existen otras técnicas más precisas que quedan fuera de los objetivos de este curso (pero que se pueden consultar en el anexo 4.C del capítulo 4 del libro de Barabasi).</li>
+</ul>
+<div class="figure">
+<img src="../images/tema03/detectarAcumulada.png" alt="Valor estimado: \gamma=2,43. Valor real con otras técnicas: \gamma=2,45" /><p class="caption">Valor estimado: <span class="math">\(\gamma=2,43\)</span>. Valor real con otras técnicas: <span class="math">\(\gamma=2,45\)</span></p>
+</div>
+</div><div id="propiedad-de-los-mundos-ultra-pequeños" class="titleslide slide section level2"><h1><span class="header-section-number">1.6</span> Propiedad de los mundos ultra-pequeños</h1></div><div id="hubs-y-reducción-de-distancias" class="slide section level3">
+<h1><span class="header-section-number">1.6.1</span> Hubs y reducción de distancias</h1>
+<ul>
+<li>La existencia de hubs en las redes libres de escala modifica las distancias dentro de la red con respecto al modelo aleatorio</li>
+<li><p>Intuición: Ejemplo de red de transportes</p>
+<ul>
+<li>Si vamos por carretera de una ciudad a otra pasaremos por muchas ciudades (red aleatoria)</li>
+<li>La red aeroportuaria crea hubs (como el aeropuerto de Chicago) que reducen el número de saltos que tenemos que dar entre aeropuertos para ir de una ciudad a otra.</li>
+</ul></li>
+<li><p>Demostración: probar que las distancias en una red libre de escala es menor que las distancias en una red aleatoria.</p></li>
+</ul>
+</div><div id="distancia-media-en-función-del-exponente" class="slide section level3">
+<h1><span class="header-section-number">1.6.2</span> Distancia media en función del exponente</h1>
+<ul>
+<li>Estudiar <span class="math">\(\langle d \rangle\)</span> en función del valor del exponente <span class="math">\(\gamma\)</span></li>
+</ul>
+<p><span class="math">\[k_{max}\sim k_{min} \cdot N^{\frac{1}{\gamma -1}}\]</span></p>
+<ul>
+<li>4 regímenes</li>
+</ul>
+</div><div id="distancia-media-en-función-del-exponente-1" class="slide section level3">
+<h1><span class="header-section-number">1.6.3</span> Distancia media en función del exponente</h1>
+<ol style="list-style-type: decimal">
+<li><span class="math">\(\langle d \rangle \sim const \text{ si }\gamma=2\)</span></li>
+</ol>
+<ul>
+<li><span class="math">\(k_{max}\sim N\)</span>.</li>
+<li>La mayoría de los nodos están conectados al hub por lo que la distancia media es independiente del tamaño de la red.</li>
+</ul>
+</div><div id="distancia-media-en-función-del-exponente-2" class="slide section level3">
+<h1><span class="header-section-number">1.6.4</span> Distancia media en función del exponente</h1>
+<ol start="2" style="list-style-type: decimal">
+<li><span class="math">\(\langle d \rangle \sim \frac{lnlnN}{ln(\gamma-1)} \text{ si }2&lt;\gamma &lt;3\)</span></li>
+</ol>
+<ul>
+<li><strong>Mundo ultra-pequeño</strong>: la distancia media se incrementa en un orden menor que el logaritmo cuando el tamaño de la red aumenta.</li>
+<li>La distancia media en una red aleatoria aumenta en orden logarítmico cuando el tamaño de la red aumenta.</li>
+<li>La gran mayoría de los caminos pasan a través de unos pocos hubs, lo que reduce la distancia entre nodos.</li>
+</ul>
+</div><div id="distancia-media-en-función-del-exponente-3" class="slide section level3">
+<h1><span class="header-section-number">1.6.5</span> Distancia media en función del exponente</h1>
+<ol start="2" style="list-style-type: decimal">
+<li><strong>Mundo ultrapequeño</strong></li>
+</ol>
+<ul>
+<li>Ejemplo:</li>
+</ul>
+<blockquote>
+<p><span class="math">\(N \approx 7\cdot 10^9\)</span></p>
+<p>Si la red es aleatoria: <span class="math">\(lnN = 22.6\)</span>.</p>
+<p>Si la red es libre de escala: <span class="math">\(lnlnN=3.12\)</span>.</p>
+</blockquote>
+</div><div id="distancia-media-en-función-del-exponente-4" class="slide section level3">
+<h1><span class="header-section-number">1.6.6</span> Distancia media en función del exponente</h1>
+<ol start="3" style="list-style-type: decimal">
+<li><span class="math">\(\langle d \rangle \sim \frac{lnN}{lnlnN} \text{ si }\gamma =3\)</span></li>
+</ol>
+<!-- * Punto crítico: $\langle k^2 \rangle$ no diverge -->
+<ul>
+<li>Las distancias vuelven a tener una dependencia logarítmica, similar a las de una red aleatoria</li>
+<li>Aunque levemente suavizadas.</li>
+</ul>
+</div><div id="distancia-media-en-función-del-exponente-5" class="slide section level3">
+<h1><span class="header-section-number">1.6.7</span> Distancia media en función del exponente</h1>
+<ol start="4" style="list-style-type: decimal">
+<li><span class="math">\(\langle d \rangle \sim lnN \text{ si }\gamma &gt;3\)</span></li>
+</ol>
+<!-- * ($\langle k^2 \rangle$) es finito -->
+<ul>
+<li>La red se comporta como una red aleatoria</li>
+<li>Siguen existiendo hubs pero no influyen significativamente en las distancias.</li>
+</ul>
+</div><div id="distancia-media-en-función-del-exponente-6" class="slide section level3">
+<h1><span class="header-section-number">1.6.8</span> Distancia media en función del exponente</h1>
+<div class="figure">
+<img src="../images/tema03/distancias.png" alt="Representación de las distancias con respecto al tamaño de la red. Se puede ver que p_d (figuras b, c y d) no se ve afectada significativamente por N cuando \gamma =2.1 (línea azul), no así para los demás valores de \gamma (líneas verde y roja)" /><p class="caption">Representación de las distancias con respecto al tamaño de la red. Se puede ver que <span class="math">\(p_d\)</span> (figuras b, c y d) no se ve afectada significativamente por <span class="math">\(N\)</span> cuando <span class="math">\(\gamma =2.1\)</span> (línea azul), no así para los demás valores de <span class="math">\(\gamma\)</span> (líneas verde y roja)</p>
+</div>
+</div><div id="distancia-media-en-función-del-exponente-7" class="slide section level3">
+<h1><span class="header-section-number">1.6.9</span> Distancia media en función del exponente</h1>
+<blockquote>
+<p><strong>Conclusión:</strong> Las redes libres de escala en general reducen la distancia media de la red.</p>
+<p>Modifican la dependencia de <span class="math">\(\langle d \rangle\)</span> con respecto al tamaño de la red</p>
+</blockquote>
+<blockquote>
+<p><strong>Conclusión:</strong> Cuando menor es <span class="math">\(\gamma\)</span> menor es la distancia entre nodos</p>
+<p>Si <span class="math">\(2&lt;\gamma &lt;3\)</span> menor es la dependencia de <span class="math">\(N\)</span></p>
+</blockquote>
+</div><div id="regímenes-de-las-redes-libres-de-escala" class="titleslide slide section level2"><h1><span class="header-section-number">1.7</span> Regímenes de las redes libres de escala</h1></div><div id="regímenes-de-las-redes-libres-de-escala-1" class="slide section level3">
+<h1><span class="header-section-number">1.7.1</span> Regímenes de las redes libres de escala</h1>
+<ul>
+<li>El valor del exponente <span class="math">\(\gamma\)</span> influye en algunas propiedades de las redes libres de escala</li>
+<li>Distinguimos 3 regímenes</li>
+</ul>
+<div class="figure">
+<img src="../images/tema03/regimenes.png" alt="Resumen de los regímenes de una red libre de escala." /><p class="caption">Resumen de los regímenes de una red libre de escala.</p>
+</div>
+</div><div id="régimen-anómalo" class="slide section level3 unnumbered">
+<h1>Régimen anómalo</h1>
+<ul>
+<li><span class="math">\(\gamma \leq 2\)</span> <!-- * Primer y segundo momento divergen --></li>
+<li>Casi no se da en redes</li>
+<li>Propiedades son bastante anómalas</li>
+<li><p>Ej: Tamaño del mayor hub es mayor que el tamaño de la red <span class="math">\(N\)</span></p>
+<ul>
+<li>Los hubs tienen ciclos o hay múltiples enlaces entre nodos.</li>
+</ul></li>
+</ul>
+</div><div id="régimen-libre-de-escala" class="slide section level3 unnumbered">
+<h1>Régimen libre de escala</h1>
+<ul>
+<li><span class="math">\(2&lt;\gamma &lt;3\)</span> <!-- * El primer momento es finito pero el segundo momento diverge --></li>
+<li>Se manifiesta la propiedad libre de escala</li>
+<li>El tamaño de los hubs crece con el tamaño de la red</li>
+<li>Mundo ultra-pequeño</li>
+</ul>
+</div><div id="régimen-de-red-aleatoria" class="slide section level3 unnumbered">
+<h1>Régimen de red aleatoria</h1>
+<ul>
+<li><span class="math">\(\gamma \geq 3\)</span></li>
+<li>Las redes libres de escala que se encuentran en este régimen son prácticamente indistinguibles de las aleatorias de igual tamaño</li>
+<li>Cuanto mayor es el exponente, más pequeños y menos numerosos son los hubs</li>
+<li><span class="math">\(k_{max}\)</span> ha de ser entre <span class="math">\(10^2 - 10^3\)</span> veces mayor que <span class="math">\(k_{min}\)</span> por lo que <span class="math">\(N\)</span> ha de ser enorme</li>
+</ul>
+<blockquote>
+<p>Ejemplo: <span class="math">\(\gamma=5\)</span> y <span class="math">\(k_{max} \approx 10^3 \cdot k_{min}\)</span></p>
+<p><span class="math">\[k_{max}\sim k_{min} \cdot N^{\frac{1}{\gamma -1}};\;N=\Big(\frac{k_{max}}{k_{min}}\Big)^{5-1} \approx 10^{12}\]</span></p>
+</blockquote>
+</div><div id="propiedades-adicionales-de-las-redes-libres-de-escala" class="titleslide slide section level2"><h1><span class="header-section-number">1.8</span> Propiedades adicionales de las redes libres de escala</h1></div><div id="robustas-a-fallos-aleatorios" class="slide section level3">
+<h1><span class="header-section-number">1.8.1</span> Robustas a fallos aleatorios</h1>
+<div class="figure">
+<img src="../images/tema03/robustez.png" alt="Robustez de las redes. Las dos primeras filas muestran fallos aleatorios de los nodos de una red aleatoria y una red libre de escala, respectivamente. La última fila muestra el peligro de un ataque coordinado a los hubs de una red" /><p class="caption">Robustez de las redes. Las dos primeras filas muestran fallos aleatorios de los nodos de una red aleatoria y una red libre de escala, respectivamente. La última fila muestra el peligro de un ataque coordinado a los hubs de una red</p>
+</div>
+</div><div id="robustas-a-fallos-aleatorios-1" class="slide section level3">
+<h1><span class="header-section-number">1.8.2</span> Robustas a fallos aleatorios</h1>
+<ul>
+<li>Las redes libres de escala son mucho más tolerantes a fallos accidentales (o aleatorios) que las redes aleatorias</li>
+<li>Sin embargo, las redes libres de escala son extremadamente vulnerables si se eliminan sus hubs, ya que en ese caso sí se produce la fractura del sistema.</li>
+</ul>
+</div><div id="propagación-de-virus" class="slide section level3">
+<h1><span class="header-section-number">1.8.3</span> Propagación de virus</h1>
+<ul>
+<li>En una red libre de escala (como puede ser la WWW) es prácticamente imposible erradicar un virus ya que las distancias cortas permiten la rápida propagación del mismo, evitando el aislamiento</li>
+<li>Inmunizar a los hubs reducen su propagación</li>
+</ul>
+<blockquote>
+<p>Ejemplo: Vacunación de la gripe de los profesores de Universidad</p>
+</blockquote>
+</div><div id="resumen" class="titleslide slide section level2"><h1><span class="header-section-number">1.9</span> Resumen</h1></div><div id="resumen-1" class="slide section level3">
+<h1><span class="header-section-number">1.9.1</span> Resumen</h1>
+<ul>
+<li>Las redes “acotadas” son las que su distribución de grados decrece exponencialmente (o más rápido) a medida que crece <span class="math">\(k\)</span></li>
+<li>Exponencial, la gaussiana o la de Poisson, entre otras</li>
+<li>Las redes aleatorias son un ejemplo de estas redes</li>
+<li>Carecen de hubs y de nodos con grado muy bajo por lo que todos los nodos tienen un grado más o menos similar</li>
+<li>Ejemplos: redes de carreteras, las redes eléctricas y las redes atómicas, entre otras.</li>
+</ul>
+</div><div id="resumen-2" class="slide section level3">
+<h1><span class="header-section-number">1.9.2</span> Resumen</h1>
+<ul>
+<li>Las redes “no acotadas” o libres de escala son aquellas cuya distribución de grados sigue una ley potencial</li>
+<li>En estas redes existen (y se espera que existan) nodos de grado muy alto (hubs), conviviendo con nodos de grado varios órdenes de magnitud menor</li>
+<li>El grado de los nodos no está acotado por el grado medio</li>
+<li>Ejemplos: la WWW, las redes de interacción de proteínas, las redes de investigación, etc.</li>
+<li>Los hubs afectan significativamente a las propiedades de la red: mundos ultra-pequeños</li>
+</ul>
+</div><div id="resumen-3" class="slide section level3">
+<h1><span class="header-section-number">1.9.3</span> Resumen</h1>
+<div class="figure">
+<img src="../images/tema03/resumen.png" alt="Cuadro resumen" /><p class="caption">Cuadro resumen</p>
+</div>
+</div><div id="resumen-4" class="slide section level3">
+<h1><span class="header-section-number">1.9.4</span> Resumen</h1>
+<p>Las redes reales cumplen otra nueva ley que es la <strong>propiedad libre de escala</strong>:</p>
+<blockquote>
+<p>Muchas redes reales presentan distribuciones de cola ancha. Esto implica que nodos de grado bajo conviven con nodos con un grado excepcionalmente grande: los hubs.</p>
+</blockquote>
+</div>
+</body>
+</html>

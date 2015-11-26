@@ -1,706 +1,184 @@
 % Análisis de Redes Sociales
 % Guillermo Jiménez Díaz (gjimenez@ucm.es); Alberto Díaz (albertodiaz@fdi.ucm.es)
-% 5 de diciembre de 2014
 
-# Tema 8: Propagación y Difusión en Redes {-}
+# Tema 8: Mundos Pequeños {-}
 
-### Propagación y Difusión
+## Mundos pequeños
 
-Modelar la propagación de elementos:
+### Mundos pequeños
 
-* Enfermedades
-* Vídeos virales
-* Rumores
-* Virus informáticos
-* Compra de productos
-* Anuncios
-* Información e innovación...
+> La propiedad de **los pequeños mundos** o _small worlds_: la distancia entre dos nodos cualquiera de la red es sorprendentemente corta.
 
-### Propagación y Difusión
+### Mundos pequeños
 
-> Modelos similares independientemente de lo que queramos propagar
+> **Observado en las prácticas con vuestras propias redes sociales**: en general, las redes sociales reales tienen un coeficiente de agrupamiento mucho mayor que las redes aleatorias (y que las libres de escala) a pesar de que la distancia media sigue siendo especialmente corta. 
 
-* Basados en modelos de propagación clásicos de epidemias (1927)
-* Aplicados a redes (2001)
-* Estructura de la red influye en la propagación
 
-### Propagación y Difusión
+> Tendemos a agruparnos (los amigos de mis amigos son también mis amigos). 
 
-* Modelos de contagio simple
-* Modelos de contagio aplicados a redes
-* Modelos de contagio complejos
-* Difusión de opiniones e innovación
-* Aplicaciones
+### Mundos pequeños
 
-## Modelos de contagio simple
+![Coeficiente de agrupamiento y distancia media en redes reales frente a las redes aleatorias equivalente](../images/tema07/redesReales.png)
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates asperiores nihil atque impedit, iusto quis neque eius aut quod. Eveniet asperiores blanditiis ex fugit deserunt, aliquam odio sequi laboriosam qui!
+## Estructura y aleatoriedad
 
-### Modelos de contagio simple
+### Experimento de Milgram
 
-> La __epidemiología__ es la ciencia que estudia la salud y control de enfermedades en una población, así como la predicción de expansión de dichas enfermedades.
+Recordemos
 
-El modelo general se basa en dos hipótesis: 
+* Stanley Milgram (1967) propuso un experimento para demostrarlo
+* Experimento: hacer llegar una carta a un par de personas de Boston y Sharon, a base de que una persona cualquiera (desde cualquier punto de Estado Unidos) fuese enviando la carta a aquellos familiares, amigos o conocidos que más se "acercaran" a la persona objetivo.
 
-- **Modelo compartimental**
-- **Mezcla homogénea**
+### Experimento de Milgram
 
-### Modelo compartimental
+* Resultado final: 64 cartas con un máximo de 12 intermediarios.
+* La mediana de intermediarios fueron entre 5,5 y 6
 
-> Cada individuo puede estar en un determinado estado dependiendo de en qué fase se la enfermedad se encuentra.
- 
-- **Susceptible (S)**: El individuo está sano y puede ser infectado.
-- **Infectado (I)**: El individuo está infectado y puede contagiar a otros individuos.
-- **Recuperado (R)**: El individuo estuvo contagiado pero se ha recuperado y no puede volver a ser contagiado. También se utiliza para modelar los individuos que no han superado la enfermedad y que han muerto a causa de ella.
+> ¿Es 6 un resultado sorprendente?<br/>
+> ¿En los 60? ¿Hoy en día? ¿Por qué?
 
-### Mezcla homogénea
+### Red estructurada exponencial
 
-> Cualquier individuo tiene la misma probabilidad de estar en contacto con un individuo infectado.
+![Estructura pura exponencial (Fuente: Networks, Crowds and Markets)](../images/tema07/exponencial.png)
 
-* Elimina la necesidad de conocer los contactos (la red) de individuos
-* Se asume que cualquiera puede infectar a cualquiera.
+### Red estructurada exponencial
 
-### Modelos de contagio simple
+* Suponer que tenemos una red en el que el número de conocidos de cada individuo es constante
+* Según Pool y Kochen este número puede variar entre 500 y 1500. Si seleccionamos 500, un individuo tiene:
+    - $500$ vecinos potenciales de primer grado
+    - $500^2 = 250.000$ vecinos potenciales para el segundo grado
+    - $500^3 = 125.000.000$ vecinos potenciales para el tercer grado
 
-> Los modelos observan los cambios de estado de los individuos a lo largo del tiempo para predecir el alcance y la velocidad de propagación de la enfermedad.
+### Red estructurada exponencial
 
-Estudiaremos la dinámica de los modelos de propagación  clásicos, que combinan las letras del modelo compartimental:
+* Existe un **crecimiento exponencial** de la red
+* El número de vecinos que tendríamos a distancia $d$ 
 
-- Modelo SI
-- Modelo SIS
-- Modelo SIR
+$$N(d) =1+\langle k \rangle+\langle k \rangle^2+\dots=\frac{\langle k \rangle^{d+1}-1}{\langle k \rangle-1} \sim \langle k \rangle^d$$
 
-## Modelo SI
+> Alcanzaríamos a toda la población mundial con menos de 4 pasos.
 
-### Modelo SI
+### Red estructurada exponencial
 
-![](../images/tema08/modeloSI.png)
+* Distancia media $\langle k \rangle$ es la predicha por una red aleatoria
 
-* Virus del VIH
-* Zombies
+$$d_{max} \propto \frac{log N}{log \langle k \rangle}$$
 
-### Modelo SI
+### Red localmente conexa
 
-* Cada individuo tiene $\langle k \rangle$ contactos 
-* Tasa de contagio $\delta$: Probabilidad de que un individuo infectado transmita la enfermedad a uno susceptible.
-* $N$ es el tamaño de la población: $N = S(t) + I(t)$
-* $S(t)$: número de individuos que están en el estado susceptible en $t$
-* $I(t)$: número de individuos que están en el estado infectado en $t$
-* $s(t) = s = \frac{S(t)}{N}$: Proporción de susceptibles
-* $i(t) = i = \frac{I(t)}{N}$: Proporción de infectados.
-* $s+i=1$
-* $\beta = \delta \cdot \langle k \rangle$: Tasa de transmisión
+![Aproximación más real del crecimiento exponencial (Fuente: Networks, Crowds and Markets)](../images/tema07/triadicClosure.png)
 
-### Modelo SI
+### Red localmente conexa
 
-Tasa a la que varía el número de infectados
+* En las redes reales abundan los triángulos o **tripletes conectados** (_tradic closure_)
+* Algunos de los enlaces no conectan con nuevas personas sino que conectan con amigos de mis amigos
+* Reducen el número de personas a las que se puede alcanzar en cada paso,  alargando los caminos mínimos.
+* Recordemos:
 
-$$\frac{di}{dt} = i \cdot \beta  \cdot s = i \cdot \beta \cdot (1-i)$$
+$$C_i = \frac{2 \cdot L_i}{k_i (k_{i-1})} \;\;\; C_i \in [0,1]$$ 
 
-Resolviendo la ecuación:
 
-$$i = \frac{i_0exp(\beta t)}{1-i_0+i_0exp(\beta t)}$$
+### Red localmente conexa extrema
 
-### Modelo SI
+* El caso extremo sería una red completamente _cliquish_
+    * Todos los subgrafos completamente conectados
+    * Todos los amigos de mis amigos serían mis amigos y la distancia con ellos sería 1
+* Como no se permite ningún enlace fuera del clique la distancia con cualquier otro individuo de la red sería infinito.
 
-![](../images/tema08/graficaSI.png)
+### Red localmente conexa 
 
-### Conclusiones del modelo SI
+![Una cuadrícula: red con un coeficiente de agrupamiento alto](../images/tema07/cuadricula2.png)
 
-> Inicialmente el número de infectados crece exponencialmente
+### Red localmente conexa 
 
-> A medida que el número de infectados se hace mayor, hay menos individuos susceptibles por lo que el crecimiento de infectados se ralentiza
+* Cuadrícula bidimensional: coeficiente de agrupamiento alto 
+* El número de nodos a distancia $d$ es polinomial:
 
-> La infección termina cuando todos están infectados
-> <br/>$i(t \to \infty)= 1$
+$$N(d) = \sum_{x=1}^{d}8x = 4d(d+1)\sim d^2$$
 
-## Modelo SIS
+* Distancias entre nodos sería, en general, muy grande.
 
-### Modelo SIS
+### Pregunta
 
-![](../images/tema08/modeloSIS.png)
+> ¿Puede una red con una estructura local muy fuerte ser a la vez un mundo pequeño?
 
-* Resfriado común
+- **La respuesta es claramente sí**: es la forma en la que se comportan las redes sociales.
+- Las redes reales están en un punto intermedio entre una red aleatoria y una red localmente estructurada. 
 
-### Modelo SIS
+## Modelo de Watts-Strogatz
 
-* Parámetros anteriores
-* Tasa de recuperación $\mu$: Proporción de infectados que se recuperan y pasan al estado susceptible en cada instante de tiempo.
+### Modelo de Watts-Strogatz
 
-### Modelo SIS
+- Duncan Watts y Steve Strogatz (1998) proponen un modelo basado en dos ideas básicas de las redes sociales:
+- La **homofilia**, _strong ties_ o tendencia a conectarnos con otros que son como nosotros. 
+    - Si dos personas en una red social tienen una persona en común, es muy probable que estas dos personas se conviertan en comunes o amigos (cerramos el triángulo).
+- Los **lazos débiles** o _weak ties_
+    - Los enlaces a conocidos que nos conectan con partes de la red que, de otra forma, estarían muy lejos para nosotros.
 
-Tasa a la que varía el número de infectados:
+### Modelo de Watts-Strogatz
 
-$$\frac{di}{dt} =  i \cdot \beta  \cdot s - \mu \cdot i=  i \cdot \beta \cdot (1-i) - \mu \cdot i$$
+> 1. Construimos una red en forma de retículo en anillo con $N$ nodos, cada uno con $\langle k \rangle$ vecinos y con $L=N \cdot \langle k \rangle /2$ enlaces.
+> 2. Reasignamos cada uno de los enlaces con probabilidad $p$ de modo que no se pueden crear auntoenlaces ni enlaces múltiples.
 
-La resolución de esta ecuación:
+<http://www.ladamic.com/netlearn/NetLogo4/SmallWorldWS.html>.
 
-$$i = \Big(1- \frac{\mu}{\beta}\Big) \frac{C \cdot e^{(\beta - \mu)t}}{1 + C \cdot e ^{(\beta -\mu)t}}$$
+### Modelo de Watts-Strogatz
 
-$$C= \frac{\beta \cdot i_0}{\beta - \mu - \beta \cdot i_0}$$
+* Paso 2: Siguiendo el sentido horario, reasignar los $\langle k \rangle /2$ enlaces que hay a la derecha de cada nodo para los $N$ nodos.
 
-### Modelo SIS
+![Modelo de Watts-Strogatz](../images/tema07/watts.png)
 
-![Representación de la proporción de infectados en el Modelo SIS](../images/tema08/graficaSIS.png)
+### Modelo de Watts-Strogatz
 
-### Conclusiones del Modelo SIS
+* **Variación**: añadir enlaces aleatorios con probabilidad p, manteniendo el retículo inicial
+* Los resultados que describiremos a continuación son similares para ambas variantes.
 
-- Como la recuperación es posible, el sistema alcanza un __estado endémico__ en el que la tasa de infectados es constante:
+### Modelo de Watts-Strogatz
 
-$$i(\infty) = 1 - \frac{\beta}{\mu}$$
+> $p$ afecta a la estructura de la red
 
-- Sólo se produce cuando la tasa de recuperación es inferior a la tasa de transmisión ($\mu < \beta$)
+- Redes localmente estructuradas **(p=0)**: Un mundo fuertemente agrupado y con distancias largas.
+$$ \langle d \rangle =\frac{N}{2 \langle k \rangle}\text{;  } \langle C \rangle = \frac{3}{4}$$
 
+- Redes completamente aleatorias **(p=1)**. Mundo pequeño (distancias cortas) y con débil agrupamiento.
 
-- Si $\mu > \beta$ entonces, llegado a un determinado punto, la proporción de infectados comienza a decrecer exponencialmente, alcanzado un estado libre de enfermedad en la que todos los individuos se han recuperado y no hay infectados.
+$$ \langle d \rangle =\frac{lnN}{ln \langle k \rangle}\text{;  } \langle C \rangle = \frac{\langle k \rangle}{N}$$
 
-### Ritmo reproductivo básico
+> ¿Qué pasa en medio?
 
-> El ritmo reproductivo básico ($R_0$) representa el número promedio de individuos susceptibles que serán infectados por un individuo infectado
+### Estudio del modelo
 
-$$R_0 = \frac{\beta}{\mu}$$
+![Evolución del coeficiente de agrupamiento y de la distancia media para distintos valores de $p$](../images/tema07/cdp.png)
 
-* Si $R_0<1$ entonces la enfermedad termina desapareciendo de la población
-* Si $R_0>0$ entonces la enfermedad se propagará
+### Estudio del modelo
 
-### Ritmo reproductivo básico
+* Reducción muy rápida de la distancia media debida a la aparición de esos enlaces aleatorios, que hacen de atajos dentro de la red.
+* El coeficiente de agrupamiento se reduce mucho más suavemente a medida que aparecen estos enlaces aleatorios.
 
-* Cuanto mayor sea $R_0$, más rápido es el proceso de propagación de la enfermedad
+### Estudio del modelo
 
-> Sarampión: $R_0= 12-18$
-> 
-> Gripe: $R_0 = 2-3$
+> **Conclusión**: solo unos pocos enlaces aleatorios bastan para reducir la distancia media, conservando la estructura local prácticamente intacta.
 
-## Modelo SIR
+* p=0.01 es suficiente para reducir drásticamente la distancia media
+* El coeficiente de agrupamiento comienza a decrecer en torno a p=0.1
 
-### Modelo SIR
+### Debilidades del modelo
 
-![Esquema del Modelo SIR](../images/tema08/modeloSIR.png)
+- No presenta una distribución realista de los grados ya que, como las redes aleatorias, no tiene en cuenta la existencia de hubs.
+- Los enlaces largos (los atajos) son menos frecuentes que los cortos. En el mundo real esto no tiene por qué ser así. Podemos pensar, por ejemplo, en las redes aeroportuarias.
+- No se tiene en cuenta otras propiedades de las redes reales como las estructuras jerárquicas o los grupos.
 
-### Modelo SIR
+### Modelos alternativos
 
-* $\mu$ representa la tasa de recuperación: es la tasa de individuos infectados que pasan al estado __recuperado__.
-* $N = S(t) + I(t) + R(t)$
-* $i = 1-s-r$.
-* Condiciones iniciales habituales
+* Probabilidad por la que se unen dos nodos dependen de la distancia entre dichos nodos
+* Probabilidad dependiente de la estructura organizativa
+* Enlaces como resultado de la optimización de características de la red (como la distancia media frente a la distancia física entre los nodos)
+* Estos modelos generan redes que siguen cumpliendo la propiedad de los pequeños mundos y de la estructura local y, en algunos casos, generan redes más parecidas a las reales ya que presentan hubs.
 
-$$i_0 = \frac{c}{N}\text{;  }s_0 = 1- \frac{c}{N}\text{;  }r_0 = 0$$
+### Modelos alternativos
 
-
-### Modelo SIR
-
-$$\frac{di}{dt} = i \cdot \beta \cdot s - \mu \cdot i$$
-$$\frac{ds}{dt} = -i \cdot \beta \cdot s$$
-$$\frac{dr}{dt} = \mu \cdot i$$
-
-### Modelo SIR
-
-![Representación de la proporción de infectados, susceptibles y recuperados en el Modelo SIR](../images/tema08/graficaSIR.png)
-
-### Conclusiones del Modelo SIR
-
-- $\beta>\mu$: la proporción de infectados crece hasta un pico máximo y luego decrece hasta valer 0.
-- $s$ decrece de forma monótona pero no llega nunca a 0
-- Los individuos que se mantienen susceptibles hasta fases avanzadas pueden no llegar a infectarse nunca.
-
-### Conclusiones del Modelo SIR
-
-- $r$ crece de manera monótona.
-- Nunca llega a valer 1
-- Su valor asintótico __representa el número de individuos afectados__
-
-$$r = 1- s_0 \cdot e^{-\beta \frac{r}{\mu}}$$
-
-## Comportamientos importantes de los modelos epidemiológicos
-
-### Comportamientos importantes
-
-* __Comportamiento temprano__: patrón de comportamiento en las fases iniciales
-    * Es importante para saber cuánto tiempo tenemos para el desarrollo de vacunas e intervenciones médica 
-* __Comportamiento tardío__: patrón de comportamiento en las fases más avanzadas de la epidemia (cuando $t \to \infty$)
-    * Permite predecir el alcance, número de infectados, etc.
-
-### Comportamiento temprano
-
-> En todos los modelos el número de infectados en la fase temprana es bajo pero crece exponencialmente.
-
-> El modelo SI es el más relevante para describir este comportamiento
-
-### Comportamiento tardío 
-
-> Cada modelo realiza una predicción distinta
-
-- En el modelo SI todos terminan infectados
-- En el modelo SIS ($R_0>1$) se alcanza un estado endémico en el que una proporción de la población queda infectada
-- En el modelo SIS ($R_0<1$) la enfermedad desaparece
-- En el modelo SIR todos terminan recuperados (en el estado susceptible o recuperado, pero no infectados)
-
-
-### Comportamientos de los modelos
-
-![Características básicas de los modelos epidemiológicos](../images/tema08/resumenModelos.png)
-
-### Modelos de contagio simple
-
-> Estos modelos no tienen en cuenta la red de contactos ya que suponen que hay una mezcla homogénea
-
-> Realmente, las epidemias se propagan a través de los contactos de las personas, es decir, a través de los enlaces de su red social
-
-> La estructura de la red modificará el comportamiento de estos modelos simples
-
-## Modelos de contagio basados en redes
-
-### Modelos de contagio basados en redes
-
-* Similares a los modelos de contagio simples
-* Solo se tendrán en cuenta los contactos definidos por la red
-* $\beta$ es el __ratio de transmisión__ y representa la probabilidad de contagio de un nodo infectado a un __vecino__ susceptible
-
-### Simulación de modelos de contagio basados en redes
-
-> 1. Definimos una red de $N$ nodos y $L$ enlaces. Inicialmente todos los nodos están en el estado S.
-> 2. En $t_0$ ponemos una pequeña fracción $i_0$ de nodos (o solo 1), en el estado I.
-> 3. En cada paso de tiempo, hacemos que cada uno de los nodos en el estado I propague la infección a cada uno de sus vecinos en estado S con probabilidad $\beta$
-> 4. En caso de utilizar un modelo SIR o SIS, haremos que los nodos en estado I puedan pasar al estado R (o S, dependiendo del modelo), con una probabilidad $\mu$.
-
-### Simulación de modelos de contagio basados en redes
-
-* Alternativas más complejas (y más realistas), basadas en técnicas de modelado social o **modelado basado en agentes**
-* Cada individuo (nodo) se modela como un agente que puede incluir sus propias características individuales
-* Cada agente puede generar comportamientos emergentes
-* Se pueden incluir __procesos estocásticos__: simular eventos aleatorios
-
-### Simulación de modelos de contagio basados en redes
-
-![Modelados de fenómenos de contagio y redes utilizadas](../images/tema08/tabla.png)
-
-### Estructura de la red y procesos dinámicos
-
-> La topología de la red va a influir en el proceso de contagio
-
-* ¿A qué estado convergen los nodos?
-* ¿Cuánto se tarda en llegar a dicho estado?
-* ¿Cómo se puede inmunizar un sistema complejo con una topología de red concreta?
-
-## Redes aleatorias
-
-### Redes aleatorias
-
-[Difusión en una red aleatoria](http://www.ladamic.com/netlearn/NetLogo501/ERDiffusion.html)
-
-![Influencia de la densidad de la red aleatoria en los procesos de contagio](../images/tema08/contagioER.png)
-
-### Redes aleatorias
-
-> **Conclusión**: la densidad de la red afecta a la velocidad de infección y al número de individuos infectados
-> 
-> A mayor densidad, mayor es el número de individuos infectados y mayor es la velocidad de propagación.
-
-
-> **Conclusión**: si partimos de un único nodo, sólo se infectarán los nodos que pertenecen a la misma componente conexa. 
-> 
-> La epidemia se extiende en mayor o menor medida dependiendo de la localización del nodo inicial
-> 
-> La probabilidad de que un nodo pertenezca a la componente gigante es $\frac{N_G}{N}$.
-
-## Redes libres de escala
-
-### Redes libres de escala
-
-[Difusión en una red libre de escala](http://www.ladamic.com/netlearn/NetLogo501/BADiffusion.html).
-
-![Influencia del enlace preferencial (redes libres de escala) en los procesos de contagio](../images/tema08/contagioBA.png)
-
-### Redes libres de escala
-
-> **Conclusión**: el enlace preferencial favorece el contagio
-> 
-> Los hubs son los responsables de ayudar a difundir más rápidamente la infección 
-
-## Redes de Watts-Strogatz
-
-### Redes de Watts-Strogatz
-
-[Difusión en un mundo pequeño](http://www.ladamic.com/netlearn/NetLogo4/SmallWorldDiffusionSIS.html)
-
-![Influencia de los enlaces débiles en los procesos de contagio](../images/tema08/contagioSW.png)
-
-### Redes de Watts-Strogatz
-
-> **Conclusión**: los enlaces débiles (de largo alcance) provocan que aumente la velocidad de la infección 
-> 
-> En el mismo tiempo se aprecia un mayor número de nodos infectados cuanto mayor es la probabilidad de reenlaces
-
-## Soluciones analíticas
-
-### Soluciones analíticas
-
-* __Aproximación por bloques de grados__: distintos bloques de nodos basados en el grado que tienen
-* Asumimos que todos los nodos en el mismo bloque son estadísticamente equivalentes
-$$i_k  = \frac{I_k}{N_k}$$
-* La suma de los diferentes $i_k$ para todos los grados dan la fracción total de nodos infectados $i$
-
-### Soluciones analíticas
-
-![Aproximación por bloques de grados](../images/tema08/bloqueGrado.png)
-
-
-## Modelo SI en redes
-
-### Modelo SI en redes
-
-* Tasa de infectados para cada grado $k$ por separado:
-
-$$\frac{di_k}{dt} = \beta (1-i_k(t))k \Theta_k(t)$$
-
-- $\Theta_k(t)$ es una función de densidad que representa la fracción de vecinos que están infectados para un nodo de grado $k$
-- Necesitaremos definir $k_{max}$ ecuaciones
-
-### Modelo SI en redes
-
-Función de densidad
-
-$$\Theta_k(t) \approx \Theta(t) = \frac{\sum_{k'}(k'-1)\cdot P(k') \cdot i_{k'}(t)}{\langle k \rangle}$$
-
-Aproximación durante el comportamiento temprano
-
-$$\frac{di_k}{dt} = \beta k i_0 \frac{\langle k \rangle-1}{\langle k \rangle} e^{t/\tau}$$
-
-$$i_k = i_0 (1+ \frac{k \langle k \rangle -1}{\langle k^2 \rangle - \langle k \rangle}(e^{t/\tau}-1))$$
-
-
-### Modelo SI en redes
-
-Aproximación durante el comportamiento temprano
-
-$$i = i_0 (1+ \frac{\langle k \rangle^2 - \langle k \rangle}{\langle k^2 \rangle - \langle k \rangle}(e^{t/\tau}-1))$$
-
-* $\tau$ representa el **periodo de incubación**: cantidad de tiempo que requiere la epidemia para crecer
-* Menor $\tau \to$ más rápido se propaga la enfermedad
-
-$$\tau = \frac{\langle k \rangle}{\beta(\langle k^2 \rangle - \langle k \rangle)}$$
-
-### Modelo SI en redes
-
-- Cuanto mayor sea el grado de un nodo mayor es la probabilidad de que ese nodo sea infectado
-- El periodo de incubación **depende de los momentos de primer y segundo orden** de la distribución de grados ($\langle k \rangle$ y $\langle k^2 \rangle$), respectivamente
-
-### Modelo SI en redes
-
-> **Conclusión:** En una **red aleatoria** el periodo de incubación depende de la densidad de la red
-> 
-> La epidemia se propaga más rápido cuanto más densa sea ésta (mayor $\langle k \rangle$).
-
-$$\tau_{ER} = \frac{1}{\beta(\langle k \rangle)} \text{ ya que } \langle k^2 \rangle = \langle k \rangle (\langle k \rangle - 1)$$
-
-### Modelo SI en redes
-
-> **Conclusión:** En una red **libre de escala** los momentos dependen de $\gamma$
-
-> $\gamma \geq 3$: ambos momentos son finitos y el contagio se comporta de manera similar a la red aleatoria
-
-### Modelo SI en redes
-
-> $\gamma < 3$: $\langle k^2 \rangle$ diverge y $\tau \to 0$
-> 
-> **El periodo de incubación característico desaparece** y la epidemia es instantánea
-
-> Los hubs son los primeros nodos en infectarse e infectan más rápidamente a la mayoría de los nodos.
-
-## Modelos SIS en redes
-
-### Modelos SIS en redes
-
-Tasa de infectados
-
-$$\frac{di_k}{dt} = \beta (1-i_k(t))k \Theta_k(t) _ \mu \cdot i_k(t)$$
-
-El periodo de incubación $\tau$
-
-$$\tau^{SIS} = \frac{\langle k \rangle}{\beta \langle k^2 \rangle - \mu \langle k \rangle}$$
-
-### Modelos SIS en redes
-
-* Para un tamaño suficientemente grande de $\mu$ el tiempo característico se hace negativo e $i_k$ decrece exponencialmente
-* Sin embargo, **depende de la topología de la red**
-* **Ritmo reproductivo básico** $\lambda = \frac{\beta}{\mu}$: representativo de la enfermedad (o de lo que queremos difundir)
-* Cuanto mayor es el ritmo reproductivo básico más probable es que la enfermedad se propague
-* **Umbral epidemiológico** ($\lambda_C$): Mínimo valor de $\lambda$ necesario para que se propague la enfermedad
-* También dependerá de la estructura de la red
-
-### Modelos SIS en redes
-
-- Para una **red aleatoria** 
-
-$$\lambda_C = \frac{1}{\langle k \rangle +1}$$
-
-- Siempre va a ser distinto de cero
-- Dependiendo del valor de $\lambda$, podemos conseguir que la epidemia alcance un estado endémico (si $\lambda > \lambda_C$) o que la epidemia desaparezca (si $\lambda < \lambda_C$).
-
-### Modelos SIS en redes
-
-- Para una **red libre de escala**
-
-$$\lambda_C = \frac{\langle k \rangle}{\langle k^2 \rangle}$$
-
-- $\gamma < 3$: el umbral epidemiológico desaparece
- 
-> Incluso las enfermedades que son difíciles de transmitir se pueden propagar en una red libre de escala
-> 
-> Consecuencia de los hubs: en el momento en el que la enfermedad infecta un hub puede pasar a un número muy grande de nodos, persistiendo en la población
-
-### Modelos de contagio simple en redes
-
-![Resumen de los modelos epidémicos en redes (Network Science, cap. 10)](../images/tema08/resumenModelosRedes.png)
-
-## Modelos de contagio complejo
-
-### Modelos de contagio complejo
-
-* **Contagio simple**: el contagio se produce uno a uno
-* Basta con que un vecino de un determinado nodo esté infectado para que se pueda quedar infectado
-* En algunos procesos como el contagio social o inducir a comprar un producto, no basta con que uno de mis vecinos tenga una determinada "opinión" para cambiar la mía
-* **Contagio complejo o contagio basado en umbrales**: es necesario sea una fracción de mis vecinos tenga una determinada "opinión" para cambiar la mía
-
-### Modelos de contagio complejo
-
-Contagio basado en umbrales
-
-1. $k$ que define el número de vecinos que han de estar infectados para que un nodo quede infectado (Modelo de contagio simple: $k=1$)
-2. $p$ que define el porcentaje de vecinos que han de estar infectados para que un nodo quede infectado.
-
-### Modelos de contagio complejo
-
-La propagación depende principalmente de:
-
-- La estructura de la red.
-- El valor del umbral utilizado.
-- La elección de los nodos inicialmente infectados.
-
-### Modelos de contagio complejo
-
-![Contagio simple vs. Contagio complejo](../images/tema08/contagioComplejo.png)
-
-### Modelos de contagio complejo
-
-- En una **red de mundo pequeño (Watts-Strogatz)** los enlaces débiles o atajos ya no funcionan como medio para aumentar la velocidad de propagación. 
-- En una **red libre de escala**, los hubs pierden importancia en la velocidad de propagación ya que, aunque llegan a muchos nodos, solo ellos no son capaces de propagar la enfermedad
-- En una **red aleatoria** la propagación depende muy decisivamente de los nodos inicialmente infectados
-
-## Modelos de difusión de opinión en redes
-
-### Modelos de difusión de opinión en redes
-
-> Aunque el modelo de contagio complejo basado en umbrales puede ser adecuado para algunos procesos de difusión, existen otros modelos más adecuados
-
-* Los modelos basados en _efectos de beneficio directo_ se basan en que la adopción de una opinión se ve reforzada por el beneficio que se consigue por la adopción de dicha opinión
-* Estos beneficios son mayores cuantos más vecinos adopten esa misma opinión.
-
-## Juego de coordinación en redes
-
-### Juego de coordinación en redes
-
-* Cada nodo tiene que elegir entre dos posibles opciones: A o B
-* Existe un beneficio si dos nodos conectados eligen la misma opción
-- Si dos nodos eligen la opción A entonces obtienen un beneficio de valor $a>0$.
-- Si dos nodos eligen la opción B entonces obtienen un beneficio de valor $b>0$
-- $p$ es la fracción de vecinos que adoptan la opción A
-- $(1-p)$ es la fracción de vecinos que adoptan la opción B
-
-### Juego de coordinación en redes
-
-- Un nodo de grado $k$ adopta la opción A si:
-
-$$p \cdot k \cdot a \geq (1-p) \cdot k \cdot b$$
-
-Convertir a un modelo de difusión basado en umbrales ($q$) 
-
-$$q = \frac{b}{a+b}$$
-
-* Si tenemos una proporción de $q$ vecinos que han adoptado la opción A entonces elegiremos la opción A
-* En otro caso, adoptar la opción B. 
-
-### Juego de coordinación en redes
-
-Dos estados de equilibrio posibles:
-
-* Todos adoptan la opción A
-* Todos adoptan la opción B
- 
-> ¿Qué pasaría si, partiendo de un estado de equilibrio, algunos nodos (adoptadores iniciales) cambian su opción de manera aleatoria?
- 
-> ¿Se va a producir una propagación en cascada de este comportamiento o se detendrá en algún momento y no se propagará?
-
-### Juego de coordinación en redes
-
-**Ejemplo:** red en la que todos los nodos han adoptado la opción B, $a=3$ y  $b=2$
-
-* B = "jugar al fútbol"
-* A = "jugar al baloncesto"
-* $q = \frac{2}{3+2} = \frac{2}{5}$
-* 2 nodos cambian a A por factores externos (una empresa les regala un par de zapatillas para jugar al baloncesto)
-
-### Juego de coordinación en redes
-
-![](../images/tema08/coord1.png)
-
-### Juego de coordinación en redes
-
-![](../images/tema08/coord2.png)
-
-### Juego de coordinación en redes
-
-![](../images/tema08/coord3.png)
-
-### Juego de coordinación en redes
-
-![](../images/tema08/coord4.png)
-
-### Juego de coordinación en redes
-
-* No podemos suponer que la cascada de adopciones va a llegar a toda la red (_cascada completa_)
-* Hay ocasiones en la que la cascada se detiene aunque aún hay nodos que siguen manteniendo la opción B
-
-![Juego de coordinación en la que la cascada se detiene tras tres pasos antes de alcanzar a todos los nodos ($q = \frac{2}{5}$)](../images/tema08/coordinacion2.png)
-
-### Juego de coordinación en redes
-
-* Modelo usado para simular posibles campañas de marketing viral
-* Ayuda a tomar decisiones para que se produzca una cascada de difusión aceptable: 
-    * qué nodos hay que influir 
-    * cuánto hay que incrementar el beneficio (por ejemplo, la calidad de un producto) para que se produzca una cascada de difusión aceptable.
-
-### Juego de coordinación en redes
-
-**Opción 1**: Modificar el beneficio $a$. 
-
-* Si aumentamos $a =4$... 
-* $q$ baja a $q=\frac{1}{3}$ 
- 
-> La adopción no solo depende de la estructura de la red sino también de las diferencias de beneficios entre A y B
-
-### Juego de coordinación en redes
-
-**Opción 2**: decidir a qué nodos de la red es necesario influir para hacer que la cascada de adopciones alcance al mayor número posible de nodos en la red
-
-* Elegir el menor número de nodos posible
-* Elegirlos adecuadamente para conseguir que la cascada se propague
-
-> Elección basada intrínsecamente en su posición dentro de la red.
-
-### Juego de coordinación en redes
-
-* **Ejemplo**: Cambiamos de estado a los nodos 12 y 13
-* **Ejemplo**: Cambiamos de estado a los nodos 11 y 14 
-
-![](../images/tema08/redDifusion.png)
-
-### Juego de coordinación en redes
-
-> La estructura de la red también tiene una fuerte influencia en los procesos de difusión. En particular, **la existencia de comunidades** 
-
-- Las comunidades permiten que se produzca la propagación de los modelos basados en umbrales. 
-- Las comunidades sirven de barrera para la difusión
-- Distintas opiniones puedan convivir en la misma red
-
-## Otros modelos complejos de difusión
-
-
-### Nodos bilingües
-
-__Nodos bilingües__: nodos que pueden adoptar la opción A y B simultáneamente pero con una penalización $c$
-
-> Consiguen que la opinión minoritaria persista en la red en condiciones en las que la opinión minoritaria desaparecería
-
-### Umbrales heterogéneos
-
-* Cada nodo $v$ tiene su propio beneficio por adoptar la opción A ($a_v$) y su propio beneficio por adoptar la opción B ($b_v$)
-* La simulación de este modelo funciona de manera similar al anterior salvo porque cada nodo posee su propio umbral
-* La diversidad de los umbrales juega un papel muy importante ya que interactúa de manera compleja con la estructura de la red
-
-> Para comprender la forma en la que se produce la difusión en una red social no solo hay que tener en cuenta el poder de los influenciadores sino que también cómo de influenciables son los nodos que lo rodean
-
-### Umbrales heterogéneos
-
-![](../images/tema08/umbralHeterogeneo.png)
-
-## Acciones colectivas
-
-### Acciones colectivas
-
-* Modelar la manera en la que se coordinan ciertas acciones colectivas
-* Ejemplo: como acudir a una manifestación contra un gobierno represivo
-* No tenemos información de las intenciones del resto de la población sino que solo se tiene información de los individuos más cercanos
-* _Ignorancia pluralista_: No se tiene conocimiento de la voluntad del resto (aunque realmente haya una verdadera voluntad a favor o en contra)
-
-### Acciones colectivas
-
-* Predecir el comportamiento coordinado de una red en el que cada individuo toma la decisión basándose solo en hablar con las personas más cercanas, es decir, teniendo un horizonte muy limitado.
-* Modelo basado en umbrales heterogéneos: el umbral de cada persona significa "me manifestaré en caso de que haya al menos $k$ vecinos en la manifestación (incluyéndome a mí)"
-* Cada nodo también conoce los umbrales de sus vecinos, pero no del resto
-* La decisión se deberá tomar solo usando la información conocida (la suya y la de sus vecinos).
-
-### Acciones colectivas
-
-![](../images/tema08/accionColectiva.png)
-
-## Difusión de la innovación
-
-### Difusión de la innovación
-
-* Compartir información para la resolución de problemas y la difusión de la innovación
-
-Alternativas 
-
-* Cada persona trabaja de manera aislada
-
-> Avance en la solución lento. Ideas "frescas" no sesgadas 
-
-- Un _brainstorming_ o lluvia de ideas
-
-> Se puede llegar a una solución de una manera mucho más rápida. Terminen convergiendo a una idea común (_groupthinking_)
-
-### Difusión de la innovación
-
-![Redes que representan las dos formas extremas de atacar un problema](../images/tema08/redInnovacion.png)
-
-### Difusión de la innovación
-
-* Un problema complejo puede quedar representado mediante su **espacio de soluciones**: el conjunto de todas las soluciones posibles a las que se puede llegar para resolver este problema
-* __Función de fitness__: Calcula la bondad de la solución.
-* Podemos representar el espacio de soluciones gráficamente de acuerdo a esta función.
-* Este espacio de soluciones puede ser más o menos "rugoso" 
-
-### Difusión de la innovación
-
-![Representación del espacio de soluciones de acuerdo al valor de $K$](../images/tema08/NK.png)
-
-### Lazer y Friedman
-
-* Lazer y Friedman: basado en el modelo NK de Kauffman
-* $N$ representa la dimensionalidad del espacio de soluciones: el número de bits necesarios para representar la solución
-* $K$ es un parámetro que mide la rugosidad del espacio de soluciones
-
-### Lazer y Friedman
-
-> 1. Red en la que cada nodo almacena una cadena de $N$ bits que representa la solución que tiene un determinado individuo de ese problema
-> 2. En cada paso de simulación, cada nodo evalúa si alguno de sus vecinos tiene una solución mejor que la suya.
-> 1. En caso afirmativo, "imita" a su vecino (copia la solución de su vecino).
-> 2. En caso negativo, "innova", modificando aleatoriamente uno de los bits de su solución.
-> 3. La simulación termina cuando todos los nodos convergen a la misma solución.
-
-### Lazer y Friedman
-
-[SmallWorld Innovation](http://spark-public.s3.amazonaws.com/sna/netlearn/NetLogo502/SmallWorldInnovation.html)
-
-> La estructura de la red tiene un fuerte impacto en la velocidad de difusión de la innovación y cuál es la bondad de la solución alcanzada
-
-### Lazer y Friedman
-
-> **Conclusión:** cuanto mayor es la comunicación entre los nodos más rápido se converge a una solución mejor que la media inicial. Pero esta solución no es tan buena como la que se alcanza en una red con menos conexiones
- 
-> **Conclusión:** con menos conexiones se alcanza una solución mejor que con más conexiones (se promueve la innovación) pero, por contra, tarda más en converger.
-
-### Lazer y Friedman
-
-![](../images/tema08/solSimulacion.png)
+- Kleinberg, J. (2000, May). [The small-world phenomenon: An algorithmic perspective](http://www.google.es/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&cad=rja&uact=8&ved=0CDYQFjAA&url=http%3A%2F%2Fwww.cs.cornell.edu%2Fhome%2Fkleinber%2Fswn.pdf&ei=K0h3VMjlC8rZas2egegC&usg=AFQjCNFUVXfxJsFEFh-rpDV9cklRbm6UiA&sig2=2J5Tjfps_piM9y5OOFdSeA&bvm=bv.80642063,d.d2s). In Proceedings of the thirty-second annual ACM symposium on Theory of computing (pp. 163-170). ACM.
+- Kleinberg, J. (2002). [Small-world phenomena and the dynamics of information](https://www.google.es/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&cad=rja&uact=8&ved=0CCgQFjAA&url=https%3A%2F%2Fwww.cs.cornell.edu%2Fhome%2Fkleinber%2Fnips14.pdf&ei=VUh3VPXqCsrZas2egegC&usg=AFQjCNFmiN7cLoDO7gS3OIKGlCZ-wTbpPg&sig2=t4rmeLjx3yB2LclF0PVN-g&bvm=bv.80642063,d.d2s). Advances in neural information processing systems, 1, 431-438.
+- Watts, D. J., Dodds, P. S., & Newman, M. E. (2002). Identity and search in social networks. science, 296(5571), 1302-1305.
+- Mathias, N., & Gopal, V. (2001). [Small worlds: How and why](http://journals.aps.org/pre/abstract/10.1103/PhysRevE.63.021117). Physical Review E, 63(2), 021117.
+- Gastner, M. T., & Newman, M. E. (2006). [The spatial structure of networks](http://www.google.es/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&cad=rja&uact=8&ved=0CCgQFjAA&url=http%3A%2F%2Fwww.stat.berkeley.edu%2F~aldous%2F206-SNET%2FPapers%2Fgaster_newman_2004.pdf&ei=i0l3VPv5Fc_TaMr7gogB&usg=AFQjCNHAD90sancHiM4m8sitHIS0anA0bg&sig2=7cDXRbyaL2UqHStnlymtXw&bvm=bv.80642063,d.d2s). The European Physical Journal B-Condensed Matter and Complex Systems, 49(2), 247-252.
