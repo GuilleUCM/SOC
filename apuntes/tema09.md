@@ -1,6 +1,6 @@
 % Análisis de Redes Sociales
 % Guillermo Jiménez Díaz (gjimenez@ucm.es); Alberto Díaz (albertodiaz@fdi.ucm.es)
-% 9 de enero de 2015
+% 4 de diciembre de 2015
 
 
 # Prefacio {-}
@@ -9,274 +9,450 @@ Estos son los apuntes de la asignatura Análisis de Redes Sociales, impartida en
 
 Este material ha sido desarrollado a partir de distintas fuertes, destacando como referencia principal el libro _Network Science_ de Laszlo Barabasi, el material de la asignatura _Social Network Analysis_, impartido por Lada Adamic a través de Coursera, y las transparencias de la asignatura Redes y Sistemas Complejos, creadas por Óscar Cordón García de la Universidad de Granada.
 
+Para este capítulo se ha utilizado, adicionalmente, material de los libros _Analyzing the Social Web_ de Jennifer Goldbeck (capítulo 10) y _Networks, Crowds, and Markets_ de Easley y Kleinberg (capítulos 19 y 21).
+
 Este obra está bajo una [licencia de Creative Commons Reconocimiento-NoComercial-CompartirIgual 4.0 Internacional](http://creativecommons.org/licenses/by-nc-sa/4.0/).
 
-\setcounter{section}{9}
+\setcounter{chapter}{9}
 
-# Tema 9: Robustez de las redes {-}
+# Tema 9: Propagación y Difusión en redes {-}
 
-El fallo de un componente sencillo en un sistema complejo puede provocar un error o un fallo general de todo el sistema. Sin embargo, muchos sistemas naturales y sociales tienen la capacidad de permanecer inmutables aunque varios de sus componentes fallen. En la mayoría de estos sistemas, la robustez se consigue gracias a densas interconexiones entre los componentes.
+Las conexiones presentes en la redes permiten modelar la propagación de todo tipo de elementos entre sus nodos: enfermedades, vídeos virales, rumores, virus informáticos, productos, anuncios, información... En general, la mayoría de estos modelos de propagación son similares independientemente de lo que se pretenda propagar.
 
-En este tema veremos el rol de las redes con el fin de asegurar la robustez de un sistema complejo. Veremos que la estructura de la red es una de las características básicas que hay que entender para conocer la robustez del sistema y para conocer sus debilidades en caso de ataques premeditados. Así mismo, estudiaremos los comportamientos de fallo en cascada y las leyes que lo gobiernan.
+Existe desde hace muchos años un estudio intenso en la propagación de enfermedades. El conocimiento de cómo se propagan a través de una red de individuos nos puede servir para entender cómo se puede propagar cualquier otro tipo de información en dicha red. Por este motivo, en este tema vamos a hablar los modelos fundamentales de propagación y vamos a estudiar como aplicarlos a las redes, analizando cómo la estructura de la misma afecta enormemente a estos fenómenos de propagación.
 
-## Robustez, errores y ataques
+## Modelos de contagio simple
 
-La robustez implica entender cómo se va a comportar una red en caso de que eliminemos nodos de la misma. En particular, vamos a fijarnos en la red desde dos puntos de vista distintos:
+La epidemiología es la ciencia que estudia la salud y control de enfermedades en una población, así como la predicción de expansión de dichas enfermedades. El modelo general epidemiológico se basa en dos hipótesis: 
 
-- **Fragmentación de la red**, es decir, cómo se rompe la red en comunidades aisladas a medida que eliminamos nodos.
-- **Tolerancia a errores**, es decir, cómo de largas pasan a ser las distancias en la red a medida que eliminamos nodos.
-
-Así mismo, estudiaremos la robustez con respecto a **errores** y **ataques**. Los _errores_ consisten en la eliminación de nodos de manera aleatoria. Sin embargo, los _ataques_ consisten en la eliminación de nodos seleccionándolos de una manera deliberada.
-
-## Robustez en redes aleatorias
-
-Primeramente vamos a estudiar cómo se comporta la robustez en una red aleatoria. Para ello vamos a estudiar un tipo muy particular de redes aleatorias relacionadas con la _Teoría de la Percolación_ (Percolation theory).
-
-### Teoría de la percolación
-
-La teoría de la percolación describe el comportamiento universal de los grupos y componentes de una red aleatoria. Suponemos que tenemos una cuadrícula y que en cada intersección podemos poner un nodo. Dos nodos estarán conectados si están en intersecciones adyacentes. Podemos construir una red aleatoria a partir de esta cuadrícula decidiendo si ponemos o no un nodo en cada intersección con probabilidad $p$.
-
-![Redes creadas siguiendo la teoría de la percolación. En rojo están los nodos que pertenecen al cluster más grande](../images/tema09/percolacion.png)
-
-La teoría de la percolación explica, entre otras cosas, el tamaño medio de los clusters y el tamaño del cluster mayor suponiendo que vamos añadiendo nodos de manera aleatoria. En la siguiente figura podemos ver que, tal y como vimos en las redes aleatorias, existe un valor crítico $p_c$[^1] a partir del cual emerge un componente gigante al que pertenecerán la mayoría de los nodos.
-
-![Probabilidad de que un nodo pertenezca a un componente gigante a partir de la teoría de la percolación](../images/tema09/pc-er.png)
-
-[^1]: En las redes aleatorias se cumplía cuando $\langle k \rangle \approx 1 \to p_c = \frac{1}{N}$
-
-### Fragmentación de la red
- 
-Podemos estudiar la robustez de esta red aleatoria usando, a la inversa, la teoría de la percolación. Si partimos de una cuadrícula en la que en todas las intersecciones hay nodos y eliminamos los nodos con una determinada probabilidad $f$ podemos observar que, al igual que durante la creación, existe una probabilidad umbral $f_c$ que nos permite distinguir tres fases:
-
-- Si $0<f<f_c$ entonces continuamos teniendo un componente gigante en la red.
-- Si $f=f_c$ entonces el componente gigante comienza a desvanecerse y la red se empieza a fragmentar.
-- Si $f>f_c$ entonces la red queda completamente rota en muchos clusters pequeños.
-
-![Probabilidad de que un nodo pertenezca al componente gigante a medida que aumentamos la probabilidad $f$ con la que eliminamos nodos de la red](../images/tema09/fc-er.png)
-
-Se han hecho estudios que han hecho un cálculo aproximado de este umbral crítico $f_c$[^2] dando como resultado:
-
-$$f_c = 1- \frac{1}{\frac{\langle k^2 \rangle}{\langle k \rangle}-1}$$
-
-Para una red aleatoria, en la que el segundo momento es conocido, podemos decir que este umbral es:
-
-$$f_c^{ER} = 1- \frac{1}{\langle k \rangle}$$
-
-Esto implica que cuanto más densa sea la red, mayor es el umbral $f_c$, por lo que más robusta es la red.
-
-[^2]: Para conocer más sobre cómo se calcula este umbral, revisar el Tema 8 (pp 10-11 y Temas avanzados B y C) del libro _Network Science_ de Barabasi.
-
-A modo de conclusión podemos afirmar que la fragmentación de la red debido a fallos no es un proceso gradual. Inicialmente, la eliminación de una pequeña fracción de nodos no afecta a la integridad de la red. Sin embargo, existe un punto crítico a partir del cual la red se rompe abruptamente en pequeños grupos de nodos desconectados.
-
-### Tolerancia a errores
-
-Para comprender la tolerancia a errores de una red aleatoria vamos a estudiar cómo evoluciona el diámetro de la red a medida que eliminamos nodos de manera aleatoria. Para ello calculamos el diámetro de la red a medida que aumentamos $f$.
-
-En la figura podemos observar que el diámetro de la red crece de manera monótona para valores muy pequeños de $f$. Esto se debe a que, como la mayoría de los nodos tienen aproximadamente el mismo grado, todos contribuyen aproximadamente de la misma forma al diámetro de la red, por lo que la desaparición de cualquiera de ellos hace que las distancias vayan creciendo. Además, en el momento en el que alcancemos $f_c$ el diámetro divergirá ya que romperemos el componente gigante.
-
-![Diámetro de la red a medida que aumentamos el número de nodos que eliminamos de la red. Aquí se muestra solo para una pequeña fracción de nodos eliminados (E=Red aleatoria; SF=Red libre de escala)](../images/tema09/diametro.png)
-
-### Comportamiento frente a ataques
-
-Ahora queremos observar el comportamiento de la red en caso de que no se produzcan errores sino ataques, es decir, se decida deliberadamente qué nodos de la red queremos eliminar en cada momento. Una forma sencilla de simular un ataque es eliminar los nodos en orden decreciente de su grado $k$, es decir, primero eliminamos el de mayor grado, luego el siguiente de mayor grado, etc.
-
-Desde el punto de vista de la fragmentación podemos observar que la red evoluciona de la misma forma ya sea por errores o por ataques. Esto se debe a que todos los nodos tienen un grado similar por lo que un ataque deliberado no es más efectivo que los errores aleatorios en el caso de una red aleatoria.
-
-![Probabilidad de pertenecer al componente gigante a medida que variamos la probabilidad de que los nodos sean eliminados. Los cuadrados azules muestran la evolución debida a fallos mientras que las circunferencias rojas muestran la evolución debida a ataques.](../images/tema09/fragAtaque-er.png)
-
-En cuanto al diámetro de la red observamos el mismo comportamiento viendo la figura de la sección anterior: el ataque a los nodos de mayor grado sigue haciendo que la distancia crezca de manera monótona y no se ve diferencia apreciable con respecto a la tolerancia a errores.
-
-A modo de resumen podemos decir que las redes aleatorias son resistentes a ataques y que su resistencia es similar para errores aleatorios que para ataques.
-
-
-## Robustez en redes libres de escala 
-
-Lo visto hasta ahora para redes aleatorias no es válido para las redes libres de escala, principalmente debido a la distribución de grados tan diferente que hay entre una y otra red. A continuación veremos cómo se comportan las redes libres de escala en cuanto a robustez.
-
-### Fragmentación de la red
-
-Las simulaciones con datos reales (Internet) y con redes creadas a partir del modelo de Barabasi-Albert (estudiado en el tema 4) demuestran que la teoría de la percolación no es aplicable a este tipo de redes. En realidad se ha observado que el umbral $f_c$ a partir del cual se rompe el componente gigante y la red queda rota en pequeños clusters es cercano a 1. Esto implica que las redes libres de escala son extremadamente robustas a errores aleatorios. Desde el punto de vista de Internet, esta conclusión nos dice que sería necesario que prácticamente todos los routers existentes fallasen para que esta gran red quedase fragmentada.
-
-![Probabilidad de que un nodo pertenezca al componente gigante a medida que aumentamos la probabilidad $f$ con la que eliminamos nodos de la red. Resultados de la simulación con (a) datos de Internet y (b) una red creada siguiendo el modelo de Barabasi-Albert](../images/tema09/fc-ba.png)
-
-Matemáticamente podemos verificar este resultado con la aproximación del umbral $f_c$ mostrada anteriormente:
-
-$$f_c = 1- \frac{1}{\frac{\langle k^2 \rangle}{\langle k \rangle}-1}$$
-
-Tal y como vimos en anteriores temas, para redes libres de escala con $\gamma<3$ y $N\to \infty$ el segundo momento diverge por lo que $f_c$ converge a 1. Esto confirma que es necesario eliminar casi todos los nodos de este tipo de red para que se produzca una ruptura en la red. 
-
-Aunque este umbral se calcula para redes en las que $N\to \infty$, en las redes reales de gran tamaño el cálculo se aproxima bastante bien a la realidad. Por ejemplo, usando los datos de Internet en los que $\langle k \rangle = 6,34$ y $\sigma=14,14$:
-
-$$\langle k^2 \rangle = \sigma^2 + \langle k \rangle^2 = 240,1296$$
-
-$$\frac{\langle k^2 \rangle}{\langle k \rangle} = 37,8753$$
-
-$$f_c = 1-\frac{1}{\frac{\langle k^2 \rangle}{\langle k \rangle}-1} = 0,9728$$
-
-Esto implica que sería necesario eliminar aleatoriamente el 97% de los routers para provocar una ruptura de la red. Esto implica que deberían fallar unos 220000 routers (que son aproximadamente el 97% de esta red de $N=228263$). Esta es una de las razones por lo que esta red es tan segura a fallos.
-
-Esta propiedad se debe a que los hubs son mucho menos abundantes que los nodos con menor grado, por lo que los errores aleatorios eliminarán, con mayor probabilidad, uno de estos nodos con grado pequeño antes que un hub. Estos pequeños nodos contribuyen poco en mantener la integridad de la red. 
-
-### Tolerancia a errores
-
-Desde el punto de vista del diámetro de la red, las conclusiones son bastante similares: el diámetro permanece prácticamente inalterable ante errores aleatorios en la red. Al igual que antes, esto se debe a que los hubs son los grandes responsables de que las distancias dentro de la red sean cortas y un error aleatorio tiene una baja probabilidad de afecta a estos hubs, lo que mantiene las distancias prácticamente inalterables.
-
-![Diámetro de la red a medida que aumentamos el número de nodos que eliminamos de la red. Aquí se muestra solo para una pequeña fracción de nodos eliminados (E=Red aleatoria; SF=Red libre de escala). Se observa que, ante fallos, la SF permanece prácticamente inalterable](../images/tema09/diametro.png)
-
-### Comportamiento frente a ataques
-
-Los resultados vistos hasta ahora son bien distintos en el caso de que se produzcan ataques. Tal y como vimos en una sección anterior, podemos simular los ataques eliminando los nodos en orden decreciente de grado. Esto hace que los primeros nodos eliminados en un ataque a una red libre de escala son los hubs, haciendo que la red se fragmente rápidamente con unos pocos nodos eliminados.
-
-Se puede ver que el umbral $f_c$ cae drásticamente en el caso de producirse ataques, siendo extremadamente bajo. Esto implica que es suficiente atacar solo una pequeña fracción de nodos para romper la red en pequeños grupos. Esta debilidad son malas noticias para una red como Internet pero es una buena noticia desde el punto de vista de la medicina, ya que muestran la vulnerabilidad de algunas bacterias a eliminar algunas de sus proteínas "hub".
-
-![Probabilidad de pertenecer al componente gigante a medida que variamos la probabilidad de que los nodos sean eliminados. La línea verde representa la evolución debida a fallos aleatorios mientras que la roja muestra como el umbral cae debido a ataques](../images/tema09/fragAtaque-ba.png)
-
-Desde el punto de vista del diámetro de la red, vemos que el ataque a los nodos con mayor grado produce un gran incremento en las distancias. En la gráfica que aparece en la sección anterior podemos observar que un ataque sobre solo un 5% de los nodos de la red hace que el diámetro de la misma se duplique. Esto demuestra la importancia de los hubs en la reducción de distancias dentro de este tipo de red.
-
-A modo de resumen podemos ver las simulaciones realizadas sobre distintas redes reales para observar su tolerancia a ataques y a errores.
-
-![Simulaciones sobre errores y ataques en redes reales](../images/tema09/errorAtaqueRedesReales.png)
-
-## Fallos en cascada
-
-Hasta ahora hemos asumido que cada nodo puede ser eliminado de manera independiente sin afectar a otros nodos. Sin embargo, en la realidad suele ocurrir que la eliminación de un nodo provoca una sobrecarga en sus vecinos, lo que puede inducir al fallo de estos, produciéndose lo que se conoce como __fallos en cascada__.
-
-Un ejemplo claro es la red eléctrica, formada por generadores, subestaciones y cableado. El fallo de una línea con una alta carga de electricidad hace que dicha electricidad se distribuya a líneas y subestaciones vecinas que, si no son capaces de aceptar dicha carga, caerán y redistribuirán su carga entre las vecinas... produciendo un efecto dominó o fallo en cascada.
-
-Algo similar ocurre con el sistema financiero, en el que el estallido de la burbuja inmobiliaria en 2008 provocó la caída de algunas entidades financieras como Lehman Brothers, que hicieron caer a aseguradoras como AIG o a compañías hipotecarias como Fannie Mae o Freddie Mac, que hicieron caer a otras empresas... produciendo una crisis financiera a escala mundial.
-
-Todos estos ejemplos tienen una serie de características comunes:
-
-- Comienzan con un fallo de impacto limitado y local dentro de la red.
-- Este fallo se propaga a través de los enlaces, provocando fallos adicionales.
-
-Se han hecho modelos y simulaciones de fallos en cascada en distintos sistemas, como la red eléctrica, cascadas de información en Twitter o terremotos y en todos ellos se ha podido ver que el impacto del fallo suele ser relativamente bajo, siguiendo una distribución de ley potencial:
-
-$$p(s) \sim s^{-\alpha}$$
-
-Siendo $s$ el tamaño del fallo y $\alpha \in [1,6; 2]$ en la red eléctrica, $\alpha \simeq 1,75$ en las cascadas de información en Twitter y $\alpha \simeq 1,67$ para el impacto de los terremotos. Esto implica que los impactos de estos fallos en cascada suelen ser generalmente bajos pero que existe la posibilidad de que algunos de estos fallos tengan un impacto a nivel global dentro de la red.
-
-### Modelos de fallo en cascada
-
-Para predecir el comportamiento de una red ante un fallo se suelen utilizar modelos y simulaciones que nos ayuden a predecir el proceso de propagación del fallo. Existen múltiples modelos, cada uno de ellos con mayor nivel de fidelidad de acuerdo a la red concreta que quieren modelar. Sin embargo, la mayoría de estos modelos tienen una serie de elementos comunes:
-
-- Los sistemas se caracterizan como redes por lo que existe un flujo entre nodos (de información en Twitter, de electricidad en la red eléctrica...).
-- Cada componente tiene una regla local de fallo que determina cuándo va a intervenir en la propagación de la cascada.
-- Cada sistema tiene un mecanismo para redistribuir el flujo a otros nodos cuando se produce el fallo de un componente.
-
-### Modelo de propagación de fallos {-}
-
-Es un modelo sencillo, propuesto por Duncan Watts[^3] y usado tanto en propagación de información como de errores. Cada nodo se representa como un agente que puede estar en dos estados: 0 (activo) o 1 (inactivo o fallo). Así mismo, cada agente se caracteriza por un umbral de fallo $\phi$ que indica la fracción de vecinos que han de fallar para que él falle.
-
-[^3]: Watts, D. J. (2002). "[A simple model of global cascades on random networks](http://www.google.es/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&cad=rja&uact=8&ved=0CCQQFjAA&url=http%3A%2F%2Fwww.stat.berkeley.edu%2F~aldous%2F260-FMIE%2FPapers%2Fwatts.pdf&ei=B4OmVPq2IsP_UrCdgagL&usg=AFQjCNFgSrblbVwt7zOuCx5DENWoUg59XQ&sig2=ZlCRpDQ2trOY3GV_3ByRRQ&bvm=bv.82001339,d.d24)". Proceedings of the National Academy of Sciences 99 (9): 5766–5720
-
-La simulación consiste en lo siguiente:
-
-1. Inicialmente todos los nodos empiezan en el estado 0.
-2. En t=0 hacemos que una pequeña fracción de agentes cambien su estado a 1.
-3. En los siguientes pasos de tiempo, se selecciona aleatoriamente un agente y actualizamos su estado:
+- **Modelo compartimental**: cada individuo puede estar en un determinado estado dependiendo de en qué fase se la enfermedad se encuentra. El modelo más simple, que será el que usemos, supone 3 estados:
+    - **Susceptible (S)**: El individuo está sano y puede ser infectado.
+    - **Infectado (I)**: El individuo está infectado y puede contagiar a otros individuos.
+    - **Recuperado (R)**: El individuo estuvo contagiado pero se ha recuperado y no puede volver a ser contagiado. También se utiliza para modelar los individuos que no han superado la enfermedad y que han muerto a causa de ella.
     
-    1. Si este agente está en el estado 0 y si al menos un fracción $\phi$ de vecinos está en el estado 1 entonces este nodo falla (cambia al estado 1).
-    2. En otro caso, el agente permanece en su estado.
+    Existen otros modelos en los que se usan otros estados adicionales, como el _inmune_ (no ha sido infectado y no se puede infectar) o el _latente_ (ha sido contagiado pero aún no está infectado y, por tanto, aún no es contagioso).
 
-Como se puede ver, este modelo es muy similar a los modelos de propagación vistos en temas anteriores.
+- **Mezcla homogénea**: Cualquier individuo tiene la misma probabilidad de entrar en contacto con un individuo infectado. Esta hipótesis puede interpretarse como que la red de contactos está modelada mediante una red aleatoria aunque, realmente, elimina la necesidad de conocer los contactos de los individuos y se puede asumir que cualquiera puede infectar a cualquiera.
 
-Este modelo ha sido estudiado en redes aleatorias de acuerdo a dos métricas:
+Los modelos generados a partir de estas hipótesis observan el comportamiento (los cambios de estado) de los individuos a lo largo del tiempo para predecir el alcance y la velocidad de propagación de la enfermedad, entre otras. A continuación vamos a estudiar la dinámica de los modelos de propagación  clásicos, que combinan las letras del modelo compartimental.
 
-- La probabilidad de que una cascada global surja a partir del fallo de un nodo.
-- La distribución del tamaño esperado de la cascada.
+### Modelo SI
 
-Ambas dependen del grado medio $\langle k \rangle$ y del umbral de fallo $\phi$ de los nodos. Las simulaciones muestran 3 etapas o regímenes:
+Es el modelo más sencillo, en el que un individuo susceptible puede quedar infectado pero, una vez infectado, no se puede recuperar. Un ejemplo de este tipo es el virus del VIH (o los zombies).
 
-* __Regimen Subcrítico__: Si $\langle k \rangle$ es alto, el cambio en el estado de un nodo prácticamente no afecta a otros nodos, independientemente del umbral de fallo que presenten. En este caso la cascada suele morir rápidamente y el tamaño de la misma sigue una distribución exponencial.
-* __Regimen Supercrítico__: Si $\langle k \rangle$ es bajo entonces es probable que sus vecinos sobrepasen el umbral, produciendo una cascada global. En este caso, la más mínima perturbación suele generar un fallo en cascada.
-* __Regimen Crítico__: En el límite entre los regímenes anteriores nos encontramos con que los fallos en cascada pueden tener un tamaño diferente. Las simulaciones muestran que el tamaño de la cascada en una red aleatoria sigue una distribución de ley potencial con $\alpha = \frac{3}{2}$. 
+![Esquema del Modelo SI](../images/tema08/modeloSI.png)
 
-![Resultados de las simulaciones del modelo simple en cascada. A la izquierda, el diagrama de fase (el área contenida bajo la línea indica la probabilidad de que se produzca una cascada global). A la derecha, la distribución del tamaño de las cascadas](../images/tema09/modeloSimple.png)
+En este modelo suponemos que cada individuo tiene $\langle k \rangle$ contactos (enlaces) y que en cada instante de tiempo la enfermedad se propaga con una tasa de contagio $\delta$, que representa la probabilidad de que un individuo infectado transmita la enfermedad a uno susceptible.
 
-### Modelo de sobrecarga {-}
+Para entender la dinámica del modelo vamos a definir los siguientes parámetros.
 
-Este modelo[^4] está pensado para simular los fallos en las redes eléctricas. Asume que cada nodo tiene una capacidad inicial y que cada fallo afecta a la capacidad de cada uno de los nodos de la red, es decir, un fallo no solo afecta de manera local (a sus vecinos) sino que afecta de una manera mucho más global.
+- $N$ es el tamaño de la población y es $N = S(t) + I(t)$, donde $S(t)$ (número de individuos que están en el estado susceptible en el tiempo $t$) e $I(t)$ (número de individuos que están en el estado infectado en el tiempo $t$).
+- En lugar de manejar valores absolutos vamos a manejar las proporciones o _ratios_ de individuos susceptibles e infectados. De este modo $s(t) = s = \frac{S(t)}{N}$ representa la proporción de individuos susceptibles de la población mientras que $i(t) = i = \frac{I(t)}{N}$.
+- $\beta$ es la tasa de transmisión que incluye el grado medio de cada individuo, esto es, $\beta = \delta \cdot \langle k \rangle$.
 
-[^4]: Dobson, I., Carreras, B. A., Lynch, V. E., & Newman, D. E. (2007). [Complex systems analysis of series of blackouts: Cascading failure, critical points, and self-organization](http://scitation.aip.org/content/aip/journal/chaos/17/2/10.1063/1.2737822). Chaos: An Interdisciplinary Journal of Nonlinear Science, 17(2), 026103.
+La ecuación diferencial que modela la tasa a la que varía el número de infectados es:
 
-Este modelo se puede simular de la siguiente forma:
+$$\frac{di}{dt} = i \cdot \beta  \cdot s = i \cdot \beta \cdot (1-i)$$
 
-1. Partimos de una red de $N$ nodos en los que cada uno tiene un límite de carga $L^{fail}$. Cada nodo $i$ comienza con una carga inicial $L_i$ asignada aleatoriamente en el intervalo $[L_{min}, L_{max}]$.
-2. En $t=0$ añadimos una carga $D$ a cada uno de los nodos.
-3. Si algún nodo falla, éste distribuye a todos los nodos una carga adicional $P>0$. Esto puede provocar que, nuevamente, otros nodos fallen y distribuyan una nueva carga adicional $P$.
+En cada momento de tiempo, la proporción de infectados es la cantidad de infectados $i$ más la proporción de individuos susceptibles que pueden ser infectados $\beta \cdot s$.
 
-Ya que la sobrecarga se distribuye entre todos los nodos de la red podemos ver que este modelo es independiente de la estructura de la red. En este modelo también se pueden distinguir tres regímenes:
+Si resolvemos esta ecuación nos queda que:
 
-* __Regimen Subcrítico__: Si la carga inicial media $L$ está por debajo de un determinado umbral entonces la perturbación no afecta a la red y no se detectan cascadas globales.
-* __Regimen Supercrítico__: Si la carga inicial media $L$ está por encima de un determinado umbral entonces la perturbación se propagará. Es este caso, la distribución del tamaño de la cascada sigue una bimodal que muestra la coexistencia de cascadas muy pequeñas o muy grandes.
-* __Regimen Crítico__: En el límite entre los regímenes anteriores nos encontramos con que los fallos en cascada pueden tener un tamaño diferente. Las simulaciones muestran que, al igual que en el modelo anterior, el tamaño de la cascada sigue una distribución de ley potencial con $\alpha = \frac{3}{2}$. 
+$$i = \frac{i_0exp(\beta t)}{1-i_0+i_0exp(\beta t)}$$
 
-Un modelo más avanzado de sobrecarga que tiene en cuenta la estructura de la red ya que mide la eficiencia de las líneas de distribución de alto voltaje y que distingue entre tres tipos distintos de nodos (generadores, subestaciones de transmisión y de distribución) se puede ver en [Modeling cascading failures in the North American power grid](http://link.springer.com/article/10.1140%2Fepjb%2Fe2005-00237-9?LI=true)
-R. Kinney, P. Crucitti, R. Albert, and V. Latora, Eur. Phys. B, 2005.
+donde $i_0$ representa a la tasa de infectados en el instante $t=0$. De la representación gráfica de esta función extraemos las siguientes conclusiones:
 
-![Resultados de las simulaciones del modelo de sobrecarga. A la izquierda, el número medio de nodos que fallan bajo distintos valores de carga inicial. A la derecha, la distribución del tamaño de las cascadas](../images/tema09/modeloSobrecarga.png)
+- Inicialmente el número de infectados crece exponencialmente.
+- A medida que el número de infectados se hace mayor, hay menos individuos susceptibles por lo que el crecimiento de infectados se ralentiza y la infección termina cuando todos están infectados ($i(t \to \infty)= 1$).
 
-### Modelo ramificado {-}
+![Representación de la proporción de infectados en el Modelo SI](../images/tema08/graficaSI.png)
 
-El modelo ramificado o _branching model_ es un modelo muy simple que sirve para resolver analíticamente la distribución del tamaño de la cascada. Representa en forma de árbol las características básicas de un fenómeno en cascada a partir de los datos históricos de dicha cascada. En la raíz se coloca el nodo cuyo fallo ocasiona la posible cascada. Posteriormente, en las ramas colocamos los nodos cuyo fallo se produjo como consecuencia del fallo de su nodo padre.
+El _tiempo característico_ $\tau$ es el tiempo que tarda la enfermedad en alcanzar al $\frac{1}{e}$ (aprox. el 36%) de la población. Para el modelo SI:
 
-Si no se usa un histórico se puede modelar de la siguiente forma:
+$$
+\tau = \frac{1}{\beta}
+$$
 
-1. Partimos de un nodo activo.
-2. En cada paso $t$ cada nodo activo produce $k$ hijos, donde $k$ se selecciona aleatoriamente de una distribución $p_k$.
-3. Si $k=0$ la rama muere y no se producirán nuevas propagaciones por dicha rama.
-4. Si $k>0$ entonces se generarán $k$ nodos activos, representados como hijos del último nodo activo.
+Se puede ver que el tiempo característico es la inversa de la tasa de transmisión. Esto implica que aumentar la densidad de enlaces ($\langle k \rangle$) o la velocidad de propagación original ($\delta$) aumenta la tasa de transmisión y, por tanto, reduce el tiempo característico.
 
-El tamaño de la cascada será el número de nodos del árbol cuando no quede ningún nodo activo. Este modelo también predice tres regímenes dependientes del valor de $\langle k \rangle$ para la función de distribución $p_k$:
+### Modelo SIS
 
-* __Regimen Subcrítico__: Si $\langle k \rangle<1$ en media cada nodo tendrá menos de un hijo por lo que el árbol morirá rápidamente. El tamaño del árbol sigue una distribución exponencial.
-* __Regimen Supercrítico__: Si $\langle k \rangle>1$ entonces en media cada nodo tendrá más de un hijo y el árbol crecerá indefinidamente, lo que se interpreta como una cascada global.
-* __Regimen Crítico__: Si $\langle k \rangle=1$ entonces cada nodo tiene en media un hijo, lo que implica que algunos árboles serán muy grandes pero otros morirán rápidamente. Las simulaciones muestran que, al igual que en el modelo anterior, el tamaño de la cascada sigue una distribución de ley potencial. 
+Es similar al anterior salvo en que, en este modelo, los individuos infectados se pueden recuperar, volviendo al estado susceptible. Un ejemplo de este modelo es el resfriado común.
 
-En este caso, el modelo sí se puede resolver analíticamente para predecir el tamaño de la cascada en función de la distribución $p_k$:
+![Esquema del Modelo SIS](../images/tema08/modeloSIS.png)
 
-- Si $p_k$ está acotada, es decir, sigue una binomial o una exponencial, entonces $\alpha = \frac{3}{2}$ es el exponente de la distribución de ley potencial.
-- Si $p_k$ es libre de escala entonces depende del exponente $\gamma$:
+Para este modelo necesitamos, además de los parámetros del anterior, la tasa de recuperación $\mu$, que representa la proporción de infectados que se recuperan y pasan al estado susceptible en cada instante de tiempo.
 
-    1. Para $\gamma \ge 3$ se sigue cumpliendo que  $\alpha = \frac{3}{2}$.
-    2. Para $2<\gamma<3$ entonces $\alpha = \frac{\gamma}{\gamma-1}$.
+En este caso, la ecuación diferencial que modela la tasa a la que varía el número de infectados es:
 
-Como se puede ver, sea cual sea el modelo se puede observar que existe un exponente universal y que se predice la existencia de un punto crítico en el que el tamaño de la cascada sigue una ley potencial. Este punto separa dos regiones bien diferenciadas:
+$$\frac{di}{dt} = i \cdot \beta  \cdot s - \mu \cdot i=  i \cdot \beta \cdot (1-i) - \mu \cdot i$$
 
-- Una subcrítica en la que todas las perturbaciones mueren rápidamente.
-- Una supercrítica en la que la mayoría de las perturbaciones se propagan a todo el sistema.
+En cada momento de tiempo, la proporción de infectados es la cantidad de infectados $i$ más la proporción de individuos susceptibles que pueden ser infectados $\beta \cdot s$ menos la proporción de individuos infectados que se pueden recuperar $\mu \cdot i$.
 
-## Mejorar la robustez de una red
+La resolución de esta ecuación nos da el siguiente resultado:
 
-Para terminar vamos a estudiar cómo se puede mejorar la robustez de una red como medida para prevenir fallos y ataques. En este tema vamos a hablar de dos posibles alternativas:
+$$i = \Big(1- \frac{\mu}{\beta}\Big) \frac{C \cdot e^{(\beta - \mu)t}}{1 + C \cdot e ^{(\beta -\mu)t}}$$
 
-- Diseñar redes robustas: Si tenemos la oportunidad de hacerlo podemos añadir nodos y/o enlaces de modo que la red sea más robusta que la inicial.
-- Detener fallos en cascada: La primera alternativa suele ser costosa y, en ocasiones, no suele ser factible. Como alternativa podemos implementar protocolos con los que detener un fallo en cascada de la red mediante la supresión temporal de algunos nodos y enlaces.
+$$C= \frac{\beta \cdot i_0}{\beta - \mu - \beta \cdot i_0}$$
 
-Vamos a hablar un poco más de cada uno de estas alternativas.
+En este caso, las conclusiones que podemos extraer de la representación gráfica de la función son las siguientes:
 
-### Diseño de redes robustas
+- Como la recuperación es posible, el sistema alcanza un _estado endémico_ en el que la tasa de infectados es constante:
 
-Hemos visto que la topología de la red es clave en la robustez de una red. Aunque las redes libres de escala son especialmente seguras ante errores son más vulnerables a ataques que las redes aleatorias. Por este motivo, se ha hecho un gran esfuerzo en buscar topologías que sean simultáneamente robustas a ataques y a errores.
+$$i(\infty) = 1 - \frac{\beta}{\mu}$$
 
-La topología más robusta a errores aleatorios es la topología en estrella (también conocida como _hub-and-spoke_). Para un gran número de nodos la red es extremadamente segura (ya que la probabilidad de que el error afecte al nodo central es de $\frac{1}{N-1}$). Sin embargo, el fallo (o ataque) del nodo central deja la red completamente aislada. 
+En este estado endémico, la proporción de infectados no varía con el tiempo y sólo se produce cuando la tasa de recuperación es inferior a la tasa de transmisión ($\mu < \beta$)
 
-Esta red puede ser mejorada conectando los nodos periféricos entre sí. Sin embargo, si estimamos que el coste de construir y mantener la red es proporcional al grado medio $\langle k \rangle$ de la red entonces esta alternativa duplica este coste (ya que hemos duplicado el grado medio de la red).
+![Representación de la proporción de infectados en el Modelo SIS](../images/tema08/graficaSIS.png)
 
-![Configuración en estrella y configuración mejorada. El grado medio se duplica](../images/tema09/estrella.png)
+- En caso de que la tasa de recuperación sea mayor que la tasa de transmisión ($\mu > \beta$) entonces llegado a un determinado punto la proporción de infectados comienza a decrecer exponencialmente, alcanzado un estado libre de enfermedad, en la que todos los individuos se han recuperado y no hay infectados.
+
+En este modelo, el _tiempo característico_ $\tau$ es:
+$$
+\tau = \frac{1}{\mu (R_0 - 1)}
+$$
+
+$R_0$ es el ritmo reproductivo básico, que representa el número promedio de individuos susceptibles que serán infectados por un individuo infectado en una población completamente susceptible:
+
+$$R_0 = \frac{\beta}{\mu}$$
+
+Tal y como hemos visto antes:
+- Si $R_0<1$ entonces $\tau<0$ y la enfermedad termina desapareciendo de la población.
+- Si $R_0>0$ entonces $\tau>0$ y la enfermedad se propagará, alcanzando el estado endémico. Cuanto mayor sea $R_0$, más rápido es el proceso de propagación de la enfermedad.
+ 
+El ritmo reproductivo básico es uno de los primeros parámetros que los epidemiólogos calculan, ya que es representa la gravedad de la enfermedad a la que se enfrentan. Por ejemplo, el sarampión (que se contagia por el aire) tiene un $R_0= 12-18$, la difteria (que se propaga por la saliva) tiene un $R_0 = 6-7$ mientras que la gripe tiene un $R_0 = 2-3$.
+
+![Ritmo reproductivo básico de algunas enfermedades (Fuente: [Wikipedia](https://es.wikipedia.org/wiki/Ritmo_reproductivo_b%C3%A1sico))](../images/tema09/ritmoReprodBasico.png)
+
+### Modelo SIR
+
+En este modelo, los individuos infectados no vuelven a ser susceptibles sino que desarrollan una inmunidad a la enfermedad (o mueren) y pasan a un estado recuperado[^1] en el que no afectan al modelo de propagación: no pueden ser infectados ni pueden infectar a otros. 
+
+![Esquema del Modelo SIR](../images/tema08/modeloSIR.png)
+
+[^1]: En inglés, el estado es _removed_, que es más adecuado para describir el proceso.
+
+En este modelo $\mu$ representa la tasa de recuperación que, a diferencia del anterior, es la tasa de individuos infectados que pasan al estado recuperado. Para este modelo, la población es la suma de los infectados, susceptibles y recuperados($R(t)$), por lo que la proporción de infectados es $i = 1-s-r$.
+
+Las ecuaciones diferenciales de este modelo son las siguientes:
+
+$$\frac{di}{dt} = \beta \cdot i \cdot s - \mu \cdot i \text{;  }\frac{ds}{dt} = -\beta \cdot i \cdot s\text{;  }\frac{dr}{dt} = \mu \cdot i$$
+
+En este caso el cálculo es más complejo pero podemos llegar a la siguiente representación gráfica de las tres funciones:
+
+![Representación de la proporción de infectados, susceptibles y recuperados en el Modelo SIR](../images/tema08/graficaSIR.png)
+
+- Cuando $\beta>\mu$ la proporción de infectados crece hasta un pico máximo y luego decrece hasta valer 0.
+- La proporción de susceptibles decrece de forma monótona. Aunque satura, no llega nunca a 0 ya que cuando $i \to 0$ ya no hay individuos que puedan infectar. Esto implica que los individuos que se mantienen susceptibles hasta fases avanzadas pueden no llegar a infectarse nunca.
+- La proporción de recuperados crece de manera monótona. De manera similar a los susceptibles, la proporción de recuperados nunca llega a valer 1. Su valor asintótico representa el número de individuos afectados y se calcula como:
+
+$$r = 1- s_0 \cdot e^{-\beta \frac{r}{\mu}}$$
+
+Las condiciones iniciales más habituales son:
+
+$$i_0 = \frac{c}{N}\text{;  }s_0 = 1- \frac{c}{N}\text{;  }r_0 = 0$$
+
+### Comportamientos importantes de los modelos epidemiológicos
+
+Existen principalmente dos comportamientos destacables en estos modelos:
+
+#### Comportamiento temprano.{-}
+
+Es el patrón de comportamiento en las fases iniciales. Es importante para saber cuánto tiempo tenemos para el desarrollo de vacunas e intervenciones médicas. La mejor forma de detener o contener la epidemia en esta fase es mediante vacunación temprana o la cuarentena.
+
+En todos los modelos el número de infectados en la fase temprana es bajo pero crece exponencialmente. Generalmente, el modelo SI es el más relevante para describir este comportamiento.
+
+#### Comportamiento tardío. {-}
+
+Es el patrón de comportamiento en las fases más avanzadas de la epidemia (cuando $t \to \infty$). Permite predecir el alcance, número de infectados, etc.
+
+En este caso, cada modelo realiza una predicción distinta:
+
+- En el modelo SI todos terminan infectados.
+- En el modelo SIS se alcanza un estado endémico en el que una proporción de la población queda infectada ($R_0>1$) o en el que la enfermedad desaparece ($R_0<1$)
+- En el modelo SIR todos terminan recuperados (en el estado susceptible o recuperado, pero no infectados)
+
+En resumen, las características básicas de los modelos epidemiológicos son los siguientes:
+
+![Características básicas de los modelos epidemiológicos (Fuente: Network Science)](../images/tema08/resumenModelos.png)
+
+Tal y como hemos indicado, estos modelos no tienen en cuenta la red de contactos ya que suponen que hay una mezcla homogénea. Realmente, las epidemias se propagan a través de los contactos de las personas, es decir, a través de los enlaces de su red social. Por tanto, hay que tener en cuenta el papel de la red en el proceso epidémico. Tal y como veremos a continuación, la estructura de la red modificará el comportamiento de estos modelos simples.
+
+## Modelos de contagio basados en redes
+
+Los modelos de contagio basados en redes se comportan de manera similar a los vistos hasta ahora salvo que solo se tendrán en cuenta los contactos definidos por la red, en lugar de suponer que cualquier individuo puede estar en contacto con cualquier otro.
+
+En los modelos basados en redes, $\beta$ es el __ratio de transmisión__ y representará la probabilidad de contagio de un nodo infectado a otro susceptible que esté en contacto con él (hay un enlace entre los dos nodos).
+
+En general, la simulación de estos procesos suele ser más sencilla que la resolución analítica de los modelos en redes complejas. Por ejemplo, una forma sencilla de simular un proceso de contagio simple sería la siguiente:
+
+1. Definimos una red de $N$ nodos y $L$ enlaces. Inicialmente todos los nodos están en el estado S.
+2. En $t_0$ ponemos una pequeña fracción $i_0$ de nodos (o solo 1), en el estado I.
+3. En cada paso de tiempo, hacemos que cada uno de los nodos en el estado I[^3] propague la infección a cada uno de sus vecinos en estado S con probabilidad $\beta$ (al igual que en los modelos de red aleatoria o Barabasi-Albert, generamos un número aleatorio $a$ y propagamos si $a<\beta$).
+4. En caso de utilizar un modelo SIR o SIS, haremos que los nodos en estado I puedan pasar al estado R (o S, dependiendo del modelo), con una probabilidad $\mu$.
+
+[^3]: Desde el punto de vista de implementación, es recomendable tener en listas separadas los nodos infectados y los susceptibles (y recuperados) no tener que procesar todos los nodos (solo los infectados) y así optimizar el proceso de simulación.
+
+Existen alternativas más complejas (y más realistas), basadas en técnicas de modelado social o modelado basado en agentes, en los que cada individuo (nodo) se modela como un agente que puede incluir sus propias características individuales y que pueden generar comportamientos emergentes. Se pueden incluir procesos estocásticos de actualización de estados que simulan eventos aleatorios que pueden ocurrir en los procesos dinámicos. 
+
+Dependiendo del fenómeno de difusión que queramos simular tendremos que decidir qué red tendremos que modelar. Como ejemplo podemos ver que redes se usan para modelar distintos fenómenos en la siguiente tabla:
+
+![Modelados de fenómenos de contagio y redes utilizadas](../images/tema08/tabla.png)
+
+La estructura de la red, su evolución a lo largo del tiempo y su uso están interrelacionados y se deben estudiar conjuntamente. La topología de la red va a influir en el proceso de contagio o difusión:
+
+* ¿A qué estado convergen los nodos?
+* ¿Cuánto se tarda en llegar a dicho estado?
+* ¿Cómo se puede inmunizar un sistema complejo con una topología de red concreta?
+
+Antes de entrar en los detalles más analíticos de los procesos de difusión vamos a utilizar los modelos que conocemos hasta ahora y las simulaciones en NetLogo para observar el comportamiento de las epidemias teniendo en cuenta la estructura de la red.
+
+### Redes aleatorias
+
+Vamos a simular un modelo SI en una red aleatoria. Si utilizamos el simulador de [Difusión en una red aleatoria](http://www.ladamic.com/netlearn/NetLogo501/ERDiffusion.html)[^2] podemos ver la influencia de la densidad de la red en los procesos de contagio.
+
+![Influencia de la densidad de la red aleatoria en los procesos de contagio](../images/tema08/contagioER.png)
+
+Como se puede ver en la simulación, la densidad de la red afecta a la velocidad de infección y al número de individuos infectados: a mayor densidad, mayor es el número de individuos infectados y mayor es la velocidad de propagación.
+
+Además, se puede ver que si partimos de un único nodo, sólo se infectarán los nodos que pertenecen a la misma componente conexa. Recordemos algunas redes reales tienen una componente gigante y muchas componentes pequeñas por lo que la epidemia se extiende en mayor o menor medida dependiendo de la localización del nodo inicial. La probabilidad de que un nodo pertenezca a la componente gigante se $\frac{N_G}{N}$.
+
+[^2]: Todos los modelos de NetLogo que se ven en este tema están disponibles en el Campus Virtual.
+
+### Redes libres de escala
+
+A continuación simularemos un modelo SI en una red libre de escala creada siguiendo el modelo de Barabasi-Albert. Si recordamos, para que se presente la propiedad de ser libre de escala es necesario que exista enlace preferencial. Por este motivo vamos a ver el efecto de la existencia de enlace preferencial en estas redes. Para ello usaremos el simulador de [Difusión en una red libre de escala](http://www.ladamic.com/netlearn/NetLogo501/BADiffusion.html).
+
+![Influencia del enlace preferencial (redes libres de escala) en los procesos de contagio](../images/tema08/contagioBA.png)
+
+En este caso podemos observar que el enlace preferencial favorece el contagio. Esto se debe a que el enlace preferencial posibilita la existencia de Hubs, que son los responsables de ayudar a difundir más rápidamente la infección. 
+
+### Redes de Watts-Strogatz
+
+En este caso simularemos un modelo SI en una red creada siguiendo el modelo de Watts-Strogatz para estudiar la influencia de los "atajos" o enlaces débiles en el contagio sobre esta red. Para ello vamos a usar el simulador [Difusión en un mundo pequeño](http://www.ladamic.com/netlearn/NetLogo4/SmallWorldDiffusionSIS.html) y modificaremos la probabilidad de reasignación de enlaces $p$ para ver su efecto en la propagación.
+
+![Influencia de los enlaces débiles en los procesos de contagio](../images/tema08/contagioSW.png)
+
+Podemos observar que los enlaces débiles provocan que aumente la velocidad de la infección ya que, en el mismo tiempo, se aprecia un mayor número de nodos infectados.
+
+### Soluciones analíticas
+
+Podemos estudiar de manera analítica el comportamiento temprano y tardío de los modelos de contagio SI y SIR en redes complejas. Para ello es necesario hacer una aproximación conocida como la __aproximación por bloques de grados__: distinguimos distintos bloques de nodos basados en el grado que tienen y asumimos que todos los nodos en el mismo bloque (y, por tanto, con el mismo grado) son estadísticamente equivalentes. Podemos representarlo gráficamente con la siguiente figura:
+
+![Aproximación por bloques de grados](../images/tema08/bloqueGrado.png)
+
+De esta forma definimos la fracción de nodos con grado $k$ infectados como:
+
+$$i_k  = \frac{I_k}{N_k}$$
+
+La suma de los diferentes $i_k$ para todos los grados dan la fracción total de nodos infectados $i$.
+
+#### Modelo SI {-}
+
+De acuerdo a lo anterior, definimos la ecuación diferencial para el modelo SI que modela la tasa de infectados para cada grado $k$ por separado:
+
+$$\frac{di_k}{dt} = \beta (1-i_k(t))k \Theta_k(t)$$
+
+En este caso:
+
+- El grado medio ha sido sustituido por el grado real $k$
+- $\Theta_k(t)$ es una función de densidad que representa la fracción de vecinos que están infectados para un nodo de grado $k$.
+- Necesitaremos definir $k_{max}$ ecuaciones.
+
+La función de densidad podemos aproximarla de la siguiente forma:
+
+$$\Theta_k(t) \approx \Theta(t) = \frac{\sum_{k'}(k'-1)\cdot P(k') \cdot i_{k'}(t)}{\langle k \rangle}$$
+
+Durante el comportamiento temprano, es decir, cuando $i$ es pequeño podemos aproximarlo de la siguiente forma:
+
+$$\frac{di_k}{dt} = \beta k i_0 \frac{\langle k \rangle-1}{\langle k \rangle} e^{t/\tau}$$
+
+Y podemos obtener la fracción de nodos infectados de grado $k$ y el total de nodos infectados:
+
+$$i_k = i_0 (1+ \frac{k \langle k \rangle -1}{\langle k^2 \rangle - \langle k \rangle}(e^{t/\tau}-1))$$
+
+$$i = i_0 (1+ \frac{\langle k \rangle^2 - \langle k \rangle}{\langle k^2 \rangle - \langle k \rangle}(e^{t/\tau}-1))$$
+
+$\tau$ representa el periodo de incubación, que es la cantidad de tiempo que requiere la epidemia para crecer. Cuando menor es $\tau$, más rápido se propaga la enfermedad. Según las ecuaciones anteriores se puede calcular de la siguiente forma:
+
+$$\tau = \frac{\langle k \rangle}{\beta(\langle k^2 \rangle - \langle k \rangle)}$$
+
+De estas ecuaciones podemos obtener las siguientes conclusiones:
+
+- Cuanto mayor sea el grado de un nodo mayor es la probabilidad de que ese nodo sea infectado. 
+- El periodo de incubación depende de la estructura de la red y de los momentos de primer y segundo orden de la distribución de grados ($\langle k \rangle$ y $\langle k^2 \rangle$), respectivamente.
+- En una red aleatoria el periodo de incubación depende de la densidad de la red, de modo que la epidemia se propaga más rápido cuanto más densa sea ésta (mayor $\langle k \rangle$).
+
+$$\tau_{ER} = \frac{1}{\beta(\langle k \rangle)} \text{ ya que } \langle k^2 \rangle = \langle k \rangle (\langle k \rangle - 1)$$
+
+- En una red libre de escala los momentos dependen de $\gamma$, de modo que si $\gamma \geq 3$ ambos momentos son finitos y el contagio se comporta de manera similar a la red aleatoria.
+- Sin embargo, si $\gamma < 3$ en una red libre de escala entonces $\langle k^2 \rangle$ diverge y $\tau \to 0$, lo que implica que el periodo de incubación característico desaparece y la epidemia es instantánea. Esto se debe a que los hubs son los primeros nodos en infectarse y, dada su alta conectividad, infectan más rápidamente a la mayoría de los nodos.
+
+#### Modelos SIS  {-}
+
+En los modelos con recuperación la ecuación diferencial de la tasa de infectados de grado $k$ es algo distinta:
+
+$$\frac{di_k}{dt} = \beta (1-i_k(t))k \Theta_k(t) _ \mu \cdot i_k(t)$$
+
+Donde vemos que aparece la tasa de recuperación $\mu$. Esto hace que el periodo de incubación $\tau$ sea algo distinto:
+
+$$\tau^{SIS} = \frac{\langle k \rangle}{\beta \langle k^2 \rangle - \mu \langle k \rangle}$$
+
+Para un tamaño suficientemente grande de $\mu$ el tiempo característico se hace negativo e $i_k$ decrece exponencialmente. Sin embargo, depende de la topología de la red. En lugar de solo $\mu$ vamos a tener en cuenta el ritmo reproductivo básico $\lambda = \frac{\beta}{\mu}$, que es representativo de la enfermedad (o de lo que queremos difundir) y que cuanto mayor sea más probable es que la enfermedad se propague. Sin embargo, ¿cuál es el mínimo valor necesario para que se propague la enfermedad? Esto es lo que se conoce como el **umbral epidemiológico** ($\lambda_C$)y también dependerá de la estructura de la red.
+
+- Para una red aleatoria tenemos que el umbral epidemiológico es:
+
+$$\lambda_C = \frac{1}{\langle k \rangle +1}$$
+
+Esto implica que siempre va a ser distinto de cero y que, dependiendo del valor de $\lambda$, podemos conseguir que la epidemia alcance un estado endémico (si $\lambda > \lambda_C$) o que la epidemia desaparezca (si $\lambda < \lambda_C$).
+
+- Para una red libre de escala tenemos que el umbral epidemiológico es:
+
+$$\lambda_C = \frac{\langle k \rangle}{\langle k^2 \rangle}$$
+
+Esto implica que para $\gamma < 3$ el segundo momento diverge y, por tanto, el umbral epidemiológico desaparece. Esto implica que incluso las enfermedades que son difíciles de transmitir se pueden propagar en una red libre de escala. De nuevo, esto es consecuencia de los hubs: en el momento en el que la enfermedad infecta un hub puede pasar a un número muy grande de nodos, de modo que persiste en la población.
+
+Para el modelo SIR los resultados son similares. En la siguiente tabla se resumen las principales conclusiones extraídas:
+
+![Resumen de los modelos epidémicos en redes (Network Science, cap. 10)](../images/tema08/resumenModelosRedes.png)
+
+## Modelos de contagio complejo
+
+Hasta ahora hemos estudiado modelos de contagio simple, en los que el contagio se produce uno a uno, es decir, basta con que un vecino de un determinado nodo esté infectado para que se pueda quedar infectado. Sin embargo, en algunos procesos como el contagio social o inducir a comprar un producto, no basta con que uno de mis vecinos tenga una determinada "opinión" para cambiar la mía sino que es necesario sea una fracción de mis vecinos. Esto es lo que se conoce como contagio complejo o **contagio basado en umbrales**.
+
+Existen principalmente dos formas de definir el contagio basado en umbrales:
+
+- Mediante un umbral $k$ que define el número de vecinos que han de estar infectados para que un nodo quede infectado. El modelo de contagio simple es un modelo basado en este tipo de umbral con $k=1$.
+- Mediante una proporción $p$ que define el porcentaje de vecinos que han de estar infectados para que un nodo quede infectado.
+
+En este caso, la propagación se comporta de una manera bastante distinta que depende principalmente de:
+
+- La estructura de la red.
+- El valor del umbral utilizado.
+- La elección de los nodos inicialmente infectados.
+
+A modo de ejemplo podemos ver la diferencia entre un contagio simple y uno complejo en un solo paso de simulación en la figura que aparece a continuación. Como se puede ver, el contagio simple se propaga de una manera mucho más rápida. Además, el contagio simple permite llegar a toda la red (en la Figura, en $t=2$ todos los nodos estarían contagiados). Sin embargo, el contagio complejo es mucho más lento y puede verse detenido rápidamente debido a la falta de conexiones (en la Figura, en $t=2$ solo J sería infectado y la infección se detendría).
+
+![Contagio simple vs. Contagio complejo](../images/tema08/contagioComplejo.png)
+
+Podemos ver también que los modelos de contagio complejos se comportan de manera distinta en los modelos de redes vistos:
+
+- En una red de mundo pequeño (Watts-Strogatz) los enlaces débiles o atajos ya no funcionan como medio para aumentar la velocidad de propagación. Podemos ver este comportamiento en la simulación del modelo de contagio complejo en una red de mundo pequeño que hemos dejado en el Campus Virtual.
+- En una red libre de escala, los hubs pierden importancia en la velocidad de propagación ya que, aunque llegan a muchos nodos, solo ellos no son capaces de propagar la enfermedad.
+- En una red aleatoria la propagación depende muy decisivamente de los nodos inicialmente infectados.
+
+## Modelos de difusión de opinión en redes
+
+Aunque el modelo de contagio complejo basado en umbrales puede ser adecuado para algunos procesos de difusión, existen otros modelos más adecuados para modelar los procesos de difusión de opinión en redes.
+
+Los modelos basados en _efectos de beneficio directo_ se basan en que la adopción de una opinión se ve reforzada por el beneficio que se consigue por la adopción de dicha opinión. Además, estos beneficios son mayores cuantos más vecinos adopten esa misma opinión.
+
+### Juego de coordinación en redes
+
+Este modelo se puede simular mediante el __juego de coordinación en una red__. En este modelo, cada nodo tiene que elegir entre dos posibles opciones (que llamaremos A y B) y existe un beneficio si dos nodos conectados eligen la misma opción. De una manera más formal definimos el modelo de la siguiente forma:
+
+- Si dos nodos eligen la opción A entonces obtienen un beneficio de valor $a>0$.
+- Si dos nodos eligen la opción B entonces obtienen un beneficio de valor $b>0$
+- $p$ es la fracción de vecinos que adoptan la opción A, mientras que $(1-p)$ es la fracción de vecinos que adoptan la opción B.
+- Para un nodo de grado $k$ podemos decir que este nodo adopta la opción A si:
+
+$$p \cdot k \cdot a \geq (1-p) \cdot k \cdot b$$
+
+Esto se puede convertir en un modelo de difusión basado en umbrales, donde el umbral $q$ tiene el valor:
+
+$$q = \frac{b}{a+b}$$
+
+Es decir, si tenemos una proporción de $q$ vecinos que han adoptado la opción A entonces elegiremos la opción A. En otro caso, nos es más beneficioso adoptar la opción B. 
+
+El sistema tiene dos estados de equilibrio posibles: o todos adoptan la opción A o, por el contrario, todos adoptan la opción B. Sin embargo, la pregunta es qué pasaría si, partiendo de un estado de equilibrio, algunos nodos (adoptadores iniciales) cambian su opción de manera aleatoria. Queremos saber si se va a producir una propagación en cascada de este comportamiento o si, por el contrario, este comportamiento se detendrá en algún momento o no se propagará.
+
+Para ello vamos a proponer el siguiente ejemplo: tenemos una red en la que todos los nodos han adoptado la opción B. Tenemos una opción A da un beneficio de $a=3$ mientras que la opción B da un beneficio de $b=2$. Se puede ver que en estas circunstancias, el beneficio de adoptar A es $\frac{3}{2}$ veces mayor que adoptar B. Los nodos cambiarán de B a A si al menos $q = \frac{2}{3+2} = \frac{2}{5}$ de los vecinos prefieren la opción A.
+
+En una red simple como la de la figura podemos ver que la cascada puede llegar a toda la red. En esta figura hemos supuesto que la opción B es "jugar al fútbol" mientras que la opción A es "jugar al baloncesto" y que 2 nodos empiezan a jugar al baloncesto debido a factores externos (por ejemplo, que una empresa les haya sobornado con unos pares de zapatillas para jugar al baloncesto).
+
+![Juego de coordinación en la que la cascada llega a todos los nodos ($q = \frac{2}{5}$)](../images/tema08/coordinacion1.png)
+
+Sin embargo, no podemos suponer que la cascada de adopciones va a llegar a toda la red (_cascada completa_) sino que hay ocasiones en la que la cascada se detiene aunque aún hay nodos que siguen manteniendo la opción B. En el siguiente ejemplo podemos ver que la cascada de adopciones se detiene tras tres pasos.
+
+![Juego de coordinación en la que la cascada se detiene tras tres pasos antes de alcanzar a todos los nodos ($q = \frac{2}{5}$)](../images/tema08/coordinacion2.png)
+
+Este modelo puede ser utilizado para simular posibles campañas de marketing viral y ayudar a tomar decisiones en cuanto a qué nodos hay que influir y cuánto hay que incrementar el beneficio (por ejemplo, la calidad de un producto) para que se produzca una cascada de difusión aceptable.
+
+Visto el resultado inicial, la primera opción que se puede tomar es modificar el beneficio $a$. En el ejemplo anterior, si aumentamos $a =4$ entonces el umbral $q$ baja a $q=\frac{1}{3}$ y se puede ver que la cascada de adopciones alcanza toda la red. De aquí podemos concluir que la adopción de una nueva opción no solo depende de la estructura de la red sino que también depende de las diferencias de beneficios entre la opción A y la opción B.
+
+La segunda opción a tomar, supuesto que no se puede modificar el beneficio $a$, está relacionado con decidir a qué nodos de la red es necesario influir para hacer que la cascada de adopciones alcance al mayor número posible de nodos en la red. La idea es elegir el menor número de nodos posible y elegirlos adecuadamente para conseguir que la cascada se propague. La elección de estos nodos es fundamental en la cascada de adopciones y está basada intrínsecamente en su posición dentro de la red.
+
+Si tomamos de nuevo el ejemplo de la red anterior, si mantenemos el beneficio inicial $a=3$ y comenzamos la propagación cambiando de estado a los nodos 12 y 13 entonces conseguiremos que todos los nodos del 11 al 17 cambien de estado. Sin embargo, si seleccionamos los nodos 11 y 14 entonces no conseguiremos que se propague ningún cambio de estado por la red.
+
+Podemos ver más en detalle este comportamiento utilizando el [Modelo de Difusión](http://www.ladamic.com/netlearn/NetLogo4/DiffusionCompetition.html) que está disponible en la web, seleccionando distintos nodos iniciales y viendo cómo la propagación se comporta de manera distinta en unos y otros.
+
+Así mismo, este modelo nos permite comprobar que la estructura de la red también tiene una fuerte influencia en los procesos de difusión. En particular, la existencia de comunidades tiene una especial importancia en los procesos de difusión. Las comunidades tienen tres papeles fundamentales dentro de estos procesos de difusión:
+
+- Las comunidades permiten que se produzca la propagación de los modelos basados en umbrales. La existencia de componentes con alta conectividad posibilitan la propagación en este tipo de modelos. Sin la presencia es ellas no sería posible que se produjese este tipo de propagación.
+- Las comunidades sirven de barrera para la difusión, de modo que crean "bolsas aisladas" que no permiten la adopción de ideas externas a la comunidad. Cuando una cascada alcanza una comunidad (un agrupamiento de nodos de alta densidad) ésta se detendrá ya que no podrá entrar dentro de dicha comunidad.
+- Lo anterior permite que distintas opiniones puedan convivir en la misma red, debido a la existencia de comunidades con distintas opiniones en distintos lugares de dicha red.
+
+### Otros modelos complejos de difusión
 
 
-¿Existe entonces alguna alternativa de mejorar la robustez manteniendo el coste, es decir, $\langle k \rangle$ constante? La respuesta es sí. Recordemos que $f_c$ es el umbral a partir del cual la red queda fragmentada y que éste depende de $\langle k \rangle$ y $\langle k^2 \rangle$. Por tanto, podemos mejorarla si maximizamos $\langle k^2 \rangle$ dejando fija $\langle k \rangle$. Esto se consigue haciendo que la distribución de grados siga una distribución bimodal, donde los nodos solo tengan grados $k_{min}$ o $k_{max}$ (los dos valores extremos de la red).
+#### Nodos bilingües. {-}
 
-Estudios analíticos han demostrado que la mejor alternativa es una red en la que hay una fracción de $r$ nodos con grado $k_{max}$ y $(1-r)$ nodos con grado $k_{min}$. De hecho, la mejor topología es aquella en la que $r=\frac{1}{N}$, es decir, un solo nodo de grado $k_{max}$ y el resto de grado $k_{min}$. El valor de $k_{max}$ depende del tamaño de la red.
+Existen modelos de adopción de opiniones más complejos. Uno de ellos es el que permite la existencia de __nodos bilingües__, es decir, nodos que pueden adoptar la opción A y B simultáneamente pero con una penalización $c$. 
 
-En este configuración, la probabilidad de eliminar el nodo central es baja. Sin embargo, el ataque del nodo central mantiene el componente gigante intacto gracias a que el resto de los nodos tienen un $k_{min}>1$ que los mantiene unidos. Una buena forma de conocer la vulnerabilidad de la red es representar las curvas de errores y ataques, tal y como se muestra a continuación para el caso estudiado.
+En este caso, estos nodos pueden conseguir que la opinión minoritaria persista en la red a pesar en condiciones en las que la opinión minoritaria desaparecería. A modo de ejemplo podemos utilizar una red lineal y observar el comportamiento de la misma con y sin nodos bilingües. Sin ellos, la opción con menor beneficio siempre termina por desaparecer de la red. Sin embargo, la presencia de nodos bilingües permite que dicha opción "sobreviva" entre pares de estos nodos. Podemos observar este comportamiento utilizando la simulación del "Modelo de cascasda" disponible en el Campus Virtual.
 
-![Curvas de tolerancia a fallos y ataques en distintas configuraciones de redes bimodales](../images/tema09/fallo-ataque.png)
+#### Umbrales heterogéneos. {-}
 
-### Detención de fallos en cascada
+Este modelo considera que cada nodo de la red valora de una manera diferente las distintas opiniones. De este modo, cada nodo $v$ de la red tiene un determinado umbral creado a partir de su beneficio por adoptar la opción A ($a_v$) y su beneficio por adoptar la opción B ($b_v$). La simulación de este modelo funciona de manera similar al anterior salvo porque cada nodo posee su propio umbral.
 
-Hemos visto que añadir nuevos enlaces puede mejorar la robustez de la red. Sin embargo, esta alternativa suele ser inviable en redes como la eléctrica, en el que el coste en tiempo y dinero de añadir un nuevo enlace es muy alto. Aunque la creación de nuevos enlaces para redistribuir la carga de la red cuando se produzca un fallo en cascada puede parecer una buena alternativa, ésta es completamente inviable en el caso de que se produzca un error y comience un fallo en cascada ya que, mientras que el fallo en cascada puede producirse en cuestión de minutos, la creación de nuevos enlaces puede tardar meses o años.
+En este caso, la diversidad de los umbrales juega un papel muy importante ya que interactúa de manera compleja con la estructura de la red. Por ejemplo, en la siguiente figura podemos ver que el nodo 1 tiene una posición muy central en la red pero que no hubiera tenido éxito en la propagación de no ser por el bajo umbral del nodo 3. Esto indica que para comprender la forma en la que se produce la difusión en una red social no solo hay que tener en cuenta el poder de los influenciadores sino que también hay que tener en cuenta cómo de influenciables son los nodos que lo rodean.
 
-Al igual que los bomberos eliminan árboles (a veces incendiándolos ellos mismos) para evitar que un fuego se propague, podemos eliminar nodos y enlaces de la red para evitar que una cascada se propague una vez que se ha iniciado un fallo. Esta eliminación ha de ser selectiva y depende de los mecanismos de propagación y fallo de la red en sí misma por lo que se recomienda la realización de simulaciones para conocer cómo minimizar el tamaño de la cascada sin provocar nuevos fallos en el sistema. Generalmente, estas simulaciones demuestran que lo más conveniente es eliminar nodos con baja carga y enlaces con un exceso de carga en la vecindad del fallo inicial.
+![Modelo basado en umbrales heterogéneos](../images/tema08/umbralHeterogeneo.png)
+
+#### Acciones colectivas. {-}
+
+En esta ocasión lo que se desea es modelar la manera en la que se coordinan ciertas acciones colectivas como acudir a una manifestación contra un gobierno represivo. En este caso no tenemos información de las intenciones del resto de la población (ese gobierno se ha encargado de controlar los medios de comunicación y hay una "recompensa" negativa por asistir a la manifestación) sino que solo se tiene información de los individuos más cercanos, lo que dificulta enormemente la toma de esta decisión. Se produce el fenómeno de lo que se conoce como _ignorancia pluralista_, en el que no se tiene conocimiento de la voluntad del resto (aunque realmente haya una verdadera voluntad a favor o en contra). Este mismo problema de coordinación se puede aplicar en otras situaciones como los vetos y votaciones de un consejo de administración o dirección. 
+
+La particularidad de este modelo es que pretende predecir el comportamiento coordinado de una red en el que cada individuo toma la decisión basándose solo en hablar con las personas más cercanas, es decir, teniendo un horizonte muy limitado. En general, estas acciones pueden modelarse mediante un modelo basado en umbrales heterogéneos, donde el umbral de cada persona significa "me manifestaré en caso de que haya al menos $k$ vecinos en la manifestación (incluyéndome a mí)". Así mismo, cada nodo también conoce los umbrales de sus vecinos, pero no del resto, por lo que es difícil predecir qué ocurrirá. La decisión se deberá tomar solo usando la información conocida (la suya y la de sus vecinos).
+
+Por ejemplo, en la siguiente figura se pueden ver tres redes distintas donde, para cada nodo hemos indicado su umbral. En la primera red no se producirá la acción colectiva ya que hay un nodo ($w$) que tiene un umbral de 4 y solo hay 3 nodos en la red. En la segunda red, aunque si todos conociesen la información globalmente se produciría la acción colectiva, no se producirá dicha acción ya que cada nodo carece de información suficiente _localmente_ para tomar la decisión con seguridad. En la tercera red existe un conocimiento común: los nodos $u$, $v$ y $w$ conocen su información y saben que sus vecinos conocen su información, produciendo una cadena de conocimiento que permite que los tres nodos realicen la acción colectiva y permitiendo que también $x$ la realice.
+
+![Modelado de acciones colectivas. Las dos primeras no ocurrirán mientras que la tercera sí ocurrirá](../images/tema08/accionColectiva.png)
+
+### Difusión de la innovación
+
+Para concluir con el tema vamos a estudiar un caso muy concreto de difusión, relacionado con la compartición de información entre personas para la resolución de problemas y la difusión de la innovación.
+
+Si pretendemos dar solución a un determinado problema podemos pensar en dos extremos opuestos desde el punto de vista de la comunicación entre las personas que buscan una solución a dicho problema:
+
+- Cada persona trabaja de manera aislada, sin comunicarse con otras personas que también trabajan en la resolución del problema. En este caso, cualquier solución parcial a la que llegue una de las personas no llega al resto de ellas, lo que hace que el avance en la solución sea más lento. Sin embargo, esta independencia permite que surjan ideas "frescas" que no estén sesgadas por el resto de personas que trabajan en la búsqueda de una solución.
+- Un _brainstorming_ o lluvia de ideas es una sesión en la que un grupo de personas exponen sus ideas para resolver un problema. En este caso, surgen muchas ideas a la vez y unas ideas pueden ayudar a mejorar las soluciones propuestas por otros, de modo que se puede llegar a una solución de una manera mucho más rápida que de manera aislada. Sin embargo, esta interrelación tan fuerte entre estas personas puede hacer que todas terminen convergiendo a una idea común (_groupthinking_) que no tiene por qué ser la mejor solución al problema.
+
+Estas dos formas de comunicación las podemos representar en forma de red tal y como se observa en la siguiente figura.
+
+![Redes que representan las dos formas extremas de atacar un problema](../images/tema08/redInnovacion.png)
+
+Por otro lado, un problema complejo puede quedar representado mediante su espacio de soluciones, es decir, el conjunto de todas las soluciones posibles a las que se puede llegar para resolver este problema. De entre todas las soluciones habrá soluciones mejores y soluciones peores. La bondad de la solución es calculada mediante una _función de fitness_, de modo que podemos representar el espacio de soluciones gráficamente de acuerdo a esta función. Este espacio de soluciones puede ser más o menos "rugoso" dependiendo del problema, es decir, podemos tener un espacio de soluciones con una única solución buena (la solución que maximiza la función de fitness) o un espacio donde existan múltiples máximos locales (soluciones que maximizan la función de fitness en relación con las soluciones más cercanas). El problema de este segundo tipo de espacios es que nos podemos quedar en una de estas soluciones locales sin llegar a conocer que pueden existir soluciones mejores que la que hemos alcanzado.
+
+Lazer y Friedman usaron el modelo NK de Kauffman[^4] para simular el proceso de difusión de innovación para la resolución de problemas y cómo las red de comunicación entre las personas implicadas en la resolución del problema afecta a la velocidad y a la bondad de las soluciones alcanzadas. En este modelo, $N$ representa la dimensionalidad del espacio de soluciones, el número de bits necesarios para representar la solución. Por ejemplo, en el problema de la mochila[^5], $N$ representa cada uno de los objetos que podemos meter en la mochila, siendo la solución un vector de bits donde 0 representa que no lo hemos metido en la mochila, mientras 1 representa que sí lo llevamos en la misma. Por otro lado, $K$ es un parámetro que mide la rugosidad del espacio de soluciones. Podemos entender el significado de este parámetro con la siguiente figura:
+
+![Representación del espacio de soluciones de acuerdo al valor de $K$](../images/tema08/NK.png)
+
+[^4]: Lazer, D., & Friedman, A. (2007). [The network structure of exploration and exploitation](http://www.ksg.harvard.edu/davidlazer/files/papers/Lazer_Friedman_ASQ.pdf). Administrative Science Quarterly, 52(4), 667-694.
+
+[^5]: [http://es.wikipedia.org/wiki/Problema_de_la_mochila](http://es.wikipedia.org/wiki/Problema_de_la_mochila)
+
+La simulación del proceso de difusión de innovación consiste en lo siguiente:
+
+1. Tenemos una red en la que cada nodo almacena una cadena de $N$ bits que representa la solución que tiene un determinado individuo de ese problema. 
+2. En cada paso de simulación, cada nodo evalúa si alguno de sus vecinos tiene una solución mejor que la suya.
+    1. En caso afirmativo, "imita" a su vecino (copia la solución de su vecino).
+    2. En caso negativo, "innova", modificando aleatoriamente uno de los bits de su solución.
+3. La simulación termina cuando todos los nodos convergen a la misma solución.
+
+La estructura de la red tiene un fuerte impacto en la velocidad de difusión de la innovación y cuál es la bondad de la solución alcanzada. Vamos a probar con una red de mundo pequeño para comprender cómo se comporta el modelo de difusión. Podemos utilizar el modelo [SmallWorld Innovation](http://spark-public.s3.amazonaws.com/sna/netlearn/NetLogo502/SmallWorldInnovation.html), disponible en el Campus Virtual.
+
+Las conclusiones que se obtienen de esta simulación es que cuanto mayor es la comunicación entre los nodos más rápido se converge a una solución mejor que la media inicial. Sin embargo, esta solución no es tan buena como la que se alcanza en una red con menos conexiones ya que no ha habido suficiente tiempo como para que la innovación se propague por la red. La red con menos conexiones alcanza una solución mejor pero, por contra, tarda más en converger.
+
+![Soluciones finales que alcanza la simulación. La red de la izquierda converge a una solución mejor pero tarda mucho más tiempo.](../images/tema08/solSimulacion.png)
+
