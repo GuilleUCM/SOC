@@ -182,7 +182,7 @@ Tal y como hemos indicado, estos modelos no tienen en cuenta la red de contactos
 
 Los modelos de contagio basados en redes se comportan de manera similar a los vistos hasta ahora salvo que solo se tendrán en cuenta los contactos definidos por la red, en lugar de suponer que cualquier individuo puede estar en contacto con cualquier otro.
 
-En los modelos basados en redes, $\beta$ es el __ratio de transmisión__ y representará la probabilidad de contagio de un nodo infectado a otro susceptible que esté en contacto con él (hay un enlace entre los dos nodos).
+En los modelos basados en redes, $\beta$ es la __tasa de transmisión__ y representa la probabilidad de contagio de un nodo infectado a otro susceptible que esté en contacto con él (hay un enlace entre los dos nodos).
 
 En general, la simulación de estos procesos suele ser más sencilla que la resolución analítica de los modelos en redes complejas. Por ejemplo, una forma sencilla de simular un proceso de contagio simple sería la siguiente:
 
@@ -195,7 +195,7 @@ En general, la simulación de estos procesos suele ser más sencilla que la reso
 
 Existen alternativas más complejas (y más realistas), basadas en técnicas de modelado social o modelado basado en agentes, en los que cada individuo (nodo) se modela como un agente que puede incluir sus propias características individuales y que pueden generar comportamientos emergentes. Se pueden incluir procesos estocásticos de actualización de estados que simulan eventos aleatorios que pueden ocurrir en los procesos dinámicos. 
 
-Dependiendo del fenómeno de difusión que queramos simular tendremos que decidir qué red tendremos que modelar. Como ejemplo podemos ver que redes se usan para modelar distintos fenómenos en la siguiente tabla:
+Dependiendo del fenómeno de difusión que queramos simular tendremos que decidir qué red tendremos que modelar. Como ejemplo podemos ver qué redes se usan para modelar distintos fenómenos en la siguiente tabla:
 
 ![Modelados de fenómenos de contagio y redes utilizadas](../images/tema08/tabla.png)
 
