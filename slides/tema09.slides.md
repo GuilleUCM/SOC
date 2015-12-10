@@ -398,7 +398,7 @@ Aproximación durante el comportamiento temprano
 
 $$i = i_0 (1+ \frac{\langle k \rangle^2 - \langle k \rangle}{\langle k^2 \rangle - \langle k \rangle}(e^{t/\tau}-1))$$
 
-* $\tau$ representa el **periodo de incubación**: cantidad de tiempo que requiere la epidemia para crecer
+* $\tau$ representa el **tiempo característico**
 * Menor $\tau \to$ más rápido se propaga la enfermedad
 
 $$\tau = \frac{\langle k \rangle}{\beta(\langle k^2 \rangle - \langle k \rangle)}$$
@@ -406,11 +406,11 @@ $$\tau = \frac{\langle k \rangle}{\beta(\langle k^2 \rangle - \langle k \rangle)
 ### Modelo SI en redes
 
 - Cuanto mayor sea el grado de un nodo mayor es la probabilidad de que ese nodo sea infectado
-- El periodo de incubación **depende de los momentos de primer y segundo orden** de la distribución de grados ($\langle k \rangle$ y $\langle k^2 \rangle$), respectivamente
+- El tiempo característico **depende de los momentos de primer y segundo orden** de la distribución de grados ($\langle k \rangle$ y $\langle k^2 \rangle$, respectivamente)
 
 ### Modelo SI en redes
 
-> **Conclusión:** En una **red aleatoria** el periodo de incubación depende de la densidad de la red
+> **Conclusión:** En una **red aleatoria** el tiempo característico depende de la densidad de la red
 > 
 > La epidemia se propaga más rápido cuanto más densa sea ésta (mayor $\langle k \rangle$).
 
@@ -426,7 +426,7 @@ $$\tau_{ER} = \frac{1}{\beta(\langle k \rangle)} \text{ ya que } \langle k^2 \ra
 
 > $\gamma < 3$: $\langle k^2 \rangle$ diverge y $\tau \to 0$
 > 
-> **El periodo de incubación característico desaparece** y la epidemia es instantánea
+> **El tiempo característico característico desaparece** y la epidemia es instantánea
 
 > Los hubs son los primeros nodos en infectarse e infectan más rápidamente a la mayoría de los nodos.
 
@@ -438,7 +438,7 @@ Tasa de infectados
 
 $$\frac{di_k}{dt} = \beta (1-i_k(t))k \Theta_k(t) _ \mu \cdot i_k(t)$$
 
-El periodo de incubación $\tau$
+El tiempo característico $\tau$
 
 $$\tau^{SIS} = \frac{\langle k \rangle}{\beta \langle k^2 \rangle - \mu \langle k \rangle}$$
 
@@ -446,19 +446,24 @@ $$\tau^{SIS} = \frac{\langle k \rangle}{\beta \langle k^2 \rangle - \mu \langle 
 
 * Para un tamaño suficientemente grande de $\mu$ el tiempo característico se hace negativo e $i_k$ decrece exponencialmente
 * Sin embargo, **depende de la topología de la red**
-* **Ritmo reproductivo básico** $\lambda = \frac{\beta}{\mu}$: representativo de la enfermedad (o de lo que queremos difundir)
+
+### Modelos SIS en redes
+
+* **Ritmo reproductivo básico** $R_0 = \frac{\beta}{\mu}$: representativo de la enfermedad (o de lo que queremos difundir)
 * Cuanto mayor es el ritmo reproductivo básico más probable es que la enfermedad se propague
-* **Umbral epidemiológico** ($\lambda_C$): Mínimo valor de $\lambda$ necesario para que se propague la enfermedad
+* **Umbral epidemiológico** ($\lambda_C$): Mínimo valor de $R_0$ necesario para que se propague la enfermedad
 * También dependerá de la estructura de la red
 
 ### Modelos SIS en redes
 
 - Para una **red aleatoria** 
 
+$$R_0 > \frac{1}{\langle k \rangle +1}$$
+
 $$\lambda_C = \frac{1}{\langle k \rangle +1}$$
 
 - Siempre va a ser distinto de cero
-- Dependiendo del valor de $\lambda$, podemos conseguir que la epidemia alcance un estado endémico (si $\lambda > \lambda_C$) o que la epidemia desaparezca (si $\lambda < \lambda_C$).
+- Dependiendo del valor de $R_0$, podemos conseguir que la epidemia alcance un estado endémico (si $R_0 > \lambda_C$) o que la epidemia desaparezca (si $R_0 < \lambda_C$).
 
 ### Modelos SIS en redes
 
@@ -617,6 +622,43 @@ Dos estados de equilibrio posibles:
 * **Ejemplo**: Cambiamos de estado a los nodos 11 y 14 
 
 ![](../images/tema08/redDifusion.png)
+
+## El papel del peso de los enlaces y las comunidades
+
+### Peso de los enlaces o _tie strength_
+
+- Hasta ahora hemos considerado que el peso de los enlaces es el mismo para toda la red.
+- Este peso (conocido como _tie strenght_) influye realmente en los procesos de difusión.
+ 
+> En una red de teléfonos móviles en la que los enlaces tienen información del número de minutos que cada teléfono está en comunicación con otro,  podemos suponer que cierta información se propagará más rápidamente entre aquellos teléfonos que pasan más tiempo en contacto.
+
+### Peso de los enlaces o _tie strength_
+
+- Modelo basado en umbrales:
+
+$$p_{ij} = \beta \cdot w_{ij}$$
+
+- $\beta$ es la tasa de transmisión
+- $w_{ij}$ es el peso del enlace. 
+
+### Peso de los enlaces o _tie strength_
+
+![Velocidad a la que se propaga la información en una red de control frente a una red real\label{fig:tiestrenght}](../images/tema09/tiestrength.png)
+
+### Peso de los enlaces o _tie strength_
+
+- La información circula más rápidamente en la red de control.
+- Cuando la información alcanza una comunidad (un grupo de nodos con enlaces de gran peso) la información se propaga rápidamente dentro de ella.
+- Sin embargo, como los enlaces entre comunidades suelen ser débiles, la información tiene dificultades de escapar de la comunidad.
+
+### Efecto de las comunidades
+
+> **La existencia de comunidades** tiene una fuerte influencia en los procesos de difusión
+
+- Las comunidades permiten que se produzca la propagación de los modelos basados en umbrales. 
+- Las comunidades sirven de barrera para la difusión
+- Distintas opiniones puedan convivir en la misma red
+
 
 ### Juego de coordinación en redes
 

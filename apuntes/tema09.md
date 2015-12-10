@@ -273,7 +273,7 @@ $$i_k = i_0 (1+ \frac{k \langle k \rangle -1}{\langle k^2 \rangle - \langle k \r
 
 $$i = i_0 (1+ \frac{\langle k \rangle^2 - \langle k \rangle}{\langle k^2 \rangle - \langle k \rangle}(e^{t/\tau}-1))$$
 
-$\tau$ representa el periodo de incubación, que es la cantidad de tiempo que requiere la epidemia para crecer. Cuando menor es $\tau$, más rápido se propaga la enfermedad. Según las ecuaciones anteriores se puede calcular de la siguiente forma:
+Recordemos que $\tau$ representa el tiempo característico, de modo que cuanto menor es $\tau$, más rápido se propaga la enfermedad. Según las ecuaciones anteriores se puede calcular de la siguiente forma:
 
 $$\tau = \frac{\langle k \rangle}{\beta(\langle k^2 \rangle - \langle k \rangle)}$$
 
@@ -286,7 +286,7 @@ De estas ecuaciones podemos obtener las siguientes conclusiones:
 $$\tau_{ER} = \frac{1}{\beta(\langle k \rangle)} \text{ ya que } \langle k^2 \rangle = \langle k \rangle (\langle k \rangle - 1)$$
 
 - En una red libre de escala los momentos dependen de $\gamma$, de modo que si $\gamma \geq 3$ ambos momentos son finitos y el contagio se comporta de manera similar a la red aleatoria.
-- Sin embargo, si $\gamma < 3$ en una red libre de escala entonces $\langle k^2 \rangle$ diverge y $\tau \to 0$, lo que implica que el periodo de incubación característico desaparece y la epidemia es instantánea. Esto se debe a que los hubs son los primeros nodos en infectarse y, dada su alta conectividad, infectan más rápidamente a la mayoría de los nodos.
+- Sin embargo, si $\gamma < 3$ en una red libre de escala entonces $\langle k^2 \rangle$ diverge y $\tau \to 0$, lo que implica que el tiempo característico desaparece y la epidemia es instantánea. Esto se debe a que los hubs son los primeros nodos en infectarse y, dada su alta conectividad, infectan más rápidamente a la mayoría de los nodos.
 
 #### Modelos SIS  {-}
 
@@ -294,17 +294,19 @@ En los modelos con recuperación la ecuación diferencial de la tasa de infectad
 
 $$\frac{di_k}{dt} = \beta (1-i_k(t))k \Theta_k(t) _ \mu \cdot i_k(t)$$
 
-Donde vemos que aparece la tasa de recuperación $\mu$. Esto hace que el periodo de incubación $\tau$ sea algo distinto:
+Donde vemos que aparece la tasa de recuperación $\mu$. Esto hace que el tiempo característico $\tau$ sea algo distinto:
 
 $$\tau^{SIS} = \frac{\langle k \rangle}{\beta \langle k^2 \rangle - \mu \langle k \rangle}$$
 
-Para un tamaño suficientemente grande de $\mu$ el tiempo característico se hace negativo e $i_k$ decrece exponencialmente. Sin embargo, depende de la topología de la red. En lugar de solo $\mu$ vamos a tener en cuenta el ritmo reproductivo básico $\lambda = \frac{\beta}{\mu}$, que es representativo de la enfermedad (o de lo que queremos difundir) y que cuanto mayor sea más probable es que la enfermedad se propague. Sin embargo, ¿cuál es el mínimo valor necesario para que se propague la enfermedad? Esto es lo que se conoce como el **umbral epidemiológico** ($\lambda_C$)y también dependerá de la estructura de la red.
+Para un tamaño suficientemente grande de $\mu$ el tiempo característico se hace negativo e $i_k$ decrece exponencialmente. Sin embargo, depende de la topología de la red. En lugar de solo $\mu$ vamos a tener en cuenta el ritmo reproductivo básico $R_0 = \frac{\beta}{\mu}$, que es representativo de la enfermedad (o de lo que queremos difundir) y que cuanto mayor sea más probable es que la enfermedad se propague. Sin embargo, ¿cuál es el mínimo valor necesario para que se propague la enfermedad? Esto es lo que se conoce como el **umbral epidemiológico** ($\lambda_C$) y también dependerá de la estructura de la red.
 
 - Para una red aleatoria tenemos que el umbral epidemiológico es:
 
+$$R_0 > \frac{1}{\langle k \rangle +1}$$
+
 $$\lambda_C = \frac{1}{\langle k \rangle +1}$$
 
-Esto implica que siempre va a ser distinto de cero y que, dependiendo del valor de $\lambda$, podemos conseguir que la epidemia alcance un estado endémico (si $\lambda > \lambda_C$) o que la epidemia desaparezca (si $\lambda < \lambda_C$).
+Esto implica que siempre va a ser distinto de cero y que, dependiendo del valor de $R_0$, podemos conseguir que la epidemia alcance un estado endémico (si $R_0 > \lambda_C$) o que la epidemia desaparezca (si $R_0 < \lambda_C$).
 
 - Para una red libre de escala tenemos que el umbral epidemiológico es:
 
@@ -331,13 +333,13 @@ En este caso, la propagación se comporta de una manera bastante distinta que de
 - El valor del umbral utilizado.
 - La elección de los nodos inicialmente infectados.
 
-A modo de ejemplo podemos ver la diferencia entre un contagio simple y uno complejo en un solo paso de simulación en la figura que aparece a continuación. Como se puede ver, el contagio simple se propaga de una manera mucho más rápida. Además, el contagio simple permite llegar a toda la red (en la Figura, en $t=2$ todos los nodos estarían contagiados). Sin embargo, el contagio complejo es mucho más lento y puede verse detenido rápidamente debido a la falta de conexiones (en la Figura, en $t=2$ solo J sería infectado y la infección se detendría).
+A modo de ejemplo podemos ver la diferencia entre un contagio simple y uno complejo en un solo paso de simulación en la Figura \ref{fig:contagioComp}. Como se puede ver, el contagio simple se propaga de una manera mucho más rápida. Además, el contagio simple permite llegar a toda la red (en la Figura, en $t=2$ todos los nodos estarían contagiados). Sin embargo, el contagio complejo es mucho más lento y puede verse detenido rápidamente debido a la falta de conexiones (en la Figura, en $t=2$ solo J sería infectado y la infección se detendría).
 
-![Contagio simple vs. Contagio complejo](../images/tema08/contagioComplejo.png)
+![Contagio simple vs. Contagio complejo\label{fig:contagioComp}](../images/tema08/contagioComplejo.png)
 
 Podemos ver también que los modelos de contagio complejos se comportan de manera distinta en los modelos de redes vistos:
 
-- En una red de mundo pequeño (Watts-Strogatz) los enlaces débiles o atajos ya no funcionan como medio para aumentar la velocidad de propagación. Podemos ver este comportamiento en la simulación del modelo de contagio complejo en una red de mundo pequeño que hemos dejado en el Campus Virtual.
+- En una red de mundo pequeño (Watts-Strogatz) los enlaces débiles o atajos ya no funcionan como medio para aumentar la velocidad de propagación. 
 - En una red libre de escala, los hubs pierden importancia en la velocidad de propagación ya que, aunque llegan a muchos nodos, solo ellos no son capaces de propagar la enfermedad.
 - En una red aleatoria la propagación depende muy decisivamente de los nodos inicialmente infectados.
 
@@ -386,7 +388,21 @@ Si tomamos de nuevo el ejemplo de la red anterior, si mantenemos el beneficio in
 
 Podemos ver más en detalle este comportamiento utilizando el [Modelo de Difusión](http://www.ladamic.com/netlearn/NetLogo4/DiffusionCompetition.html) que está disponible en la web, seleccionando distintos nodos iniciales y viendo cómo la propagación se comporta de manera distinta en unos y otros.
 
-Así mismo, este modelo nos permite comprobar que la estructura de la red también tiene una fuerte influencia en los procesos de difusión. En particular, la existencia de comunidades tiene una especial importancia en los procesos de difusión. Las comunidades tienen tres papeles fundamentales dentro de estos procesos de difusión:
+### El papel del peso de los enlaces y las comunidades
+
+En los modelos vistos hasta ahora hemos considerado que el peso de los enlaces es el mismo para toda la red. En realidad, este peso (conocido como _tie strenght_) influye realmente en los procesos de difusión. Por ejemplo, si suponemos una red de teléfonos móviles en la que los enlaces tienen información del número de minutos que cada teléfono está en comunicación con otro, entonces podemos suponer que cierta información se propagará más rápidamente entre aquellos teléfonos que pasan más tiempo en contacto.
+
+Para modelar este proceso de difusión podemos definir usar un modelo basado en umbrales en el que definimos una probabilidad $p_{ij}$ de que un nodo $i$ propague cierta información a otro nodo $j$:
+
+$$p_{ij} = \beta \cdot w_{ij}$$
+
+Donde $\beta$ es la tasa de transmisión y $w_{ij}$ es el peso del enlace. 
+
+Si comparamos la velocidad a la que se propaga cierta información en una red en la que todos los enlaces tienen el mismo peso (red de Control) frente a una en la que cada enlace tiene su propio peso (red Real), vemos que la información circula más rápidamente en la primera que en la segunda (Figura \ref{fig:tiestrenght}). Esto se debe a que cuando la información alcanza una comunidad (un grupo de nodos con enlaces de gran peso) la información se propaga rápidamente dentro de ella. Sin embargo, como los enlaces entre comunidades suelen ser débiles, la información tiene dificultades de escapar de la comunidad.
+
+![Velocidad a la que se propaga la información en una red de control frente a una red real\label{fig:tiestrenght}](../images/tema09/tiestrength.png)
+
+Como se puede ver, las comunidades tienen tres papeles fundamentales dentro de estos procesos de difusión:
 
 - Las comunidades permiten que se produzca la propagación de los modelos basados en umbrales. La existencia de componentes con alta conectividad posibilitan la propagación en este tipo de modelos. Sin la presencia es ellas no sería posible que se produjese este tipo de propagación.
 - Las comunidades sirven de barrera para la difusión, de modo que crean "bolsas aisladas" que no permiten la adopción de ideas externas a la comunidad. Cuando una cascada alcanza una comunidad (un agrupamiento de nodos de alta densidad) ésta se detendrá ya que no podrá entrar dentro de dicha comunidad.
@@ -399,7 +415,7 @@ Así mismo, este modelo nos permite comprobar que la estructura de la red tambi�
 
 Existen modelos de adopción de opiniones más complejos. Uno de ellos es el que permite la existencia de __nodos bilingües__, es decir, nodos que pueden adoptar la opción A y B simultáneamente pero con una penalización $c$. 
 
-En este caso, estos nodos pueden conseguir que la opinión minoritaria persista en la red a pesar en condiciones en las que la opinión minoritaria desaparecería. A modo de ejemplo podemos utilizar una red lineal y observar el comportamiento de la misma con y sin nodos bilingües. Sin ellos, la opción con menor beneficio siempre termina por desaparecer de la red. Sin embargo, la presencia de nodos bilingües permite que dicha opción "sobreviva" entre pares de estos nodos. Podemos observar este comportamiento utilizando la simulación del "Modelo de cascasda" disponible en el Campus Virtual.
+En este caso, estos nodos pueden conseguir que la opinión minoritaria persista en la red a pesar en condiciones en las que la opinión minoritaria desaparecería. A modo de ejemplo podemos utilizar una red lineal y observar el comportamiento de la misma con y sin nodos bilingües. Sin ellos, la opción con menor beneficio siempre termina por desaparecer de la red. Sin embargo, la presencia de nodos bilingües permite que dicha opción "sobreviva" entre pares de estos nodos. 
 
 #### Umbrales heterogéneos. {-}
 
@@ -413,11 +429,11 @@ En este caso, la diversidad de los umbrales juega un papel muy importante ya que
 
 En esta ocasión lo que se desea es modelar la manera en la que se coordinan ciertas acciones colectivas como acudir a una manifestación contra un gobierno represivo. En este caso no tenemos información de las intenciones del resto de la población (ese gobierno se ha encargado de controlar los medios de comunicación y hay una "recompensa" negativa por asistir a la manifestación) sino que solo se tiene información de los individuos más cercanos, lo que dificulta enormemente la toma de esta decisión. Se produce el fenómeno de lo que se conoce como _ignorancia pluralista_, en el que no se tiene conocimiento de la voluntad del resto (aunque realmente haya una verdadera voluntad a favor o en contra). Este mismo problema de coordinación se puede aplicar en otras situaciones como los vetos y votaciones de un consejo de administración o dirección. 
 
-La particularidad de este modelo es que pretende predecir el comportamiento coordinado de una red en el que cada individuo toma la decisión basándose solo en hablar con las personas más cercanas, es decir, teniendo un horizonte muy limitado. En general, estas acciones pueden modelarse mediante un modelo basado en umbrales heterogéneos, donde el umbral de cada persona significa "me manifestaré en caso de que haya al menos $k$ vecinos en la manifestación (incluyéndome a mí)". Así mismo, cada nodo también conoce los umbrales de sus vecinos, pero no del resto, por lo que es difícil predecir qué ocurrirá. La decisión se deberá tomar solo usando la información conocida (la suya y la de sus vecinos).
+La particularidad de este modelo es que pretende predecir el comportamiento coordinado de una red en el que cada individuo toma la decisión basándose solo en la información que tiene de las personas más cercanas, es decir, teniendo un horizonte muy limitado. En general, estas acciones pueden modelarse mediante un modelo basado en umbrales heterogéneos, donde el umbral de cada persona significa "me manifestaré en caso de que haya al menos $k$ vecinos en la manifestación (incluyéndome a mí)". Así mismo, cada nodo también conoce los umbrales de sus vecinos, pero no del resto, por lo que es difícil predecir qué ocurrirá. La decisión se deberá tomar solo usando la información conocida (la suya y la de sus vecinos).
 
-Por ejemplo, en la siguiente figura se pueden ver tres redes distintas donde, para cada nodo hemos indicado su umbral. En la primera red no se producirá la acción colectiva ya que hay un nodo ($w$) que tiene un umbral de 4 y solo hay 3 nodos en la red. En la segunda red, aunque si todos conociesen la información globalmente se produciría la acción colectiva, no se producirá dicha acción ya que cada nodo carece de información suficiente _localmente_ para tomar la decisión con seguridad. En la tercera red existe un conocimiento común: los nodos $u$, $v$ y $w$ conocen su información y saben que sus vecinos conocen su información, produciendo una cadena de conocimiento que permite que los tres nodos realicen la acción colectiva y permitiendo que también $x$ la realice.
+Por ejemplo, en la Figura\ref{fig:colectivo} se pueden ver tres redes distintas donde, para cada nodo, hemos indicado su umbral (es decir, cuántos nodos de la red, incluido yo mismo, han de realizar una acción para que dicho nodo realice la misma acción). En la primera red no se producirá la acción colectiva ya que hay un nodo ($w$) que tiene un umbral de 4 y solo hay 3 nodos en la red. En la segunda red, aunque si todos conociesen la información globalmente se produciría la acción colectiva, no se producirá dicha acción ya que cada nodo carece de información suficiente _localmente_ para tomar la decisión con seguridad. En la tercera red existe un conocimiento común: los nodos $u$, $v$ y $w$ conocen su información y saben que sus vecinos conocen su información, produciendo una cadena de conocimiento que permite que los tres nodos realicen la acción colectiva y permitiendo que también $x$ la realice.
 
-![Modelado de acciones colectivas. Las dos primeras no ocurrirán mientras que la tercera sí ocurrirá](../images/tema08/accionColectiva.png)
+![Modelado de acciones colectivas. Las dos primeras no ocurrirán mientras que la tercera sí ocurrirá\label{fig:colectivo}](../images/tema08/accionColectiva.png)
 
 ### Difusión de la innovación
 
@@ -442,7 +458,7 @@ Lazer y Friedman usaron el modelo NK de Kauffman[^4] para simular el proceso de 
 
 [^5]: [http://es.wikipedia.org/wiki/Problema_de_la_mochila](http://es.wikipedia.org/wiki/Problema_de_la_mochila)
 
-La simulación del proceso de difusión de innovación consiste en lo siguiente:
+La simulación del proceso de difusión de  consiste en lo siguiente:
 
 1. Tenemos una red en la que cada nodo almacena una cadena de $N$ bits que representa la solución que tiene un determinado individuo de ese problema. 
 2. En cada paso de simulación, cada nodo evalúa si alguno de sus vecinos tiene una solución mejor que la suya.

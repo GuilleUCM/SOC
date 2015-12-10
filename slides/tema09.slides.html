@@ -424,7 +424,7 @@ Guillermo Jiménez Díaz (gjimenez@ucm.es)<br/>Alberto Díaz (albertodiaz@fdi.uc
 <p>Aproximación durante el comportamiento temprano</p>
 <p><span class="math">\[i = i_0 (1+ \frac{\langle k \rangle^2 - \langle k \rangle}{\langle k^2 \rangle - \langle k \rangle}(e^{t/\tau}-1))\]</span></p>
 <ul>
-<li><span class="math">\(\tau\)</span> representa el <strong>periodo de incubación</strong>: cantidad de tiempo que requiere la epidemia para crecer</li>
+<li><span class="math">\(\tau\)</span> representa el <strong>tiempo característico</strong></li>
 <li>Menor <span class="math">\(\tau \to\)</span> más rápido se propaga la enfermedad</li>
 </ul>
 <p><span class="math">\[\tau = \frac{\langle k \rangle}{\beta(\langle k^2 \rangle - \langle k \rangle)}\]</span></p>
@@ -432,12 +432,12 @@ Guillermo Jiménez Díaz (gjimenez@ucm.es)<br/>Alberto Díaz (albertodiaz@fdi.uc
 <h1><span class="header-section-number">0.11.4</span> Modelo SI en redes</h1>
 <ul>
 <li>Cuanto mayor sea el grado de un nodo mayor es la probabilidad de que ese nodo sea infectado</li>
-<li>El periodo de incubación <strong>depende de los momentos de primer y segundo orden</strong> de la distribución de grados (<span class="math">\(\langle k \rangle\)</span> y <span class="math">\(\langle k^2 \rangle\)</span>), respectivamente</li>
+<li>El tiempo característico <strong>depende de los momentos de primer y segundo orden</strong> de la distribución de grados (<span class="math">\(\langle k \rangle\)</span> y <span class="math">\(\langle k^2 \rangle\)</span>, respectivamente)</li>
 </ul>
 </div><div id="modelo-si-en-redes-5" class="slide section level3">
 <h1><span class="header-section-number">0.11.5</span> Modelo SI en redes</h1>
 <blockquote>
-<p><strong>Conclusión:</strong> En una <strong>red aleatoria</strong> el periodo de incubación depende de la densidad de la red</p>
+<p><strong>Conclusión:</strong> En una <strong>red aleatoria</strong> el tiempo característico depende de la densidad de la red</p>
 <p>La epidemia se propaga más rápido cuanto más densa sea ésta (mayor <span class="math">\(\langle k \rangle\)</span>).</p>
 </blockquote>
 <p><span class="math">\[\tau_{ER} = \frac{1}{\beta(\langle k \rangle)} \text{ ya que } \langle k^2 \rangle = \langle k \rangle (\langle k \rangle - 1)\]</span></p>
@@ -453,7 +453,7 @@ Guillermo Jiménez Díaz (gjimenez@ucm.es)<br/>Alberto Díaz (albertodiaz@fdi.uc
 <h1><span class="header-section-number">0.11.7</span> Modelo SI en redes</h1>
 <blockquote>
 <p><span class="math">\(\gamma &lt; 3\)</span>: <span class="math">\(\langle k^2 \rangle\)</span> diverge y <span class="math">\(\tau \to 0\)</span></p>
-<p><strong>El periodo de incubación característico desaparece</strong> y la epidemia es instantánea</p>
+<p><strong>El tiempo característico característico desaparece</strong> y la epidemia es instantánea</p>
 </blockquote>
 <blockquote>
 <p>Los hubs son los primeros nodos en infectarse e infectan más rápidamente a la mayoría de los nodos.</p>
@@ -462,30 +462,35 @@ Guillermo Jiménez Díaz (gjimenez@ucm.es)<br/>Alberto Díaz (albertodiaz@fdi.uc
 <h1><span class="header-section-number">0.12.1</span> Modelos SIS en redes</h1>
 <p>Tasa de infectados</p>
 <p><span class="math">\[\frac{di_k}{dt} = \beta (1-i_k(t))k \Theta_k(t) _ \mu \cdot i_k(t)\]</span></p>
-<p>El periodo de incubación <span class="math">\(\tau\)</span></p>
+<p>El tiempo característico <span class="math">\(\tau\)</span></p>
 <p><span class="math">\[\tau^{SIS} = \frac{\langle k \rangle}{\beta \langle k^2 \rangle - \mu \langle k \rangle}\]</span></p>
 </div><div id="modelos-sis-en-redes-2" class="slide section level3">
 <h1><span class="header-section-number">0.12.2</span> Modelos SIS en redes</h1>
 <ul>
 <li>Para un tamaño suficientemente grande de <span class="math">\(\mu\)</span> el tiempo característico se hace negativo e <span class="math">\(i_k\)</span> decrece exponencialmente</li>
 <li>Sin embargo, <strong>depende de la topología de la red</strong></li>
-<li><strong>Ritmo reproductivo básico</strong> <span class="math">\(\lambda = \frac{\beta}{\mu}\)</span>: representativo de la enfermedad (o de lo que queremos difundir)</li>
-<li>Cuanto mayor es el ritmo reproductivo básico más probable es que la enfermedad se propague</li>
-<li><strong>Umbral epidemiológico</strong> (<span class="math">\(\lambda_C\)</span>): Mínimo valor de <span class="math">\(\lambda\)</span> necesario para que se propague la enfermedad</li>
-<li>También dependerá de la estructura de la red</li>
 </ul>
 </div><div id="modelos-sis-en-redes-3" class="slide section level3">
 <h1><span class="header-section-number">0.12.3</span> Modelos SIS en redes</h1>
 <ul>
-<li>Para una <strong>red aleatoria</strong></li>
-</ul>
-<p><span class="math">\[\lambda_C = \frac{1}{\langle k \rangle +1}\]</span></p>
-<ul>
-<li>Siempre va a ser distinto de cero</li>
-<li>Dependiendo del valor de <span class="math">\(\lambda\)</span>, podemos conseguir que la epidemia alcance un estado endémico (si <span class="math">\(\lambda &gt; \lambda_C\)</span>) o que la epidemia desaparezca (si <span class="math">\(\lambda &lt; \lambda_C\)</span>).</li>
+<li><strong>Ritmo reproductivo básico</strong> <span class="math">\(R_0 = \frac{\beta}{\mu}\)</span>: representativo de la enfermedad (o de lo que queremos difundir)</li>
+<li>Cuanto mayor es el ritmo reproductivo básico más probable es que la enfermedad se propague</li>
+<li><strong>Umbral epidemiológico</strong> (<span class="math">\(\lambda_C\)</span>): Mínimo valor de <span class="math">\(R_0\)</span> necesario para que se propague la enfermedad</li>
+<li>También dependerá de la estructura de la red</li>
 </ul>
 </div><div id="modelos-sis-en-redes-4" class="slide section level3">
 <h1><span class="header-section-number">0.12.4</span> Modelos SIS en redes</h1>
+<ul>
+<li>Para una <strong>red aleatoria</strong></li>
+</ul>
+<p><span class="math">\[R_0 &gt; \frac{1}{\langle k \rangle +1}\]</span></p>
+<p><span class="math">\[\lambda_C = \frac{1}{\langle k \rangle +1}\]</span></p>
+<ul>
+<li>Siempre va a ser distinto de cero</li>
+<li>Dependiendo del valor de <span class="math">\(R_0\)</span>, podemos conseguir que la epidemia alcance un estado endémico (si <span class="math">\(R_0 &gt; \lambda_C\)</span>) o que la epidemia desaparezca (si <span class="math">\(R_0 &lt; \lambda_C\)</span>).</li>
+</ul>
+</div><div id="modelos-sis-en-redes-5" class="slide section level3">
+<h1><span class="header-section-number">0.12.5</span> Modelos SIS en redes</h1>
 <ul>
 <li>Para una <strong>red libre de escala</strong></li>
 </ul>
@@ -498,7 +503,7 @@ Guillermo Jiménez Díaz (gjimenez@ucm.es)<br/>Alberto Díaz (albertodiaz@fdi.uc
 <p>Consecuencia de los hubs: en el momento en el que la enfermedad infecta un hub puede pasar a un número muy grande de nodos, persistiendo en la población</p>
 </blockquote>
 </div><div id="modelos-de-contagio-simple-en-redes" class="slide section level3">
-<h1><span class="header-section-number">0.12.5</span> Modelos de contagio simple en redes</h1>
+<h1><span class="header-section-number">0.12.6</span> Modelos de contagio simple en redes</h1>
 <div class="figure">
 <img src="../images/tema08/resumenModelosRedes.png" alt="Resumen de los modelos epidémicos en redes (Network Science, cap. 10)" /><p class="caption">Resumen de los modelos epidémicos en redes (Network Science, cap. 10)</p>
 </div>
@@ -658,8 +663,49 @@ Guillermo Jiménez Díaz (gjimenez@ucm.es)<br/>Alberto Díaz (albertodiaz@fdi.uc
 <div class="figure">
 <img src="../images/tema08/redDifusion.png" />
 </div>
+</div><div id="el-papel-del-peso-de-los-enlaces-y-las-comunidades" class="titleslide slide section level2"><h1><span class="header-section-number">0.16</span> El papel del peso de los enlaces y las comunidades</h1></div><div id="peso-de-los-enlaces-o-tie-strength" class="slide section level3">
+<h1><span class="header-section-number">0.16.1</span> Peso de los enlaces o <em>tie strength</em></h1>
+<ul>
+<li>Hasta ahora hemos considerado que el peso de los enlaces es el mismo para toda la red.</li>
+<li>Este peso (conocido como <em>tie strenght</em>) influye realmente en los procesos de difusión.</li>
+</ul>
+<blockquote>
+<p>En una red de teléfonos móviles en la que los enlaces tienen información del número de minutos que cada teléfono está en comunicación con otro, podemos suponer que cierta información se propagará más rápidamente entre aquellos teléfonos que pasan más tiempo en contacto.</p>
+</blockquote>
+</div><div id="peso-de-los-enlaces-o-tie-strength-1" class="slide section level3">
+<h1><span class="header-section-number">0.16.2</span> Peso de los enlaces o <em>tie strength</em></h1>
+<ul>
+<li>Modelo basado en umbrales:</li>
+</ul>
+<p><span class="math">\[p_{ij} = \beta \cdot w_{ij}\]</span></p>
+<ul>
+<li><span class="math">\(\beta\)</span> es la tasa de transmisión</li>
+<li><span class="math">\(w_{ij}\)</span> es el peso del enlace.</li>
+</ul>
+</div><div id="peso-de-los-enlaces-o-tie-strength-2" class="slide section level3">
+<h1><span class="header-section-number">0.16.3</span> Peso de los enlaces o <em>tie strength</em></h1>
+<div class="figure">
+<img src="../images/tema09/tiestrength.png" alt="Velocidad a la que se propaga la información en una red de control frente a una red real" /><p class="caption">Velocidad a la que se propaga la información en una red de control frente a una red real</p>
+</div>
+</div><div id="peso-de-los-enlaces-o-tie-strength-3" class="slide section level3">
+<h1><span class="header-section-number">0.16.4</span> Peso de los enlaces o <em>tie strength</em></h1>
+<ul>
+<li>La información circula más rápidamente en la red de control.</li>
+<li>Cuando la información alcanza una comunidad (un grupo de nodos con enlaces de gran peso) la información se propaga rápidamente dentro de ella.</li>
+<li>Sin embargo, como los enlaces entre comunidades suelen ser débiles, la información tiene dificultades de escapar de la comunidad.</li>
+</ul>
+</div><div id="efecto-de-las-comunidades" class="slide section level3">
+<h1><span class="header-section-number">0.16.5</span> Efecto de las comunidades</h1>
+<blockquote>
+<p><strong>La existencia de comunidades</strong> tiene una fuerte influencia en los procesos de difusión</p>
+</blockquote>
+<ul>
+<li>Las comunidades permiten que se produzca la propagación de los modelos basados en umbrales.</li>
+<li>Las comunidades sirven de barrera para la difusión</li>
+<li>Distintas opiniones puedan convivir en la misma red</li>
+</ul>
 </div><div id="juego-de-coordinación-en-redes-14" class="slide section level3">
-<h1><span class="header-section-number">0.15.14</span> Juego de coordinación en redes</h1>
+<h1><span class="header-section-number">0.16.6</span> Juego de coordinación en redes</h1>
 <blockquote>
 <p>La estructura de la red también tiene una fuerte influencia en los procesos de difusión. En particular, <strong>la existencia de comunidades</strong></p>
 </blockquote>
@@ -668,14 +714,14 @@ Guillermo Jiménez Díaz (gjimenez@ucm.es)<br/>Alberto Díaz (albertodiaz@fdi.uc
 <li>Las comunidades sirven de barrera para la difusión</li>
 <li>Distintas opiniones puedan convivir en la misma red</li>
 </ul>
-</div><div id="otros-modelos-complejos-de-difusión" class="titleslide slide section level2"><h1><span class="header-section-number">0.16</span> Otros modelos complejos de difusión</h1></div><div id="nodos-bilingües" class="slide section level3">
-<h1><span class="header-section-number">0.16.1</span> Nodos bilingües</h1>
+</div><div id="otros-modelos-complejos-de-difusión" class="titleslide slide section level2"><h1><span class="header-section-number">0.17</span> Otros modelos complejos de difusión</h1></div><div id="nodos-bilingües" class="slide section level3">
+<h1><span class="header-section-number">0.17.1</span> Nodos bilingües</h1>
 <p><strong>Nodos bilingües</strong>: nodos que pueden adoptar la opción A y B simultáneamente pero con una penalización <span class="math">\(c\)</span></p>
 <blockquote>
 <p>Consiguen que la opinión minoritaria persista en la red en condiciones en las que la opinión minoritaria desaparecería</p>
 </blockquote>
 </div><div id="umbrales-heterogéneos" class="slide section level3">
-<h1><span class="header-section-number">0.16.2</span> Umbrales heterogéneos</h1>
+<h1><span class="header-section-number">0.17.2</span> Umbrales heterogéneos</h1>
 <ul>
 <li>Cada nodo <span class="math">\(v\)</span> tiene su propio beneficio por adoptar la opción A (<span class="math">\(a_v\)</span>) y su propio beneficio por adoptar la opción B (<span class="math">\(b_v\)</span>)</li>
 <li>La simulación de este modelo funciona de manera similar al anterior salvo porque cada nodo posee su propio umbral</li>
@@ -685,12 +731,12 @@ Guillermo Jiménez Díaz (gjimenez@ucm.es)<br/>Alberto Díaz (albertodiaz@fdi.uc
 <p>Para comprender la forma en la que se produce la difusión en una red social no solo hay que tener en cuenta el poder de los influenciadores sino que también cómo de influenciables son los nodos que lo rodean</p>
 </blockquote>
 </div><div id="umbrales-heterogéneos-1" class="slide section level3">
-<h1><span class="header-section-number">0.16.3</span> Umbrales heterogéneos</h1>
+<h1><span class="header-section-number">0.17.3</span> Umbrales heterogéneos</h1>
 <div class="figure">
 <img src="../images/tema08/umbralHeterogeneo.png" />
 </div>
-</div><div id="acciones-colectivas" class="titleslide slide section level2"><h1><span class="header-section-number">0.17</span> Acciones colectivas</h1></div><div id="acciones-colectivas-1" class="slide section level3">
-<h1><span class="header-section-number">0.17.1</span> Acciones colectivas</h1>
+</div><div id="acciones-colectivas" class="titleslide slide section level2"><h1><span class="header-section-number">0.18</span> Acciones colectivas</h1></div><div id="acciones-colectivas-1" class="slide section level3">
+<h1><span class="header-section-number">0.18.1</span> Acciones colectivas</h1>
 <ul>
 <li>Modelar la manera en la que se coordinan ciertas acciones colectivas</li>
 <li>Ejemplo: como acudir a una manifestación contra un gobierno represivo</li>
@@ -698,7 +744,7 @@ Guillermo Jiménez Díaz (gjimenez@ucm.es)<br/>Alberto Díaz (albertodiaz@fdi.uc
 <li><em>Ignorancia pluralista</em>: No se tiene conocimiento de la voluntad del resto (aunque realmente haya una verdadera voluntad a favor o en contra)</li>
 </ul>
 </div><div id="acciones-colectivas-2" class="slide section level3">
-<h1><span class="header-section-number">0.17.2</span> Acciones colectivas</h1>
+<h1><span class="header-section-number">0.18.2</span> Acciones colectivas</h1>
 <ul>
 <li>Predecir el comportamiento coordinado de una red en el que cada individuo toma la decisión basándose solo en hablar con las personas más cercanas, es decir, teniendo un horizonte muy limitado.</li>
 <li>Modelo basado en umbrales heterogéneos: el umbral de cada persona significa “me manifestaré en caso de que haya al menos <span class="math">\(k\)</span> vecinos en la manifestación (incluyéndome a mí)”</li>
@@ -706,12 +752,12 @@ Guillermo Jiménez Díaz (gjimenez@ucm.es)<br/>Alberto Díaz (albertodiaz@fdi.uc
 <li>La decisión se deberá tomar solo usando la información conocida (la suya y la de sus vecinos).</li>
 </ul>
 </div><div id="acciones-colectivas-3" class="slide section level3">
-<h1><span class="header-section-number">0.17.3</span> Acciones colectivas</h1>
+<h1><span class="header-section-number">0.18.3</span> Acciones colectivas</h1>
 <div class="figure">
 <img src="../images/tema08/accionColectiva.png" />
 </div>
-</div><div id="difusión-de-la-innovación" class="titleslide slide section level2"><h1><span class="header-section-number">0.18</span> Difusión de la innovación</h1></div><div id="difusión-de-la-innovación-1" class="slide section level3">
-<h1><span class="header-section-number">0.18.1</span> Difusión de la innovación</h1>
+</div><div id="difusión-de-la-innovación" class="titleslide slide section level2"><h1><span class="header-section-number">0.19</span> Difusión de la innovación</h1></div><div id="difusión-de-la-innovación-1" class="slide section level3">
+<h1><span class="header-section-number">0.19.1</span> Difusión de la innovación</h1>
 <ul>
 <li>Compartir información para la resolución de problemas y la difusión de la innovación</li>
 </ul>
@@ -729,12 +775,12 @@ Guillermo Jiménez Díaz (gjimenez@ucm.es)<br/>Alberto Díaz (albertodiaz@fdi.uc
 <p>Se puede llegar a una solución de una manera mucho más rápida. Terminen convergiendo a una idea común (<em>groupthinking</em>)</p>
 </blockquote>
 </div><div id="difusión-de-la-innovación-2" class="slide section level3">
-<h1><span class="header-section-number">0.18.2</span> Difusión de la innovación</h1>
+<h1><span class="header-section-number">0.19.2</span> Difusión de la innovación</h1>
 <div class="figure">
 <img src="../images/tema08/redInnovacion.png" alt="Redes que representan las dos formas extremas de atacar un problema" /><p class="caption">Redes que representan las dos formas extremas de atacar un problema</p>
 </div>
 </div><div id="difusión-de-la-innovación-3" class="slide section level3">
-<h1><span class="header-section-number">0.18.3</span> Difusión de la innovación</h1>
+<h1><span class="header-section-number">0.19.3</span> Difusión de la innovación</h1>
 <ul>
 <li>Un problema complejo puede quedar representado mediante su <strong>espacio de soluciones</strong>: el conjunto de todas las soluciones posibles a las que se puede llegar para resolver este problema</li>
 <li><strong>Función de fitness</strong>: Calcula la bondad de la solución.</li>
@@ -742,19 +788,19 @@ Guillermo Jiménez Díaz (gjimenez@ucm.es)<br/>Alberto Díaz (albertodiaz@fdi.uc
 <li>Este espacio de soluciones puede ser más o menos “rugoso”</li>
 </ul>
 </div><div id="difusión-de-la-innovación-4" class="slide section level3">
-<h1><span class="header-section-number">0.18.4</span> Difusión de la innovación</h1>
+<h1><span class="header-section-number">0.19.4</span> Difusión de la innovación</h1>
 <div class="figure">
 <img src="../images/tema08/NK.png" alt="Representación del espacio de soluciones de acuerdo al valor de K" /><p class="caption">Representación del espacio de soluciones de acuerdo al valor de <span class="math">\(K\)</span></p>
 </div>
 </div><div id="lazer-y-friedman" class="slide section level3">
-<h1><span class="header-section-number">0.18.5</span> Lazer y Friedman</h1>
+<h1><span class="header-section-number">0.19.5</span> Lazer y Friedman</h1>
 <ul>
 <li>Lazer y Friedman: basado en el modelo NK de Kauffman</li>
 <li><span class="math">\(N\)</span> representa la dimensionalidad del espacio de soluciones: el número de bits necesarios para representar la solución</li>
 <li><span class="math">\(K\)</span> es un parámetro que mide la rugosidad del espacio de soluciones</li>
 </ul>
 </div><div id="lazer-y-friedman-1" class="slide section level3">
-<h1><span class="header-section-number">0.18.6</span> Lazer y Friedman</h1>
+<h1><span class="header-section-number">0.19.6</span> Lazer y Friedman</h1>
 <ol class="incremental" style="list-style-type: decimal">
 <li>Red en la que cada nodo almacena una cadena de <span class="math">\(N\)</span> bits que representa la solución que tiene un determinado individuo de ese problema</li>
 <li>En cada paso de simulación, cada nodo evalúa si alguno de sus vecinos tiene una solución mejor que la suya.</li>
@@ -763,13 +809,13 @@ Guillermo Jiménez Díaz (gjimenez@ucm.es)<br/>Alberto Díaz (albertodiaz@fdi.uc
 <li>La simulación termina cuando todos los nodos convergen a la misma solución.</li>
 </ol>
 </div><div id="lazer-y-friedman-2" class="slide section level3">
-<h1><span class="header-section-number">0.18.7</span> Lazer y Friedman</h1>
+<h1><span class="header-section-number">0.19.7</span> Lazer y Friedman</h1>
 <p><a href="http://spark-public.s3.amazonaws.com/sna/netlearn/NetLogo502/SmallWorldInnovation.html">SmallWorld Innovation</a></p>
 <blockquote>
 <p>La estructura de la red tiene un fuerte impacto en la velocidad de difusión de la innovación y cuál es la bondad de la solución alcanzada</p>
 </blockquote>
 </div><div id="lazer-y-friedman-3" class="slide section level3">
-<h1><span class="header-section-number">0.18.8</span> Lazer y Friedman</h1>
+<h1><span class="header-section-number">0.19.8</span> Lazer y Friedman</h1>
 <blockquote>
 <p><strong>Conclusión:</strong> cuanto mayor es la comunicación entre los nodos más rápido se converge a una solución mejor que la media inicial. Pero esta solución no es tan buena como la que se alcanza en una red con menos conexiones</p>
 </blockquote>
@@ -777,7 +823,7 @@ Guillermo Jiménez Díaz (gjimenez@ucm.es)<br/>Alberto Díaz (albertodiaz@fdi.uc
 <p><strong>Conclusión:</strong> con menos conexiones se alcanza una solución mejor que con más conexiones (se promueve la innovación) pero, por contra, tarda más en converger.</p>
 </blockquote>
 </div><div id="lazer-y-friedman-4" class="slide section level3">
-<h1><span class="header-section-number">0.18.9</span> Lazer y Friedman</h1>
+<h1><span class="header-section-number">0.19.9</span> Lazer y Friedman</h1>
 <div class="figure">
 <img src="../images/tema08/solSimulacion.png" />
 </div>
