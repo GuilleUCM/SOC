@@ -659,6 +659,7 @@ $$p_{ij} = \beta \cdot w_{ij}$$
 - Las comunidades sirven de barrera para la difusión
 - Distintas opiniones puedan convivir en la misma red
 
+<!-- ## Juego de coordinación en redes
 
 ### Juego de coordinación en redes
 
@@ -666,7 +667,7 @@ $$p_{ij} = \beta \cdot w_{ij}$$
 
 - Las comunidades permiten que se produzca la propagación de los modelos basados en umbrales. 
 - Las comunidades sirven de barrera para la difusión
-- Distintas opiniones puedan convivir en la misma red
+- Distintas opiniones puedan convivir en la misma red -->
 
 ## Otros modelos complejos de difusión
 
