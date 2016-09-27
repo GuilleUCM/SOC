@@ -1,6 +1,6 @@
 % Análisis de Redes Sociales
 % Guillermo Jiménez Díaz (gjimenez@ucm.es); Alberto Díaz (albertodiaz@fdi.ucm.es)
-% 30 de septiembre de 2015
+% 28 de septiembre de 2016
 
 # Tema 0: Presentación de la asignatura {-}
 
@@ -91,6 +91,7 @@ Ejemplos de sistemas complejos:
     * Genoma Humano, 2001
     * Red de Interacciones entre Proteínas, 2001
     * APIS en redes sociales (Facebook, Twitter...), actualidad.
+    * Internet of Things
 
 ### La ciencia del siglo XXI: Motivos
 
@@ -107,7 +108,7 @@ Ejemplos de sistemas complejos:
 * Entender la estructura y el comportamiento de un sistema complejo.
 * Extraer información y realizar predicciones.
 * Visualización de información (en forma de red).
-* Detección de nodos de especial relevancia en la dinámica de la red (influenciadores y concentradores).
+* Detección de nodos de especial relevancia en la dinámica de la red (influenciadores, líderes de opinión y concentradores).
 * Detección de vulnerabilidades y posibles fallos en cascada debido a las interconexiones entre nodos (por ejemplo, en una red eléctrica por sobrecarga de una central o en internet, debido a un ataque por denegación de servicio en un router).
 * Entender cómo la estructura de la red afecta a la robustez de la misma.
 * Detección de grupos y comunidades dentro de la misma.
@@ -125,14 +126,14 @@ El Análisis de Redes Sociales (ARS), ciencia de redes (Network Science) o anál
 * Teoría de redes sociales
 * ...
 
-### El Análisis de Redes Sociales y la Teoría de Grafos
+<!-- ### El Análisis de Redes Sociales y la Teoría de Grafos
 
 ARS y la teoría de grafos matemática:
 
 * El ARS es más empírico que la teoría de grafos.
 * El ARS se centra en los datos y en la utilidad de los mismos.
 * Usa, al igual que la teoría de grafos, conceptos y modelos matemáticos para describir las propiedades de la red.
-* Trabaja con grandes cantidades de información por lo que genera grafos enormes.
+* Trabaja con grandes cantidades de información por lo que genera grafos enormes. -->
  
 ### Aplicaciones del Análisis de Redes Sociales
 
@@ -161,8 +162,8 @@ ARS y la teoría de grafos matemática:
 
 ### Organización
 
-* Clases teóricas se impartirán en el aula 12 los viernes
-* Clases prácticas en el laboratorio 11 los miércoles.
+* Clases teóricas se impartirán en el aula 4 los viernes
+* Clases prácticas en el laboratorio 5 los miércoles.
 * En algunas sesiones prácticas se impartirán seminarios para facilitar la realización de las prácticas.
 * **Asistencia obligatoria**, tenida en cuenta a la hora de la evaluación
 
@@ -170,7 +171,7 @@ ARS y la teoría de grafos matemática:
 
 La evaluación final del curso se compone de dos partes:
 
-### Prácticas (30%)
+### Prácticas (40%)
 
 > Las prácticas son **obligatorias** y han de estar **aprobadas** 
 
@@ -181,9 +182,9 @@ La evaluación final del curso se compone de dos partes:
 * Grupos de 3 o 4 alumnos, 2-3 prácticas
 * Las prácticas no entregadas o suspensas se tendrán que volver a entregar **en septiembre**.
 
-### Proyecto (70%)
+### Proyecto (60%)
 
-> El proyecto final es **obligatorio** y consistirá en el análisis de un conjunto de datos real elegido por el grupo de alumnos.
+> El proyecto final es **obligatorio** 
 
 * Mismos grupos que las prácticas
 * Presentado en defensa pública
@@ -232,6 +233,18 @@ Your browser does not support the video tag. <a href="https://youtu.be/RNRWRmGFn
 ### Análisis de enlaces y hashtags de Twitter
 
 ![](../images/tema00/twitter.png)
+
+### Ranking de selecciones de rugby
+
+![](../images/tema00/rugby.png)
+
+### Sistema de recomendación en Acepta el Reto
+
+![](../images/tema00/acr.png)
+
+### Propagación de un virus entre los colegios públicos de Madrid
+
+![](../images/tema00/colegios.gif)
 
 ## Bibliografía
 

@@ -1,6 +1,6 @@
 % Análisis de Redes Sociales
 % Guillermo Jiménez Díaz (gjimenez@ucm.es); Alberto Díaz (albertodiaz@fdi.ucm.es)
-% 30 de septiembre de 2015
+% 28 de septiembre de 2016
 
 
 # Prefacio {-}
@@ -82,6 +82,7 @@ Cada vez está más aceptado el hecho de que, a pesar de su dificultad, no podem
 * Genoma Humano, 2001
 * Red de Interacciones entre Proteínas, 2001
 * Extracción de datos en principales redes sociales (Facebook, Twitter...), actualidad.
+* Internet of Things
 
 ### Universalidad
 
@@ -136,13 +137,13 @@ En esta asignatura se pretende enseñar a identificar las principales propiedade
 7. Dinámica de las redes: Propagación y difusión.
 8. Robustez.
 
-Las clases teóricas se impartirán en el aula 12 los viernes y las clases prácticas en el laboratorio 11 los miércoles. En algunas sesiones prácticas se impartirán seminarios para facilitar la realización de las prácticas.
+Las clases teóricas se impartirán en el aula 4 los viernes y las clases prácticas en el laboratorio 5 los miércoles. En algunas sesiones prácticas se impartirán seminarios para facilitar la realización de las prácticas.
 
 ## Evaluación de la asignatura
 
 La evaluación final del curso se compone de dos partes:
 
-### Prácticas (30%)
+### Prácticas (40%)
 
 Las prácticas son **obligatorias** y es necesario que estén **aprobadas** para que sean tenidas en cuenta en la nota final:
 
@@ -154,7 +155,7 @@ Las prácticas se realizarán en grupos de 3 o 4 alumnos. Serán 2-3 prácticas 
 
 Las prácticas no entregadas o suspensas se tendrán que volver a entregar en septiembre.
 
-### Proyecto (70%)
+### Proyecto (60%)
 
 El proyecto final consistirá en el análisis de un conjunto de datos real elegido por el grupo de alumnos. Se realizará con los mismos grupos que las prácticas y será presentado en defensa pública.
 
@@ -165,6 +166,9 @@ Algunos proyectos realizados durante el curso pasado fueron los siguientes:
 - Análisis de la red de pases de la final de la Champions de 2014 (Real Madrid vs. Atlético de Madrid).
 - Simulador temporal del comportamiento de los nodos de una red. Podéis verlo en funcionamiento [en este Vídeo de Youtube](https://youtu.be/RNRWRmGFnyY)
 - Análisis de enlaces y hashtags de Twitter.
+- Comparación del ranking clásico de selecciones de rugby con un sistema de ranking basado en la importancia de los nodos en la red de enfrentamientos.
+- Sistema de recomendación basado en la red implícita en Acepta el Reto.
+- Propagación de un virus entre los colegios públicos de Madrid.
 
 El proyecto es obligatorio y debe cumplir los mismos requisitos que las prácticas para poder aprobar la asignatura: entregado en plazo, cumpliendo los requisitos del enunciado y obteniendo una nota mayor o igual que 5.
 

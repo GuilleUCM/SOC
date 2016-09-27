@@ -2,7 +2,7 @@
 	Fuente en general
  */
 div.level3 *{
-	font-size: 20pt;
+	font-size: 21pt;
 }
 
 div.slide {
@@ -26,9 +26,9 @@ span.header-section-number {
 }
 
 .figure img {
-    min-height: 300px;
-	max-height: 400px;
-    max-width: 700px;
+    min-height: 400px;
+	max-height: 500px;
+    max-width: 800px;
 }
 
 /*
