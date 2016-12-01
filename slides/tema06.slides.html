@@ -27,15 +27,18 @@
   <p class="author">
 Guillermo Jiménez Díaz (gjimenez@ucm.es)<br/>Alberto Díaz (albertodiaz@fdi.ucm.es)
   </p>
-  <p class="date">20 de noviembre de 2015</p>
+  <p class="date">Curso 2016-17</p>
 </div>
 <div id="tema-6-redes-libres-de-escala" class="titleslide slide section level1"><h1><span class="header-section-number">1</span> Tema 6: Redes libres de escala</h1></div><div id="www" class="titleslide slide section level2"><h1><span class="header-section-number">1.1</span> WWW</h1></div><div id="mapa-de-la-www" class="slide section level3">
 <h1><span class="header-section-number">1.1.1</span> Mapa de la WWW</h1>
 <ul>
 <li>Primer mapa de una porción de la WWW (1999)</li>
-<li><strong>Objetivo</strong>: Verificar las propiedades de los modelos de red aleatoria en este sistema complejo de páginas y enlaces</li>
+<li><strong>Objetivo</strong>:
+<ul>
+<li>Verificar las propiedades de los modelos de red aleatoria en este sistema complejo de páginas y enlaces</li>
+</ul></li>
 <li>Suponían que esta red seguía el modelo de red aleatoria</li>
-<li><p>Mapa del dominio <code>nd.edu</code></p>
+<li>Mapa del dominio <code>nd.edu</code>
 <ul>
 <li>300000 documentos</li>
 <li>1,5 millones de enlaces.</li>
@@ -43,11 +46,17 @@ Guillermo Jiménez Díaz (gjimenez@ucm.es)<br/>Alberto Díaz (albertodiaz@fdi.uc
 </ul>
 </div><div id="mapa-de-la-www-1" class="slide section level3">
 <h1><span class="header-section-number">1.1.2</span> Mapa de la WWW</h1>
+<blockquote>
+<p>En <a href="http://commoncrawl.org/" class="uri">http://commoncrawl.org/</a> podéis descargar datasets más actuales, similares a este</p>
+<p>En <a href="http://www.bigdatanews.com/profiles/blogs/big-data-set-3-5-billion-web-pages-made-available-for-all-of-us" class="uri">http://www.bigdatanews.com/profiles/blogs/big-data-set-3-5-billion-web-pages-made-available-for-all-of-us</a> ofrecen un dataset similar del año 2012, ya convertido en un grafo, con ¡3500 millones de nodos y 128.000 millones de enlaces!</p>
+</blockquote>
+</div><div id="mapa-de-la-www-2" class="slide section level3">
+<h1><span class="header-section-number">1.1.3</span> Mapa de la WWW</h1>
 <div class="figure">
 <img src="../images/tema03/www.png" alt="Mapa de la WWW: se puede ver la existencia de hubs." /><p class="caption">Mapa de la WWW: se puede ver la existencia de hubs.</p>
 </div>
-</div><div id="mapa-de-la-www-2" class="slide section level3">
-<h1><span class="header-section-number">1.1.3</span> Mapa de la WWW</h1>
+</div><div id="mapa-de-la-www-3" class="slide section level3">
+<h1><span class="header-section-number">1.1.4</span> Mapa de la WWW</h1>
 <ul>
 <li>A primera vista cumple la aleatoriedad predicha por el modelo</li>
 <li>Si nos detenemos a observar hay un gran número de nodos de grado pequeño…</li>
@@ -58,7 +67,7 @@ Guillermo Jiménez Díaz (gjimenez@ucm.es)<br/>Alberto Díaz (albertodiaz@fdi.uc
 <p><strong>Conclusión:</strong> ¿sirve una red aleatoria para modelar la WWW?</p>
 </blockquote>
 </div><div id="análisis-de-datos-de-la-www" class="slide section level3">
-<h1><span class="header-section-number">1.1.4</span> Análisis de datos de la WWW</h1>
+<h1><span class="header-section-number">1.1.5</span> Análisis de datos de la WWW</h1>
 <ul>
 <li>Distribución de grados</li>
 </ul>
@@ -66,22 +75,22 @@ Guillermo Jiménez Díaz (gjimenez@ucm.es)<br/>Alberto Díaz (albertodiaz@fdi.uc
 <img src="../images/tema03/distkinkot.png" alt="Distribución de grados de entrada y de salida de la WWW frente a la Poisson (en escala logarítmica)" /><p class="caption">Distribución de grados de entrada y de salida de la WWW frente a la Poisson (en escala logarítmica)</p>
 </div>
 </div><div id="análisis-de-datos-de-la-www-1" class="slide section level3">
-<h1><span class="header-section-number">1.1.5</span> Análisis de datos de la WWW</h1>
+<h1><span class="header-section-number">1.1.6</span> Análisis de datos de la WWW</h1>
 <ul>
 <li>La distribución de grados no se asemeja a la Poisson</li>
-<li><p>La distribución de grados se asemeja a una <strong>ley potencial</strong> o <em>power law</em>.</p>
+<li>La distribución de grados se asemeja a una <strong>ley potencial</strong> o <em>power law</em>.
 <ul>
 <li>Se caracteriza por tener una cola mucho más ancha que una exponencial.</li>
 <li>La diferencia mucho más clara si las representamos en una escala logarítmica.</li>
 </ul></li>
 </ul>
 </div><div id="ley-potencial" class="slide section level3">
-<h1><span class="header-section-number">1.1.6</span> Ley potencial</h1>
+<h1><span class="header-section-number">1.1.7</span> Ley potencial</h1>
 <div class="figure">
 <img src="../images/tema03/powerlawExp2.png" alt="Comparativa de una función exponencial (negro) frente a funciones de ley potencial (azul y rojo). A la izquierda se presenta en escala lineal mientras que a la derecha se ve en escala logarítmica" /><p class="caption">Comparativa de una función exponencial (negro) frente a funciones de ley potencial (azul y rojo). A la izquierda se presenta en escala lineal mientras que a la derecha se ve en escala logarítmica</p>
 </div>
 </div><div id="ley-potencial-1" class="slide section level3">
-<h1><span class="header-section-number">1.1.7</span> Ley potencial</h1>
+<h1><span class="header-section-number">1.1.8</span> Ley potencial</h1>
 <p>Distribución de grados en la WWW</p>
 <p><span class="math">\[p_k \sim k^{-\gamma}\]</span></p>
 <p><span class="math">\[log\: p_k \sim -\gamma \cdot log\: k\]</span></p>
@@ -89,7 +98,7 @@ Guillermo Jiménez Díaz (gjimenez@ucm.es)<br/>Alberto Díaz (albertodiaz@fdi.uc
 <p><span class="math">\[p_{k_{in}} \sim k^{-\gamma_{in}}\]</span></p>
 <p><span class="math">\[p_{k_{out}} \sim k^{-\gamma_{out}}\]</span></p>
 </div><div id="conclusiones-del-estudio-de-la-www" class="slide section level3">
-<h1><span class="header-section-number">1.1.8</span> Conclusiones del estudio de la WWW</h1>
+<h1><span class="header-section-number">1.1.9</span> Conclusiones del estudio de la WWW</h1>
 <ul>
 <li>Se pudo estimar que <span class="math">\(\gamma_{in} \approx 2,1\)</span> mientras que <span class="math">\(\gamma_{in} \approx 2,45\)</span>.</li>
 <li>Lo realmente interesante fue la gran diferencia entre la distribución esperada (una Poisson) y la distribución final obtenida (una ley potencial).</li>
@@ -219,8 +228,13 @@ Guillermo Jiménez Díaz (gjimenez@ucm.es)<br/>Alberto Díaz (albertodiaz@fdi.uc
 <li><p><strong>Red aleatoria</strong>: <span class="math">\[k_{max}\approx 13\]</span></p></li>
 <li><p><strong>Red libre de escala</strong>: <span class="math">\[k_{max}\approx 85000\]</span></p></li>
 </ul>
+</div><div id="qué-significa-libre-de-escala" class="slide section level3">
+<h1><span class="header-section-number">1.3.9</span> ¿Qué significa libre de escala?</h1>
+<div class="figure">
+<img src="../images/tema03/scale-free-meaning.jpg" alt="Libre de escala: la media no es representativa" /><p class="caption">Libre de escala: la media no es representativa</p>
+</div>
 </div><div id="resumen-gráfico" class="slide section level3">
-<h1><span class="header-section-number">1.3.9</span> Resumen gráfico</h1>
+<h1><span class="header-section-number">1.3.10</span> Resumen gráfico</h1>
 <div class="figure">
 <img src="../images/tema03/transporte.png" alt="Red de carreteras de EEUU (una red aleatoria) frente a la red de tráfico aéreo del mismo país (red libre de escala)" /><p class="caption">Red de carreteras de EEUU (una red aleatoria) frente a la red de tráfico aéreo del mismo país (red libre de escala)</p>
 </div>

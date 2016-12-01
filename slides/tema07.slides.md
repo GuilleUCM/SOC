@@ -1,5 +1,6 @@
 % Análisis de Redes Sociales
 % Guillermo Jiménez Díaz (gjimenez@ucm.es); Alberto Díaz (albertodiaz@fdi.ucm.es)
+% Curso 2016-17
 
 # Tema 7: Modelos de crecimiento
 

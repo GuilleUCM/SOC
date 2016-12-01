@@ -27,7 +27,7 @@
   <p class="author">
 Guillermo Jiménez Díaz (gjimenez@ucm.es)<br/>Alberto Díaz (albertodiaz@fdi.ucm.es)
   </p>
-  <p class="date">6 de noviembre de 2015</p>
+  <p class="date">Curso 2016-17</p>
 </div>
 <div id="tema-2-modelos-de-redes-el-modelo-de-red-aleatoria" class="titleslide slide section level1"><h1><span class="header-section-number">1</span> Tema 2: Modelos de redes: <br/>El modelo de red aleatoria</h1></div><div id="modelos" class="titleslide slide section level2"><h1><span class="header-section-number">1.1</span> Modelos</h1></div><div id="modelos-1" class="slide section level3">
 <h1><span class="header-section-number">1.1.1</span> Modelos</h1>
@@ -43,7 +43,8 @@ Guillermo Jiménez Díaz (gjimenez@ucm.es)<br/>Alberto Díaz (albertodiaz@fdi.uc
 <li>Mediante un modelo que se aproxime a una red real podremos <em>predecir propiedades y resultados</em> de la misma.</li>
 </ul>
 <blockquote>
-<p>En este y en sucesivos capítulos estudiaremos algunos de los modelos más conocidos de redes sociales. El primero de ellos es el <strong>modelo de red aleatoria</strong>.</p>
+<p>En este y en sucesivos capítulos estudiaremos algunos de los modelos más conocidos de redes sociales.</p>
+<p>El primero de ellos es el <strong>modelo de red aleatoria</strong>.</p>
 </blockquote>
 </div><div id="modelo-de-red-aleatoria" class="titleslide slide section level2"><h1><span class="header-section-number">1.2</span> Modelo de red aleatoria</h1></div><div id="ejemplo-motivante" class="slide section level3">
 <h1><span class="header-section-number">1.2.1</span> Ejemplo motivante</h1>
@@ -123,8 +124,8 @@ Guillermo Jiménez Díaz (gjimenez@ucm.es)<br/>Alberto Díaz (albertodiaz@fdi.uc
 <li>Número medio de enlaces esperados en <span class="math">\(G(N,p)\)</span> como:</li>
 </ul>
 <p><span class="math">\[ \langle L \rangle = p \cdot L_{max} = p \cdot \binom{N}{2} = p \cdot \frac{N(N-1)}{2}\]</span></p>
-</div><div id="grado-medio" class="slide section level3">
-<h1><span class="header-section-number">1.3.6</span> Grado medio</h1>
+</div><div id="grado-medio-ydistribución-del-grado-de-los-nodos" class="titleslide slide section level2"><h1><span class="header-section-number">1.4</span> Grado medio y<br/>Distribución del grado de los nodos</h1></div><div id="grado-medio" class="slide section level3">
+<h1><span class="header-section-number">1.4.1</span> Grado medio</h1>
 <p>Si la red se representa como <span class="math">\(G(L,p)\)</span></p>
 <p><span class="math">\[\langle k \rangle = \frac{2L}{N}\]</span></p>
 <p>En otro caso:</p>
@@ -132,8 +133,8 @@ Guillermo Jiménez Díaz (gjimenez@ucm.es)<br/>Alberto Díaz (albertodiaz@fdi.uc
 <blockquote>
 <p><strong>Conclusión</strong>: cuanto mayor sea <span class="math">\(p\)</span>, mayor es el grado medio y, por tanto, más densa se vuelve la red.</p>
 </blockquote>
-</div><div id="distribución-del-grado-de-los-nodos" class="titleslide slide section level2"><h1><span class="header-section-number">1.4</span> Distribución del grado de los nodos</h1></div><div id="distribución-del-grado-de-los-nodos-1" class="slide section level3">
-<h1><span class="header-section-number">1.4.1</span> Distribución del grado de los nodos</h1>
+</div><div id="distribución-del-grado-de-los-nodos" class="slide section level3">
+<h1><span class="header-section-number">1.4.2</span> Distribución del grado de los nodos</h1>
 <p>Podemos representarla como una binomial.</p>
 <p><span class="math">\[ p_k = B(N-1, k, p) \to p_k = \binom{N-1}{k} p^k(1-p)^{N-1-k}\]</span></p>
 <ul>
@@ -142,14 +143,14 @@ Guillermo Jiménez Díaz (gjimenez@ucm.es)<br/>Alberto Díaz (albertodiaz@fdi.uc
 <li>La <strong>desviación estándar</strong> de <span class="math">\(k\)</span> será: <span class="math">\(\sigma _k = [p \cdot (1-p) \cdot (N-1)]^{\frac{1}{2}}\)</span></li>
 </ul>
 </div><div id="aproximación-para-redes-reales" class="slide section level3">
-<h1><span class="header-section-number">1.4.2</span> Aproximación para redes reales</h1>
+<h1><span class="header-section-number">1.4.3</span> Aproximación para redes reales</h1>
 <ul>
 <li><p>La mayoría de las redes reales son <strong>dispersas: <span class="math">\(\langle k \rangle \ll N\)</span></strong></p></li>
 <li><p>La distribución de grados de los nodos se aproxima mejor usando una <em>distribución de Poisson</em>:</p></li>
 </ul>
 <p><span class="math">\[ P(x, \lambda) \to p_x = e^{-\lambda} \cdot \frac{\lambda ^x}{x!}\]</span></p>
 </div><div id="propiedades-de-la-distribución-de-poisson" class="slide section level3">
-<h1><span class="header-section-number">1.4.3</span> Propiedades de la distribución de Poisson</h1>
+<h1><span class="header-section-number">1.4.4</span> Propiedades de la distribución de Poisson</h1>
 <p><span class="math">\[ P(x, \lambda) \to p_x = e^{-\lambda} \cdot \frac{\lambda ^x}{x!}\]</span></p>
 <ul>
 <li>Media de la distribución: <span class="math">\(\langle x \rangle = \lambda\)</span></li>
@@ -157,17 +158,17 @@ Guillermo Jiménez Díaz (gjimenez@ucm.es)<br/>Alberto Díaz (albertodiaz@fdi.uc
 <li>Desviación estándar: <span class="math">\(\sigma _x = \lambda ^{\frac{1}{2}}\)</span></li>
 </ul>
 </div><div id="comparativa-entre-la-distribución-binomial-y-la-poisson" class="slide section level3">
-<h1><span class="header-section-number">1.4.4</span> Comparativa entre la distribución binomial y la Poisson</h1>
+<h1><span class="header-section-number">1.4.5</span> Comparativa entre la distribución binomial y la Poisson</h1>
 <div class="figure">
 <img src="../images/tema02/binomPoisson.png" alt="Representación gráfica de la distribución binomial y de la distribución de Poisson" /><p class="caption">Representación gráfica de la distribución binomial y de la distribución de Poisson</p>
 </div>
 </div><div id="comparativa-entre-la-distribución-binomial-y-la-poisson-1" class="slide section level3">
-<h1><span class="header-section-number">1.4.5</span> Comparativa entre la distribución binomial y la Poisson</h1>
+<h1><span class="header-section-number">1.4.6</span> Comparativa entre la distribución binomial y la Poisson</h1>
 <div class="figure">
 <img src="../images/tema02/binomPoisson2.png" alt="Comparativa de distribuciones de grados (izq: Binomial; der: Poisson)" /><p class="caption">Comparativa de distribuciones de grados (izq: Binomial; der: Poisson)</p>
 </div>
 </div><div id="comparativa-entre-la-distribución-binomial-y-la-poisson-2" class="slide section level3">
-<h1><span class="header-section-number">1.4.6</span> Comparativa entre la distribución binomial y la Poisson</h1>
+<h1><span class="header-section-number">1.4.7</span> Comparativa entre la distribución binomial y la Poisson</h1>
 <p>Propiedades comunes:</p>
 <ul>
 <li>Tienen un pico en <span class="math">\(\langle x \rangle\)</span> de modo que si modificamos <span class="math">\(p\)</span> entonces el pico se desplaza hacia la derecha.</li>
@@ -179,36 +180,36 @@ Guillermo Jiménez Díaz (gjimenez@ucm.es)<br/>Alberto Díaz (albertodiaz@fdi.uc
 <li>La Poisson no depende de <span class="math">\(N\)</span></li>
 </ul>
 </div><div id="distribución-de-grados-cuando-ngg-k" class="slide section level3">
-<h1><span class="header-section-number">1.4.7</span> Distribución de grados cuando <span class="math">\(N\gg k\)</span></h1>
+<h1><span class="header-section-number">1.4.8</span> Distribución de grados cuando <span class="math">\(N\gg k\)</span></h1>
 <p>Aproximamos mediante una Poisson:</p>
 <p><span class="math">\[p_k = P(k, \langle k \rangle) \to p_k = e^{-\langle k \rangle}\cdot \frac{\langle k \rangle ^k}{k!}\]</span></p>
 <ul>
-<li>Varianza de <span class="math">\(k\)</span>: <span class="math">\(\sigma _x ^2= \langle k \rangle\)</span></li>
-<li>Desviación estándar de <span class="math">\(k\)</span>: <span class="math">\(\sigma _x = \langle k \rangle ^{\frac{1}{2}}\)</span></li>
+<li>Varianza de <span class="math">\(k\)</span>: <span class="math">\(\sigma _k ^2= \langle k \rangle\)</span></li>
+<li>Desviación estándar de <span class="math">\(k\)</span>: <span class="math">\(\sigma _k = \langle k \rangle ^{\frac{1}{2}}\)</span></li>
 </ul>
 </div><div id="propiedades-derivables-de-la-distribución-de-grados" class="slide section level3">
-<h1><span class="header-section-number">1.4.8</span> Propiedades derivables de la distribución de grados</h1>
+<h1><span class="header-section-number">1.4.9</span> Propiedades derivables de la distribución de grados</h1>
 <blockquote>
 <p><strong>Conclusión: La distribución de grados<br/>no depende de <span class="math">\(N\)</span></strong></p>
 <p>Dos redes con igual <span class="math">\(\langle k \rangle\)</span> y distinto tamaño <span class="math">\(N\)</span> tienen funciones de distribución de grado indistinguibles.</p>
 </blockquote>
 </div><div id="propiedades-derivables-de-la-distribución-de-grados-1" class="slide section level3">
-<h1><span class="header-section-number">1.4.9</span> Propiedades derivables de la distribución de grados</h1>
+<h1><span class="header-section-number">1.4.10</span> Propiedades derivables de la distribución de grados</h1>
 <blockquote>
 <p><strong>Conclusión: La mayoría de los nodos tienen un grado entorno a la media (<span class="math">\(\langle k \rangle\)</span>)</strong></p>
 <p>Los nodos de mayor grado tienen solo unos pocos más que la media</p>
 </blockquote>
 </div><div id="propiedades-derivables-de-la-distribución-de-grados-2" class="slide section level3">
-<h1><span class="header-section-number">1.4.10</span> Propiedades derivables de la distribución de grados</h1>
+<h1><span class="header-section-number">1.4.11</span> Propiedades derivables de la distribución de grados</h1>
 <blockquote>
 <p><strong>Conclusión: Las redes aleatorias no tienen <strong>concentradores o hubs</strong></strong></p>
 <p>Nodos con conectividad o grado muy alto: la probabilidad de tener nodos con grado muy alto es extremadamente baja</p>
 </blockquote>
 </div><div id="ejemplo" class="slide section level3">
-<h1><span class="header-section-number">1.4.11</span> Ejemplo</h1>
+<h1><span class="header-section-number">1.4.12</span> Ejemplo</h1>
 <ul>
 <li><span class="math">\(\langle k \rangle = 1000\)</span></li>
-<li><span class="math">\(\sigma _x = 31,62\)</span></li>
+<li><span class="math">\(\sigma _k = 31,62\)</span></li>
 <li>Los nodos tienen entre 970 y 1030 enlaces.</li>
 <li><span class="math">\(k_{max}=1185\)</span> y <span class="math">\(k_{min}=816\)</span>.</li>
 </ul>
@@ -283,7 +284,7 @@ Guillermo Jiménez Díaz (gjimenez@ucm.es)<br/>Alberto Díaz (albertodiaz@fdi.uc
 <li><span class="math">\(\langle k \rangle \ge ln N \to p \ge \frac{ln N}{N}\)</span>.</li>
 <li>Cuando <span class="math">\(p\)</span> es lo suficientemente grande el componente gigante absorbe todos los nodos y componentes de la red</li>
 <li><span class="math">\(N_G \sim N\)</span>. En este momento toda la red es conexa.</li>
-<li>La rede sigue siendo relativamente dispersa</li>
+<li>La red sigue siendo relativamente dispersa</li>
 </ul>
 </div><div id="resultados" class="slide section level3">
 <h1><span class="header-section-number">1.5.10</span> Resultados</h1>

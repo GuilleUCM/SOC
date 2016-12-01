@@ -1,6 +1,6 @@
 % Análisis de Redes Sociales
 % Guillermo Jiménez Díaz (gjimenez@ucm.es); Alberto Díaz (albertodiaz@fdi.ucm.es)
-% 6 de noviembre de 2015
+% Curso 2016-17
 
 
 # Prefacio {-}
@@ -112,8 +112,8 @@ $$p_k = P(k, \langle k \rangle) \to p_k = e^{-\langle k \rangle}\cdot \frac{\lan
 
 De modo que:
 
-* Varianza de $k$: $\sigma _x ^2= \langle k \rangle$
-* Desviación estándar de $k$: $\sigma _x = \langle k \rangle ^{\frac{1}{2}}$
+* Varianza de $k$: $\sigma _k ^2= \langle k \rangle$
+* Desviación estándar de $k$: $\sigma _k = \langle k \rangle ^{\frac{1}{2}}$
 
 La siguiente figura resume las diferencias entre una y otra función de distribución:
 
@@ -125,7 +125,7 @@ De acuerdo a la distribución de Poisson podemos sacar las siguientes propiedade
 *  La mayoría de los nodos tienen un grado entorno a la media ($\langle k \rangle$) y los nodos de mayor grado tienen solo unos pocos más que la media.
 *  Las redes aleatorias no tienen **concentradores o hubs**: nodos con conectividad o grado muy alto ya que la probabilidad de tener nodos con grado muy alto es extremadamente baja.
 
-Por ejemplo, en una red con $\langle k \rangle = 1000$ se puede calcular que $\sigma _x = 31,62$ por lo que los nodos tienen entre 970 y 1030 enlaces. También podemos realizar aproximaciones[^2] para calcular el grado máximo y mínimo, que quedaría en $k_{max}=1185$ y $k_{min}=816$.
+Por ejemplo, en una red con $\langle k \rangle = 1000$ se puede calcular que $\sigma _k = 31,62$ por lo que los nodos tienen entre 970 y 1030 enlaces. También podemos realizar aproximaciones[^2] para calcular el grado máximo y mínimo, que quedaría en $k_{max}=1185$ y $k_{min}=816$.
 
 [^2]: Los cálculos para aproximar el máximo y el mínimo se pueden consultar en el libro "Network Science", cap 3, pp 72.
 

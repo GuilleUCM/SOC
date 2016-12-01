@@ -1,5 +1,6 @@
 % Análisis de Redes Sociales
 % Guillermo Jiménez Díaz (gjimenez@ucm.es); Alberto Díaz (albertodiaz@fdi.ucm.es)
+% Curso 2016-17
 
 # Tema 8: Mundos Pequeños {-}
 
@@ -56,7 +57,7 @@
 * Se enviaron 296 cartas
 * La primera llegó en pocos días, pasando sólo por 2 enlaces
 * 64 cartas con un máximo de 12 intermediarios
-* La mediana de intermediarios fueron entre 5,5 y 6
+* La mediana de intermediarios quedó entre 5,5 y 6
 
 ### Experimento de Milgram
 
@@ -139,8 +140,8 @@ $$N(d) = \sum_{x=1}^{d}8x = 4d(d+1)\sim d^2$$
 ### Modelo de Watts-Strogatz
 
 - Duncan Watts y Steve Strogatz (1998) proponen un modelo basado en dos ideas básicas de las redes sociales:
-- La homofilia
-- Los enlaces débiles
+    + La homofilia
+    + Los enlaces débiles
 
 ### Modelo de Watts-Strogatz
 

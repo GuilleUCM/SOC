@@ -1,6 +1,6 @@
 % Análisis de Redes Sociales
 % Guillermo Jiménez Díaz (gjimenez@ucm.es); Alberto Díaz (albertodiaz@fdi.ucm.es)
-% 4 de diciembre de 2015
+% Curso 2016-17
 
 
 # Prefacio {-}
@@ -9,7 +9,7 @@ Estos son los apuntes de la asignatura Análisis de Redes Sociales, impartida en
 
 Este material ha sido desarrollado a partir de distintas fuertes, destacando como referencia principal el libro _Network Science_ de Laszlo Barabasi, el material de la asignatura _Social Network Analysis_, impartido por Lada Adamic a través de Coursera, y las transparencias de la asignatura Redes y Sistemas Complejos, creadas por Óscar Cordón García de la Universidad de Granada.
 
-Para este capítulo se ha utilizado, adicionalmente, material de los libros _Analyzing the Social Web_ de Jennifer Goldbeck (capítulo 10) y _Networks, Crowds, and Markets_ de Easley y Kleinberg (capítulos 19 y 21).
+Para este capítulo se ha utilizado, adicionalmente, material de los libros _Analyzing the Social Web_ de Jennifer Goldbeck (capítulo 10), el libro _Dynamical Systems on Networks: A tutorial_ de  Mason Porter y James Gleeson y _Networks, Crowds, and Markets_ de Easley y Kleinberg (capítulos 19 y 21).
 
 Este obra está bajo una [licencia de Creative Commons Reconocimiento-NoComercial-CompartirIgual 4.0 Internacional](http://creativecommons.org/licenses/by-nc-sa/4.0/).
 
@@ -191,7 +191,7 @@ En general, la simulación de estos procesos suele ser más sencilla que la reso
 3. En cada paso de tiempo, hacemos que cada uno de los nodos en el estado I[^3] propague la infección a cada uno de sus vecinos en estado S con probabilidad $\beta$ (al igual que en los modelos de red aleatoria o Barabasi-Albert, generamos un número aleatorio $a$ y propagamos si $a<\beta$).
 4. En caso de utilizar un modelo SIR o SIS, haremos que los nodos en estado I puedan pasar al estado R (o S, dependiendo del modelo), con una probabilidad $\mu$.
 
-[^3]: Desde el punto de vista de implementación, es recomendable tener en listas separadas los nodos infectados y los susceptibles (y recuperados) no tener que procesar todos los nodos (solo los infectados) y así optimizar el proceso de simulación.
+[^3]: Desde el punto de vista de implementación usaremos lo que se conoce como _actualización síncrona_, de modo que los nodos en el tiempo $t$ se actualizan en función del estado de sus vecinos en el tiempo $t-1$. Además, es recomendable tener en listas separadas los nodos infectados y los susceptibles (y recuperados) para no tener que procesar todos los nodos (solo los infectados) y así optimizar el proceso de simulación.
 
 Existen alternativas más complejas (y más realistas), basadas en técnicas de modelado social o modelado basado en agentes, en los que cada individuo (nodo) se modela como un agente que puede incluir sus propias características individuales y que pueden generar comportamientos emergentes. Se pueden incluir procesos estocásticos de actualización de estados que simulan eventos aleatorios que pueden ocurrir en los procesos dinámicos. 
 
@@ -210,6 +210,7 @@ Antes de entrar en los detalles más analíticos de los procesos de difusión va
 ### Redes aleatorias
 
 Vamos a simular un modelo SI en una red aleatoria. Si utilizamos el simulador de [Difusión en una red aleatoria](http://www.ladamic.com/netlearn/NetLogo501/ERDiffusion.html)[^2] podemos ver la influencia de la densidad de la red en los procesos de contagio.
+
 
 ![Influencia de la densidad de la red aleatoria en los procesos de contagio](../images/tema08/contagioER.png)
 
@@ -318,9 +319,11 @@ Para el modelo SIR los resultados son similares. En la siguiente tabla se resume
 
 ![Resumen de los modelos epidémicos en redes (Network Science, cap. 10)](../images/tema08/resumenModelosRedes.png)
 
-## Modelos de contagio complejo
+## Modelos de contagio basado en umbrales
 
-Hasta ahora hemos estudiado modelos de contagio simple, en los que el contagio se produce uno a uno, es decir, basta con que un vecino de un determinado nodo esté infectado para que se pueda quedar infectado. Sin embargo, en algunos procesos como el contagio social o inducir a comprar un producto, no basta con que uno de mis vecinos tenga una determinada "opinión" para cambiar la mía sino que es necesario sea una fracción de mis vecinos. Esto es lo que se conoce como contagio complejo o **contagio basado en umbrales**.
+Hasta ahora hemos estudiado modelos de contagio simple, en los que el contagio se produce uno a uno, es decir, basta con que un vecino de un determinado nodo esté infectado para que se pueda quedar infectado. Sin embargo, en algunos procesos como el contagio social o inducir a comprar un producto, no basta con que uno de mis vecinos tenga una determinada "opinión" para cambiar la mía. Esto requiere de la definición de modelos de contagio más complejos.
+
+El modelo de **contagio basado en umbrales** se basa en que es necesario que una fracción de mis vecinos esté "infectado" para que yo pueda ser "infectado". La versión simple de este modelo supone que los enlaces no tienen peso y que son no direccionales.
 
 Existen principalmente dos formas de definir el contagio basado en umbrales:
 
@@ -333,60 +336,15 @@ En este caso, la propagación se comporta de una manera bastante distinta que de
 - El valor del umbral utilizado.
 - La elección de los nodos inicialmente infectados.
 
-A modo de ejemplo podemos ver la diferencia entre un contagio simple y uno complejo en un solo paso de simulación en la Figura \ref{fig:contagioComp}. Como se puede ver, el contagio simple se propaga de una manera mucho más rápida. Además, el contagio simple permite llegar a toda la red (en la Figura, en $t=2$ todos los nodos estarían contagiados). Sin embargo, el contagio complejo es mucho más lento y puede verse detenido rápidamente debido a la falta de conexiones (en la Figura, en $t=2$ solo J sería infectado y la infección se detendría).
+A modo de ejemplo podemos ver la diferencia entre un contagio simple y uno basado en umbrales en un solo paso de simulación en la Figura \ref{fig:contagioComp}. Como se puede ver, el contagio simple se propaga de una manera mucho más rápida. Además, el contagio simple permite llegar a toda la red (en la Figura, en $t=2$ todos los nodos estarían contagiados). Sin embargo, el contagio basado en umbrales es mucho más lento y puede verse detenido rápidamente debido a la falta de conexiones (en la Figura, en $t=2$ solo J sería infectado y la infección se detendría).
 
-![Contagio simple vs. Contagio complejo\label{fig:contagioComp}](../images/tema08/contagioComplejo.png)
+![Contagio simple vs. Contagio basado en umbrales\label{fig:contagioComp}](../images/tema08/contagioComplejo.png)
 
-Podemos ver también que los modelos de contagio complejos se comportan de manera distinta en los modelos de redes vistos:
+Podemos ver también que los modelos de contagio basado en umbrales se comportan de manera distinta en los modelos de redes vistos:
 
 - En una red de mundo pequeño (Watts-Strogatz) los enlaces débiles o atajos ya no funcionan como medio para aumentar la velocidad de propagación. 
 - En una red libre de escala, los hubs pierden importancia en la velocidad de propagación ya que, aunque llegan a muchos nodos, solo ellos no son capaces de propagar la enfermedad.
 - En una red aleatoria la propagación depende muy decisivamente de los nodos inicialmente infectados.
-
-## Modelos de difusión de opinión en redes
-
-Aunque el modelo de contagio complejo basado en umbrales puede ser adecuado para algunos procesos de difusión, existen otros modelos más adecuados para modelar los procesos de difusión de opinión en redes.
-
-Los modelos basados en _efectos de beneficio directo_ se basan en que la adopción de una opinión se ve reforzada por el beneficio que se consigue por la adopción de dicha opinión. Además, estos beneficios son mayores cuantos más vecinos adopten esa misma opinión.
-
-### Juego de coordinación en redes
-
-Este modelo se puede simular mediante el __juego de coordinación en una red__. En este modelo, cada nodo tiene que elegir entre dos posibles opciones (que llamaremos A y B) y existe un beneficio si dos nodos conectados eligen la misma opción. De una manera más formal definimos el modelo de la siguiente forma:
-
-- Si dos nodos eligen la opción A entonces obtienen un beneficio de valor $a>0$.
-- Si dos nodos eligen la opción B entonces obtienen un beneficio de valor $b>0$
-- $p$ es la fracción de vecinos que adoptan la opción A, mientras que $(1-p)$ es la fracción de vecinos que adoptan la opción B.
-- Para un nodo de grado $k$ podemos decir que este nodo adopta la opción A si:
-
-$$p \cdot k \cdot a \geq (1-p) \cdot k \cdot b$$
-
-Esto se puede convertir en un modelo de difusión basado en umbrales, donde el umbral $q$ tiene el valor:
-
-$$q = \frac{b}{a+b}$$
-
-Es decir, si tenemos una proporción de $q$ vecinos que han adoptado la opción A entonces elegiremos la opción A. En otro caso, nos es más beneficioso adoptar la opción B. 
-
-El sistema tiene dos estados de equilibrio posibles: o todos adoptan la opción A o, por el contrario, todos adoptan la opción B. Sin embargo, la pregunta es qué pasaría si, partiendo de un estado de equilibrio, algunos nodos (adoptadores iniciales) cambian su opción de manera aleatoria. Queremos saber si se va a producir una propagación en cascada de este comportamiento o si, por el contrario, este comportamiento se detendrá en algún momento o no se propagará.
-
-Para ello vamos a proponer el siguiente ejemplo: tenemos una red en la que todos los nodos han adoptado la opción B. Tenemos una opción A da un beneficio de $a=3$ mientras que la opción B da un beneficio de $b=2$. Se puede ver que en estas circunstancias, el beneficio de adoptar A es $\frac{3}{2}$ veces mayor que adoptar B. Los nodos cambiarán de B a A si al menos $q = \frac{2}{3+2} = \frac{2}{5}$ de los vecinos prefieren la opción A.
-
-En una red simple como la de la figura podemos ver que la cascada puede llegar a toda la red. En esta figura hemos supuesto que la opción B es "jugar al fútbol" mientras que la opción A es "jugar al baloncesto" y que 2 nodos empiezan a jugar al baloncesto debido a factores externos (por ejemplo, que una empresa les haya sobornado con unos pares de zapatillas para jugar al baloncesto).
-
-![Juego de coordinación en la que la cascada llega a todos los nodos ($q = \frac{2}{5}$)](../images/tema08/coordinacion1.png)
-
-Sin embargo, no podemos suponer que la cascada de adopciones va a llegar a toda la red (_cascada completa_) sino que hay ocasiones en la que la cascada se detiene aunque aún hay nodos que siguen manteniendo la opción B. En el siguiente ejemplo podemos ver que la cascada de adopciones se detiene tras tres pasos.
-
-![Juego de coordinación en la que la cascada se detiene tras tres pasos antes de alcanzar a todos los nodos ($q = \frac{2}{5}$)](../images/tema08/coordinacion2.png)
-
-Este modelo puede ser utilizado para simular posibles campañas de marketing viral y ayudar a tomar decisiones en cuanto a qué nodos hay que influir y cuánto hay que incrementar el beneficio (por ejemplo, la calidad de un producto) para que se produzca una cascada de difusión aceptable.
-
-Visto el resultado inicial, la primera opción que se puede tomar es modificar el beneficio $a$. En el ejemplo anterior, si aumentamos $a =4$ entonces el umbral $q$ baja a $q=\frac{1}{3}$ y se puede ver que la cascada de adopciones alcanza toda la red. De aquí podemos concluir que la adopción de una nueva opción no solo depende de la estructura de la red sino que también depende de las diferencias de beneficios entre la opción A y la opción B.
-
-La segunda opción a tomar, supuesto que no se puede modificar el beneficio $a$, está relacionado con decidir a qué nodos de la red es necesario influir para hacer que la cascada de adopciones alcance al mayor número posible de nodos en la red. La idea es elegir el menor número de nodos posible y elegirlos adecuadamente para conseguir que la cascada se propague. La elección de estos nodos es fundamental en la cascada de adopciones y está basada intrínsecamente en su posición dentro de la red.
-
-Si tomamos de nuevo el ejemplo de la red anterior, si mantenemos el beneficio inicial $a=3$ y comenzamos la propagación cambiando de estado a los nodos 12 y 13 entonces conseguiremos que todos los nodos del 11 al 17 cambien de estado. Sin embargo, si seleccionamos los nodos 11 y 14 entonces no conseguiremos que se propague ningún cambio de estado por la red.
-
-Podemos ver más en detalle este comportamiento utilizando el [Modelo de Difusión](http://www.ladamic.com/netlearn/NetLogo4/DiffusionCompetition.html) que está disponible en la web, seleccionando distintos nodos iniciales y viendo cómo la propagación se comporta de manera distinta en unos y otros.
 
 ### El papel del peso de los enlaces y las comunidades
 
@@ -408,16 +366,64 @@ Como se puede ver, las comunidades tienen tres papeles fundamentales dentro de e
 - Las comunidades sirven de barrera para la difusión, de modo que crean "bolsas aisladas" que no permiten la adopción de ideas externas a la comunidad. Cuando una cascada alcanza una comunidad (un agrupamiento de nodos de alta densidad) ésta se detendrá ya que no podrá entrar dentro de dicha comunidad.
 - Lo anterior permite que distintas opiniones puedan convivir en la misma red, debido a la existencia de comunidades con distintas opiniones en distintos lugares de dicha red.
 
-### Otros modelos complejos de difusión
+
+## Modelos de votantes
+
+Los modelos de votantes o _voter models_ son modelos de competiciones de especies que también resultan muy interesantes de aplicar. Consisten en lo siguiente:
+
+- Cada nodo $i$ está inicialmente en un estado $s_i$. Este estado tiene solo dos posibles valores (-1 o +1).
+- En cada paso de ejecución se selecciona aleatoriamente un nodo $n_i$. 
+- Se selecciona aleatoriamente uno de los vecinos $n_j$ de $n_i$ y se cambia el estado $s_i$ al estado de $s_j$
+
+Otra forma de hacer esto es seleccionando en cada paso $t$ una arista de manera aleatoria y, si los nodos que hay en cada extremo tienen estados diferentes, seleccionar uno de los estados y ponerlo en ambos nodos. 
+
+Otros modelos más complejos solo cambian de estado si varios de los vecinos tienen una opinión diferente al del nodo que se está tratando.
+
+Este modelo es extremadamente simple pero sirve para poder comprobar mediante una simulación si en una red se va a poder alcanzar un consenso y cuánto tiempo llevará alcanzarlo. Por ejemplo, en una red libre de escala el tiempo medio que tarda en alcanzarse un consenso crece linealmente con el tamaño de la red (N) si $\gamma>3$, mientras que crece de manera sublineal si $\gamma \leq 3$.
 
 
-#### Nodos bilingües. {-}
+## Juego de coordinación en redes
 
-Existen modelos de adopción de opiniones más complejos. Uno de ellos es el que permite la existencia de __nodos bilingües__, es decir, nodos que pueden adoptar la opción A y B simultáneamente pero con una penalización $c$. 
+Los modelos basados en _efectos de beneficio directo_ se basan en que la adopción de una opinión se ve reforzada por el beneficio que se consigue por la adopción de dicha opinión. Además, estos beneficios son mayores cuantos más vecinos adopten esa misma opinión.
 
-En este caso, estos nodos pueden conseguir que la opinión minoritaria persista en la red a pesar en condiciones en las que la opinión minoritaria desaparecería. A modo de ejemplo podemos utilizar una red lineal y observar el comportamiento de la misma con y sin nodos bilingües. Sin ellos, la opción con menor beneficio siempre termina por desaparecer de la red. Sin embargo, la presencia de nodos bilingües permite que dicha opción "sobreviva" entre pares de estos nodos. 
+Este modelo se puede simular mediante el __juego de coordinación en una red__. En este modelo, cada nodo tiene que elegir entre dos posibles opciones (que llamaremos A y B) y existe un beneficio si dos nodos conectados eligen la misma opción. De una manera más formal definimos el modelo de la siguiente forma:
 
-#### Umbrales heterogéneos. {-}
+- Si dos nodos eligen la opción A entonces obtienen un beneficio de valor $a>0$.
+- Si dos nodos eligen la opción B entonces obtienen un beneficio de valor $b>0$
+- $p$ es la fracción de vecinos que adoptan la opción A, mientras que $(1-p)$ es la fracción de vecinos que adoptan la opción B.
+- Para un nodo de grado $k$ podemos decir que este nodo adopta la opción A si:
+
+$$p \cdot k \cdot a \geq (1-p) \cdot k \cdot b$$
+
+Esto se puede convertir en un modelo de difusión basado en umbrales, donde el umbral $q$ tiene el valor:
+
+$$q = \frac{b}{a+b}$$
+
+Es decir, si tenemos una proporción de $q$ vecinos que han adoptado la opción A entonces elegiremos la opción A. En otro caso, nos es más beneficioso adoptar la opción B. 
+
+El sistema tiene dos estados de equilibrio posibles: o todos adoptan la opción A o, por el contrario, todos adoptan la opción B. Sin embargo, la pregunta es qué pasaría si, partiendo de un estado de equilibrio, algunos nodos (adoptadores iniciales) cambian su opción de manera aleatoria. Queremos saber si se va a producir una **propagación en cascada** de este comportamiento o si, por el contrario, este comportamiento se detendrá en algún momento o no se propagará.
+
+Para ello vamos a proponer el siguiente ejemplo: tenemos una red en la que todos los nodos han adoptado la opción B. Tenemos una opción A da un beneficio de $a=3$ mientras que la opción B da un beneficio de $b=2$. Se puede ver que en estas circunstancias, el beneficio de adoptar A es $\frac{3}{2}$ veces mayor que adoptar B. Los nodos cambiarán de B a A si al menos $q = \frac{2}{3+2} = \frac{2}{5}$ de los vecinos prefieren la opción A.
+
+En una red simple como la de la figura podemos ver que la cascada puede llegar a toda la red. En esta figura hemos supuesto que la opción B es "jugar al fútbol" mientras que la opción A es "jugar al baloncesto" y que 2 nodos empiezan a jugar al baloncesto debido a factores externos (por ejemplo, que una empresa les haya sobornado con unos pares de zapatillas para jugar al baloncesto).
+
+![Juego de coordinación en la que la cascada llega a todos los nodos ($q = \frac{2}{5}$)](../images/tema08/coordinacion1.png)
+
+Sin embargo, no podemos suponer que la cascada de adopciones va a llegar a toda la red (_cascada completa_) sino que hay ocasiones en la que la cascada se detiene aunque aún hay nodos que siguen manteniendo la opción B. En el siguiente ejemplo podemos ver que la cascada de adopciones se detiene tras tres pasos.
+
+![Juego de coordinación en la que la cascada se detiene tras tres pasos antes de alcanzar a todos los nodos ($q = \frac{2}{5}$)](../images/tema08/coordinacion2.png)
+
+Este modelo puede ser utilizado para simular posibles campañas de marketing viral y ayudar a tomar decisiones en cuanto a qué nodos hay que influir y cuánto hay que incrementar el beneficio (por ejemplo, la calidad de un producto) para que se produzca una cascada de difusión aceptable.
+
+Visto el resultado inicial, la primera opción que se puede tomar es modificar el beneficio $a$. En el ejemplo anterior, si aumentamos $a =4$ entonces el umbral $q$ baja a $q=\frac{1}{3}$ y se puede ver que la cascada de adopciones alcanza toda la red. De aquí podemos concluir que la adopción de una nueva opción no solo depende de la estructura de la red sino que también depende de las diferencias de beneficios entre la opción A y la opción B.
+
+La segunda opción a tomar, supuesto que no se puede modificar el beneficio $a$, está relacionado con decidir a qué nodos de la red es necesario influir para hacer que la cascada de adopciones alcance al mayor número posible de nodos en la red. La idea es elegir el menor número de nodos posible y elegirlos adecuadamente para conseguir que la cascada se propague. La elección de estos nodos es fundamental en la cascada de adopciones y está basada intrínsecamente en su posición dentro de la red.
+
+Si tomamos de nuevo el ejemplo de la red anterior, si mantenemos el beneficio inicial $a=3$ y comenzamos la propagación cambiando de estado a los nodos 12 y 13 entonces conseguiremos que todos los nodos del 11 al 17 cambien de estado. Sin embargo, si seleccionamos los nodos 11 y 14 entonces no conseguiremos que se propague ningún cambio de estado por la red.
+
+Podemos ver más en detalle este comportamiento utilizando el [Modelo de Difusión](http://www.ladamic.com/netlearn/NetLogo4/DiffusionCompetition.html) que está disponible en la web, seleccionando distintos nodos iniciales y viendo cómo la propagación se comporta de manera distinta en unos y otros.
+
+### Umbrales heterogéneos
 
 Este modelo considera que cada nodo de la red valora de una manera diferente las distintas opiniones. De este modo, cada nodo $v$ de la red tiene un determinado umbral creado a partir de su beneficio por adoptar la opción A ($a_v$) y su beneficio por adoptar la opción B ($b_v$). La simulación de este modelo funciona de manera similar al anterior salvo porque cada nodo posee su propio umbral.
 
@@ -425,7 +431,17 @@ En este caso, la diversidad de los umbrales juega un papel muy importante ya que
 
 ![Modelo basado en umbrales heterogéneos](../images/tema08/umbralHeterogeneo.png)
 
-#### Acciones colectivas. {-}
+
+<!-- 
+#### Nodos bilingües. {-}
+
+Existen modelos de adopción de opiniones más complejos. Uno de ellos es el que permite la existencia de __nodos bilingües__, es decir, nodos que pueden adoptar la opción A y B simultáneamente pero con una penalización $c$. 
+
+En este caso, estos nodos pueden conseguir que la opinión minoritaria persista en la red a pesar en condiciones en las que la opinión minoritaria desaparecería. A modo de ejemplo podemos utilizar una red lineal y observar el comportamiento de la misma con y sin nodos bilingües. Sin ellos, la opción con menor beneficio siempre termina por desaparecer de la red. Sin embargo, la presencia de nodos bilingües permite que dicha opción "sobreviva" entre pares de estos nodos.  -->
+
+
+
+<!-- #### Acciones colectivas. {-}
 
 En esta ocasión lo que se desea es modelar la manera en la que se coordinan ciertas acciones colectivas como acudir a una manifestación contra un gobierno represivo. En este caso no tenemos información de las intenciones del resto de la población (ese gobierno se ha encargado de controlar los medios de comunicación y hay una "recompensa" negativa por asistir a la manifestación) sino que solo se tiene información de los individuos más cercanos, lo que dificulta enormemente la toma de esta decisión. Se produce el fenómeno de lo que se conoce como _ignorancia pluralista_, en el que no se tiene conocimiento de la voluntad del resto (aunque realmente haya una verdadera voluntad a favor o en contra). Este mismo problema de coordinación se puede aplicar en otras situaciones como los vetos y votaciones de un consejo de administración o dirección. 
 
@@ -433,9 +449,9 @@ La particularidad de este modelo es que pretende predecir el comportamiento coor
 
 Por ejemplo, en la Figura\ref{fig:colectivo} se pueden ver tres redes distintas donde, para cada nodo, hemos indicado su umbral (es decir, cuántos nodos de la red, incluido yo mismo, han de realizar una acción para que dicho nodo realice la misma acción). En la primera red no se producirá la acción colectiva ya que hay un nodo ($w$) que tiene un umbral de 4 y solo hay 3 nodos en la red. En la segunda red, aunque si todos conociesen la información globalmente se produciría la acción colectiva, no se producirá dicha acción ya que cada nodo carece de información suficiente _localmente_ para tomar la decisión con seguridad. En la tercera red existe un conocimiento común: los nodos $u$, $v$ y $w$ conocen su información y saben que sus vecinos conocen su información, produciendo una cadena de conocimiento que permite que los tres nodos realicen la acción colectiva y permitiendo que también $x$ la realice.
 
-![Modelado de acciones colectivas. Las dos primeras no ocurrirán mientras que la tercera sí ocurrirá\label{fig:colectivo}](../images/tema08/accionColectiva.png)
+![Modelado de acciones colectivas. Las dos primeras no ocurrirán mientras que la tercera sí ocurrirá\label{fig:colectivo}](../images/tema08/accionColectiva.png) -->
 
-### Difusión de la innovación
+## Difusión de la innovación
 
 Para concluir con el tema vamos a estudiar un caso muy concreto de difusión, relacionado con la compartición de información entre personas para la resolución de problemas y la difusión de la innovación.
 

@@ -1,5 +1,6 @@
 % Análisis de Redes Sociales
 % Guillermo Jiménez Díaz (gjimenez@ucm.es); Alberto Díaz (albertodiaz@fdi.ucm.es)
+% Curso 2016-17
 
 
 # Prefacio {-}
@@ -20,7 +21,9 @@ En este tema vamos a estudiar un nuevo modelo de red que se ajusta mucho mejor a
 
 ## La WWW: el primer mapa de red no aleatoria
 
-En 1999 un grupo de investigadores realizó el primer mapa de una porción de la WWW con el objetivo de verificar las propiedades de los modelos de red aleatoria en este sistema complejo de páginas y enlaces. Hasta aquel momento había razones suficientes para suponer que esta red seguía este modelo de red aleatoria. Compusieron el mapa del dominio `nd.edu`, con un total de 300000 documentos (nodos) y 1,5 millones de enlaces.
+En 1999 un grupo de investigadores realizó el primer mapa de una porción de la WWW con el objetivo de verificar las propiedades de los modelos de red aleatoria en este sistema complejo de páginas y enlaces. Hasta aquel momento había razones suficientes para suponer que esta red seguía este modelo de red aleatoria. Compusieron el mapa del dominio `nd.edu`, con un total de 300000 documentos (nodos) y 1,5 millones de enlaces[^1].
+
+[^1]: En <http://commoncrawl.org/> podéis descargar datasets más actuales, similares a este. De hecho, en [este blog](www.bigdatanews.com/profiles/blogs/big-data-set-3-5-billion-web-pages-made-available-for-all-of-us) ofrecen un dataset similar del año 2012, ya convertido en grafo, con ¡3500 millones de nodos y 128.000 millones de enlaces! 
 
 Aunque a primera vista parecía que este mapa cumplía esa aleatoriedad predicha por el modelo, se pudo observar que, conviviendo con un gran número de nodos de grado pequeño, existían nodos con un número excepcional de enlaces: **los hubs o concentradores**. Recordemos que estos nodos son extremadamente improbables en las redes aleatorias por lo que este estudio dio lugar a replantearse que tal vez este modelo no era el que servía para modelar esta red. Así mismo, como veremos más adelante, se observó que estos hubs aparecen en otras muchas redes reales.
 

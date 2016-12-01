@@ -1,6 +1,6 @@
 % Análisis de Redes Sociales
 % Guillermo Jiménez Díaz (gjimenez@ucm.es); Alberto Díaz (albertodiaz@fdi.ucm.es)
-% 20 de noviembre de 2015
+% Curso 2016-17
 
 # Tema 6: Redes libres de escala
 
@@ -9,12 +9,18 @@
 ### Mapa de la WWW
 
 * Primer mapa de una porción de la WWW (1999)
-* **Objetivo**: Verificar las propiedades de los modelos de red aleatoria en este sistema complejo de páginas y enlaces
+* **Objetivo**:
+    - Verificar las propiedades de los modelos de red aleatoria en este sistema complejo de páginas y enlaces
 * Suponían que esta red seguía el modelo de red aleatoria
 * Mapa del dominio `nd.edu`
-
     - 300000 documentos
     - 1,5 millones de enlaces.
+
+### Mapa de la WWW
+
+> En <http://commoncrawl.org/> podéis descargar datasets más actuales, similares a este
+> 
+> En <http://www.bigdatanews.com/profiles/blogs/big-data-set-3-5-billion-web-pages-made-available-for-all-of-us> ofrecen un dataset similar del año 2012, ya convertido en un grafo, con ¡3500 millones de nodos y 128.000 millones de enlaces! 
 
 ### Mapa de la WWW
 
@@ -39,7 +45,6 @@
 
 * La distribución de grados no se asemeja a la Poisson
 * La distribución de grados se asemeja a una **ley potencial** o _power law_. 
-
     * Se caracteriza por tener una cola mucho más ancha que una exponencial. 
     * La diferencia mucho más clara si las representamos en una escala logarítmica.
 
@@ -192,6 +197,11 @@ $$p(k) = C \cdot k^{-\gamma}:\;\; k_{max}\sim k_{min} \cdot N^{\frac{1}{\gamma -
 * **Red aleatoria**: $$k_{max}\approx 13$$
 
 * **Red libre de escala**: $$k_{max}\approx 85000$$
+
+### ¿Qué significa libre de escala?
+
+![Libre de escala: la media no es representativa](../images/tema03/scale-free-meaning.jpg)
+
 
 ### Resumen gráfico
 

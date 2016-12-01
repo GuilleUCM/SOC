@@ -1,6 +1,6 @@
 % Análisis de Redes Sociales
 % Guillermo Jiménez Díaz (gjimenez@ucm.es); Alberto Díaz (albertodiaz@fdi.ucm.es)
-% 6 de noviembre de 2015
+% Curso 2016-17
 
 # Tema 2: Modelos de redes: <br/>El modelo de red aleatoria
 
@@ -18,7 +18,9 @@
 * Los modelos nos ayudan a entender cómo y por qué se han formado las redes tal y como son ahora.
 * Mediante un modelo que se aproxime a una red real podremos _predecir propiedades y resultados_ de la misma. 
 
-> En este y en sucesivos capítulos estudiaremos algunos de los modelos más conocidos de redes sociales. El primero de ellos es el **modelo de red aleatoria**.
+> En este y en sucesivos capítulos estudiaremos algunos de los modelos más conocidos de redes sociales.
+> 
+> El primero de ellos es el **modelo de red aleatoria**.
 
 ## Modelo de red aleatoria
 
@@ -95,6 +97,11 @@ $$ p_L = B(L_{max}, L, p) \to p_L = \binom{L_{max}}{L} p^L(1-p)^{L_{max}-L} $$
 
 $$ \langle L \rangle = p \cdot L_{max} = p \cdot \binom{N}{2} = p \cdot \frac{N(N-1)}{2}$$
 
+
+
+
+## Grado medio y<br/>Distribución del grado de los nodos
+
 ### Grado medio 
 
 Si la red se representa como $G(L,p)$
@@ -106,9 +113,6 @@ En otro caso:
 $$ \langle k \rangle = \frac{2 \langle L \rangle }{N}  = p \cdot (N-1)$$ 
 
 > __Conclusión__: cuanto mayor sea $p$, mayor es el grado medio y, por tanto, más densa se vuelve la red.
-
-
-## Distribución del grado de los nodos
 
 ### Distribución del grado de los nodos
 
@@ -163,8 +167,8 @@ Aproximamos mediante una Poisson:
 
 $$p_k = P(k, \langle k \rangle) \to p_k = e^{-\langle k \rangle}\cdot \frac{\langle k \rangle ^k}{k!}$$
 
-* Varianza de $k$: $\sigma _x ^2= \langle k \rangle$
-* Desviación estándar de $k$: $\sigma _x = \langle k \rangle ^{\frac{1}{2}}$
+* Varianza de $k$: $\sigma _k ^2= \langle k \rangle$
+* Desviación estándar de $k$: $\sigma _k = \langle k \rangle ^{\frac{1}{2}}$
 
 
 
@@ -189,7 +193,7 @@ $$p_k = P(k, \langle k \rangle) \to p_k = e^{-\langle k \rangle}\cdot \frac{\lan
 ### Ejemplo
 
 * $\langle k \rangle = 1000$ 
-* $\sigma _x = 31,62$
+* $\sigma _k = 31,62$
 * Los nodos tienen entre 970 y 1030 enlaces.
 * $k_{max}=1185$ y $k_{min}=816$.
 
@@ -259,7 +263,7 @@ Con respecto a la probabilidad $p$:
 * $\langle k \rangle \ge ln N \to p \ge \frac{ln N}{N}$.
 * Cuando $p$ es lo suficientemente grande el componente gigante absorbe todos los nodos y componentes de la red
 * $N_G \sim N$. En este momento toda la red es conexa.
-* La rede sigue siendo relativamente dispersa
+* La red sigue siendo relativamente dispersa
 
 ### Resultados
 
@@ -334,7 +338,7 @@ Si suponemos que las redes reales siguen el modelo de red aleatoria entonces se 
 
 ### Etapas de evolución
 
-* todas estas redes cumplen que $\langle k \rangle > 1$ por lo que tienen un componente gigante.
+* Todas estas redes cumplen que $\langle k \rangle > 1$ por lo que tienen un componente gigante.
 * No se cumple que $\langle k \rangle \sim ln N$
 
     * Deberíamos suponer que se encuentran en la fase supercrítica
